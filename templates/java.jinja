@@ -1,0 +1,121 @@
+package com.raytheon.uf.edex.ooi.cassandra.tables;
+
+import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
+import com.google.common.primitives.Doubles;
+import com.raytheon.uf.edex.ooi.cassandra.DoubleBufferSerializer;
+import com.raytheon.uf.edex.ooi.cassandra.LongBufferSerializer;
+import com.raytheon.uf.edex.ooi.cassandra.IntBufferSerializer;
+import com.raytheon.uf.edex.ooi.cassandra.BufferUtils;
+import com.raytheon.uf.edex.ooi.cassandra.CassandraParticle;
+import com.raytheon.uf.edex.ooi.cassandra.DataParticleJson;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.cassandra.mapping.CassandraType;
+import org.springframework.data.cassandra.mapping.Column;
+import org.springframework.data.cassandra.mapping.Table;
+
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.math.BigInteger;
+
+import static com.datastax.driver.core.DataType.Name.*;
+
+@Table(value = "{{table.name}}")
+public class {{table.classname}} extends CassandraParticle {
+
+    @Transient
+    private String stream_name = "{{table.name}}";
+
+    // Cassandra columns
+{% for column in table.columns %}
+    private {{column.javatype}} {{column.javaname}};
+{% endfor %}
+
+    // Fill values
+{% for column in table.columns %}
+{% if column.numeric or column.islist and not column.name.endswith("shape")%}
+    @Transient
+{% if column.java_object == 'BigInteger' %}
+    private {{column.filltype}} {{column.fillvar}} = new BigInteger("{{column.fillvalue}}");
+{% elif column.java_object == 'String' %}
+    private {{column.filltype}} {{column.fillvar}} = "";
+{% else %}
+    private {{column.filltype}} {{column.fillvar}} = {{column.fillvalue}};
+{% endif %}
+{% endif %}
+{% endfor %}
+
+    public void fill(DataParticleJson particle) {
+        super.fill(particle);
+{% for column in table.columns %}
+{% if column.fillable %}
+    {% if column.javatype == 'ByteBuffer' %}
+        // Numeric list data is validated and filled, flattened, then converted to a ByteBuffer
+        List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
+        this.{{ column.javaname }}_shape = getShape({{ column.javaname }}ObjectList);
+        {{ column.javaname }}ObjectList = BufferUtils.flatten({{ column.javaname }}ObjectList);
+        List<{{ column.java_object }}> {{ column.javaname }}List = BufferUtils.objectToList({{ column.javaname }}ObjectList, this.{{ column.fillvar }}, "{{ column.javaname }}");
+        this.{{ column.javaname }} = BufferUtils.{{ column.java_object.lower() }}ListToByteBuffer({{ column.javaname }}List);
+    {% elif column.javatype == 'List<String>' %}
+        // String list data is filled and flattened and stored as a list
+        List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
+        this.{{ column.javaname }}_shape = getShape({{ column.javaname }}ObjectList);
+        {{ column.javaname }}ObjectList = BufferUtils.flatten({{ column.javaname }}ObjectList);
+        this.{{ column.javaname }} = BufferUtils.objectToList({{ column.javaname }}ObjectList, this.{{ column.fillvar }}, "{{ column.javaname }}");
+    {% elif column.numeric %}
+    {% if column.javatype == 'BigInteger' %}
+        this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, this.{{column.fillvar}}, "{{column.name}}");
+    {% else %}
+        this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, this.{{column.fillvar}}, "{{column.name}}");
+    {% endif %}
+    {% else %}
+        this.{{column.javaname}} = (particle.get("{{column.name}}") == null) ? null: particle.get("{{column.name}}").toString();
+    {% endif %}
+
+{% endif %}
+{% endfor %}
+    }
+
+    // Getters and Setters
+
+    public String getStream_name() {
+        return stream_name;
+    }
+
+{% for column in table.columns %}
+    {% if column.javatype == 'ByteBuffer' %}
+    {% if column.java_object == 'Double' %}
+    @JsonSerialize(using=DoubleBufferSerializer.class)
+    {% elif column.java_object == 'Long' %}
+    @JsonSerialize(using=LongBufferSerializer.class)
+    {% elif column.java_object == 'Integer' %}
+    @JsonSerialize(using=IntBufferSerializer.class)
+    {% endif %}
+    {% endif %}
+    public {{column.javatype}} {{column.getter}}() {
+        return {{column.javaname}};
+    }
+
+    public void {{column.setter}}({{column.javatype}} {{column.javaname}}) {
+
+        this.{{column.javaname}} = {{column.javaname}};
+    }
+
+{% endfor %}
+
+    @Override
+    public List<?> getList(String field) {
+        switch(field) {
+{% for column in table.columns %}
+{% if column.javatype == 'ByteBuffer' %}
+            case "{{ column.javaname }}":
+                return {{ column.filltype.capitalize() }}s.asList(BufferUtils.byteBufferTo{{ column.filltype.capitalize() }}Array({{ column.javaname }}));
+{% endif %}
+{% endfor %}
+            default:
+                return null;
+        }
+    }
+}

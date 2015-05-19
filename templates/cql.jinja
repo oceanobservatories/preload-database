@@ -1,0 +1,20 @@
+CREATE TABLE ooi.{{table.name}} (
+    subsite text,
+    node text,
+    sensor text,
+    method text,
+    time double,
+    deployment int,
+    id uuid,
+    driver_timestamp double,
+    ingestion_timestamp double,
+    internal_timestamp double,
+    port_timestamp double,
+    preferred_timestamp text,
+    quality_flag text,
+    provenance uuid,
+{% for column in table.columns %}
+    {{column.name}} {{column.cqltype}},
+{% endfor %}
+    PRIMARY KEY((subsite, node, sensor), method, time, deployment, id)
+);
