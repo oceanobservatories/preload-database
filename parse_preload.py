@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 import json
 import os
+import preload_database
 import gdata.spreadsheet.service as service
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model.preload import Stream, Base
+from model.preload import Stream
 from model.preload import ParameterFunction
 from model.preload import FunctionType
 from model.preload import Parameter
@@ -13,19 +12,14 @@ from model.preload import ValueEncoding
 from model.preload import CodeSet
 from model.preload import Unit
 from model.preload import FillValue
-
 from config import SPREADSHEET_KEY
-from config import SQLALCHEMY_DATABASE_URI
 from config import USE_CACHED_SPREADSHEET
-
 
 key = SPREADSHEET_KEY
 use_cache = USE_CACHED_SPREADSHEET
 cachedir = '.cache'
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
-Session = sessionmaker(bind=engine)
-session = Session()
+session = preload_database.get_file_backed_session()
 
 IGNORE_SCENARIOS = ['VOID', 'TEST', 'LC_TEST', 'JN', 'ANTELOPE', 'xADCPSL_CSTL', 'EXAMPLE1', 'EXAMPLE2', 'NOSE']
 
@@ -211,8 +205,6 @@ def process_streams(sheet):
 
 
 def create_db():
-    Base.metadata.drop_all(engine)
-    Base.metadata.create_all(engine)
     process_parameter_funcs(sheet_generator('ParameterFunctions'))
     process_parameters(sheet_generator('ParameterDefs'))
     process_streams(sheet_generator('ParameterDictionary'))

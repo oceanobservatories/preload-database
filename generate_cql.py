@@ -2,17 +2,12 @@
 import codecs
 import os
 import shutil
-import sqlite3
 import logging
 import jinja2
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from config import SQLALCHEMY_DATABASE_URI
+import preload_database
 from model.preload import Stream
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
-Session = sessionmaker(bind=engine)
-session = Session()
+session = preload_database.get_in_memory_session()
 
 DROP_KEYSPACE = 'drop keyspace ooi;\n\n'
 
