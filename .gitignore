@@ -1,2 +1,5 @@
 *.pyc
-
+preload.db
+.idea/
+cql/
+java/
