@@ -1,11 +1,17 @@
 import os
 import sys
+from enum import Enum
 
 DEBUG = False
 
 __basedir = os.path.abspath(os.path.dirname(__file__))
-PRELOAD_DATABASE_SQLITE_FILE_PATH = "sqlite:///" + os.path.join(__basedir, "preload.db")
+PRELOAD_DATABASE_SQLITE_FILE_PATH = os.path.join(__basedir, "preload.db")
+PRELOAD_DATABASE_SQLITE_FILE_URI = "sqlite:///" + PRELOAD_DATABASE_SQLITE_FILE_PATH
 PRELOAD_DATABASE_SCRIPT_FILE_PATH = os.path.join(__basedir, "preload_database.sql")
+
+PreloadDatabaseMode = Enum('EMPTY_FILE', 'POPULATED_MEMORY', 'POPULATED_FILE')
+
+PRELOAD_DATABASE_MODE = PreloadDatabaseMode.EMPTY_FILE
 
 CASSANDRA_CONTACT_POINTS = ['127.0.0.1']
 CASSANDRA_KEYSPACE = 'ooi2'

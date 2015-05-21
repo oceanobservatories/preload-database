@@ -1,25 +1,17 @@
 #!/usr/bin/env python
-import json
 import os
-import preload_database
 import gdata.spreadsheet.service as service
-from model.preload import Stream
-from model.preload import ParameterFunction
-from model.preload import FunctionType
-from model.preload import Parameter
-from model.preload import ParameterType
-from model.preload import ValueEncoding
-from model.preload import CodeSet
-from model.preload import Unit
-from model.preload import FillValue
-from config import SPREADSHEET_KEY
-from config import USE_CACHED_SPREADSHEET
+import config
+config.PRELOAD_DATABASE_MODE = config.PreloadDatabaseMode.EMPTY_FILE
+from database import init_db, db_session, generate_script_from_preload_database
+from model.preload import *
 
-key = SPREADSHEET_KEY
-use_cache = USE_CACHED_SPREADSHEET
+
+init_db()
+
+key = config.SPREADSHEET_KEY
+use_cache = config.USE_CACHED_SPREADSHEET
 cachedir = '.cache'
-
-session = preload_database.get_file_backed_session()
 
 IGNORE_SCENARIOS = ['VOID', 'TEST', 'LC_TEST', 'JN', 'ANTELOPE', 'xADCPSL_CSTL', 'EXAMPLE1', 'EXAMPLE2', 'NOSE']
 
@@ -65,13 +57,23 @@ def sheet_generator(name):
 def get_simple_field(field_class, value):
     if value is None:
         return value
-    item = session.query(field_class).filter(field_class.value == value).first()
+    item = db_session.query(field_class).filter(field_class.value == value).first()
     if item is None:
         item = field_class(value=value)
-        session.add(item)
-        session.commit()
+        db_session.add(item)
+        db_session.commit()
 
     return item
+
+
+def validate_scenario(value):
+    if value is not None:
+        scenarios = [s.strip() for s in value.split(',')]
+        for scenario in scenarios:
+            if scenario in IGNORE_SCENARIOS:
+                return False
+
+    return True
 
 
 def validate_parameter_row(row):
@@ -83,11 +85,8 @@ def validate_parameter_row(row):
     if not row.get('id').startswith('PD'):
         return False
 
-    if row.get('scenario') is not None:
-        scenarios = [s.strip() for s in row.get('scenario').split(',')]
-        for scenario in scenarios:
-            if scenario in IGNORE_SCENARIOS:
-                return False
+    if not validate_scenario(row.get('scenario')):
+        return False
 
     return True
 
@@ -101,11 +100,8 @@ def validate_stream_row(row):
     if not row.get('id').startswith('DICT'):
         return False
 
-    if row.get('scenario') is not None:
-        scenarios = [s.strip() for s in row.get('scenario').split(',')]
-        for scenario in scenarios:
-            if scenario in IGNORE_SCENARIOS:
-                return False
+    if not validate_scenario(row.get('scenario')):
+        return False
 
     return True
 
@@ -119,19 +115,18 @@ def validate_parameter_func_row(row):
     if not row.get('id').startswith('PFID'):
         return False
 
-    scenario = row.get('scenario')
-    if scenario is not None and 'VOID' in scenario:
+    if not validate_scenario(row.get('scenario')):
         return False
 
     return True
 
 
 def get_function(pfid):
-    return session.query(ParameterFunction).get(pfid)
+    return ParameterFunction.query.get(pfid)
 
 
 def get_parameter(pdid):
-    return session.query(Parameter).get(pdid)
+    return Parameter.query.get(pdid)
 
 
 def process_parameters(sheet):
@@ -162,8 +157,8 @@ def process_parameters(sheet):
                 except SyntaxError as e:
                     print row.get('id'), e
 
-            session.add(parameter)
-    session.commit()
+            db_session.add(parameter)
+    db_session.commit()
 
 
 def process_parameter_funcs(sheet):
@@ -178,8 +173,8 @@ def process_parameter_funcs(sheet):
             func.owner = row.get('owner')
             func.description = row.get('description')
             func.qc_flag = row.get('qcflag')
-            session.add(func)
-    session.commit()
+            db_session.add(func)
+    db_session.commit()
 
 
 def process_streams(sheet):
@@ -200,9 +195,8 @@ def process_streams(sheet):
                 else:
                     print "ACK! missing parameter: %d for stream: %s" % (each, stream.name)
             if len(stream.parameters) > 0:
-                session.add(stream)
-
-    session.commit()
+                db_session.add(stream)
+    db_session.commit()
 
 
 def create_db():
@@ -212,3 +206,4 @@ def create_db():
 
 if __name__ == '__main__':
     create_db()
+    generate_script_from_preload_database()
