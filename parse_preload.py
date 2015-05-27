@@ -177,6 +177,7 @@ def process_parameter_funcs(sheet):
             func.function = row.get('function')
             func.owner = row.get('owner')
             func.description = row.get('description')
+            func.qc_flag = row.get('qcflag')
             session.add(func)
     session.commit()
 
