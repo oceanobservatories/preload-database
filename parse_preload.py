@@ -3,7 +3,8 @@ import os
 import gdata.spreadsheet.service as service
 import config
 config.PRELOAD_DATABASE_MODE = config.PreloadDatabaseMode.EMPTY_FILE
-from database import init_db, db_session, generate_script_from_preload_database
+from database import init_db, db_session
+import database_util
 from model.preload import *
 
 
@@ -206,4 +207,5 @@ def create_db():
 
 if __name__ == '__main__':
     create_db()
-    generate_script_from_preload_database()
+    database_util.generate_script_from_preload_database()
+    database_util.delete_preload_database()
