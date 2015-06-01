@@ -1,0 +1,10 @@
+This git module stores the code for downloading and parsing the preload data stored within the Google shared document:
+    https://docs.google.com/spreadsheets/d/1jIiBKpVRBMU5Hb1DJqyR16XCkiX-CuTsn1Z1VnlRV4I/edit?pli=1#gid=1005276987
+
+Files of interest:
+    parse_preload.py     - Python script that generates a SQL script from the Google shared document
+    preload_database.sql - The SQL script output by the parse script
+
+To update the preload database SQL script execute the following command:
+    python parse_preload.py
+
