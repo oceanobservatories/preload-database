@@ -7,7 +7,7 @@ import jinja2
 import config
 config.PRELOAD_DATABASE_MODE = config.PreloadDatabaseMode.POPULATED_MEMORY
 from database import init_db, db_session
-from model.preload import *
+from model.preload import Stream
 
 
 init_db()
