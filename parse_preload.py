@@ -3,13 +3,14 @@ import json
 import os
 import gdata.spreadsheet.service as service
 import config
-config.PRELOAD_DATABASE_MODE = config.PreloadDatabaseMode.EMPTY_FILE
-from database import init_db, db_session
+import database
 import database_util
 from model.preload import ParameterType, ValueEncoding, CodeSet, Unit, FillValue, FunctionType, ParameterFunction, \
     Parameter, Stream
 
-init_db()
+
+database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
+database.open_connection()
 
 key = config.SPREADSHEET_KEY
 use_cache = config.USE_CACHED_SPREADSHEET
@@ -59,11 +60,11 @@ def sheet_generator(name):
 def get_simple_field(field_class, value):
     if value is None:
         return value
-    item = db_session.query(field_class).filter(field_class.value == value).first()
+    item = database.Session.query(field_class).filter(field_class.value == value).first()
     if item is None:
         item = field_class(value=value)
-        db_session.add(item)
-        db_session.commit()
+        database.Session.add(item)
+        database.Session.commit()
 
     return item
 
@@ -159,8 +160,8 @@ def process_parameters(sheet):
                 except SyntaxError as e:
                     print row.get('id'), e
 
-            db_session.add(parameter)
-    db_session.commit()
+            database.Session.add(parameter)
+    database.Session.commit()
 
 
 def process_parameter_funcs(sheet):
@@ -175,8 +176,8 @@ def process_parameter_funcs(sheet):
             func.owner = row.get('owner')
             func.description = row.get('description')
             func.qc_flag = row.get('qcflag')
-            db_session.add(func)
-    db_session.commit()
+            database.Session.add(func)
+    database.Session.commit()
 
 
 def process_streams(sheet):
@@ -197,8 +198,8 @@ def process_streams(sheet):
                 else:
                     print "ACK! missing parameter: %d for stream: %s" % (each, stream.name)
             if len(stream.parameters) > 0:
-                db_session.add(stream)
-    db_session.commit()
+                database.Session.add(stream)
+    database.Session.commit()
 
 
 def create_db():

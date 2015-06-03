@@ -4,13 +4,12 @@ import os
 import shutil
 import logging
 import jinja2
-import config
-config.PRELOAD_DATABASE_MODE = config.PreloadDatabaseMode.POPULATED_MEMORY
-from database import init_db, db_session
+import database
 from model.preload import Stream
 
 
-init_db()
+database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
+database.open_connection()
 
 DROP_KEYSPACE = 'drop keyspace ooi;\n\n'
 
@@ -262,7 +261,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
         all_cql_fh.write(CREATE_METADATA)
         all_cql_fh.write(CREATE_PROVENANCE)
         all_cql_fh.write(CREATE_METADATA_HOURLY)
-        streams = db_session.query(Stream).all()
+        streams = database.Session.query(Stream).all()
         for stream in streams:
             t = Table(stream)
             tables.append(t)
