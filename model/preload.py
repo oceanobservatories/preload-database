@@ -80,54 +80,6 @@ class Parameter(Base):
     description = Column(String(4096))
     streams = relationship('Stream', secondary='stream_parameter')
 
-    def parse_pdid(self, pdid_string):
-        return int(pdid_string.split()[0][2:])
-
-    def needs(self, needed=None):
-        if needed is None:
-            needed = []
-
-        if self in needed:
-            return
-
-        if self.parameter_type.value == 'function':
-            for value in self.parameter_function_map.values():
-                if isinstance(value,basestring) and value.startswith('PD'):
-                    try:
-                        pdid = self.parse_pdid(value)
-                        sub_param = Parameter.query.get(pdid)
-                        if sub_param in needed:
-                            continue
-                        sub_param.needs(needed)
-                    except (ValueError, AttributeError):
-                        pass
-
-        if self not in needed:
-            needed.append(self)
-        return needed
-
-    def needs_cc(self, needed=None):
-        if needed is None:
-            needed = []
-
-        if self.parameter_type.value == 'function':
-            for value in self.parameter_function_map.values():
-                if isinstance(value,basestring) and value.startswith('CC') and value not in needed:
-                    needed.append(value)
-
-        return needed
-
-    def asdict(self):
-        return {
-            'pd_id': 'PD%d' % self.id,
-            'name': self.name,
-            'type': self.parameter_type.value if self.parameter_type is not None else None,
-            'unit': self.unit.value if self.unit is not None else None,
-            'fill': self.fill_value.value if self.fill_value is not None else None,
-            'encoding': self.value_encoding.value if self.value_encoding is not None else None,
-            'precision': self.precision
-        }
-
 
 class StreamParameter(Base):
     __tablename__ = 'stream_parameter'
