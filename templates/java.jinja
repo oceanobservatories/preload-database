@@ -37,13 +37,7 @@ public class {{table.classname}} extends CassandraParticle {
 {% for column in table.columns %}
 {% if column.numeric or column.islist and not column.name.endswith("shape")%}
     @Transient
-{% if column.java_object == 'BigInteger' %}
-    private {{column.filltype}} {{column.fillvar}} = new BigInteger("{{column.fillvalue}}");
-{% elif column.java_object == 'String' %}
-    private {{column.filltype}} {{column.fillvar}} = "";
-{% else %}
-    private {{column.filltype}} {{column.fillvar}} = {{column.fillvalue}};
-{% endif %}
+    private {{column.filltype}} {{column.fillvar}} = null;
 {% endif %}
 {% endfor %}
 
@@ -110,8 +104,13 @@ public class {{table.classname}} extends CassandraParticle {
         switch(field) {
 {% for column in table.columns %}
 {% if column.javatype == 'ByteBuffer' %}
+            {% if column.filltype == 'Integer' %}
+            case "{{ column.javaname }}":
+                return Ints.asList(BufferUtils.byteBufferToIntArray({{ column.javaname }}));
+            {% else %}
             case "{{ column.javaname }}":
                 return {{ column.filltype.capitalize() }}s.asList(BufferUtils.byteBufferTo{{ column.filltype.capitalize() }}Array({{ column.javaname }}));
+            {% endif %}
 {% endif %}
 {% endfor %}
             default:
