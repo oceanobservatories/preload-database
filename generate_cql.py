@@ -97,15 +97,15 @@ java_promoted_map = {
 
 map = {
 #    ('blob', 'array<quantity>'): ('blob', 'ByteBuffer', 'Byte'),
-    ('int', 'category<int8:str>'): ('int', 'int', 'int', 'Integer', False),
-    ('int', 'category<uint8:str>'): ('int', 'int', 'int', 'Integer', False),
-    ('int', 'boolean'): ('int', 'int', 'int', 'Integer', False),
-    ('int', 'quantity'): ('int', 'int', 'int', 'Integer', False),
-    ('int', 'array<quantity>'): ('blob', 'ByteBuffer', 'int', 'Integer', True),
-    ('bigint', 'quantity'): ('bigint', 'long', 'long', 'Long', False),
-    ('bigint', 'array<quantity>'): ('blob', 'ByteBuffer', 'long', 'Long', True),
-    ('double', 'quantity'): ('double', 'double', 'double', 'Double', False),
-    ('double', 'array<quantity>'): ('blob', 'ByteBuffer', 'double', 'Double', True),
+    ('int', 'category<int8:str>'): ('int', 'Integer', 'Integer', 'Integer', False),
+    ('int', 'category<uint8:str>'): ('int', 'Integer', 'Integer', 'Integer', False),
+    ('int', 'boolean'): ('int', 'Integer', 'Integer', 'Integer', False),
+    ('int', 'quantity'): ('int', 'Integer', 'Integer', 'Integer', False),
+    ('int', 'array<quantity>'): ('blob', 'ByteBuffer', 'Integer', 'Integer', True),
+    ('bigint', 'quantity'): ('bigint', 'Long', 'Long', 'Long', False),
+    ('bigint', 'array<quantity>'): ('blob', 'ByteBuffer', 'Long', 'Long', True),
+    ('double', 'quantity'): ('double', 'Double', 'Double', 'Double', False),
+    ('double', 'array<quantity>'): ('blob', 'ByteBuffer', 'Double', 'Double', True),
     ('text', 'quantity'): ('text', 'String', 'String', 'String', False),
     ('text', 'array<quantity>'): ('list<text>', 'List<String>', 'String', 'String', True),
 }
@@ -157,7 +157,7 @@ class Column(object):
         if 'sparse' in parameter_type:
             self.sparse = True
 
-        if self.javatype in ['int', 'long', 'double', 'BigInteger']:
+        if self.javatype in ['Integer', 'Long', 'Double', 'BigInteger']:
             self.numeric = True
 
         self.fillvalue = fill_value
