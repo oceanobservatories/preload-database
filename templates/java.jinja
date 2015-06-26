@@ -46,12 +46,10 @@ public class {{table.classname}} extends CassandraParticle {
 {% for column in table.columns %}
 {% if column.fillable %}
     {% if column.javatype == 'ByteBuffer' %}
-        // Numeric list data is validated and filled, flattened, then converted to a ByteBuffer
+        // Numeric list data is converted to msgpack and placed into a ByteBuffer
         List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
         this.{{ column.javaname }}_shape = getShape({{ column.javaname }}ObjectList);
-        {{ column.javaname }}ObjectList = BufferUtils.flatten({{ column.javaname }}ObjectList);
-        List<{{ column.java_object }}> {{ column.javaname }}List = BufferUtils.objectToList({{ column.javaname }}ObjectList, this.{{ column.fillvar }}, "{{ column.javaname }}");
-        this.{{ column.javaname }} = BufferUtils.{{ column.java_object.lower() }}ListToByteBuffer({{ column.javaname }}List);
+        this.{{ column.javaname }} = BufferUtils.convertToMsgpack({{ column.javaname }}ObjectList);
     {% elif column.javatype == 'List<String>' %}
         // String list data is filled and flattened and stored as a list
         List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
