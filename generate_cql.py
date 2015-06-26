@@ -95,6 +95,7 @@ java_promoted_map = {
     'double': 'Double'
 }
 
+# format: (cqltype, javatype) : (filltype, java_object, islist)
 map = {
 #    ('blob', 'array<quantity>'): ('blob', 'ByteBuffer', 'Byte'),
     ('int', 'category<int8:str>'): ('int', 'Integer', 'Integer', 'Integer', False),
@@ -107,7 +108,7 @@ map = {
     ('double', 'quantity'): ('double', 'Double', 'Double', 'Double', False),
     ('double', 'array<quantity>'): ('blob', 'ByteBuffer', 'Double', 'Double', True),
     ('text', 'quantity'): ('text', 'String', 'String', 'String', False),
-    ('text', 'array<quantity>'): ('list<text>', 'List<String>', 'String', 'String', True),
+    ('text', 'array<quantity>'): ('blob', 'ByteBuffer', 'String', 'String', True),
 }
 
 
@@ -234,16 +235,6 @@ class Table(object):
                     continue
                 self.columns.append(column)
                 self.column_names.append(column.name)
-                if column.islist:
-                    shape = Column()
-
-                    shape.set_name(column.name + "_shape")
-                    shape.cqltype = 'list<int>'
-                    shape.javatype = 'List<Integer>'
-                    shape.fillable = False
-                    shape.islist = True
-
-                    self.columns.append(shape)
             else:
                 self.valid = False
                 break
