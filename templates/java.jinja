@@ -42,7 +42,11 @@ public class {{table.classname}} extends CassandraParticle {
         // Numeric list data is converted to msgpack and placed into a ByteBuffer
         this.{{ column.javaname }} = BufferUtils.convertToMsgpack((List<?>) particle.get("{{ column.javaname }}"));
     {% elif column.numeric %}
-        this.{{column.javaname}} = ({{column.java_object}}) particle.get("{{column.name}}");
+        {% if column.javatype == 'BigInteger' %}
+            this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, null, "{{column.name}}");
+        {% else %}
+            this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, null, "{{column.name}}");
+        {% endif %}
     {% else %}
         this.{{column.javaname}} = (particle.get("{{column.name}}") == null) ? null: particle.get("{{column.name}}").toString();
     {% endif %}
