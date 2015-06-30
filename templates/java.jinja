@@ -33,13 +33,6 @@ public class {{table.classname}} extends CassandraParticle {
     private {{column.javatype}} {{column.javaname}};
 {% endfor %}
 
-    // Fill values
-{% for column in table.columns %}
-{% if column.numeric or column.islist and not column.name.endswith("shape")%}
-    @Transient
-    private {{column.filltype}} {{column.fillvar}} = null;
-{% endif %}
-{% endfor %}
 
     public void fill(DataParticleJson particle) {
         super.fill(particle);
@@ -47,25 +40,12 @@ public class {{table.classname}} extends CassandraParticle {
 {% if column.fillable %}
     {% if column.javatype == 'ByteBuffer' %}
         // Numeric list data is converted to msgpack and placed into a ByteBuffer
-        List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
-        this.{{ column.javaname }}_shape = getShape({{ column.javaname }}ObjectList);
-        this.{{ column.javaname }} = BufferUtils.convertToMsgpack({{ column.javaname }}ObjectList);
-    {% elif column.javatype == 'List<String>' %}
-        // String list data is filled and flattened and stored as a list
-        List<?> {{ column.javaname }}ObjectList = (List<?>) particle.get("{{ column.javaname }}");
-        this.{{ column.javaname }}_shape = getShape({{ column.javaname }}ObjectList);
-        {{ column.javaname }}ObjectList = BufferUtils.flatten({{ column.javaname }}ObjectList);
-        this.{{ column.javaname }} = BufferUtils.objectToList({{ column.javaname }}ObjectList, this.{{ column.fillvar }}, "{{ column.javaname }}");
+        this.{{ column.javaname }} = BufferUtils.convertToMsgpack((List<?>) particle.get("{{ column.javaname }}"));
     {% elif column.numeric %}
-    {% if column.javatype == 'BigInteger' %}
-        this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, this.{{column.fillvar}}, "{{column.name}}");
-    {% else %}
-        this.{{column.javaname}} = ({{column.java_object}}) fitOrFill(particle.get("{{column.name}}"), {{column.java_object}}.class, this.{{column.fillvar}}, "{{column.name}}");
-    {% endif %}
+        this.{{column.javaname}} = ({{column.java_object}}) particle.get("{{column.name}}");
     {% else %}
         this.{{column.javaname}} = (particle.get("{{column.name}}") == null) ? null: particle.get("{{column.name}}").toString();
     {% endif %}
-
 {% endif %}
 {% endfor %}
     }
@@ -96,23 +76,4 @@ public class {{table.classname}} extends CassandraParticle {
     }
 
 {% endfor %}
-
-    @Override
-    public List<?> getList(String field) {
-        switch(field) {
-{% for column in table.columns %}
-{% if column.javatype == 'ByteBuffer' %}
-            {% if column.filltype == 'Integer' %}
-            case "{{ column.javaname }}":
-                return Ints.asList(BufferUtils.byteBufferToIntArray({{ column.javaname }}));
-            {% else %}
-            case "{{ column.javaname }}":
-                return {{ column.filltype.capitalize() }}s.asList(BufferUtils.byteBufferTo{{ column.filltype.capitalize() }}Array({{ column.javaname }}));
-            {% endif %}
-{% endif %}
-{% endfor %}
-            default:
-                return null;
-        }
-    }
 }
