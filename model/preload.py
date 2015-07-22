@@ -1,5 +1,5 @@
 import json
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
+from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Table
 from sqlalchemy.orm import relationship
 try:
     # Needed for 'parse_preload.py'
@@ -80,15 +80,76 @@ class Parameter(Base):
     description = Column(String(4096))
     streams = relationship('Stream', secondary='stream_parameter')
 
+    def parse_pdid(self, pdid_string):
+        return int(pdid_string.split()[0][2:])
+
+    def needs(self, needed=None):
+        if needed is None:
+            needed = []
+
+        if self in needed:
+            return
+
+        if self.parameter_type.value == 'function':
+            for value in self.parameter_function_map.values():
+                if isinstance(value,basestring) and value.startswith('PD'):
+                    try:
+                        pdid = self.parse_pdid(value)
+                        sub_param = Parameter.query.get(pdid)
+                        if sub_param in needed:
+                            continue
+                        sub_param.needs(needed)
+                    except (ValueError, AttributeError):
+                        pass
+
+        if self not in needed:
+            needed.append(self)
+        return needed
+
+    def needs_cc(self, needed=None):
+        if needed is None:
+            needed = []
+
+        if self.parameter_type.value == 'function':
+            for value in self.parameter_function_map.values():
+                if isinstance(value,basestring) and value.startswith('CC') and value not in needed:
+                    needed.append(value)
+
+        return needed
+
+    def asdict(self):
+        return {
+            'pd_id': 'PD%d' % self.id,
+            'name': self.name,
+            'type': self.parameter_type.value if self.parameter_type is not None else None,
+            'unit': self.unit.value if self.unit is not None else None,
+            'fill': self.fill_value.value if self.fill_value is not None else None,
+            'encoding': self.value_encoding.value if self.value_encoding is not None else None,
+            'precision': self.precision
+        }
+
 
 class StreamParameter(Base):
     __tablename__ = 'stream_parameter'
     stream_id = Column(Integer, ForeignKey('stream.id'), primary_key=True)
     parameter_id = Column(Integer, ForeignKey('parameter.id'), primary_key=True)
 
+stream_dependency = Table("stream_dependency", Base.metadata,
+        Column("source_stream_id", Integer, ForeignKey("stream.id"), primary_key=True),
+        Column("product_stream_id", Integer, ForeignKey("stream.id"), primary_key=True))
 
 class Stream(Base):
     __tablename__ = 'stream'
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False, unique=True)
+    time_parameter = Column(Integer, default=7)
     parameters = relationship('Parameter', secondary='stream_parameter')
+    source_streams = relationship('Stream',
+                                secondary="stream_dependency",
+                                primaryjoin=id==stream_dependency.c.product_stream_id,
+                                secondaryjoin=id==stream_dependency.c.source_stream_id)
+
+    product_streams = relationship('Stream',
+                                secondary="stream_dependency",
+                                primaryjoin=id==stream_dependency.c.source_stream_id,
+                                secondaryjoin=id==stream_dependency.c.product_stream_id)
