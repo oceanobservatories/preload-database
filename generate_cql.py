@@ -41,6 +41,23 @@ primary key ((subsite, node, sensor), method, stream, hour));
 
 '''
 
+CREATE_ANNOTATIONS = '''
+CREATE TABLE ooi.annotations(
+    subsite text,
+    node text,
+    sensor text,
+    time double,
+    time2 double,
+    id uuid,
+    annotation text,
+    parameters list<text>,
+    deployment int,
+    method text,
+    provenance uuid,
+    PRIMARY KEY((subsite, node, sensor), time, id)
+);
+'''
+
 
 def get_logger():
     logger = logging.getLogger('generate_cql')
@@ -252,6 +269,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
         all_cql_fh.write(CREATE_METADATA)
         all_cql_fh.write(CREATE_PROVENANCE)
         all_cql_fh.write(CREATE_METADATA_HOURLY)
+        all_cql_fh.write(CREATE_ANNOTATIONS)
         streams = database.Session.query(Stream).all()
         for stream in streams:
             t = Table(stream)
