@@ -55,6 +55,20 @@ CREATE TABLE ooi.annotations(
     method text,
     provenance uuid,
     PRIMARY KEY((subsite, node, sensor), time, id)
+};
+'''
+
+CREATE_QC_RESULTS = '''
+create table ooi.qc_results (
+subsite text,
+node text,
+sensor text,
+bin int,
+deployment int,
+stream text,
+id uuid,
+results text,
+PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 );
 '''
 
@@ -270,6 +284,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
         all_cql_fh.write(CREATE_PROVENANCE)
         all_cql_fh.write(CREATE_METADATA_HOURLY)
         all_cql_fh.write(CREATE_ANNOTATIONS)
+        all_cql_fh.write(CREATE_QC_RESULTS)
         streams = database.Session.query(Stream).all()
         for stream in streams:
             t = Table(stream)
