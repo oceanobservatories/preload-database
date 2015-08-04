@@ -67,6 +67,7 @@ bin int,
 deployment int,
 stream text,
 id uuid,
+parameter text,
 results text,
 PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 );
