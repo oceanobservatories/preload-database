@@ -145,6 +145,7 @@ def process_parameters(sheet):
             parameter.unit = get_simple_field(Unit, row.get('unitofmeasure'))
             parameter.fill_value = get_simple_field(FillValue, row.get('fillvalue'))
             parameter.display_name = row.get('displayname')
+            parameter.standard_name = row.get('standardname')
             parameter.precision = row.get('precision')
             parameter.data_product_identifier = row.get('dataproductidentifier')
             parameter.description = row.get('description')
