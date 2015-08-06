@@ -72,6 +72,7 @@ class Parameter(Base):
     fill_value_id = Column(Integer, ForeignKey('fill_value.id'))
     fill_value = relationship(FillValue)
     display_name = Column(String(4096))
+    standard_name = Column(String(4096))
     precision = Column(Integer)
     parameter_function_id = Column(Integer, ForeignKey('parameter_function.id'))
     parameter_function = relationship(ParameterFunction)
