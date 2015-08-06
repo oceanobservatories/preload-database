@@ -58,3 +58,7 @@ def open_connection():
     # import all modules here that might define models so that they will be registered properly on the metadata.
     import model.preload
     Base.metadata.create_all(bind=engine)
+
+def close_connection():
+    global Session
+    Session.remove()
