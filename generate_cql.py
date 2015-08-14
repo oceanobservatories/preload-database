@@ -35,9 +35,9 @@ PRIMARY KEY((subsite, node, sensor), method, deployment, id)
 );
 '''
 
-CREATE_METADATA_HOURLY = '''create table ooi.stream_metadata_hourly
-( subsite text, node text, sensor text, method text, stream text, count bigint, first double, last double, hour int,
-primary key ((subsite, node, sensor), method, stream, hour));
+CREATE_PARTITION_METADATA = '''create table ooi.partition_metadata
+( stream text, refdes text, method text, bin int, store text, first double, last double, count bigint,
+primary key ((stream, refdes), method, bin, store));
 
 '''
 
@@ -283,7 +283,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
         all_cql_fh.write(CREATE_KEYSPACE)
         all_cql_fh.write(CREATE_METADATA)
         all_cql_fh.write(CREATE_PROVENANCE)
-        all_cql_fh.write(CREATE_METADATA_HOURLY)
+        all_cql_fh.write(CREATE_PARTITION_METADATA)
         all_cql_fh.write(CREATE_ANNOTATIONS)
         all_cql_fh.write(CREATE_QC_RESULTS)
         streams = database.Session.query(Stream).all()
