@@ -55,7 +55,7 @@ CREATE TABLE ooi.annotations(
     method text,
     provenance uuid,
     PRIMARY KEY((subsite, node, sensor), time, id)
-};
+);
 '''
 
 CREATE_QC_RESULTS = '''
