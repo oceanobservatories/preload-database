@@ -20,6 +20,7 @@ CREATE_METADATA = '''create table ooi.stream_metadata
 primary key ((subsite, node, sensor), method, stream));
 
 '''
+
 CREATE_PROVENANCE = '''
 CREATE TABLE ooi.dataset_l0_provenance (
 subsite text,
@@ -55,7 +56,7 @@ CREATE TABLE ooi.annotations(
     method text,
     provenance uuid,
     PRIMARY KEY((subsite, node, sensor), time, id)
-};
+);
 '''
 
 CREATE_QC_RESULTS = '''
@@ -72,6 +73,13 @@ results text,
 PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 );
 '''
+
+# First part of tuple must be table name from cql script in second part
+ALL_EXTRA_TABLES = [ ("stream_metadata", CREATE_METADATA),
+                     ("dataset_l0_provenance", CREATE_PROVENANCE),
+                     ("partition_metadata", CREATE_PARTITION_METADATA),
+                     ("annotations", CREATE_ANNOTATIONS),
+                     ("qc_results", CREATE_QC_RESULTS) ]
 
 
 def get_logger():
@@ -281,11 +289,17 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
     with codecs.open('cql/all.cql', 'wb', 'utf-8') as all_cql_fh:
         all_cql_fh.write(DROP_KEYSPACE)
         all_cql_fh.write(CREATE_KEYSPACE)
-        all_cql_fh.write(CREATE_METADATA)
-        all_cql_fh.write(CREATE_PROVENANCE)
-        all_cql_fh.write(CREATE_PARTITION_METADATA)
-        all_cql_fh.write(CREATE_ANNOTATIONS)
-        all_cql_fh.write(CREATE_QC_RESULTS)
+
+        # write extra non-stream tables similar to how we do below for streams
+        # No java and not added to the tables list for particle mapper generation
+        for (table, schema) in ALL_EXTRA_TABLES:
+            # write to all.cql
+            all_cql_fh.write(schema)
+            # write individual file
+            with codecs.open('cql/%s.cql' % table, 'wb', 'utf-8') as fh:
+                fh.write('DROP TABLE ooi.%s;' % table + '\n\n')
+                fh.write(schema)
+
         streams = database.Session.query(Stream).all()
         for stream in streams:
             t = Table(stream)
