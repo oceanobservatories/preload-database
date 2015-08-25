@@ -6,7 +6,7 @@ import config
 import database
 import database_util
 from model.preload import ParameterType, ValueEncoding, CodeSet, Unit, FillValue, FunctionType, ParameterFunction, \
-    Parameter, Stream
+    Parameter, Stream, StreamDependency
 
 
 database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
@@ -189,8 +189,30 @@ def process_streams(sheet):
             stream = Stream()
             stream.id = int(row.get('id')[4:])
             stream.name = row.get('name')
+            time_param = row.get('temporalparameter')
+            if time_param and time_param.startswith('PD'):
+                time_param = int(time_param.strip()[2:])
+            else:
+                time_param = 7
+            stream.time_parameter = time_param
+
+            dependencies = row.get("streamdependency")
             params = row.get('parameterids').split(',')
-            params = common_fields + [int(p.strip()[2:]) for p in params if p.startswith('PD')]
+            # temp fix until spreadsheet is fixed:
+            if dependencies is not None:
+                params = [int(p.strip()[2:]) for p in params if p.startswith('PD')]
+                for i in dependencies.split(','):
+                    if i.startswith("DICT"):
+                        source = int(i[4:])
+                        sd = StreamDependency()
+                        sd.source_stream_id = source
+                        sd.product_stream_id = stream.id
+                        database.Session.add(sd)
+                    else:
+                        print "ACK! Stream dependency is not in the correct format"
+
+            else:
+                params = common_fields + [int(p.strip()[2:]) for p in params if p.startswith('PD')]
             params = sorted(list(set(params)))
             for each in params:
                 parameter = get_parameter(each)

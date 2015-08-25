@@ -135,9 +135,10 @@ class StreamParameter(Base):
     stream_id = Column(Integer, ForeignKey('stream.id'), primary_key=True)
     parameter_id = Column(Integer, ForeignKey('parameter.id'), primary_key=True)
 
-stream_dependency = Table("stream_dependency", Base.metadata,
-        Column("source_stream_id", Integer, ForeignKey("stream.id"), primary_key=True),
-        Column("product_stream_id", Integer, ForeignKey("stream.id"), primary_key=True))
+class StreamDependency(Base):
+    __tablename__ = 'stream_dependency'
+    source_stream_id = Column(Integer, ForeignKey("stream.id"), primary_key=True)
+    product_stream_id = Column(Integer, ForeignKey("stream.id"), primary_key=True)
 
 class Stream(Base):
     __tablename__ = 'stream'
@@ -147,10 +148,10 @@ class Stream(Base):
     parameters = relationship('Parameter', secondary='stream_parameter')
     source_streams = relationship('Stream',
                                 secondary="stream_dependency",
-                                primaryjoin=id==stream_dependency.c.product_stream_id,
-                                secondaryjoin=id==stream_dependency.c.source_stream_id)
+                                primaryjoin=id==StreamDependency.product_stream_id,
+                                secondaryjoin=id==StreamDependency.source_stream_id)
 
     product_streams = relationship('Stream',
                                 secondary="stream_dependency",
-                                primaryjoin=id==stream_dependency.c.source_stream_id,
-                                secondaryjoin=id==stream_dependency.c.product_stream_id)
+                                primaryjoin=id==StreamDependency.source_stream_id,
+                                secondaryjoin=id==StreamDependency.product_stream_id)
