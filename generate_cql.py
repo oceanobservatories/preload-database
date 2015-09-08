@@ -34,6 +34,7 @@ parserName text,
 parserVersion text,
 PRIMARY KEY((subsite, node, sensor), method, deployment, id)
 );
+
 '''
 
 CREATE_PARTITION_METADATA = '''create table ooi.partition_metadata
@@ -57,6 +58,7 @@ CREATE TABLE ooi.annotations(
     provenance uuid,
     PRIMARY KEY((subsite, node, sensor), time, id)
 );
+
 '''
 
 CREATE_QC_RESULTS = '''
@@ -72,11 +74,29 @@ parameter text,
 results text,
 PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 );
+
+'''
+
+CREATE_STREAMING_L0 = '''
+CREATE TABLE ooi.streaming_l0_provenance(
+    refdes text,
+    method text,
+    time double,
+    id uuid,
+    driver_module text,
+    driver_class text,
+    driver_version text,
+    driver_host text,
+    event_json text,
+    PRIMARY KEY((refdes,  method), time, id)
+);
+
 '''
 
 # First part of tuple must be table name from cql script in second part
 ALL_EXTRA_TABLES = [ ("stream_metadata", CREATE_METADATA),
                      ("dataset_l0_provenance", CREATE_PROVENANCE),
+                     ("streaming_l0_provenance", CREATE_STREAMING_L0),
                      ("partition_metadata", CREATE_PARTITION_METADATA),
                      ("annotations", CREATE_ANNOTATIONS),
                      ("qc_results", CREATE_QC_RESULTS) ]
