@@ -187,6 +187,7 @@ def process_streams(sheet):
     for row in sheet:
         if validate_stream_row(row):
             stream = Stream()
+            stream.binsize = config.DEFAULT_BIN_SIZE
             stream.id = int(row.get('id')[4:])
             stream.name = row.get('name')
             time_param = row.get('temporalparameter')
@@ -224,11 +225,35 @@ def process_streams(sheet):
                 database.Session.add(stream)
     database.Session.commit()
 
+def process_bin_sizes(sheet):
+    print 'Processing bin sizes'
+    configured_streams = set()
+    for row in sheet:
+        if 'stream' in row:
+            stream = Stream().query.filter(Stream.name == row.get('stream')).first()
+            if stream is None:
+                print 'Can not find stream %s in preload' % row.get('stream')
+            else:
+                bin_size_text = row.get('binsize')
+                bin_size = config.DEFAULT_BIN_SIZE
+                if bin_size_text is not None:
+                    bin_size = int(bin_size_text)
+                    configured_streams.add(stream.id)
+                else:
+                    print 'Using default bin size for stream %s with blank row in sheet' % stream.name
+                stream.binsize = bin_size
+    database.Session.commit()
+
+    streams = Stream().query.filter(Stream.id.notin_(configured_streams))
+    for stream in streams:
+        print 'Stream %s not configured in Bin Size sheet, using default binsize' % stream.name
+
 
 def create_db():
     process_parameter_funcs(sheet_generator('ParameterFunctions'))
     process_parameters(sheet_generator('ParameterDefs'))
     process_streams(sheet_generator('ParameterDictionary'))
+    process_bin_sizes(sheet_generator('BinSizes'))
 
 if __name__ == '__main__':
     create_db()
