@@ -146,6 +146,7 @@ class Stream(Base):
     name = Column(String(250), nullable=False, unique=True)
     time_parameter = Column(Integer, default=7)
     parameters = relationship('Parameter', secondary='stream_parameter')
+    binsize_minutes = Column(Integer, nullable=False)
     source_streams = relationship('Stream',
                                 secondary="stream_dependency",
                                 primaryjoin=id==StreamDependency.product_stream_id,
