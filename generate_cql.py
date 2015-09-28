@@ -38,7 +38,7 @@ PRIMARY KEY((subsite, node, sensor), method, deployment, id)
 '''
 
 CREATE_PARTITION_METADATA = '''create table ooi.partition_metadata
-( stream text, refdes text, method text, bin int, store text, first double, last double, count bigint,
+( stream text, refdes text, method text, bin bigint, store text, first double, last double, count bigint,
 primary key ((stream, refdes), method, bin, store));
 
 '''
@@ -66,7 +66,7 @@ create table ooi.qc_results (
 subsite text,
 node text,
 sensor text,
-bin int,
+bin bigint,
 deployment int,
 stream text,
 id uuid,
