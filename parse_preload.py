@@ -197,6 +197,22 @@ def process_streams(sheet):
                 time_param = 7
             stream.time_parameter = time_param
 
+            stream.lat_param_id = row.get('latparam')
+            stream.lon_param_id = row.get('lonparam')
+            stream.depth_param_id = row.get('depthparam')
+
+            stream.lat_stream_id = row.get('latstream')
+            if stream.lat_stream_id is None:
+                stream.lat_stream_id = stream.id
+
+            stream.lon_stream_id = row.get('latstream')
+            if stream.lon_stream_id is None:
+                stream.lon_stream_id = stream.id
+
+            stream.depth_stream_id = row.get('depthstream')
+            if stream.depth_stream_id is None:
+                stream.depth_stream_id = stream.id
+
             dependencies = row.get("streamdependency")
             params = row.get('parameterids').split(',')
             # temp fix until spreadsheet is fixed:
