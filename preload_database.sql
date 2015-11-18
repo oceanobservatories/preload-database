@@ -7117,6 +7117,7 @@ INSERT INTO "stream_parameter" VALUES(179,7);
 INSERT INTO "stream_parameter" VALUES(179,10);
 INSERT INTO "stream_parameter" VALUES(179,11);
 INSERT INTO "stream_parameter" VALUES(179,12);
+INSERT INTO "stream_parameter" VALUES(179,13);
 INSERT INTO "stream_parameter" VALUES(179,16);
 INSERT INTO "stream_parameter" VALUES(179,863);
 INSERT INTO "stream_parameter" VALUES(179,1215);
@@ -19681,4 +19682,29 @@ INSERT INTO "value_encoding" VALUES(11,'uint8');
 INSERT INTO "value_encoding" VALUES(12,'uint32');
 INSERT INTO "value_encoding" VALUES(13,'int');
 INSERT INTO "value_encoding" VALUES(14,'boolean');
+
+INSERT INTO "parameter_function" VALUES(201, 'interpolate_latitude',3,'interp_lat','util.calc','vehicle latitude',NULL);
+INSERT INTO "parameter_function" VALUES(202, 'interpolate_longitude',3,'interp_lon','util.calc','vehicle longitude',NULL);
+INSERT INTO "parameter_function" VALUES(203, 'interpolate_depth',3,'interp_depth','util.calc','vehicle depth',NULL);
+
+INSERT INTO "parameter" VALUES(13,'internal_timestamp',1,2,NULL,7,1,'Internal Timestamp, UTC',NULL,NULL,NULL,NULL,NULL,'Internal timestamp, UTC');
+
+INSERT INTO "parameter" VALUES(7983,'v_lat',4,1,NULL,15,1,'vehicle latitude, degrees','latitude degrees',4, 201,X'7b22646573697265645f74696d65223a202250443132222c202274696d65223a202250443133222c20226c6174223a2022504431333832227d', 'VEHICLE_LATITUDE','Interpolated latitude in decimal degrees.');
+INSERT INTO "parameter" VALUES(7984,'v_lon',4,1,NULL,15,1,'vehicle longitude, degrees','longitude degrees', 4, 202,X'7b22646573697265645f74696d65223a202250443132222c202274696d65223a202250443133222c20226c6f6e223a2022504431333931227d', 'VEHICLE_LONGITUDE','Interpolated longitude in decimal degrees.');
+INSERT INTO "parameter" VALUES(7985,'v_depth',4,1,NULL,15,1,'vehicle depth, meters','depth, meters', 4, 203,X'7b22646573697265645f74696d65223a202250443132222c202274696d65223a202250443133222c20226465707468223a2022504431323736227d', 'VEHICLE_DEPTH','Interpolated depth in meters.');
+
+INSERT INTO "parameter_function" VALUES(204, 'get Deployed latitude',3,'get_depl_lat','util.calc','deployed latitude',NULL);
+INSERT INTO "parameter_function" VALUES(205, 'get Deployed longitude',3,'get_depl_lon','util.calc','deployed longitude',NULL);
+INSERT INTO "parameter_function" VALUES(206, 'get Deployed depth',3,'get_depl_depth','util.calc','deployed depth',NULL);
+
+INSERT INTO "parameter" VALUES(7986, 'v_lat',4,1,NULL,15,1,'deployed latitude, degrees','latitude degrees',4, 204,X'7b226c6174223a202243435f6c6174227d', 'DEPLOYED_LATITUDE','latitude in decimal degrees.');
+INSERT INTO "parameter" VALUES(7987, 'v_lon',4,1,NULL,15,1,'deployed longitude, degrees','longitude degrees',4, 205,X'7b226c6f6e223a202243435f6c6f6e227d', 'DEPLOYED_LONGITUDE','longitude in decimal degrees.');
+INSERT INTO "parameter" VALUES(7988, 'v_depth',4,1,NULL,15,1,'deployed depth, m','deployed depth',4, 206,X'7b226465707468223a202243435f6465707468227d', 'DEPLOYED_DEPTH','depth in meters.');
+
+INSERT INTO "stream_parameter" VALUES(171, 7983);
+INSERT INTO "stream_parameter" VALUES(171, 7984);
+INSERT INTO "stream_parameter" VALUES(171, 7985);
+
+
 COMMIT;
+
