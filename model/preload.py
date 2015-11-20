@@ -145,6 +145,15 @@ class Stream(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False, unique=True)
     time_parameter = Column(Integer, default=7)
+
+    lat_param_id = Column(Integer)
+    lon_param_id = Column(Integer)
+    depth_param_id = Column(Integer)
+
+    lat_stream_id = Column(Integer)
+    lon_stream_id = Column(Integer)
+    depth_stream_id = Column(Integer)
+
     parameters = relationship('Parameter', secondary='stream_parameter')
     binsize_minutes = Column(Integer, nullable=False)
     source_streams = relationship('Stream',
