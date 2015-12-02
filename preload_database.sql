@@ -1891,7 +1891,7 @@ INSERT INTO "parameter" VALUES(1998,'vel3d_k_beams_coordinate',1,10,NULL,108,1,'
 INSERT INTO "parameter" VALUES(1999,'vel3d_k_cell_size',1,10,NULL,9,1,'Cell Size, mm',NULL,NULL,NULL,NULL,NULL,'Cell Size, mm');
 INSERT INTO "parameter" VALUES(2000,'vel3d_k_blanking',1,10,NULL,9,1,'Blanking, mm',NULL,NULL,NULL,NULL,NULL,'Blanking, mm');
 INSERT INTO "parameter" VALUES(2001,'vel3d_k_velocity_range',1,10,NULL,9,1,'Velocity Range, mm/s',NULL,0,NULL,NULL,NULL,'Velocity Range, mm/s');
-INSERT INTO "parameter" VALUES(2002,'vel3d_k_battery_voltage',1,10,NULL,9,1,'Battery Boltage, Volts',NULL,0.1,NULL,NULL,NULL,'Battery Boltage, Volts');
+INSERT INTO "parameter" VALUES(2002,'vel3d_k_battery_voltage',1,10,NULL,9,1,'Battery Voltage, Volts',NULL,0.1,NULL,NULL,NULL,'Battery Voltage, Volts');
 INSERT INTO "parameter" VALUES(2003,'vel3d_k_mag_x',1,9,NULL,9,1,'Magnetometer x-axis, Raw',NULL,0,NULL,NULL,NULL,'Magnetometer x-axis');
 INSERT INTO "parameter" VALUES(2004,'vel3d_k_mag_y',1,9,NULL,9,1,'Magnetometer y-axis, Raw',NULL,0,NULL,NULL,NULL,'Magnetometer y-axis');
 INSERT INTO "parameter" VALUES(2005,'vel3d_k_mag_z',1,9,NULL,9,1,'Magnetometer z-axis, Raw',NULL,0,NULL,NULL,NULL,'Magnetometer z-axis');
@@ -3889,6 +3889,9 @@ INSERT INTO "parameter" VALUES(7979,'ts_status_secondary_reference_clock',1,5,NU
 INSERT INTO "parameter" VALUES(7980,'ts_status_time_error',1,5,NULL,3,NULL,'Status Time Error Quantity',NULL,NULL,NULL,NULL,NULL,'Status Time Error Quantity');
 INSERT INTO "parameter" VALUES(7981,'ts_status_timeout_error',1,5,NULL,3,NULL,'Status Timout Error',NULL,NULL,NULL,NULL,NULL,'Status Timout Error');
 INSERT INTO "parameter" VALUES(7982,'ts_system_up_time',1,4,NULL,12,NULL,'System Up Time',NULL,0,NULL,NULL,NULL,'System Up Time');
+INSERT INTO "parameter" VALUES(7983,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,201,X'7B227072657373757265223A20225044373130222C202262696E5F73697A65223A20225044363233222C2022616463705F6F7269656E746174696F6E223A20225044363137222C20226C61746974756465223A2022504431333832222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231227D','?','Bin Depths');
+INSERT INTO "parameter" VALUES(7984,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,201,X'7B227072657373757265223A20225044373130222C202262696E5F73697A65223A20225044363233222C2022616463705F6F7269656E746174696F6E223A20225044363137222C20226C61746974756465223A202243435F6C6174222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231227D','?','Bin Depths');
+INSERT INTO "parameter" VALUES(7985,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,202,X'7B2273656E736F725F6465707468223A202243435F6465707468222C202262696E5F73697A65223A20225044363233222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231222C2022616463705F6F7269656E746174696F6E223A20225044363137227D','?','Bin Depths');
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 
@@ -4127,6 +4130,8 @@ INSERT INTO "parameter_function" VALUES(197,'fdc_time_L1',3,'fdc_time_L1','ion_f
 INSERT INTO "parameter_function" VALUES(198,'fdc_time_L2',3,'fdc_time_L2','ion_functions.data.fdc_functions','Calculates the time metadata product TIME_L2-AUX associated with the L2 flux data products from the FDCHP instrument. FDCHP collects 20 minutes of data every hour; for each of the L2 flux data products, one data value is calculated for each 20 minute dataset. The TIME_L2-AUX values are the median timestamps for each dataset.',NULL);
 INSERT INTO "parameter_function" VALUES(199,'dosta_Topt_volt_to_degC',3,'dosta_Topt_volt_to_degC','ion_functions.data.do2_functions','Computes T_optode [degC], the DOSTA foil temperature as measured by its internal thermistor, from the analog output of a DOSTA Aanderaa Optode connected to a SBE CTD''s 0-5 volt analog data channel.',NULL);
 INSERT INTO "parameter_function" VALUES(200,'dosta_phase_volt_to_degree',3,'dosta_phase_volt_to_degree','ion_functions.data.do2_functions','Computes the DOCONCS-DEG_L0 data product from DOCONCS-VLT_L0, the analog output of a DOSTA Aanderaa Optode connected to a SBE CTD''s 0-5 volt analog data channel.',NULL);
+INSERT INTO "parameter_function" VALUES(201,'adcp_bin_depths',3,'adcp_bin_depths','ion_functions.data.adcp_functions','Calculates the center bin depths for PD0 and PD12 ADCP data. As defined in the Data Product Specification for Velocity Profile and Echo Intensity - DCN 1341-00750.',NULL);
+INSERT INTO "parameter_function" VALUES(202,'adcp_bin_depths_pd8',3,'adcp_bin_depths_pd8','ion_functions.data.adcp_functions','Calculates the center bin depths for PD8 ADCP data. As defined in the Data Product Specification for Velocity Profile and Echo Intensity - DCN 1341-00750.',NULL);
 CREATE TABLE parameter_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -4250,14 +4255,14 @@ INSERT INTO "stream" VALUES(165,'vel3d_k_wfp_stc_metadata',7,NULL,NULL,NULL,165,
 INSERT INTO "stream" VALUES(167,'adcps_jln_stc_metadata',7,NULL,NULL,NULL,167,167,167,20160);
 INSERT INTO "stream" VALUES(168,'wfp_eng_stc_imodem_start_time',7,NULL,NULL,NULL,168,168,168,20160);
 INSERT INTO "stream" VALUES(170,'vel3d_k_wfp_instrument',7,NULL,NULL,NULL,170,170,170,4320);
-INSERT INTO "stream" VALUES(171,'ctdgv_m_glider_instrument',7,1382,1391,1276,179,179,179,20160);
-INSERT INTO "stream" VALUES(172,'dosta_abcdjm_glider_instrument',7,1382,1391,1276,179,179,179,20160);
-INSERT INTO "stream" VALUES(173,'dosta_abcdjm_glider_recovered',7,1382,1391,1276,180,180,180,4320);
-INSERT INTO "stream" VALUES(174,'flord_m_glider_instrument',7,1382,1391,1276,179,179,179,20160);
-INSERT INTO "stream" VALUES(175,'flort_m_glider_instrument',7,1382,1391,1276,179,179,179,1440);
-INSERT INTO "stream" VALUES(176,'flort_m_glider_recovered',7,1382,1391,1276,180,180,180,1440);
-INSERT INTO "stream" VALUES(177,'parad_m_glider_instrument',7,1382,1391,1276,179,179,179,20160);
-INSERT INTO "stream" VALUES(178,'parad_m_glider_recovered',7,1382,1391,1276,180,180,180,360);
+INSERT INTO "stream" VALUES(171,'ctdgv_m_glider_instrument',7,1382,1391,1527,179,179,171,20160);
+INSERT INTO "stream" VALUES(172,'dosta_abcdjm_glider_instrument',7,1382,1391,1527,179,179,171,20160);
+INSERT INTO "stream" VALUES(173,'dosta_abcdjm_glider_recovered',7,1382,1391,1527,180,180,173,4320);
+INSERT INTO "stream" VALUES(174,'flord_m_glider_instrument',7,1382,1391,1527,179,179,171,20160);
+INSERT INTO "stream" VALUES(175,'flort_m_glider_instrument',7,1382,1391,1527,179,179,171,1440);
+INSERT INTO "stream" VALUES(176,'flort_m_glider_recovered',7,1382,1391,1527,180,180,173,1440);
+INSERT INTO "stream" VALUES(177,'parad_m_glider_instrument',7,1382,1391,1527,179,179,171,20160);
+INSERT INTO "stream" VALUES(178,'parad_m_glider_recovered',7,1382,1391,1527,180,180,173,360);
 INSERT INTO "stream" VALUES(179,'glider_eng_telemetered',7,NULL,NULL,NULL,179,179,179,1440);
 INSERT INTO "stream" VALUES(180,'glider_eng_recovered',7,NULL,NULL,NULL,180,180,180,1440);
 INSERT INTO "stream" VALUES(181,'glider_eng_sci_telemetered',7,NULL,NULL,NULL,181,181,181,20160);
@@ -4276,7 +4281,7 @@ INSERT INTO "stream" VALUES(194,'spkir_a_configuration_record',7,NULL,NULL,NULL,
 INSERT INTO "stream" VALUES(195,'sami_regular_status',7,NULL,NULL,NULL,195,195,195,1440);
 INSERT INTO "stream" VALUES(196,'phsen_battery_voltage',7,NULL,NULL,NULL,196,196,196,20160);
 INSERT INTO "stream" VALUES(197,'phsen_thermistor_voltage',7,NULL,NULL,NULL,197,197,197,20160);
-INSERT INTO "stream" VALUES(199,'adcpa_m_glider_instrument',7,1382,1391,1276,179,179,179,1440);
+INSERT INTO "stream" VALUES(199,'adcpa_m_glider_instrument',7,1382,1391,1527,179,179,171,1440);
 INSERT INTO "stream" VALUES(300,'sio_eng_control_status',7,NULL,NULL,NULL,300,300,300,20160);
 INSERT INTO "stream" VALUES(301,'adcps_jln_sio_mule_instrument',7,NULL,NULL,NULL,301,301,301,1440);
 INSERT INTO "stream" VALUES(302,'adcp_ancillary_system_data',7,NULL,NULL,NULL,302,302,302,20160);
@@ -4346,9 +4351,9 @@ INSERT INTO "stream" VALUES(370,'vadcp_4beam_system_configuration',16,NULL,NULL,
 INSERT INTO "stream" VALUES(371,'vadcp_5thbeam_system_configuration',7,NULL,NULL,NULL,371,371,371,20160);
 INSERT INTO "stream" VALUES(372,'vadcp_ancillary_system_data',7,NULL,NULL,NULL,372,372,372,20160);
 INSERT INTO "stream" VALUES(373,'vadcp_transmit_path',7,NULL,NULL,NULL,373,373,373,20160);
-INSERT INTO "stream" VALUES(375,'adcpa_m_glider_recovered',7,1382,1391,1276,180,180,180,1440);
-INSERT INTO "stream" VALUES(376,'ctdgv_m_glider_instrument_recovered',7,1382,1391,1276,180,180,180,4320);
-INSERT INTO "stream" VALUES(377,'flord_m_glider_instrument_recovered',7,1382,1391,1276,180,180,180,720);
+INSERT INTO "stream" VALUES(375,'adcpa_m_glider_recovered',7,1382,1391,1527,180,180,173,1440);
+INSERT INTO "stream" VALUES(376,'ctdgv_m_glider_instrument_recovered',7,1382,1391,1527,180,180,173,4320);
+INSERT INTO "stream" VALUES(377,'flord_m_glider_instrument_recovered',7,1382,1391,1527,180,180,173,720);
 INSERT INTO "stream" VALUES(379,'camds_image_metadata',16,NULL,NULL,NULL,379,379,379,20160);
 INSERT INTO "stream" VALUES(380,'camds_health_status',16,NULL,NULL,NULL,380,380,380,20160);
 INSERT INTO "stream" VALUES(381,'camds_disk_status',16,NULL,NULL,NULL,381,381,381,20160);
@@ -4661,7 +4666,7 @@ INSERT INTO "stream" VALUES(691,'winch_cspp_eng',7,NULL,NULL,NULL,691,691,691,14
 INSERT INTO "stream" VALUES(692,'nutnr_n_auv_instrument',7,NULL,NULL,NULL,692,692,692,1440);
 INSERT INTO "stream" VALUES(693,'nutnr_n_instrument_recovered',7,NULL,NULL,NULL,693,693,693,1440);
 INSERT INTO "stream" VALUES(694,'nutnr_m_instrument_recovered',7,NULL,NULL,NULL,694,694,694,1440);
-INSERT INTO "stream" VALUES(695,'nutnr_m_glider_instrument',7,1382,1391,1276,179,179,179,1440);
+INSERT INTO "stream" VALUES(695,'nutnr_m_glider_instrument',7,1382,1391,1527,179,179,171,1440);
 INSERT INTO "stream" VALUES(696,'zplsc_c_instrument',7,NULL,NULL,NULL,696,696,696,20160);
 INSERT INTO "stream" VALUES(697,'camhd_streaming_status',7,NULL,NULL,NULL,697,697,697,1440);
 INSERT INTO "stream" VALUES(698,'camhd_adread_status',7,NULL,NULL,NULL,698,698,698,1440);
@@ -4685,7 +4690,7 @@ INSERT INTO "stream" VALUES(715,'shore_station_power_feed_equipment_eng_data',7,
 INSERT INTO "stream" VALUES(716,'primary_node_eng_data',7,NULL,NULL,NULL,716,716,716,1440);
 INSERT INTO "stream" VALUES(717,'primary_node_port_eng_data',7,NULL,NULL,NULL,717,717,717,1440);
 INSERT INTO "stream" VALUES(718,'primary_node_out_of_band_port_data',7,NULL,NULL,NULL,718,718,718,1440);
-INSERT INTO "stream" VALUES(719,'shore_station_optical_transport_network_sea_side_port_data',7,NULL,NULL,NULL,719,719,719,1440);
+INSERT INTO "stream" VALUES(719,'shore_station_otn_sea_side_port_data',7,NULL,NULL,NULL,719,719,719,1440);
 INSERT INTO "stream" VALUES(720,'shore_station_force_10_network_port_data',7,NULL,NULL,NULL,720,720,720,1440);
 INSERT INTO "stream" VALUES(721,'shore_station_time_server_eng_data',7,NULL,NULL,NULL,721,721,721,1440);
 INSERT INTO "stream" VALUES(722,'shore_station_ups_status',7,NULL,NULL,NULL,722,722,722,1440);
@@ -4701,7 +4706,7 @@ INSERT INTO "stream" VALUES(731,'nutnr_b_dcl_dark_conc_instrument',7,NULL,NULL,N
 INSERT INTO "stream" VALUES(732,'nutnr_b_dcl_dark_conc_instrument_recovered',7,NULL,NULL,NULL,732,732,732,1440);
 INSERT INTO "stream" VALUES(733,'nutnr_b_dcl_dark_full_instrument',7,NULL,NULL,NULL,733,733,733,1440);
 INSERT INTO "stream" VALUES(734,'nutnr_b_dcl_dark_full_instrument_recovered',7,NULL,NULL,NULL,734,734,734,1440);
-INSERT INTO "stream" VALUES(735,'shore_station_optical_transport_network_shore_side_port_data',7,NULL,NULL,NULL,735,735,735,1440);
+INSERT INTO "stream" VALUES(735,'shore_station_otn_shore_side_port_data',7,NULL,NULL,NULL,735,735,735,1440);
 INSERT INTO "stream" VALUES(736,'antelope_metadata',7,NULL,NULL,NULL,736,736,736,1440);
 INSERT INTO "stream" VALUES(737,'nutnr_j_cspp_dark_instrument',7,NULL,NULL,NULL,737,737,737,1440);
 INSERT INTO "stream" VALUES(738,'nutnr_j_cspp_dark_instrument_recovered',7,NULL,NULL,NULL,738,738,738,1440);
@@ -18122,6 +18127,16 @@ INSERT INTO "stream_parameter" VALUES(713,11);
 INSERT INTO "stream_parameter" VALUES(713,12);
 INSERT INTO "stream_parameter" VALUES(713,16);
 INSERT INTO "stream_parameter" VALUES(713,863);
+INSERT INTO "stream_parameter" VALUES(713,7000);
+INSERT INTO "stream_parameter" VALUES(713,7001);
+INSERT INTO "stream_parameter" VALUES(713,7002);
+INSERT INTO "stream_parameter" VALUES(713,7003);
+INSERT INTO "stream_parameter" VALUES(713,7004);
+INSERT INTO "stream_parameter" VALUES(713,7005);
+INSERT INTO "stream_parameter" VALUES(713,7006);
+INSERT INTO "stream_parameter" VALUES(713,7007);
+INSERT INTO "stream_parameter" VALUES(713,7008);
+INSERT INTO "stream_parameter" VALUES(713,7009);
 INSERT INTO "stream_parameter" VALUES(713,7010);
 INSERT INTO "stream_parameter" VALUES(713,7011);
 INSERT INTO "stream_parameter" VALUES(713,7012);
@@ -18131,16 +18146,8 @@ INSERT INTO "stream_parameter" VALUES(713,7015);
 INSERT INTO "stream_parameter" VALUES(713,7016);
 INSERT INTO "stream_parameter" VALUES(713,7017);
 INSERT INTO "stream_parameter" VALUES(713,7018);
-INSERT INTO "stream_parameter" VALUES(713,7100);
-INSERT INTO "stream_parameter" VALUES(713,7101);
-INSERT INTO "stream_parameter" VALUES(713,7102);
-INSERT INTO "stream_parameter" VALUES(713,7103);
-INSERT INTO "stream_parameter" VALUES(713,7104);
-INSERT INTO "stream_parameter" VALUES(713,7105);
-INSERT INTO "stream_parameter" VALUES(713,7106);
-INSERT INTO "stream_parameter" VALUES(713,7107);
-INSERT INTO "stream_parameter" VALUES(713,7108);
-INSERT INTO "stream_parameter" VALUES(713,7109);
+INSERT INTO "stream_parameter" VALUES(713,7110);
+INSERT INTO "stream_parameter" VALUES(713,7111);
 INSERT INTO "stream_parameter" VALUES(714,7);
 INSERT INTO "stream_parameter" VALUES(714,10);
 INSERT INTO "stream_parameter" VALUES(714,11);
@@ -18888,6 +18895,7 @@ INSERT INTO "stream_parameter" VALUES(743,3819);
 INSERT INTO "stream_parameter" VALUES(743,3820);
 INSERT INTO "stream_parameter" VALUES(743,3821);
 INSERT INTO "stream_parameter" VALUES(743,3822);
+INSERT INTO "stream_parameter" VALUES(743,7984);
 INSERT INTO "stream_parameter" VALUES(744,7);
 INSERT INTO "stream_parameter" VALUES(744,10);
 INSERT INTO "stream_parameter" VALUES(744,11);
