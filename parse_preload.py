@@ -206,7 +206,7 @@ def process_streams(sheet):
             if stream.lat_stream_id is None:
                 stream.lat_stream_id = stream.id
 
-            stream.lon_stream_id = row.get('latstream')
+            stream.lon_stream_id = row.get('lonstream')
             if stream.lon_stream_id is None:
                 stream.lon_stream_id = stream.id
 
