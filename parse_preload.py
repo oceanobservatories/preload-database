@@ -16,7 +16,7 @@ key = config.SPREADSHEET_KEY
 use_cache = config.USE_CACHED_SPREADSHEET
 cachedir = '.cache'
 
-IGNORE_SCENARIOS = ['VOID', 'TEST', 'LC_TEST', 'JN', 'xADCPSL_CSTL', 'EXAMPLE1', 'EXAMPLE2', 'NOSE']
+IGNORE_SCENARIOS = ['VOID']
 
 
 def sheet_generator(name):
