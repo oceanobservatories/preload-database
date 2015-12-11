@@ -206,13 +206,14 @@ def process_streams(sheet):
             if stream.lat_stream_id is None:
                 stream.lat_stream_id = stream.id
 
-            stream.lon_stream_id = row.get('lonstream')
+            stream.lon_stream_id = row.get('latstream')
             if stream.lon_stream_id is None:
                 stream.lon_stream_id = stream.id
 
             stream.depth_stream_id = row.get('depthstream')
             if stream.depth_stream_id is None:
                 stream.depth_stream_id = stream.id
+                stream.uses_ctd = True
             # ---
 
             dependencies = row.get("streamdependency")
