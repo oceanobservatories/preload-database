@@ -1,5 +1,5 @@
 import json
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Table, Boolean
 from sqlalchemy.orm import relationship
 try:
     # Needed for 'parse_preload.py'
@@ -153,6 +153,8 @@ class Stream(Base):
     lat_stream_id = Column(Integer)
     lon_stream_id = Column(Integer)
     depth_stream_id = Column(Integer)
+
+    uses_ctd = Column(Boolean, default=False)
 
     parameters = relationship('Parameter', secondary='stream_parameter')
     binsize_minutes = Column(Integer, nullable=False)

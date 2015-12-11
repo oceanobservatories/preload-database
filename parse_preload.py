@@ -213,6 +213,7 @@ def process_streams(sheet):
             stream.depth_stream_id = row.get('depthstream')
             if stream.depth_stream_id is None:
                 stream.depth_stream_id = stream.id
+                stream.uses_ctd = True
             # ---
 
             dependencies = row.get("streamdependency")
