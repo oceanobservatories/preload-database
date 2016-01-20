@@ -2513,14 +2513,14 @@ INSERT INTO "parameter" VALUES(2739,'adcps_jln_echo_intensity_beam3',4,1,NULL,14
 INSERT INTO "parameter" VALUES(2740,'adcps_jln_echo_intensity_beam4',4,1,NULL,140,1,'Echo Intensity Beam 4',NULL,4,89,X'7B22726177223A20225044373237222C202273666163746F72223A202243435F7363616C655F666163746F7234227D','ECHOINT-B4_L1','Echo intensity is the strength of the returned sound wave pulse transmitted by the ADCP. Echo intensity can be used as an indicator of the amount of sediment or organisms in the water column, as well as of the quality of a velocity measurement. Units: dB');
 INSERT INTO "parameter" VALUES(2741,'adcpa_m_upward_seawater_velocity',4,1,NULL,37,1,'Upward Seawater Velocity','upward_sea_water_velocity',4,128,X'7B2277223A20225044373136227D','VELPROF-VLU_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the upward seawater velocity component. Units: m s-1');
 INSERT INTO "parameter" VALUES(2742,'adcpa_m_error_velocity',4,1,NULL,37,1,'Error Seawater Velocity',NULL,4,129,X'7B2265223A20225044373137227D','VELPROF-EVL_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the error seawater velocity component. Units: m s-1');
-INSERT INTO "parameter" VALUES(2743,'adcpa_m_eastward_seawater_velocity',4,1,NULL,37,1,'Eastward Seawater Velocity','eastward_sea_water_velocity',4,49,X'7B226C6F6E223A2022504431333931222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333832222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLE_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the eastward seawater velocity component with magnetic variation accounted for. Units: m s-1');
-INSERT INTO "parameter" VALUES(2744,'adcpa_m_northward_seawater_velocity',4,1,NULL,37,1,'Northward Seawater Velocity','northward_sea_water_velocity',4,50,X'7B226C6F6E223A2022504431333931222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333832222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLN_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the northward seawater velocity component with magnetic variation accounted for. Units: m s-1');
+INSERT INTO "parameter" VALUES(2743,'adcpa_m_eastward_seawater_velocity',4,1,NULL,37,1,'Eastward Seawater Velocity','eastward_sea_water_velocity',4,49,X'7B226C6F6E223A2022504431333336222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333335222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLE_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the eastward seawater velocity component with magnetic variation accounted for. Units: m s-1');
+INSERT INTO "parameter" VALUES(2744,'adcpa_m_northward_seawater_velocity',4,1,NULL,37,1,'Northward Seawater Velocity','northward_sea_water_velocity',4,50,X'7B226C6F6E223A2022504431333336222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333335222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLN_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the northward seawater velocity component with magnetic variation accounted for. Units: m s-1');
 INSERT INTO "parameter" VALUES(2745,'adcpa_m_echo_intensity_beam1',4,1,NULL,140,1,'Echo Intensity Beam 1',NULL,4,89,X'7B22726177223A20225044373234222C202273666163746F72223A202243435F7363616C655F666163746F7231227D','ECHOINT-B1_L1','Echo intensity is the strength of the returned sound wave pulse transmitted by the ADCP. Echo intensity can be used as an indicator of the amount of sediment or organisms in the water column, as well as of the quality of a velocity measurement. Units: dB');
 INSERT INTO "parameter" VALUES(2746,'adcpa_m_echo_intensity_beam2',4,1,NULL,140,1,'Echo Intensity Beam 2',NULL,4,89,X'7B22726177223A20225044373235222C202273666163746F72223A202243435F7363616C655F666163746F7232227D','ECHOINT-B2_L1','Echo intensity is the strength of the returned sound wave pulse transmitted by the ADCP. Echo intensity can be used as an indicator of the amount of sediment or organisms in the water column, as well as of the quality of a velocity measurement. Units: dB');
 INSERT INTO "parameter" VALUES(2747,'adcpa_m_echo_intensity_beam3',4,1,NULL,140,1,'Echo Intensity Beam 3',NULL,4,89,X'7B22726177223A20225044373236222C202273666163746F72223A202243435F7363616C655F666163746F7233227D','ECHOINT-B3_L1','Echo intensity is the strength of the returned sound wave pulse transmitted by the ADCP. Echo intensity can be used as an indicator of the amount of sediment or organisms in the water column, as well as of the quality of a velocity measurement. Units: dB');
 INSERT INTO "parameter" VALUES(2748,'adcpa_m_echo_intensity_beam4',4,1,NULL,140,1,'Echo Intensity Beam 4',NULL,4,89,X'7B22726177223A20225044373237222C202273666163746F72223A202243435F7363616C655F666163746F7234227D','ECHOINT-B4_L1','Echo intensity is the strength of the returned sound wave pulse transmitted by the ADCP. Echo intensity can be used as an indicator of the amount of sediment or organisms in the water column, as well as of the quality of a velocity measurement. Units: dB');
-INSERT INTO "parameter" VALUES(2749,'sci_seawater_density',4,1,NULL,4,1,'Seawater Density','sea_water_density',4,27,X'7B226C6174223A2022504431333832222C202270223A2022504431353237222C20225350223A2022504431353630222C20226C6F6E223A2022504431333931222C202274223A2022504431353238227D','DENSITY_L2','The density of seawater in kg m-3 computed using the TEOS-10 equations with data from the conductivity, temperature and depth (CTD) family of instruments.');
-INSERT INTO "parameter" VALUES(2750,'sci_abs_oxygen',4,1,NULL,54,1,'Dissolved Oxygen Concentration','moles_of_oxygen_per_unit_mass_in_sea_water',4,61,X'7B22444F223A2022504431353136222C20225350223A2022504431353630222C20226C6F6E223A2022504431333931222C202250223A2022504431353237222C202254223A2022504431353238222C20226C6174223A2022504431333832227D','DOXYGEN_L2','Dissolved Oxygen Concentration from the Stable Response Dissolved Oxygen (DO) Instrument  is a measure of the concentration of microscopic bubbles of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings. This data product is corrected for salinity, temperature, and depth from a collocated CTD. Units: umol kg-1.');
+INSERT INTO "parameter" VALUES(2749,'sci_seawater_density',4,1,NULL,4,1,'Seawater Density','sea_water_density',4,27,X'7B226C6174223A2022504431333335222C202270223A2022504431353237222C20225350223A2022504431353630222C20226C6F6E223A2022504431333336222C202274223A2022504431353238227D','DENSITY_L2','The density of seawater in kg m-3 computed using the TEOS-10 equations with data from the conductivity, temperature and depth (CTD) family of instruments.');
+INSERT INTO "parameter" VALUES(2750,'sci_abs_oxygen',4,1,NULL,54,1,'Dissolved Oxygen Concentration','moles_of_oxygen_per_unit_mass_in_sea_water',4,61,X'7B22444F223A2022504431353136222C20225350223A2022504431353630222C20226C6F6E223A2022504431333336222C202250223A2022504431353237222C202254223A2022504431353238222C20226C6174223A2022504431333335227D','DOXYGEN_L2','Dissolved Oxygen Concentration from the Stable Response Dissolved Oxygen (DO) Instrument  is a measure of the concentration of microscopic bubbles of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings. This data product is corrected for salinity, temperature, and depth from a collocated CTD. Units: umol kg-1.');
 INSERT INTO "parameter" VALUES(2751,'sci_flbb_timestamp',1,2,NULL,35,1,'sci_flbb_timestamp, UTC',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2752,'sci_flbb_bb_ref',1,1,NULL,3,1,'sci_flbb_bb_ref',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2753,'sci_flbb_bb_sig',1,1,NULL,3,1,'Optical Backscatter Measurement',NULL,4,NULL,NULL,'FLUBSCT_L0','Optical backscatter unprocessed measurement output from the sensor. Units: unitless');
@@ -3608,8 +3608,8 @@ INSERT INTO "parameter" VALUES(3831,'bit_result',1,11,NULL,3,2,NULL,NULL,NULL,NU
 INSERT INTO "parameter" VALUES(3832,'error_status_word',1,10,NULL,3,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(3833,'mpt_seconds',1,12,NULL,11,9,'MPT, sec',NULL,NULL,NULL,NULL,NULL,'Minimum pre-ping wait time (MPT) between ping groups in the ensemble in seconds');
 INSERT INTO "parameter" VALUES(3834,'time_per_ping_seconds',1,12,NULL,11,9,'Time Per Ping, seconds',NULL,NULL,NULL,NULL,NULL,'Contains the amount of time, in seconds, between pings in an ensemble.');
-INSERT INTO "parameter" VALUES(3835,'eastward_seawater_velocity',4,1,NULL,37,1,'Eastward Sea Water Velocity, m s-1','eastward_sea_water_velocity',4,49,X'7B226C6F6E223A2022504431333931222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333832222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLE_L1','Eastward sea water velocity component in Earth coordinates with the magnetic variation accounted for.');
-INSERT INTO "parameter" VALUES(3836,'northward_seawater_velocity',4,1,NULL,37,1,'Northward Sea Water Velocity, m s-1','northward_sea_water_velocity',4,50,X'7B226C6F6E223A2022504431333931222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333832222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLN_L1','Northward sea water velocity component in Earth coordinates with the magnetic variation accounted for.');
+INSERT INTO "parameter" VALUES(3835,'eastward_seawater_velocity',4,1,NULL,37,1,'Eastward Sea Water Velocity, m s-1','eastward_sea_water_velocity',4,49,X'7B226C6F6E223A2022504431333336222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333335222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLE_L1','Eastward sea water velocity component in Earth coordinates with the magnetic variation accounted for.');
+INSERT INTO "parameter" VALUES(3836,'northward_seawater_velocity',4,1,NULL,37,1,'Northward Sea Water Velocity, m s-1','northward_sea_water_velocity',4,50,X'7B226C6F6E223A2022504431333336222C202275223A20225044373134222C202276223A20225044373135222C20226C6174223A2022504431333335222C20226474223A2022504437222C20227A223A20225044363731227D','VELPROF-VLN_L1','Northward sea water velocity component in Earth coordinates with the magnetic variation accounted for.');
 INSERT INTO "parameter" VALUES(3837,'sci_water_pressure_dbar',4,1,NULL,2,1,'Seawater Pressure','sea_water_pressure',4,204,X'7B2270725F626172223A2022504431353237227D','PRESWAT_L1','Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar');
 INSERT INTO "parameter" VALUES(7000,'sn_ambient_temperature',1,1,NULL,156,1,'Ambient Temperature',NULL,3,NULL,NULL,NULL,'Ambient Temperature');
 INSERT INTO "parameter" VALUES(7001,'sn_cib_5v_current',1,1,NULL,53,1,'CIB 5V Current',NULL,3,NULL,NULL,NULL,'CIB 5V Current');
@@ -3867,7 +3867,7 @@ INSERT INTO "parameter" VALUES(7980,'ts_status_time_error',1,5,NULL,3,NULL,'Stat
 INSERT INTO "parameter" VALUES(7981,'ts_status_timeout_error',1,5,NULL,3,NULL,'Status Timout Error',NULL,NULL,NULL,NULL,NULL,'Status Timout Error');
 INSERT INTO "parameter" VALUES(7982,'ts_system_up_time',1,4,NULL,12,NULL,'System Up Time',NULL,0,NULL,NULL,NULL,'System Up Time');
 INSERT INTO "parameter" VALUES(7983,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,201,X'7B227072657373757265223A20225044373130222C202262696E5F73697A65223A20225044363233222C2022616463705F6F7269656E746174696F6E223A20225044363137222C20226C61746974756465223A202243435F6C6174222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231227D','?','Bin Depths');
-INSERT INTO "parameter" VALUES(7984,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,202,X'7B227072657373757265223A2022504431353237222C202262696E5F73697A65223A20225044363233222C2022616463705F6F7269656E746174696F6E223A20225044363137222C20226C61746974756465223A2022504431333832222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231227D','?','Bin Depths');
+INSERT INTO "parameter" VALUES(7984,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,202,X'7B227072657373757265223A2022504431353237222C202262696E5F73697A65223A20225044363233222C2022616463705F6F7269656E746174696F6E223A20225044363137222C20226C61746974756465223A2022504431333335222C2022646973745F66697273745F62696E223A20225044363531222C20226E756D5F62696E73223A20225044363231227D','?','Bin Depths');
 INSERT INTO "parameter" VALUES(7985,'bin_depths',4,1,NULL,19,NULL,'Bin Depths','bin_depths',0,203,X'7B2273656E736F725F6465707468223A202243435F6465707468222C202262696E5F73697A65223A202243435F62696E5F73697A65222C2022646973745F66697273745F62696E223A202243435F646973745F66697273745F62696E222C20226E756D5F62696E73223A20225044363231222C2022616463705F6F7269656E746174696F6E223A202243435F6F7269656E746174696F6E227D','?','Bin Depths');
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
@@ -4236,19 +4236,19 @@ INSERT INTO "stream" VALUES(165,'vel3d_k_wfp_stc_metadata',7,NULL,NULL,NULL,165,
 INSERT INTO "stream" VALUES(167,'adcps_jln_stc_metadata',7,NULL,NULL,NULL,167,167,167,1,20160);
 INSERT INTO "stream" VALUES(168,'wfp_eng_stc_imodem_start_time',7,NULL,NULL,NULL,168,168,168,1,20160);
 INSERT INTO "stream" VALUES(170,'vel3d_k_wfp_instrument',7,NULL,NULL,NULL,170,170,170,1,4320);
-INSERT INTO "stream" VALUES(171,'ctdgv_m_glider_instrument',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(172,'dosta_abcdjm_glider_instrument',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(173,'dosta_abcdjm_glider_recovered',7,1382,1391,3837,180,180,376,0,4320);
-INSERT INTO "stream" VALUES(174,'flord_m_glider_instrument',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(175,'flort_m_glider_instrument',7,1382,1391,3837,179,179,171,0,1440);
-INSERT INTO "stream" VALUES(176,'flort_m_glider_recovered',7,1382,1391,3837,180,180,376,0,1440);
-INSERT INTO "stream" VALUES(177,'parad_m_glider_instrument',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(178,'parad_m_glider_recovered',7,1382,1391,3837,180,180,376,0,360);
-INSERT INTO "stream" VALUES(179,'glider_eng_telemetered',7,1382,1391,3837,179,179,171,0,1440);
-INSERT INTO "stream" VALUES(180,'glider_eng_recovered',7,1382,1391,3837,180,180,376,0,1440);
-INSERT INTO "stream" VALUES(181,'glider_eng_sci_telemetered',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(182,'glider_eng_metadata',7,1382,1391,3837,179,179,171,0,20160);
-INSERT INTO "stream" VALUES(183,'glider_eng_sci_recovered',7,1382,1391,3837,180,180,376,0,20160);
+INSERT INTO "stream" VALUES(171,'ctdgv_m_glider_instrument',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(172,'dosta_abcdjm_glider_instrument',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(173,'dosta_abcdjm_glider_recovered',7,1335,1336,3837,761,761,376,0,4320);
+INSERT INTO "stream" VALUES(174,'flord_m_glider_instrument',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(175,'flort_m_glider_instrument',7,1335,1336,3837,761,761,171,0,1440);
+INSERT INTO "stream" VALUES(176,'flort_m_glider_recovered',7,1335,1336,3837,761,761,376,0,1440);
+INSERT INTO "stream" VALUES(177,'parad_m_glider_instrument',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(178,'parad_m_glider_recovered',7,1335,1336,3837,761,761,376,0,360);
+INSERT INTO "stream" VALUES(179,'glider_eng_telemetered',7,1335,1336,3837,761,761,171,0,1440);
+INSERT INTO "stream" VALUES(180,'glider_eng_recovered',7,1335,1336,3837,761,761,376,0,1440);
+INSERT INTO "stream" VALUES(181,'glider_eng_sci_telemetered',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(182,'glider_eng_metadata',7,1335,1336,3837,761,761,171,0,20160);
+INSERT INTO "stream" VALUES(183,'glider_eng_sci_recovered',7,1335,1336,3837,761,761,376,0,20160);
 INSERT INTO "stream" VALUES(184,'cg_stc_eng_stc',7,NULL,NULL,NULL,184,184,184,1,20160);
 INSERT INTO "stream" VALUES(186,'dosta_ln_wfp_instrument',7,NULL,NULL,NULL,186,186,186,1,20160);
 INSERT INTO "stream" VALUES(187,'dosta_ln_wfp_sio_instrument',7,NULL,NULL,NULL,187,187,187,1,1440);
@@ -4257,12 +4257,12 @@ INSERT INTO "stream" VALUES(189,'flord_l_wfp_sio_instrument',7,NULL,NULL,NULL,18
 INSERT INTO "stream" VALUES(190,'ctdpf_ckl_wfp_sio_mule_metadata',7,NULL,NULL,NULL,190,190,190,1,20160);
 INSERT INTO "stream" VALUES(191,'trhph_status',7,NULL,NULL,NULL,191,191,191,1,20160);
 INSERT INTO "stream" VALUES(192,'flort_d_status',7,NULL,NULL,NULL,192,192,192,1,10080);
-INSERT INTO "stream" VALUES(193,'glider_eng_metadata_recovered',7,1382,1391,3837,180,180,376,0,20160);
+INSERT INTO "stream" VALUES(193,'glider_eng_metadata_recovered',7,1335,1336,3837,761,761,376,0,20160);
 INSERT INTO "stream" VALUES(194,'spkir_a_configuration_record',7,NULL,NULL,NULL,194,194,194,1,20160);
 INSERT INTO "stream" VALUES(195,'sami_regular_status',7,NULL,NULL,NULL,195,195,195,1,1440);
 INSERT INTO "stream" VALUES(196,'phsen_battery_voltage',7,NULL,NULL,NULL,196,196,196,1,20160);
 INSERT INTO "stream" VALUES(197,'phsen_thermistor_voltage',7,NULL,NULL,NULL,197,197,197,1,20160);
-INSERT INTO "stream" VALUES(199,'adcpa_m_glider_instrument',7,1382,1391,3837,179,179,171,0,1440);
+INSERT INTO "stream" VALUES(199,'adcpa_m_glider_instrument',7,1335,1336,3837,761,761,171,0,1440);
 INSERT INTO "stream" VALUES(300,'sio_eng_control_status',7,NULL,NULL,NULL,300,300,300,1,20160);
 INSERT INTO "stream" VALUES(301,'adcps_jln_sio_mule_instrument',7,NULL,NULL,NULL,301,301,301,1,1440);
 INSERT INTO "stream" VALUES(302,'adcp_ancillary_system_data',7,NULL,NULL,NULL,302,302,302,1,20160);
@@ -4332,9 +4332,9 @@ INSERT INTO "stream" VALUES(370,'vadcp_4beam_system_configuration',7,NULL,NULL,N
 INSERT INTO "stream" VALUES(371,'vadcp_5thbeam_system_configuration',7,NULL,NULL,NULL,371,371,371,1,20160);
 INSERT INTO "stream" VALUES(372,'vadcp_ancillary_system_data',7,NULL,NULL,NULL,372,372,372,1,20160);
 INSERT INTO "stream" VALUES(373,'vadcp_transmit_path',7,NULL,NULL,NULL,373,373,373,1,20160);
-INSERT INTO "stream" VALUES(375,'adcpa_m_glider_recovered',7,1382,1391,3837,180,180,376,0,1440);
-INSERT INTO "stream" VALUES(376,'ctdgv_m_glider_instrument_recovered',7,1382,1391,3837,180,180,376,0,4320);
-INSERT INTO "stream" VALUES(377,'flord_m_glider_instrument_recovered',7,1382,1391,3837,180,180,376,0,720);
+INSERT INTO "stream" VALUES(375,'adcpa_m_glider_recovered',7,1335,1336,3837,761,761,376,0,1440);
+INSERT INTO "stream" VALUES(376,'ctdgv_m_glider_instrument_recovered',7,1335,1336,3837,761,761,376,0,4320);
+INSERT INTO "stream" VALUES(377,'flord_m_glider_instrument_recovered',7,1335,1336,3837,761,761,376,0,720);
 INSERT INTO "stream" VALUES(379,'camds_image_metadata',7,NULL,NULL,NULL,379,379,379,1,20160);
 INSERT INTO "stream" VALUES(380,'camds_health_status',7,NULL,NULL,NULL,380,380,380,1,20160);
 INSERT INTO "stream" VALUES(381,'camds_disk_status',7,NULL,NULL,NULL,381,381,381,1,20160);
@@ -4647,7 +4647,7 @@ INSERT INTO "stream" VALUES(691,'winch_cspp_eng',7,NULL,NULL,NULL,691,691,691,1,
 INSERT INTO "stream" VALUES(692,'nutnr_n_auv_instrument',7,NULL,NULL,NULL,692,692,692,1,1440);
 INSERT INTO "stream" VALUES(693,'nutnr_n_instrument_recovered',7,NULL,NULL,NULL,693,693,693,1,1440);
 INSERT INTO "stream" VALUES(694,'nutnr_m_instrument_recovered',7,NULL,NULL,NULL,694,694,694,1,1440);
-INSERT INTO "stream" VALUES(695,'nutnr_m_glider_instrument',7,1382,1391,3837,179,179,171,0,1440);
+INSERT INTO "stream" VALUES(695,'nutnr_m_glider_instrument',7,1335,1336,3837,761,761,171,0,1440);
 INSERT INTO "stream" VALUES(696,'zplsc_c_instrument',7,NULL,NULL,NULL,696,696,696,1,20160);
 INSERT INTO "stream" VALUES(697,'camhd_streaming_status',7,NULL,NULL,NULL,697,697,697,1,1440);
 INSERT INTO "stream" VALUES(698,'camhd_adread_status',7,NULL,NULL,NULL,698,698,698,1,1440);
@@ -4698,7 +4698,7 @@ INSERT INTO "stream" VALUES(742,'botpt_nano_sample_24hr',3660,NULL,NULL,NULL,742
 INSERT INTO "stream" VALUES(743,'adcp_velocity_beam',7,NULL,NULL,NULL,743,743,743,1,720);
 INSERT INTO "stream" VALUES(744,'adcp_velocity_earth',7,NULL,NULL,NULL,744,744,744,1,720);
 INSERT INTO "stream" VALUES(745,'adcp_velocity_inst',7,NULL,NULL,NULL,745,745,745,1,720);
-INSERT INTO "stream" VALUES(746,'adcp_velocity_glider',7,1382,1391,3837,179,179,171,0,720);
+INSERT INTO "stream" VALUES(746,'adcp_velocity_glider',7,1335,1336,3837,761,761,171,0,720);
 INSERT INTO "stream" VALUES(747,'adcp_engineering',7,NULL,NULL,NULL,747,747,747,1,1440);
 INSERT INTO "stream" VALUES(748,'adcp_config',7,NULL,NULL,NULL,748,748,748,1,20160);
 INSERT INTO "stream" VALUES(749,'adcp_bottom_track_earth',7,NULL,NULL,NULL,749,749,749,1,1440);
@@ -4713,6 +4713,7 @@ INSERT INTO "stream" VALUES(757,'adcp_system_configuration_5',7,NULL,NULL,NULL,7
 INSERT INTO "stream" VALUES(758,'adcp_ancillary_system_data_5',7,NULL,NULL,NULL,758,758,758,1,20160);
 INSERT INTO "stream" VALUES(759,'adcp_transmit_path_5',7,NULL,NULL,NULL,759,759,759,1,20160);
 INSERT INTO "stream" VALUES(760,'camhd_metadata',7,NULL,NULL,NULL,760,760,760,1,1440);
+INSERT INTO "stream" VALUES(761,'glider_gps_position',7,1335,1336,3837,761,761,376,0,1440);
 CREATE TABLE stream_dependency (
 	source_stream_id INTEGER NOT NULL, 
 	product_stream_id INTEGER NOT NULL, 
@@ -19404,6 +19405,14 @@ INSERT INTO "stream_parameter" VALUES(760,12);
 INSERT INTO "stream_parameter" VALUES(760,16);
 INSERT INTO "stream_parameter" VALUES(760,863);
 INSERT INTO "stream_parameter" VALUES(760,3808);
+INSERT INTO "stream_parameter" VALUES(761,7);
+INSERT INTO "stream_parameter" VALUES(761,10);
+INSERT INTO "stream_parameter" VALUES(761,11);
+INSERT INTO "stream_parameter" VALUES(761,12);
+INSERT INTO "stream_parameter" VALUES(761,16);
+INSERT INTO "stream_parameter" VALUES(761,863);
+INSERT INTO "stream_parameter" VALUES(761,1335);
+INSERT INTO "stream_parameter" VALUES(761,1336);
 CREATE TABLE unit (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
