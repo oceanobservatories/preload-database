@@ -322,6 +322,10 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
 
         streams = database.Session.query(Stream).all()
         for stream in streams:
+            # Don't generate CQL or java classes for virtual streams
+            if stream.source_streams:
+                continue
+
             t = Table(stream)
             tables.append(t)
             all_cql_fh.write(cql_template.render(table=t))
