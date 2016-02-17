@@ -4,15 +4,14 @@ import database_util
 from enum import make_enum
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.pool import StaticPool
+from model.preload import Base
 
-# Public Types
+
 PreloadDatabaseMode = make_enum('EMPTY_FILE', 'POPULATED_MEMORY', 'POPULATED_FILE')
 
 # Public Fields
 Session = None
-Base = declarative_base()
 
 # Private Fields
 __engine_url = None
@@ -37,7 +36,7 @@ def initialize_connection(preload_database_mode):
         connection.commit()
         # Set engine arguments
         __engine_url = "sqlite://"
-        __engine_params = { 'poolclass':StaticPool, 'creator':lambda:connection }
+        __engine_params = {'poolclass': StaticPool, 'creator': lambda: connection}
     elif preload_database_mode == PreloadDatabaseMode.POPULATED_FILE:
         # Delete preload database, and use the script to rebuild it
         database_util.generate_preload_database_from_script()
@@ -49,15 +48,13 @@ def initialize_connection(preload_database_mode):
 
 
 def open_connection():
-    global __engine_url, __engine_params, Session, Base
+    global Session
 
     engine = create_engine(__engine_url, convert_unicode=True, **__engine_params)
     Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
     Base.query = Session.query_property()
-
-    # import all modules here that might define models so that they will be registered properly on the metadata.
-    import model.preload
     Base.metadata.create_all(bind=engine)
+
 
 def close_connection():
     Session.remove()
