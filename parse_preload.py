@@ -2,12 +2,13 @@
 import json
 import os
 import gdata.spreadsheet.service as service
+import pandas as pd
+
 import config
 import database
 import database_util
 from model.preload import ParameterType, ValueEncoding, CodeSet, Unit, FillValue, FunctionType, ParameterFunction, \
-    Parameter, Stream, StreamDependency
-
+    Parameter, Stream, StreamDependency, NominalDepth
 
 database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
 database.open_connection()
@@ -139,11 +140,11 @@ def process_parameters(sheet):
             parameter = Parameter()
             parameter.id = int(row.get('id')[2:])
             parameter.name = row.get('name')
-            parameter.parameter_type = get_simple_field(ParameterType, row.get('parametertype'))
-            parameter.value_encoding = get_simple_field(ValueEncoding, row.get('valueencoding'))
-            parameter.code_set = get_simple_field(CodeSet, row.get('codeset'))
-            parameter.unit = get_simple_field(Unit, row.get('unitofmeasure'))
-            parameter.fill_value = get_simple_field(FillValue, row.get('fillvalue'))
+            parameter._parameter_type = get_simple_field(ParameterType, row.get('parametertype'))
+            parameter._value_encoding = get_simple_field(ValueEncoding, row.get('valueencoding'))
+            parameter._code_set = get_simple_field(CodeSet, row.get('codeset'))
+            parameter._unit = get_simple_field(Unit, row.get('unitofmeasure'))
+            parameter._fill_value = get_simple_field(FillValue, row.get('fillvalue'))
             parameter.display_name = row.get('displayname')
             parameter.standard_name = row.get('standardname')
             parameter.precision = row.get('precision')
@@ -172,7 +173,7 @@ def process_parameter_funcs(sheet):
             func = ParameterFunction()
             func.id = int(row.get('id')[4:])
             func.name = row.get('name')
-            func.function_type = get_simple_field(FunctionType, row.get('functiontype'))
+            func._function_type = get_simple_field(FunctionType, row.get('functiontype'))
             func.function = row.get('function')
             func.owner = row.get('owner')
             func.description = row.get('description')
@@ -244,6 +245,7 @@ def process_streams(sheet):
                 database.Session.add(stream)
     database.Session.commit()
 
+
 def process_bin_sizes(sheet):
     print 'Processing bin sizes'
     for row in sheet:
@@ -262,11 +264,33 @@ def process_bin_sizes(sheet):
     database.Session.commit()
 
 
+def process_nominal_depths():
+    print 'Processing nominal depths data'
+    dataframe = pd.read_csv('nominal_depths.csv')
+    for _, refdes, depth in dataframe.itertuples():
+        try:
+            subsite, node, sensor = refdes.split('-', 2)
+        except ValueError:
+            print 'Found record with invalid reference designator:', refdes
+            continue
+        try:
+            depth = int(float(depth))
+        except ValueError:
+            print 'Found record with invalid depth:', refdes, depth
+            continue
+        nd = NominalDepth(subsite=subsite, node=node, sensor=sensor, depth=depth)
+        database.Session.add(nd)
+
+    database.Session.commit()
+
+
 def create_db():
+    process_nominal_depths()
     process_parameter_funcs(sheet_generator('ParameterFunctions'))
     process_parameters(sheet_generator('ParameterDefs'))
     process_streams(sheet_generator('ParameterDictionary'))
     process_bin_sizes(sheet_generator('BinSizes'))
+
 
 if __name__ == '__main__':
     create_db()
