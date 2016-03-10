@@ -1,0 +1,17 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+notifications:
+  slack: ooi-dev:e6WpBt9NHHw1YJjRKuYHkhYr
+
+install:
+  - "pip install -r requirements.txt"
+
+before_script:
+  - "rm __init__.py"
+
+# command to run tests
+script:
+  - nosetests
+
