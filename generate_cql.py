@@ -198,9 +198,9 @@ class Column(object):
         self.set_name(param.name)
         # preferred timestamp is enum in preload, string in practice
 
-        value_encoding = param.value_encoding.value if param.value_encoding is not None else None
-        parameter_type = param.parameter_type.value if param.parameter_type is not None else None
-        fill_value = param.fill_value.value if param.fill_value is not None else None
+        value_encoding = param.value_encoding
+        parameter_type = param.parameter_type
+        fill_value = param.fill_value
 
         if self.name == 'preferred_timestamp':
             value_encoding = 'text'
@@ -285,7 +285,7 @@ class Table(object):
 
         for param in params:
             # function? skip
-            if param.name in self.basecolumns or param.parameter_type.value == 'function':
+            if param.name in self.basecolumns or param.parameter_type == 'function':
                 continue
             column = Column()
             column.parse(param)
