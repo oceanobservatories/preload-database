@@ -4699,7 +4699,7 @@ INSERT INTO "parameter" VALUES(7653,'sp_wc_winch_cable_wrap_index',1,4,NULL,224,
 INSERT INTO "parameter" VALUES(7654,'sp_wc_winch_cable_wrap_layer',1,4,NULL,224,NULL,'Winch Cable Wrap Layer',NULL,0,NULL,NULL,NULL,'Winch Cable Wrap Layer');
 INSERT INTO "parameter" VALUES(7655,'sp_wc_winch_position_at_last_drum_index',1,4,NULL,225,NULL,'Winch Position at Last Drum Index',NULL,0,NULL,NULL,NULL,'Winch Position at Last Drum Index');
 INSERT INTO "parameter" VALUES(7656,'sp_wc_winch_revs',1,4,NULL,225,NULL,'Winch Revs',NULL,0,NULL,NULL,NULL,'Winch Revs');
-INSERT INTO "parameter" VALUES(7657,'sp_wc_winch_speed',1,4,NULL,122,NULL,'Winch Speed',NULL,0,NULL,NULL,NULL,'Winch Speed');
+INSERT INTO "parameter" VALUES(7657,'sp_wc_winch_speed',1,1,NULL,122,NULL,'Winch Speed',NULL,0,NULL,NULL,NULL,'Winch Speed');
 INSERT INTO "parameter" VALUES(7658,'sp_wc_winch_vfd_board_temp',1,1,NULL,156,NULL,'Winch VFD Board Temp',NULL,4,NULL,NULL,NULL,'Winch VFD Board Temp');
 INSERT INTO "parameter" VALUES(7659,'sp_wc_winch_vfd_sink_temp',1,1,NULL,156,NULL,'Winch VFD Sink Temp',NULL,4,NULL,NULL,NULL,'Winch VFD Sink Temp');
 INSERT INTO "parameter" VALUES(7670,'sp_wcler_based_xml_rpc_data_server_mission_control_event',1,4,NULL,3,NULL,'Mission Control Event',NULL,0,NULL,NULL,NULL,'Mission Control Event');
