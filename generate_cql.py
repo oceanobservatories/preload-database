@@ -15,12 +15,6 @@ DROP_KEYSPACE = 'drop keyspace ooi;\n\n'
 
 CREATE_KEYSPACE = "create keyspace ooi with replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };\n\n"
 
-CREATE_METADATA = '''create table ooi.stream_metadata
-( subsite text, node text, sensor text, method text, stream text, count bigint, first double, last double,
-primary key ((subsite, node, sensor), method, stream));
-
-'''
-
 CREATE_PROVENANCE = '''
 CREATE TABLE ooi.dataset_l0_provenance (
 subsite text,
@@ -34,12 +28,6 @@ parserName text,
 parserVersion text,
 PRIMARY KEY((subsite, node, sensor), method, deployment, id)
 );
-
-'''
-
-CREATE_PARTITION_METADATA = '''create table ooi.partition_metadata
-( stream text, refdes text, method text, bin bigint, store text, first double, last double, count bigint,
-primary key ((stream, refdes), method, bin, store));
 
 '''
 
@@ -94,10 +82,8 @@ CREATE TABLE ooi.streaming_l0_provenance(
 '''
 
 # First part of tuple must be table name from cql script in second part
-ALL_EXTRA_TABLES = [ ("stream_metadata", CREATE_METADATA),
-                     ("dataset_l0_provenance", CREATE_PROVENANCE),
+ALL_EXTRA_TABLES = [ ("dataset_l0_provenance", CREATE_PROVENANCE),
                      ("streaming_l0_provenance", CREATE_STREAMING_L0),
-                     ("partition_metadata", CREATE_PARTITION_METADATA),
                      ("annotations", CREATE_ANNOTATIONS),
                      ("qc_results", CREATE_QC_RESULTS) ]
 
