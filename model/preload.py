@@ -140,6 +140,7 @@ class Parameter(Base):
             'standard_name': self.standard_name,
             'comment': self.description,
             'data_product_identifier': self.data_product_identifier,
+            'precision': self.precision,
         }
         return {k: v for k, v in attrs.iteritems() if v is not None}
 
