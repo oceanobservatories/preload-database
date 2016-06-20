@@ -4618,8 +4618,8 @@ INSERT INTO "parameter" VALUES(7013,'sn_hpb_error_state',1,4,NULL,3,1,'HPB Error
 INSERT INTO "parameter" VALUES(7014,'sn_hpb_input_voltage',1,1,NULL,22,1,'HPB Input Voltage',NULL,3,NULL,NULL,NULL,'HPB Input Voltage');
 INSERT INTO "parameter" VALUES(7015,'sn_hpb_hotel_current',1,1,NULL,53,1,'HPB Hotel Current',NULL,3,NULL,NULL,NULL,'HPB Hotel Current');
 INSERT INTO "parameter" VALUES(7016,'sn_hpb_hotel_temperature',1,1,NULL,156,1,'HPB Hotel Temperature',NULL,3,NULL,NULL,NULL,'HPB Hotel Temperature');
-INSERT INTO "parameter" VALUES(7017,'sn_hpb_375_gfd_high',1,1,NULL,215,1,'HPB 375 GFD High',NULL,0,NULL,NULL,NULL,'HPB 375 GFD High');
-INSERT INTO "parameter" VALUES(7018,'sn_hpb_375_gfd_low',1,1,NULL,215,1,'HPB 375 GFD Low',NULL,0,NULL,NULL,NULL,'HPB 375 GFD Low');
+INSERT INTO "parameter" VALUES(7017,'sn_hpb_gfd_375_high',1,1,NULL,215,1,'HPB 375 GFD High',NULL,0,NULL,NULL,NULL,'HPB 375 GFD High');
+INSERT INTO "parameter" VALUES(7018,'sn_hpb_gfd_375_low',1,1,NULL,215,1,'HPB 375 GFD Low',NULL,0,NULL,NULL,NULL,'HPB 375 GFD Low');
 INSERT INTO "parameter" VALUES(7100,'sn_port_output_current',1,1,NULL,53,1,'Current',NULL,3,NULL,NULL,NULL,'Current');
 INSERT INTO "parameter" VALUES(7101,'sn_port_output_voltage',1,1,NULL,22,1,'Voltage',NULL,3,NULL,NULL,NULL,'Voltage');
 INSERT INTO "parameter" VALUES(7102,'sn_port_unit_temperature',1,1,NULL,156,1,'Temperature',NULL,3,NULL,NULL,NULL,'Temperature');
