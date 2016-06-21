@@ -2247,8 +2247,8 @@ INSERT INTO "parameter" VALUES(1331,'m_gps_ignored_lat',1,2,NULL,14,1,'GPS Ignor
 INSERT INTO "parameter" VALUES(1332,'m_gps_ignored_lon',1,2,NULL,14,1,'GPS Ignored Longitude, degrees',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1333,'m_gps_invalid_lat',1,2,NULL,14,1,'GPS Invalid Latitude, degrees',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1334,'m_gps_invalid_lon',1,2,NULL,14,1,'GPS Invalid Longitude, degrees',NULL,4,NULL,NULL,NULL,NULL);
-INSERT INTO "parameter" VALUES(1335,'m_gps_lat',1,1,NULL,14,1,'Measured GPS Latitude, degrees',NULL,4,NULL,NULL,NULL,'Measured GPS latitude in decimal degrees');
-INSERT INTO "parameter" VALUES(1336,'m_gps_lon',1,1,NULL,14,1,'Measured GPS Longitude, degrees',NULL,4,NULL,NULL,NULL,'Measured GPS longitude in decimal degrees');
+INSERT INTO "parameter" VALUES(1335,'m_gps_lat',1,1,NULL,7,1,'Measured GPS Latitude, degrees','latitude',4,NULL,NULL,NULL,'Measured GPS latitude in decimal degrees');
+INSERT INTO "parameter" VALUES(1336,'m_gps_lon',1,1,NULL,8,1,'Measured GPS Longitude, degrees','longitude',4,NULL,NULL,NULL,'Measured GPS longitude in decimal degrees');
 INSERT INTO "parameter" VALUES(1337,'m_gps_mag_var',1,1,NULL,75,1,'GPS Mag Var, rad',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1338,'m_gps_num_satellites',1,1,NULL,3,1,'GPS Number of Satellites',NULL,4,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1339,'m_gps_on',1,8,NULL,3,9,'GPS On',NULL,0,NULL,NULL,NULL,NULL);
