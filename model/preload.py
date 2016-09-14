@@ -2,10 +2,10 @@ import json
 from numbers import Number
 from pprint import pformat
 
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Boolean, UniqueConstraint, and_, or_
+import numpy as np
+from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Boolean, UniqueConstraint, and_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-
 
 Base = declarative_base()
 
@@ -133,6 +133,12 @@ class Parameter(Base):
     @property
     def attrs(self):
         long_name = self.display_name if self.display_name is not None else self.name
+
+        if isinstance(self.precision, Number):
+            precision = np.int32(self.precision)
+        else:
+            precision = None
+
         attrs = {
             'units': self.unit,
             '_FillValue': self.fill_value,
@@ -140,7 +146,7 @@ class Parameter(Base):
             'standard_name': self.standard_name,
             'comment': self.description,
             'data_product_identifier': self.data_product_identifier,
-            'precision': self.precision,
+            'precision': precision,
         }
         return {k: v for k, v in attrs.iteritems() if v is not None}
 
