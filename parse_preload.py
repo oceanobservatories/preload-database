@@ -19,6 +19,27 @@ cachedir = '.cache'
 
 IGNORE_SCENARIOS = ['VOID']
 
+SHEET_COLUMNS = {
+    'ParameterDefs':
+        ['scenario', 'confluence', 'name', 'id', 'hid', 'hidconflict', 'parametertype', 'valueencoding', 'codeset',
+         'unitofmeasure', 'fillvalue', 'displayname', 'precision', 'visible', 'parameterfunctionid',
+         'parameterfunctionmap', 'lookupvalue', 'qcfunctions', 'standardname', 'dataproductidentifier',
+         'referenceurls', 'description', 'reviewstatus', 'reviewcomment', 'longname', 'skip', 'dataproducttype',
+         'datalevel'],
+    'ParameterFunctions':
+        ['scenario', 'id', 'hid', 'name', 'instrumentclass', 'instrumentseries', 'functiontype', 'function', 'owner',
+         'args', 'kwargs', 'description', 'reference', 'skip', 'qcflag'],
+    'ParameterDictionary':
+        ['scenario', 'id', 'confluence', 'name', 'parameterids', 'temporalparameter', 'streamdependency',
+         'parameters', 'latparam', 'lonparam', 'depthparam', 'latstream', 'lonstream', 'depthstream',
+         'reviewstatus', 'skip', 'deliverymethodnotfordisplay', 'datatypenotfordisplay',
+         'contentnotfordisplay', 'streamdescriptionfordisplayingui'],
+    'BinSizes':
+        ['stream', 'binsize', 'estimatedrate', 'measuredrate', 'binsizeindays', 'particlesperbin', 'estimatedvsingested',
+         'dataratenotes'
+        ],
+}
+
 
 def sheet_generator(name):
     cache_path = os.path.join(cachedir, name)
@@ -266,7 +287,7 @@ def process_bin_sizes(sheet):
 
 def process_nominal_depths():
     print 'Processing nominal depths data'
-    dataframe = pd.read_csv('nominal_depths.csv')
+    dataframe = pd.read_csv('csv/nominal_depths.csv')
     for _, refdes, depth in dataframe.itertuples():
         try:
             subsite, node, sensor = refdes.split('-', 2)
@@ -285,11 +306,17 @@ def process_nominal_depths():
 
 
 def create_db():
+    sheets = {}
+    for sheet in SHEET_COLUMNS:
+        sheets[sheet] = sheet_generator(sheet)
+        df = pd.DataFrame(sheets[sheet], columns=SHEET_COLUMNS[sheet])
+        df.to_csv(os.path.join('csv','%s.csv' % sheet), encoding='utf-8', index=False)
+
     process_nominal_depths()
-    process_parameter_funcs(sheet_generator('ParameterFunctions'))
-    process_parameters(sheet_generator('ParameterDefs'))
-    process_streams(sheet_generator('ParameterDictionary'))
-    process_bin_sizes(sheet_generator('BinSizes'))
+    process_parameter_funcs(sheets['ParameterFunctions'])
+    process_parameters(sheets['ParameterDefs'])
+    process_streams(sheets['ParameterDictionary'])
+    process_bin_sizes(sheets['BinSizes'])
 
 
 if __name__ == '__main__':
