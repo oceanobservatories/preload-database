@@ -1,5 +1,9 @@
 NEXT RELEASE
 
+- Improved incremental load performance by making fewer database queries
+- Changed column definition for Parameter.parameter_function_map to String (postgres compatibility)
+- Removed size limit for NominalDepth.subsite, node and sensor columns
+- Removed google sheets caching code (data is cached as CSV now)
 - CSV updates to include all common parameters in all streams (7,10,11,16,863)
 - New stream dosta_abcdjm_ctdbp_p_instrument_recovered
 - New stream flord_g_ctdbp_p_instrument_recovered

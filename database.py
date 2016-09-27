@@ -15,7 +15,7 @@ Session = None
 
 # Private Fields
 __engine_url = None
-__engine_params = None
+__engine_params = {'echo': False}
 
 
 # Public Methods #
