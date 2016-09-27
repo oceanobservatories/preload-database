@@ -21,9 +21,9 @@ class NominalDepth(Base):
         UniqueConstraint('subsite', 'node', 'sensor'),
     )
     id = Column(Integer, primary_key=True)
-    subsite = Column(String(16), nullable=False)
-    node = Column(String(16), nullable=False)
-    sensor = Column(String(16), nullable=False)
+    subsite = Column(String, nullable=False)
+    node = Column(String, nullable=False)
+    sensor = Column(String, nullable=False)
     depth = Column(Integer)
 
     def __repr__(self):

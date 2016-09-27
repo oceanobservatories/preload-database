@@ -14,8 +14,8 @@ PreloadDatabaseMode = make_enum('EMPTY_FILE', 'POPULATED_MEMORY', 'POPULATED_FIL
 Session = None
 
 # Private Fields
-__engine_url = None
-__engine_params = None
+__engine_url = 'postgresql://awips@localhost:5432/metadata'
+__engine_params = {}
 
 
 # Public Methods #
