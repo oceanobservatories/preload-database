@@ -11,8 +11,6 @@ CSV_OVERWRITE_WARNING = '\n\nThis will overwrite the Resource Data csv\n' \
                         'Do you want to continue [y|n]? > '
 
 key = config.SPREADSHEET_KEY
-use_cache = config.USE_CACHED_SPREADSHEET
-cachedir = '.cache'
 
 SHEET_COLUMNS = {
     'ParameterDefs':
@@ -38,17 +36,7 @@ SHEET_COLUMNS = {
 
 
 def sheet_generator(name):
-    cache_path = os.path.join(cachedir, name)
     rows = []
-    if use_cache and os.path.exists(cache_path):
-        try:
-            rows.extend(json.load(open(cache_path)))
-            print 'used cache'
-            for row in rows:
-                yield row
-            return
-        except (IOError, ValueError, Exception):
-            pass
 
     print 'fetching from google'
     client = service.SpreadsheetsService()
@@ -70,14 +58,8 @@ def sheet_generator(name):
                 rows.append(d)
                 yield d
 
-    if use_cache and not os.path.exists(cachedir):
-        os.makedirs(cachedir)
-    if use_cache:
-        print 'Caching data for future runs'
-        json.dump(rows, open(cache_path, 'wb'))
 
-
-def create_cvs_files():
+def create_csv_files():
     for sheet in SHEET_COLUMNS:
         df = pd.DataFrame(list(sheet_generator(sheet)),
                           columns=SHEET_COLUMNS[sheet])
@@ -91,4 +73,4 @@ if __name__ == '__main__':
         resp = raw_input(CSV_OVERWRITE_WARNING)
 
     if resp == 'y':
-        create_cvs_files()
+        create_csv_files()

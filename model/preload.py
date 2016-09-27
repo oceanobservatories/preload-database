@@ -4,7 +4,9 @@ from pprint import pformat
 
 import numpy as np
 from sqlalchemy import Column, Integer, String, ForeignKey, PickleType, Boolean, UniqueConstraint, and_
+from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 
 Base = declarative_base()
@@ -21,13 +23,17 @@ class NominalDepth(Base):
         UniqueConstraint('subsite', 'node', 'sensor'),
     )
     id = Column(Integer, primary_key=True)
-    subsite = Column(String(16), nullable=False)
-    node = Column(String(16), nullable=False)
-    sensor = Column(String(16), nullable=False)
+    subsite = Column(String, nullable=False)
+    node = Column(String, nullable=False)
+    sensor = Column(String, nullable=False)
     depth = Column(Integer)
 
     def __repr__(self):
         return '%s %d' % ('-'.join((self.subsite, self.node, self.sensor)), self.depth)
+
+    @property
+    def reference_designator(self):
+        return '-'.join((self.subsite, self.node, self.sensor))
 
     @classmethod
     def get_nominal_depth(cls, subsite, node, sensor):
@@ -155,7 +161,7 @@ class Parameter(Base):
     precision = Column(Integer)
     parameter_function_id = Column(Integer, ForeignKey('parameter_function.id'))
     parameter_function = relationship(ParameterFunction)
-    parameter_function_map = Column(PickleType(pickler=json))
+    _parameter_function_map = Column('parameter_function_map', String)
     data_product_identifier = Column(String(250))
     description = Column(String(4096))
     streams = relationship('Stream', secondary='stream_parameter')
@@ -163,6 +169,22 @@ class Parameter(Base):
     data_product_type_id = Column(Integer, ForeignKey('data_product_type.id'))
     _data_product_type = relationship(DataProductType)
     data_level = Column(Integer)
+
+    @hybrid_property
+    def parameter_function_map(self):
+        if self._parameter_function_map is None:
+            return {}
+        return json.loads(self._parameter_function_map)
+
+    @parameter_function_map.expression
+    def parameter_function_map(cls):
+        return cls._parameter_function_map
+
+    @parameter_function_map.setter
+    def parameter_function_map(self, function_map):
+        if function_map is None:
+            self._parameter_function_map = {}
+        self._parameter_function_map = json.dumps(function_map)
 
     @property
     def attrs(self):
@@ -309,7 +331,8 @@ class Parameter(Base):
             'unit': self.unit,
             'fill': self.fill_value,
             'encoding': self.value_encoding,
-            'precision': self.precision
+            'precision': self.precision,
+            'pmap': self.parameter_function_map
         }
 
     def __repr__(self):
