@@ -308,7 +308,7 @@ def process_nominal_depths():
 def create_db():
     sheets = {}
     for sheet in SHEET_COLUMNS:
-        sheets[sheet] = sheet_generator(sheet)
+        sheets[sheet] = list(sheet_generator(sheet))
         df = pd.DataFrame(sheets[sheet], columns=SHEET_COLUMNS[sheet])
         df.to_csv(os.path.join('csv','%s.csv' % sheet), encoding='utf-8', index=False)
 
