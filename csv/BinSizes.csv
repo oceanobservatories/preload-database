@@ -389,6 +389,8 @@ presf_abc_dcl_tide_measurement,20160,24,25,14,350,,Sample data 1-25 per day
 presf_abc_dcl_tide_measurement_recovered,20160,24,8,14,336,,Sample data 8 per day
 presf_abc_dcl_wave_burst,20160,,17,14,238,,Sample data 6-17 per day
 presf_abc_dcl_wave_burst_recovered,20160,,8,14,112,,Sample data 8 per day
+presf_abc_tide_measurement_recovered,,,,,,,
+presf_abc_wave_burst_recovered,,,,,,,
 presf_calibration_coefficients,20160,,,14,0,Best guess ( cal ),No ingested data
 presf_operating_status,1440,,,1,0,Should this be 20160?,No ingested data
 presf_tide_measurement,1440,,,1,0,Should this be 20160?,No ingested data
