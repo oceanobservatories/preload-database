@@ -31,8 +31,7 @@ SHEET_COLUMNS = {
          'args', 'kwargs', 'description', 'reference', 'skip', 'qcflag'],
     'ParameterDictionary':
         ['scenario', 'id', 'confluence', 'name', 'parameterids', 'temporalparameter', 'streamdependency',
-         'parameters', 'latparam', 'lonparam', 'depthparam', 'latstream', 'lonstream', 'depthstream',
-         'reviewstatus', 'skip', 'deliverymethodnotfordisplay', 'datatypenotfordisplay',
+         'parameters', 'reviewstatus', 'skip', 'deliverymethodnotfordisplay', 'datatypenotfordisplay',
          'contentnotfordisplay', 'streamdescriptionfordisplayingui'],
     'BinSizes':
         ['stream', 'binsize', 'estimatedrate', 'measuredrate', 'binsizeindays', 'particlesperbin', 'estimatedvsingested',
