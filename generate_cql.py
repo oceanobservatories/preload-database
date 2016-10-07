@@ -65,25 +65,9 @@ PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 
 '''
 
-CREATE_STREAMING_L0 = '''
-CREATE TABLE ooi.streaming_l0_provenance(
-    refdes text,
-    method text,
-    time double,
-    id uuid,
-    driver_module text,
-    driver_class text,
-    driver_version text,
-    driver_host text,
-    event_json text,
-    PRIMARY KEY((refdes,  method), time, id)
-);
-
-'''
 
 # First part of tuple must be table name from cql script in second part
 ALL_EXTRA_TABLES = [ ("dataset_l0_provenance", CREATE_PROVENANCE),
-                     ("streaming_l0_provenance", CREATE_STREAMING_L0),
                      ("annotations", CREATE_ANNOTATIONS),
                      ("qc_results", CREATE_QC_RESULTS) ]
 
@@ -172,7 +156,6 @@ class Column(object):
         # flags
         self.valid = True
         self.islist = False
-        self.sparse = False
         self.numeric = False
         self.fillable = True
 
@@ -200,9 +183,6 @@ class Column(object):
 
         self.cqltype, self.javatype, self.filltype, self.java_object, self.islist = map.get((value_encoding,
                                                                                              parameter_type))
-
-        if 'sparse' in parameter_type:
-            self.sparse = True
 
         if self.javatype in ['Integer', 'Long', 'Double', 'BigInteger']:
             self.numeric = True
