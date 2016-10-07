@@ -21,9 +21,9 @@ class NominalDepth(Base):
         UniqueConstraint('subsite', 'node', 'sensor'),
     )
     id = Column(Integer, primary_key=True)
-    subsite = Column(String(10), nullable=False)
-    node = Column(String(10), nullable=False)
-    sensor = Column(String(10), nullable=False)
+    subsite = Column(String(16), nullable=False)
+    node = Column(String(16), nullable=False)
+    sensor = Column(String(16), nullable=False)
     depth = Column(Integer)
 
     def __repr__(self):
@@ -65,7 +65,7 @@ class ValueEncoding(Base):
 class CodeSet(Base):
     __tablename__ = 'code_set'
     id = Column(Integer, primary_key=True)
-    value = Column(String(250), nullable=False)
+    value = Column(String(500), nullable=False)
 
 
 class Unit(Base):
@@ -298,7 +298,6 @@ class Stream(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False, unique=True)
     time_parameter = Column(Integer, default=7)
-    uses_ctd = Column(Boolean, default=False)
     parameters = relationship('Parameter', secondary='stream_parameter')
     binsize_minutes = Column(Integer, nullable=False)
     source_streams = relationship('Stream',
