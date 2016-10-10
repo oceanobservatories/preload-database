@@ -86,6 +86,30 @@ class FunctionType(Base):
     value = Column(String(250), nullable=False, unique=True)
 
 
+class StreamType(Base):
+    __tablename__ = 'stream_type'
+    id = Column(Integer, primary_key=True)
+    value = Column(String(250), nullable=False, unique=True)
+
+
+class StreamContent(Base):
+    __tablename__ = 'stream_content'
+    id = Column(Integer, primary_key=True)
+    value = Column(String(250), nullable=False, unique=True)
+
+
+class Dimension(Base):
+    __tablename__ = 'dimension'
+    id = Column(Integer, primary_key=True)
+    value = Column(String(250), nullable=False, unique=True)
+
+
+class ParameterDimension(Base):
+    __tablename__ = 'parameter_dimension'
+    parameter_id = Column(Integer, ForeignKey('parameter.id'), primary_key=True)
+    dimension_id = Column(Integer, ForeignKey('dimension.id'), primary_key=True)
+
+
 class ParameterFunction(Base):
     __tablename__ = 'parameter_function'
     id = Column(Integer, primary_key=True)
@@ -129,6 +153,7 @@ class Parameter(Base):
     data_product_identifier = Column(String(250))
     description = Column(String(4096))
     streams = relationship('Stream', secondary='stream_parameter')
+    dimensions = relationship('Dimension', secondary='parameter_dimension')
 
     @property
     def attrs(self):
@@ -297,9 +322,15 @@ class Stream(Base):
     __tablename__ = 'stream'
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False, unique=True)
-    time_parameter = Column(Integer, default=7)
+    time_parameter = Column(Integer, ForeignKey('parameter.id'), default=7)
     parameters = relationship('Parameter', secondary='stream_parameter')
     binsize_minutes = Column(Integer, nullable=False)
+
+    stream_type_id = Column(Integer, ForeignKey('stream_type.id'))
+    _stream_type = relationship(StreamType)
+    stream_content_id = Column(Integer, ForeignKey('stream_content.id'))
+    _stream_content = relationship(StreamContent)
+
     source_streams = relationship('Stream',
                                   secondary="stream_dependency",
                                   primaryjoin=id == StreamDependency.product_stream_id,
@@ -312,6 +343,14 @@ class Stream(Base):
 
     def __repr__(self):
         return 'Stream({:d}: {:s})'.format(self.id, self.name)
+
+    @property
+    def stream_type(self):
+        return _resolve_or_none(self._stream_type)
+
+    @property
+    def stream_content(self):
+        return _resolve_or_none(self._stream_content)
 
     @property
     def needs(self):
