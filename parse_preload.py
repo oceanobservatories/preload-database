@@ -7,8 +7,9 @@ import pandas as pd
 import config
 import database
 import database_util
-from model.preload import ParameterType, ValueEncoding, CodeSet, Unit, FillValue, FunctionType, ParameterFunction, \
-    Parameter, Stream, StreamDependency, NominalDepth
+from model.preload import (ParameterType, ValueEncoding, CodeSet, Unit, FillValue, FunctionType,
+                           ParameterFunction, Parameter, Stream, StreamDependency, NominalDepth,
+                           StreamType, StreamContent, Dimension, DataProductType)
 
 database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
 database.open_connection()
@@ -21,8 +22,8 @@ IGNORE_SCENARIOS = ['VOID']
 
 SHEET_COLUMNS = {
     'ParameterDefs':
-        ['scenario', 'confluence', 'name', 'id', 'hid', 'hidconflict', 'parametertype', 'valueencoding', 'codeset',
-         'unitofmeasure', 'fillvalue', 'displayname', 'precision', 'visible', 'parameterfunctionid',
+        ['scenario', 'confluence', 'name', 'id', 'hid', 'hidconflict', 'parametertype', 'dimensions', 'valueencoding',
+         'codeset', 'unitofmeasure', 'fillvalue', 'displayname', 'precision', 'visible', 'parameterfunctionid',
          'parameterfunctionmap', 'lookupvalue', 'qcfunctions', 'standardname', 'dataproductidentifier',
          'referenceurls', 'description', 'reviewstatus', 'reviewcomment', 'longname', 'skip', 'dataproducttype',
          'datalevel'],
@@ -31,8 +32,7 @@ SHEET_COLUMNS = {
          'args', 'kwargs', 'description', 'reference', 'skip', 'qcflag'],
     'ParameterDictionary':
         ['scenario', 'id', 'confluence', 'name', 'parameterids', 'temporalparameter', 'streamdependency',
-         'parameters', 'reviewstatus', 'skip', 'deliverymethodnotfordisplay', 'datatypenotfordisplay',
-         'contentnotfordisplay', 'streamdescriptionfordisplayingui'],
+         'streamtype', 'streamcontent', 'reviewstatus'],
     'BinSizes':
         ['stream', 'binsize', 'estimatedrate', 'measuredrate', 'binsizeindays', 'particlesperbin', 'estimatedvsingested',
          'dataratenotes'
@@ -165,11 +165,18 @@ def process_parameters(sheet):
             parameter._code_set = get_simple_field(CodeSet, row.get('codeset'))
             parameter._unit = get_simple_field(Unit, row.get('unitofmeasure'))
             parameter._fill_value = get_simple_field(FillValue, row.get('fillvalue'))
+            parameter._data_product_type = get_simple_field(DataProductType, row.get('dataproducttype'))
             parameter.display_name = row.get('displayname')
             parameter.standard_name = row.get('standardname')
             parameter.precision = row.get('precision')
             parameter.data_product_identifier = row.get('dataproductidentifier')
             parameter.description = row.get('description')
+
+            if row.get('datalevel') is not None:
+                dl = row.get('datalevel')
+                dl = int(dl.replace('L', ''))
+                parameter.data_level = dl
+
             if row.get('parameterfunctionid') is not None:
                 id = row.get('parameterfunctionid')
                 if id.startswith('PFID'):
@@ -178,9 +185,15 @@ def process_parameters(sheet):
             if row.get('parameterfunctionmap') is not None:
                 try:
                     param_map = row.get('parameterfunctionmap')
-                    parameter.parameter_function_map = eval(param_map)
+                    parameter.parameter_function_map = json.loads(param_map)
                 except SyntaxError as e:
                     print row.get('id'), e
+
+            if row.get('dimensions') is not None:
+                dims = json.loads(row.get('dimensions'))
+                for dim in dims:
+                    dim = get_simple_field(Dimension, dim)
+                    parameter.dimensions.append(dim)
 
             database.Session.add(parameter)
     database.Session.commit()
@@ -218,24 +231,8 @@ def process_streams(sheet):
                 time_param = 7
             stream.time_parameter = time_param
 
-            # for geolocation
-            stream.lat_param_id = row.get('latparam')
-            stream.lon_param_id = row.get('lonparam')
-            stream.depth_param_id = row.get('depthparam')
-
-            stream.lat_stream_id = row.get('latstream')
-            if stream.lat_stream_id is None:
-                stream.lat_stream_id = stream.id
-
-            stream.lon_stream_id = row.get('lonstream')
-            if stream.lon_stream_id is None:
-                stream.lon_stream_id = stream.id
-
-            stream.depth_stream_id = row.get('depthstream')
-            if stream.depth_stream_id is None:
-                stream.depth_stream_id = stream.id
-                stream.uses_ctd = True
-            # ---
+            stream._stream_type = get_simple_field(StreamType, row.get('streamtype'))
+            stream._stream_content = get_simple_field(StreamContent, row.get('streamcontent'))
 
             dependencies = row.get("streamdependency")
             params = row.get('parameterids').split(',')
