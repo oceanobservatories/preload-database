@@ -6566,6 +6566,8 @@ INSERT INTO "stream_parameter" VALUES(61,597);
 INSERT INTO "stream_parameter" VALUES(61,598);
 INSERT INTO "stream_parameter" VALUES(61,743);
 INSERT INTO "stream_parameter" VALUES(61,863);
+INSERT INTO "stream_parameter" VALUES(61,962);
+INSERT INTO "stream_parameter" VALUES(61,963);
 INSERT INTO "stream_parameter" VALUES(62,7);
 INSERT INTO "stream_parameter" VALUES(62,10);
 INSERT INTO "stream_parameter" VALUES(62,11);
