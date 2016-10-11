@@ -2,7 +2,8 @@ BEGIN TRANSACTION;
 CREATE TABLE code_set (
 	id INTEGER NOT NULL, 
 	value VARCHAR(500) NOT NULL, 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id), 
+	UNIQUE (value)
 );
 INSERT INTO "code_set" VALUES(1,'{0:"Lithium", 1:"Alkaline",-99:"empty"}');
 INSERT INTO "code_set" VALUES(2,'{0:"Upload in ASCII Text", 1:"Upload in binary",-99:"empty"}');
@@ -50,10 +51,13 @@ CREATE TABLE dimension (
 	PRIMARY KEY (id), 
 	UNIQUE (value)
 );
+INSERT INTO "dimension" VALUES(1,'bin');
+INSERT INTO "dimension" VALUES(2,'beam');
 CREATE TABLE fill_value (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id), 
+	UNIQUE (value)
 );
 INSERT INTO "fill_value" VALUES(1,'-9999999');
 INSERT INTO "fill_value" VALUES(2,'empty');
@@ -4869,6 +4873,87 @@ CREATE TABLE parameter_dimension (
 	FOREIGN KEY(parameter_id) REFERENCES parameter (id), 
 	FOREIGN KEY(dimension_id) REFERENCES dimension (id)
 );
+INSERT INTO "parameter_dimension" VALUES(714,1);
+INSERT INTO "parameter_dimension" VALUES(715,1);
+INSERT INTO "parameter_dimension" VALUES(716,1);
+INSERT INTO "parameter_dimension" VALUES(717,1);
+INSERT INTO "parameter_dimension" VALUES(719,1);
+INSERT INTO "parameter_dimension" VALUES(720,1);
+INSERT INTO "parameter_dimension" VALUES(721,1);
+INSERT INTO "parameter_dimension" VALUES(722,1);
+INSERT INTO "parameter_dimension" VALUES(724,1);
+INSERT INTO "parameter_dimension" VALUES(725,1);
+INSERT INTO "parameter_dimension" VALUES(726,1);
+INSERT INTO "parameter_dimension" VALUES(727,1);
+INSERT INTO "parameter_dimension" VALUES(729,1);
+INSERT INTO "parameter_dimension" VALUES(730,1);
+INSERT INTO "parameter_dimension" VALUES(731,1);
+INSERT INTO "parameter_dimension" VALUES(732,1);
+INSERT INTO "parameter_dimension" VALUES(796,2);
+INSERT INTO "parameter_dimension" VALUES(797,2);
+INSERT INTO "parameter_dimension" VALUES(798,2);
+INSERT INTO "parameter_dimension" VALUES(799,2);
+INSERT INTO "parameter_dimension" VALUES(800,2);
+INSERT INTO "parameter_dimension" VALUES(803,2);
+INSERT INTO "parameter_dimension" VALUES(804,2);
+INSERT INTO "parameter_dimension" VALUES(805,2);
+INSERT INTO "parameter_dimension" VALUES(869,1);
+INSERT INTO "parameter_dimension" VALUES(870,1);
+INSERT INTO "parameter_dimension" VALUES(871,1);
+INSERT INTO "parameter_dimension" VALUES(872,1);
+INSERT INTO "parameter_dimension" VALUES(873,1);
+INSERT INTO "parameter_dimension" VALUES(874,1);
+INSERT INTO "parameter_dimension" VALUES(875,1);
+INSERT INTO "parameter_dimension" VALUES(876,1);
+INSERT INTO "parameter_dimension" VALUES(902,1);
+INSERT INTO "parameter_dimension" VALUES(903,1);
+INSERT INTO "parameter_dimension" VALUES(904,1);
+INSERT INTO "parameter_dimension" VALUES(905,1);
+INSERT INTO "parameter_dimension" VALUES(958,1);
+INSERT INTO "parameter_dimension" VALUES(959,1);
+INSERT INTO "parameter_dimension" VALUES(960,1);
+INSERT INTO "parameter_dimension" VALUES(961,1);
+INSERT INTO "parameter_dimension" VALUES(1567,1);
+INSERT INTO "parameter_dimension" VALUES(1568,1);
+INSERT INTO "parameter_dimension" VALUES(1569,1);
+INSERT INTO "parameter_dimension" VALUES(1570,1);
+INSERT INTO "parameter_dimension" VALUES(2272,1);
+INSERT INTO "parameter_dimension" VALUES(2273,1);
+INSERT INTO "parameter_dimension" VALUES(2274,1);
+INSERT INTO "parameter_dimension" VALUES(2275,1);
+INSERT INTO "parameter_dimension" VALUES(2769,1);
+INSERT INTO "parameter_dimension" VALUES(2770,1);
+INSERT INTO "parameter_dimension" VALUES(2771,1);
+INSERT INTO "parameter_dimension" VALUES(2772,1);
+INSERT INTO "parameter_dimension" VALUES(2808,1);
+INSERT INTO "parameter_dimension" VALUES(2809,1);
+INSERT INTO "parameter_dimension" VALUES(3353,1);
+INSERT INTO "parameter_dimension" VALUES(3354,1);
+INSERT INTO "parameter_dimension" VALUES(3356,1);
+INSERT INTO "parameter_dimension" VALUES(3357,1);
+INSERT INTO "parameter_dimension" VALUES(3358,1);
+INSERT INTO "parameter_dimension" VALUES(3359,1);
+INSERT INTO "parameter_dimension" VALUES(3811,1);
+INSERT INTO "parameter_dimension" VALUES(3812,1);
+INSERT INTO "parameter_dimension" VALUES(3813,1);
+INSERT INTO "parameter_dimension" VALUES(3814,1);
+INSERT INTO "parameter_dimension" VALUES(3815,1);
+INSERT INTO "parameter_dimension" VALUES(3816,1);
+INSERT INTO "parameter_dimension" VALUES(3817,1);
+INSERT INTO "parameter_dimension" VALUES(3818,1);
+INSERT INTO "parameter_dimension" VALUES(3819,1);
+INSERT INTO "parameter_dimension" VALUES(3820,1);
+INSERT INTO "parameter_dimension" VALUES(3821,1);
+INSERT INTO "parameter_dimension" VALUES(3822,1);
+INSERT INTO "parameter_dimension" VALUES(3823,1);
+INSERT INTO "parameter_dimension" VALUES(3824,1);
+INSERT INTO "parameter_dimension" VALUES(3825,1);
+INSERT INTO "parameter_dimension" VALUES(3826,1);
+INSERT INTO "parameter_dimension" VALUES(3827,1);
+INSERT INTO "parameter_dimension" VALUES(3828,1);
+INSERT INTO "parameter_dimension" VALUES(7983,1);
+INSERT INTO "parameter_dimension" VALUES(7984,1);
+INSERT INTO "parameter_dimension" VALUES(7985,1);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 
