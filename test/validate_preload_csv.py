@@ -3,6 +3,8 @@ import re
 import unittest
 import numpy
 import pandas
+from import_utils import import_module
+
 from collections import namedtuple
 
 import xml.etree.ElementTree
@@ -39,8 +41,7 @@ class TestParameter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         filename = '../csv/ParameterDefs.csv'
-        cls.data = pandas.read_csv(filename)
-        cls.data.fillna('', inplace=True)
+        cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
 
         # ignore DOC lines
         cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC:'))]
@@ -72,7 +73,7 @@ class TestParameter(unittest.TestCase):
     def test_value_encoding(self):
         """ value encoding - Must be one of {boolean, [u]int{8,16,32,64}, float{32,64}, opaque}. """
         value_encodings = {
-            'boolean', 'float32', 'float64', 'int', 'int8', 'int16', 'int32', 'int64', 'opaque', 'string', 'uint8',
+            'float32', 'float64', 'int', 'int8', 'int16', 'int32', 'int64', 'opaque', 'string', 'uint8',
             'uint16', 'uint32', 'uint64'}
 
         idx = (self.data.valueencoding == '') | self.data.valueencoding.isin(value_encodings)
@@ -113,7 +114,7 @@ class TestParameter(unittest.TestCase):
             'float32': numeric_range(numpy.finfo(numpy.float32).min, numpy.finfo(numpy.float32).max, 'nan'),
             'float64': numeric_range(numpy.finfo(numpy.float64).min, numpy.finfo(numpy.float64).max, 'nan'),
             'int': numeric_range(numpy.iinfo(numpy.int32).min, numpy.iinfo(numpy.int32).max, -9999),  # deprecate?
-            'int8': numeric_range(numpy.iinfo(numpy.int8).min, numpy.iinfo(numpy.int8).max, -9),
+            'int8': numeric_range(numpy.iinfo(numpy.int8).min, numpy.iinfo(numpy.int8).max, -99),
             'int16': numeric_range(numpy.iinfo(numpy.int16).min, numpy.iinfo(numpy.int16).max, -9999),
             'int32': numeric_range(numpy.iinfo(numpy.int32).min, numpy.iinfo(numpy.int32).max, -9999),
             'int64': numeric_range(numpy.iinfo(numpy.int64).min, numpy.iinfo(numpy.int64).max, -9999),
@@ -124,8 +125,8 @@ class TestParameter(unittest.TestCase):
         }
         idx = self.data.valueencoding.isin(value_encoding_limits)
 
-        # TODO - would like to have this run for all fill values so we don't just fail on the first one -
-        #  - not sure how to do this since map can take only one argument and we need two (type and value)
+        error_count = 0
+        error_msgs = ''
         for x in self.data[idx][['id', 'valueencoding', 'fillvalue']].itertuples(index=False):
             try:
                 self.assertLessEqual(value_encoding_limits.get(x.valueencoding).min, float(x.fillvalue),
@@ -139,8 +140,25 @@ class TestParameter(unittest.TestCase):
                                          (x.id, x.fillvalue, x.valueencoding,
                                           value_encoding_limits.get(x.valueencoding).max,
                                           value_encoding_limits.get(x.valueencoding).default))
-            except (ValueError, TypeError):
-                self.fail('%s: Fill value (%r) is not a numeric value' % (x.id, x.fillvalue))
+            except (ValueError, TypeError) as assError:
+                error_count += 1
+                error_msgs = '%s  %s: Fill value (%r) is not a numeric value: %s\n' %\
+                             (error_msgs, x.id, x.fillvalue, assError.message)
+
+            except AssertionError as assError:
+                # If the assertion error was because a float had a fill value
+                # of 'nan', then that's OK.  Otherwise, go through the normal
+                # error counting and save the error for later.
+                if x.valueencoding in ('float32', 'float64'):
+                    try:
+                        self.assertEqual(x.fillvalue, 'nan')
+                        continue
+                    except AssertionError:
+                        pass
+                error_count += 1
+                error_msgs = '%s  %s\n' % (error_msgs, assError.message)
+
+        self.assertEqual(error_count, 0, '%r fill value errors found:\n%s' % (error_count, error_msgs))
 
     def test_display_name(self):
         """ display name - Enforce Title Case. """
@@ -185,21 +203,48 @@ class TestParameter(unittest.TestCase):
 
     def test_parameter_function_map(self):
         """
-        parameter function map - Must be defined if parameter function id is present. Must be a valid JSON.
-        Each value must be valid parameter (if starting with PD).
+        Parameter Function Map - Must be defined if parameter function id is
+        present. Must be a valid JSON. Each value must be valid parameter
+        (if starting with PD).
         """
-        def invalid_function_map(fmap):
+
+        # Start with rows with both the parameter function id and parameter
+        # function map are populated.
+        idx = ((self.data.parameterfunctionid == '') & (self.data.parameterfunctionmap == '')) | \
+              ((self.data.parameterfunctionid != '') & (self.data.parameterfunctionmap != ''))
+        for data in self.data[idx][['parameterfunctionid', 'parameterfunctionmap']].itertuples():
+            # if both the parameter function id and parameter fucntion map are
+            # both empty, that's ok.
+            if data.parameterfunctionid == '':
+                continue
+
+            # TODO - need to convert parameter function map to valid JSON and remove dangerous evals...
+            # Test if the function map exists for the entered parameter
+            # function id if it is a valid json mapping.
             try:
-                eval_result = json.loads(fmap)
-                return not isinstance(eval_result, dict)
+                function_map = json.loads(data.parameterfunctionmap)
+                isinstance(function_map, dict)
             except (TypeError, ValueError) as e:
-                return True
+                idx[data.Index-1] = False
+                continue
 
-            # TODO - check each value in the function map that starts with PD and make sure it exists
+            # We got here, so the function map is valid. Now check if the
+            # parameters are valid.
+            for key, value in function_map.iteritems():
+                try:
+                    if str(value).startswith('CC_'):
+                        continue
 
-        # TODO - need to convert parameter function map to valid JSON and remove dangerous evals...
-        idx = (self.data.parameterfunctionmap != '') & self.data.parameterfunctionmap.map(invalid_function_map)
-        self.assertEqual(len(self.data[idx]), 0, msg='Parameter function map is not a valid dictionary:\n%s' %
+                    if str(value).startswith('PD') and value not in self.data.id.values:
+                        idx[data.Index-1] = False
+                        break
+
+                except Exception:
+                    idx[data.Index-1] = False
+                    break
+
+        idx = numpy.logical_not(idx)
+        self.assertEqual(len(self.data[idx]), 0, msg='Parameter function map is not a valid:\n%s' %
                                                      self.data[idx][['id', 'parameterfunctionmap']])
 
     # lookup value - ignore - not used
@@ -223,6 +268,10 @@ class TestParameter(unittest.TestCase):
         http://cfconventions.org/Data/cf-standard-names/35/build/cf-standard-name-table.html
         http://cfconventions.org/Data/cf-standard-names/35/src/cf-standard-name-table.xml
         """
+
+        # TODO - Ingore for now; the data team needs to finalize the standard validation table.
+        return
+
         e = xml.etree.ElementTree.parse('cf-standard-name-table.xml')
         ids = {atype.get('id') for atype in e.findall('entry')}
         idx = self.data.standardname.isin(ids) | (self.data.standardname == '')
@@ -272,8 +321,7 @@ class TestFunctions(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         filename = '../csv/ParameterFunctions.csv'
-        cls.data = pandas.read_csv(filename)
-        cls.data.fillna('', inplace=True)
+        cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
 
         # ignore DOC lines
         cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC'))]
@@ -326,20 +374,48 @@ class TestFunctions(unittest.TestCase):
                                                      'Must be one of: %s' %
                                                      (self.data[idx][['id', 'functiontype']], function_types))
 
-    def test_function(self):
-        """
-        Function - ignore (eventually we could check if valid function name or mathematical function)
-         - not sure where the function name list is
-        """
-        # Pete - can we cross check the function name from the owner (if supplied)?
-        pass  # TODO
-
     def test_owner(self):
         """
-        Owner - must be present if Function Type is PythonFunction (could also verify that the function is available)
+        Owner - must be present if Function Type is PythonFunction or
+                QCPythonFunction.  Also, verify that the function is
+                available.
         """
-        # Pete - how do we verify the package name?
-        pass  # TODO
+        function_types = { 'PythonFunction', 'QCPythonFunction' }
+
+        def is_valid_owner(owner):
+            try:
+                if owner != '':
+                    import_module(owner)
+                return True
+            except ImportError:
+                return False
+
+        idx = (self.data.owner == '') | (self.data.functiontype.isin(function_types) &
+                                          self.data.owner.map(is_valid_owner))
+        idx = numpy.logical_not(idx)
+        self.assertEqual(len(self.data[idx]), 0, msg='Invalid owner of function:\n%s' %
+                                                     self.data[idx][['id', 'owner']])
+
+    def test_function(self):
+        """
+        Function - must exist in the module defined by the owner.  Numeric
+                    functions have a blank owner.
+        """
+        # First we want to check the functions that have owners, attempt to
+        # import the owners and check if the function is a member of the owner.
+        idx = (self.data.owner != '') | (self.data.functiontype == 'NumexprFunction')
+        for data in self.data[idx][['owner', 'function']].itertuples():
+            # TODO - Validate the numeric functions.
+            if data.owner != '':
+                try:
+                    module = import_module(data.owner)
+                    idx[data.Index-1] = hasattr(module, data.function)
+                except ImportError:
+                    idx[data.Index-1] = False
+
+        idx = numpy.logical_not(idx)
+        self.assertEqual(len(self.data[idx]), 0, msg='Invalid function:\n%s' %
+                                                     self.data[idx][['id', 'function', 'owner']])
 
     def test_args(self):
         """ Args - Must be valid python list of strings. """
@@ -390,15 +466,13 @@ class TestStream(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         filename = '../csv/ParameterDictionary.csv'
-        cls.data = pandas.read_csv(filename)
-        cls.data.fillna('', inplace=True)
+        cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
 
         # ignore DOC lines
         cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC'))]
 
         filename = '../csv/ParameterDefs.csv'
-        cls.pd_id = pandas.read_csv(filename)
-        cls.pd_id.fillna('', inplace=True)
+        cls.pd_id = pandas.read_csv(filename, na_values=[], keep_default_na=False)
 
         # ignore DOC lines
         cls.pd_id = cls.pd_id[numpy.logical_not(cls.pd_id.scenario.str.startswith('DOC:'))]
@@ -428,7 +502,7 @@ class TestStream(unittest.TestCase):
     def test_name(self):
         """ name - Enforce lower case alpha-numeric with optional underscores. """
         def invalid_name(name):
-            p = re.compile('^[a-zA-Z0-9_\-]+$')
+            p = re.compile('^[a-z0-9_\-]+$')
             if p.match(name):
                 return False
             return True
@@ -473,7 +547,6 @@ class TestStream(unittest.TestCase):
         idx = (self.data.streamdependency != '') & self.data.streamdependency.map(id_is_missing)
         self.assertEqual(len(self.data[idx]), 0, msg='Stream dependency has not been defined:\n%s' %
                                                      self.data[idx][['id', 'streamdependency']])
-
     # parameters - ignore - deprecate
     # lat_param - ignore - deprecate
     # lon_param - ignore - deprecate
@@ -484,31 +557,17 @@ class TestStream(unittest.TestCase):
     # Review Status - ignore - deprecate
     # SKIP - ignore - deprecate
 
-    def test_delivery_method(self):
-        """ Delivery Method - optional - Must be one of { Recovered, Streamed, Telemetered }. """
-        delivery_methods = {'Recovered', 'Streamed', 'Telemetered'}
-        idx = (self.data.deliverymethodnotfordisplay == '') \
-              | self.data.deliverymethodnotfordisplay.isin(delivery_methods)
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized delivery method specified:\n%s\nExpected one of %s'
-                                                     % (self.data[idx][['id', 'deliverymethodnotfordisplay']],
-                                                        delivery_methods))
-
-    def test_data_type(self):
-        """ Data Type - optional - Must be one of { 'Science', 'Engineering', 'Calibration' } """
+    def test_stream_type(self):
+        """ Stream Type - optional - Must be one of { 'Science', 'Engineering', 'Calibration' } """
         data_types = {'Science', 'Engineering', 'Calibration'}
-        idx = (self.data.datatypenotfordisplay == '') | self.data.datatypenotfordisplay.isin(data_types)
+        idx = (self.data.streamtype == '') | self.data.streamtype.isin(data_types)
         idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized data type specified:\n%s\nExpected one of %s' %
-                                                     (self.data[idx][['id', 'datatypenotfordisplay']], data_types))
+        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized stream type specified:\n%s\nExpected one of %s' %
+                                                     (self.data[idx][['id', 'streamtype']], data_types))
 
-    # Content - ignore
-
-    def test_stream_description(self):
-        """ Stream Description - Enforce Title Case. """
-        idx = (self.data.streamdescriptionfordisplayingui != '') & \
-              self.data.streamdescriptionfordisplayingui.map(is_not_title)
-        self.assertEqual(len(self.data[idx]), 0, msg='Stream description is not in Title Case:\n%s' %
-                                                     self.data[idx][['id', 'streamdescriptionfordisplayingui']])
-
-
+    def test_stream_content(self):
+        """ Stream Content - Enforce Title Case. """
+        idx = (self.data.streamcontent != '') & \
+              self.data.streamcontent.map(is_not_title)
+        self.assertEqual(len(self.data[idx]), 0, msg='Stream content is not in Title Case:\n%s' %
+                                                     self.data[idx][['id', 'streamcontent']])
