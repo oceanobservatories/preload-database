@@ -1,3 +1,5 @@
 sqlalchemy
 nose
 titlecase
+pandas
+numpy

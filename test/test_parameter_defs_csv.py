@@ -1,14 +1,21 @@
+import ast
+
+import os
 import json
 import re
 import unittest
 import numpy
 import pandas
-from import_utils import import_module
 
 from collections import namedtuple
 
 import xml.etree.ElementTree
 from titlecase import titlecase
+
+
+TEST_DIR = os.path.dirname(__file__)
+ROOT_DIR = os.path.dirname(TEST_DIR)
+CSV_DIR = os.path.join(ROOT_DIR, 'csv')
 
 
 def istitle(string):
@@ -22,25 +29,10 @@ def is_not_title(string):
     return not(istitle(string))
 
 
-# isUpperCase -> str.isupper()
-
-
-"""
-Walk through preload and verify all data is configured as expected.
-
-Sheet test dissemination:
-- ParameterDefs: TestParameter
-- ParameterFunctions: TestFunctions
-- ParameterDictionary: TestStream
-- Units: ignore - not currently used
-- BinSizes: TestBins
-"""
-
-
 class TestParameter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        filename = '../csv/ParameterDefs.csv'
+        filename = os.path.join(CSV_DIR, 'ParameterDefs.csv')
         cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
 
         # ignore DOC lines
@@ -50,9 +42,6 @@ class TestParameter(unittest.TestCase):
         """ id - Every parameter definition identifier must be unique. """
         pd_id, counts = numpy.unique(self.data.id, return_counts=True)
         self.assertListEqual(list(pd_id[counts > 1]), [])
-
-    # hid - deprecate - should be calculated instead
-    # hid conflict - deprecate - ignore - was used to check for uniqueness of hid
 
     def test_parameter_type(self):
         """
@@ -89,8 +78,8 @@ class TestParameter(unittest.TestCase):
 
         def invalid_dictionary(enum):
             try:
-                eval_enum = eval(enum)
-                if isinstance(eval_enum, dict):
+                enum_value = ast.literal_eval(enum)
+                if isinstance(enum_value, dict):
                     return False
             except SyntaxError:
                 return True
@@ -218,13 +207,12 @@ class TestParameter(unittest.TestCase):
             if data.parameterfunctionid == '':
                 continue
 
-            # TODO - need to convert parameter function map to valid JSON and remove dangerous evals...
             # Test if the function map exists for the entered parameter
             # function id if it is a valid json mapping.
             try:
                 function_map = json.loads(data.parameterfunctionmap)
                 isinstance(function_map, dict)
-            except (TypeError, ValueError) as e:
+            except (TypeError, ValueError):
                 idx[data.Index-1] = False
                 continue
 
@@ -239,15 +227,13 @@ class TestParameter(unittest.TestCase):
                         idx[data.Index-1] = False
                         break
 
-                except Exception:
+                except TypeError:
                     idx[data.Index-1] = False
                     break
 
         idx = numpy.logical_not(idx)
         self.assertEqual(len(self.data[idx]), 0, msg='Parameter function map is not a valid:\n%s' %
                                                      self.data[idx][['id', 'parameterfunctionmap']])
-
-    # lookup value - ignore - not used
 
     def test_qc_functions(self):
         """ qc functions - Enforce ALL CAPS. Must only contain alphabetic characters and hyphens. """
@@ -262,16 +248,13 @@ class TestParameter(unittest.TestCase):
         self.assertEqual(len(self.data[idx]), 0, msg='QC Functions does not match required format AAA-[AAA]:\n%s' %
                                                      self.data[idx][['id', 'qcfunctions']])
 
+    @unittest.skip('Ignore for now; the data team needs to finalize the standard validation table.')
     def test_standard_name(self):
         """
         standard name - Must match the name defined in the CF standard name table.
         http://cfconventions.org/Data/cf-standard-names/35/build/cf-standard-name-table.html
         http://cfconventions.org/Data/cf-standard-names/35/src/cf-standard-name-table.xml
         """
-
-        # TODO - Ingore for now; the data team needs to finalize the standard validation table.
-        return
-
         e = xml.etree.ElementTree.parse('cf-standard-name-table.xml')
         ids = {atype.get('id') for atype in e.findall('entry')}
         idx = self.data.standardname.isin(ids) | (self.data.standardname == '')
@@ -281,16 +264,10 @@ class TestParameter(unittest.TestCase):
                              'http://cfconventions.org/Data/cf-standard-names/35/src/cf-standard-name-table.xml: \n%s' %
                              self.data[idx][['id', 'standardname']])
 
+    @unittest.skip('Need document source')
     def test_data_product_identifier(self):
         """ data product identifier - Must match SAF. """
         pass  # TODO - need document source
-
-    # reference URLs - ignore
-    # description - ignore
-    # review status - ignore
-    # review comment - ignore
-    # long name - ignore
-    # skip - ignore
 
     def test_data_product_type(self):
         """
@@ -315,259 +292,3 @@ class TestParameter(unittest.TestCase):
         self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized data level detected:\n%s\n'
                                                      'Must be one of: %s' %
                                                      (self.data[idx][['id', 'datalevel']], data_levels))
-
-
-class TestFunctions(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        filename = '../csv/ParameterFunctions.csv'
-        cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
-
-        # ignore DOC lines
-        cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC'))]
-
-    def test_scenario(self):
-        """ Scenario - Enforce ALL CAPS and underscore only. May be comma separated. """
-
-        def invalid_scenario(scenario):
-            p = re.compile('^[A-Z0-9,_ ]+$')
-            if p.match(scenario):
-                return False
-            return True
-
-        idx = self.data.scenario != ''
-        idx = self.data.scenario[idx].map(invalid_scenario)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized scenario names detected:\n%s' %
-                                                     (self.data[idx][['id', 'scenario']]))
-
-    def test_id(self):
-        """ ID - Must be unique. """
-        pf_id, counts = numpy.unique(self.data.id, return_counts=True)
-        self.assertListEqual(list(pf_id[counts > 1]), [])
-
-    # HID - deprecate - ignore - old formula = <Name>_<InstClass>_<InstSer>
-
-    def test_name(self):
-        """ Name - Must not contain spaces. """
-
-        def invalid_name(name):
-            p = re.compile('^[a-zA-Z0-9_\-]+$')
-            if p.match(name):
-                return False
-            return True
-
-        idx = self.data.name != ''
-        idx = self.data.name[idx].map(invalid_name)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized name detected:\n%s' %
-                                                     (self.data[idx][['id', 'name']]))
-
-    # Instrument Class - ignore - this isn't used
-    # Instrument Series - ignore - this isn't used
-
-    def test_function_type(self):
-        """ Function Type - Must be one of the following: { 'NumexprFunction', 'PythonFunction', 'QCPythonFunction' }.
-        """
-        function_types = { 'NumexprFunction', 'PythonFunction', 'QCPythonFunction' }
-        idx = self.data.functiontype.isin(function_types) | (self.data.functiontype == '')
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized function type detected:\n%s\n'
-                                                     'Must be one of: %s' %
-                                                     (self.data[idx][['id', 'functiontype']], function_types))
-
-    def test_owner(self):
-        """
-        Owner - must be present if Function Type is PythonFunction or
-                QCPythonFunction.  Also, verify that the function is
-                available.
-        """
-        function_types = { 'PythonFunction', 'QCPythonFunction' }
-
-        def is_valid_owner(owner):
-            try:
-                if owner != '':
-                    import_module(owner)
-                return True
-            except ImportError:
-                return False
-
-        idx = (self.data.owner == '') | (self.data.functiontype.isin(function_types) &
-                                          self.data.owner.map(is_valid_owner))
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Invalid owner of function:\n%s' %
-                                                     self.data[idx][['id', 'owner']])
-
-    def test_function(self):
-        """
-        Function - must exist in the module defined by the owner.  Numeric
-                    functions have a blank owner.
-        """
-        # First we want to check the functions that have owners, attempt to
-        # import the owners and check if the function is a member of the owner.
-        idx = (self.data.owner != '') | (self.data.functiontype == 'NumexprFunction')
-        for data in self.data[idx][['owner', 'function']].itertuples():
-            # TODO - Validate the numeric functions.
-            if data.owner != '':
-                try:
-                    module = import_module(data.owner)
-                    idx[data.Index-1] = hasattr(module, data.function)
-                except ImportError:
-                    idx[data.Index-1] = False
-
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Invalid function:\n%s' %
-                                                     self.data[idx][['id', 'function', 'owner']])
-
-    def test_args(self):
-        """ Args - Must be valid python list of strings. """
-        def invalid_args(arg_list):
-            try:
-                list(arg_list)
-            except NameError:
-                return True
-            return False
-
-        idx = (self.data.args != '') & self.data.args.map(invalid_args)
-        self.assertEqual(len(self.data[idx]), 0, msg='Args is not a valid list:\n%s' %
-                                                     self.data[idx][['id', 'args']])
-
-    # Kwargs - ignore - deprecate
-
-    def test_description(self):
-        """ Description - Maximum of 4096 characters. """
-        max_description = 4096  # TODO - pull from the parse_preload code
-
-        def description_too_long(dstring):
-            if len(dstring) > max_description:
-                return True
-            return False
-        idx = self.data.description.map(description_too_long)
-        self.assertEqual(len(self.data[idx]), 0, msg='Description longer than limit %d\n%s' %
-                                                     (max_description, self.data[idx][['id', 'description']]))
-
-    # Reference - ignore
-    # SKIP - ignore
-
-    def test_qc_flag(self):
-        """ QC_Flag - If present, must be of the form 0b0000000000000001. """
-
-        def invalid_qc_flag(flag):
-            if not len(flag):
-                return False
-            p = re.compile('^[0][b][0-1]{16}$')
-            if p.match(flag):
-                return False
-            return True
-
-        idx = self.data.qcflag.map(invalid_qc_flag)
-        self.assertEqual(len(self.data[idx]), 0, msg='Invalid qc flag format:\n%s' % (self.data[idx][['id', 'qcflag']]))
-
-
-class TestStream(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        filename = '../csv/ParameterDictionary.csv'
-        cls.data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
-
-        # ignore DOC lines
-        cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC'))]
-
-        filename = '../csv/ParameterDefs.csv'
-        cls.pd_id = pandas.read_csv(filename, na_values=[], keep_default_na=False)
-
-        # ignore DOC lines
-        cls.pd_id = cls.pd_id[numpy.logical_not(cls.pd_id.scenario.str.startswith('DOC:'))]
-        cls.pd_id = set(cls.pd_id.id)
-
-    def test_scenario(self):
-        """ Scenario - Enforce ALL CAPS, with underscores and commas. """
-
-        def invalid_scenario(scenario):
-            p = re.compile('^[A-Z0-9,_ ]+$')
-            if p.match(scenario):
-                return False
-            return True
-
-        idx = self.data.scenario != ''
-        idx = self.data.scenario[idx].map(invalid_scenario)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized scenario names detected:\n%s' %
-                                                     (self.data[idx][['id', 'scenario']]))
-
-    def test_id(self):
-        """ ID - Must be unique. """
-        pf_id, counts = numpy.unique(self.data.id, return_counts=True)
-        self.assertListEqual(list(pf_id[counts > 1]), [])
-
-    # confluence - ignore
-
-    def test_name(self):
-        """ name - Enforce lower case alpha-numeric with optional underscores. """
-        def invalid_name(name):
-            p = re.compile('^[a-z0-9_\-]+$')
-            if p.match(name):
-                return False
-            return True
-
-        idx = (self.data.name != '') & self.data.name.map(invalid_name)
-        self.assertEqual(len(self.data[idx]), 0, msg='Invalid name format:\n%s' %
-                                                     (self.data[idx][['id', 'name']]))
-
-    def test_parameter_ids(self):
-        """ parameter_ids - Verify parameter ids have been defined. """
-
-        def parameter_does_not_exist(ids):
-            ids = set(ids.replace(' ', '').split(','))
-            return bool(ids - self.pd_id)
-
-        idx = (self.data.parameterids != '') & self.data.parameterids.map(parameter_does_not_exist)
-        self.assertEqual(len(self.data[idx]), 0, msg='Streams specified with undefined parameters:\n%s' %
-                                                     self.data[idx][['id', 'parameterids']])
-
-    def test_temporal_parameter(self):
-        """
-        temporal_parameter - Verify that time parameter matches expected values:
-        (PD7, PD3655, PD3660, PD3665 or PD3074)
-        """
-        temporal_parameters = {'PD7', 'PD3655', 'PD3660', 'PD3665', 'PD3074'}
-        idx = (self.data.temporalparameter == '') | self.data.temporalparameter.isin(temporal_parameters)
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized temporal parameter detected: \n%s\n'
-                                                     'Expected one of the following: %s' %
-                                                     (self.data[idx][['id', 'temporalparameter']], temporal_parameters))
-
-    def test_stream_dependency(self):
-        """
-        stream_dependency - optional - must be valid DICT, may be comma separated
-        """
-        all_dicts = set(self.data.id)
-
-        def id_is_missing(dict_ids):
-            dict_ids = set(dict_ids.replace(' ', '').split(','))
-            return bool(dict_ids - all_dicts)
-
-        idx = (self.data.streamdependency != '') & self.data.streamdependency.map(id_is_missing)
-        self.assertEqual(len(self.data[idx]), 0, msg='Stream dependency has not been defined:\n%s' %
-                                                     self.data[idx][['id', 'streamdependency']])
-    # parameters - ignore - deprecate
-    # lat_param - ignore - deprecate
-    # lon_param - ignore - deprecate
-    # depth_param - ignore - deprecate
-    # lat_stream - ignore - deprecate
-    # lon_stream - ignore - deprecate
-    # depth_stream - ignore - deprecate
-    # Review Status - ignore - deprecate
-    # SKIP - ignore - deprecate
-
-    def test_stream_type(self):
-        """ Stream Type - optional - Must be one of { 'Science', 'Engineering', 'Calibration' } """
-        data_types = {'Science', 'Engineering', 'Calibration'}
-        idx = (self.data.streamtype == '') | self.data.streamtype.isin(data_types)
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Unrecognized stream type specified:\n%s\nExpected one of %s' %
-                                                     (self.data[idx][['id', 'streamtype']], data_types))
-
-    def test_stream_content(self):
-        """ Stream Content - Enforce Title Case. """
-        idx = (self.data.streamcontent != '') & \
-              self.data.streamcontent.map(is_not_title)
-        self.assertEqual(len(self.data[idx]), 0, msg='Stream content is not in Title Case:\n%s' %
-                                                     self.data[idx][['id', 'streamcontent']])
