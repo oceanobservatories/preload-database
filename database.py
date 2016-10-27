@@ -1,7 +1,7 @@
 import sqlite3
 import config
 import database_util
-from enum import make_enum
+from pl_enum import make_enum
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
