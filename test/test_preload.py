@@ -1,14 +1,13 @@
 import unittest
 
-import database
-from database import PreloadDatabaseMode
-from model.preload import Parameter, Stream, NominalDepth
+import preload_database.database as database
+from preload_database.model.preload import Parameter, Stream, NominalDepth
 
 
 class TestParameter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
+        database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
         database.open_connection()
 
     def test_identity(self):
@@ -91,7 +90,7 @@ class TestParameter(unittest.TestCase):
 class TestStream(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
+        database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
         database.open_connection()
 
     def test_needs_no_external(self):
@@ -333,7 +332,7 @@ class TestStream(unittest.TestCase):
 class TestDepths(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
+        database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
         database.open_connection()
 
     def test_same_depth_fixed(self):
