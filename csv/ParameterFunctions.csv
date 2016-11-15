@@ -1,7 +1,7 @@
 scenario,id,hid,name,instrumentclass,instrumentseries,functiontype,function,owner,args,kwargs,description,reference,skip,qcflag
 DOC,Unique Identifier,"Human readable Unique Identifier
 
-Name + _ + InstCls + _ + InstSer",Cannonical Name for the Function,,,NumexprFunction or PythonFunction,"for NumexprFunction:
+Name + _ + InstCls + _ + InstSer",Canonical Name for the Function,,,NumexprFunction or PythonFunction,"for NumexprFunction:
 A string algorithm containing #'s, operators, and variables.  Variables must be in the associated Parameter Map
 
 for PythonFunction:
