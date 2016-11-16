@@ -40,7 +40,8 @@ def list_parameter_needs(parameter, indent_level):
     for needs_parameter in parameter.needs:
         sys.stdout.write("\t" * indent_level)
         needs_param = needs_parameter[1][0]
-        sys.stdout.write("PD%s:\t%s\n" % (needs_param.id, needs_param.name))
+        sys.stdout.write("PD%s:\t%s:\t%s:\t%s:\t%s\n" % (needs_param.id, needs_param.name, needs_param.parameter_type,
+                                                         needs_param.value_encoding, needs_param.unit))
         list_parameter_needs(needs_param, indent_level+1)
 
 
@@ -49,7 +50,8 @@ def list_stream_parameters(stream_names, streams):
         if stream is not None:
             print "\nStream: DICT%s: %s " % (stream.id, stream.name)
             for parameter in streams[index].parameters:
-                print "\tPD%s:\t%s" % (parameter.id, parameter.name)
+                print "\tPD%s:\t%s:\t%s:\t%s:\t%s" % (parameter.id, parameter.name, parameter.parameter_type,
+                                                      parameter.value_encoding, parameter.unit)
                 list_parameter_needs(parameter, 2)
         else:
             print "\nError: Stream %s was not found in " \
@@ -59,7 +61,8 @@ def list_stream_parameters(stream_names, streams):
 def list_parameters(parameter_names, parameters):
     for index, parameter in enumerate(parameters):
         if parameter is not None:
-            print "\nParameter: PD%s: %s" % (parameter.id, parameter.name)
+            print "\nParameter: PD%s: %s: %s: %s: %s" % (parameter.id, parameter.name, parameter.parameter_type,
+                                                         parameter.value_encoding, parameter.unit)
             list_parameter_needs(parameter, 1)
         else:
             print "\nError: Parameter %s was not found in " \

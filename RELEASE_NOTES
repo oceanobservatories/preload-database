@@ -7,3 +7,6 @@ NEXT RELEASE
 - CSV updates to include all common parameters in all streams (7,10,11,16,863)
 - New stream dosta_abcdjm_ctdbp_p_instrument_recovered
 - New stream flord_g_ctdbp_p_instrument_recovered
+
+11/16/2016
+- Added more information for the list_stream_data.py tool.
