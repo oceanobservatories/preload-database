@@ -556,5 +556,5 @@ CSPP_ENG,DICT764,CSPP_ENG_DCL,cspp_eng_dcl_summary,"PD7,PD10,PD11,PD12,PD16,PD86
 CSPP_ENG,DICT765,CSPP_ENG_DCL,cspp_eng_dcl_profile,"PD7,PD10,PD11,PD12,PD16,PD863,PD8020,PD8021,PD8022,PD8023,PD8024,PD8025,PD8026,PD8027,PD8028,PD8029",,,Engineering,Winch Motor Metadata,
 PRESF_ABC,DICT766,PRESF_ABC,presf_abc_tide_measurement_recovered,"PD7,PD10,PD11,PD12,PD16,PD863,PD8030,PD8031,PD8032,PD8035,PD8036",PD7,,Science,Wave Burst Data Products (DCL),
 PRESF_ABC,DICT767,PRESF_ABC,presf_abc_wave_burst_recovered,"PD7,PD10,PD11,PD12,PD16,PD863,PD8030,PD8033,PD8034,PD8037",PD7,,Science,Wave Burst Data Products (DCL),
-"CTDBP_P, DOSTA",DICT768,DOSTA,dosta_abcdjm_ctdbp_p_instrument_recovered,"PD7,PD10,PD11,PD12,PD16,PD863,PD198,PD835,PD836",PD7,,Science,Data Products,ready for review
+"CTDBP_P, DOSTA",DICT768,DOSTA,dosta_abcdjm_ctdbp_p_instrument_recovered,"PD7,PD10,PD11,PD12,PD16,PD863,PD198,PD835,PD836,PD8038,PD8039,PD8040,PD8041,PD8042",PD7,,Science,Data Products,ready for review
 "CTDBP_P, FLORD",DICT769,FLORD,flord_g_ctdbp_p_instrument_recovered,"PD7,PD10,PD11,PD12,PD16,PD863,PD198,PD1139,PD1141,PD1151,PD1152",PD7,,Science,Data Products,ready for review

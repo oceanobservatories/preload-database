@@ -10,3 +10,6 @@ NEXT RELEASE
 
 11/16/2016
 - Added more information for the list_stream_data.py tool.
+
+11/17/2016
+- Added parameters to the dosta_abcdjm_ctdbp_p_instrument_recovered stream for L1/L2 calculations.

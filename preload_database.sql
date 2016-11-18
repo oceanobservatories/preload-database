@@ -4882,6 +4882,11 @@ INSERT INTO "parameter" VALUES(8034,'presf_wave_burst_pressure_number',3,4,NULL,
 INSERT INTO "parameter" VALUES(8035,'presf_tide_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,131,'{"slope": "CC_slope_correction_factor", "p_dec_tide": "PD8030", "b": "CC_b", "m": "CC_m", "offset": "CC_offset_correction_factor"}','SFLPRES_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
 INSERT INTO "parameter" VALUES(8036,'presf_tide_temperature',10,1,NULL,91,7,'Seawater Temperature','sea_water_temperature_at_sea_floor',4,208,'{"t0": "PD8031"}','SFLPRES_L1','Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: counts',3,1);
 INSERT INTO "parameter" VALUES(8037,'presf_wave_burst_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,132,'{"slope": "CC_slope_correction_factor", "ptcn": "PD8033", "t4": "CC_t4", "t1": "CC_t1", "t2": "CC_t2", "p_dec_wave": "PD8034", "u0": "CC_u0", "t3": "CC_t3", "c3": "CC_c3", "poff": "CC_pressure_offset_calibration_coefficient", "offset": "CC_offset_correction_factor", "y1": "CC_y1", "c2": "CC_c2", "y3": "CC_y3", "y2": "CC_y2", "d2": "CC_d2", "c1": "CC_c1", "d1": "CC_d1"}','SFLPRES-WAVE_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
+INSERT INTO "parameter" VALUES(8038,'oxy_calphase_voltage',10,1,NULL,38,7,'Calibrated Phase Difference',NULL,3,209,'{"counts": "PD835"}','DOCONCS-VLT_L0','Calibrated phase difference in Volts, used to calculate temperature compensated oxygen concentration.',4,0);
+INSERT INTO "parameter" VALUES(8039,'oxy_temp_voltage',10,1,NULL,38,7,'DOSTA Temperature',NULL,3,209,'{"counts": "PD836"}','DOCONCS-VLT_L0','Oxygen sensor ambient temperature in Volts',4,0);
+INSERT INTO "parameter" VALUES(8040,'dosta_calibrated_phase',10,1,NULL,98,7,'Calibrated Phase Difference',NULL,3,200,'{"phase_volt": "PD8038"}','DOCONCS-DEG_L0','Calibrated phase difference, used to calculate temperature compensated oxygen concentration.',3,1);
+INSERT INTO "parameter" VALUES(8041,'dosta_optode_temperature',10,1,NULL,91,7,'Oxygen Sensor Temperature',NULL,3,199,'{"T_optode_volt": "PD8039"}',NULL,'Oxygen sensor ambient temperature',3,1);
+INSERT INTO "parameter" VALUES(8042,'dosta_tc_oxygen',10,1,NULL,220,7,'Dissolved Oxygen Concentration',NULL,4,59,'{"calphase": "PD8040", "csv": "CC_csv", "do_temp": "PD8041"}','DOCONCS_L1','Dissolved Oxygen Concentration from the Stable Response Dissolved Oxygen (DO) Instrument  is a measure of the concentration of microscopic bubbles of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings.This data product is corrected for temperature from a collocated CTD. Units: umol L-1.',3,2);
 CREATE TABLE parameter_dimension (
 	parameter_id INTEGER NOT NULL, 
 	dimension_id INTEGER NOT NULL, 
@@ -5275,6 +5280,7 @@ INSERT INTO "parameter_function" VALUES(205,'ctd_sbe37im_preswat_instrument_reco
 INSERT INTO "parameter_function" VALUES(206,'ctd_sbe37im_tempwat_instrument_recovered',2,'ctd_sbe37im_tempwat_instrument_recovered','ion_functions.data.ctd_functions','Compute the L1 TEMPWAT data product from the SBE37IM CTD instruments',NULL);
 INSERT INTO "parameter_function" VALUES(207,'ctd_sbe37im_condwat_instrument_recovered',2,'ctd_sbe37im_condwat_instrument_recovered','ion_functions.data.ctd_functions','Compute the L1 CONDWAT data product from the SBE37IM CTD instruments',NULL);
 INSERT INTO "parameter_function" VALUES(208,'sfl_sbe26plus_prestmp',2,'sfl_sbe26plus_prestmp','ion_functions.data.sfl_functions','Compute the temperature near the sensor of the PRESF instruments.',NULL);
+INSERT INTO "parameter_function" VALUES(209,'ctdbp_counts_to_volts',1,'counts / 13107.0',NULL,'Computes the voltage from the A/D count value from the CTDBP voltage measurements.',NULL);
 CREATE TABLE parameter_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -18967,6 +18973,11 @@ INSERT INTO "stream_parameter" VALUES(768,198);
 INSERT INTO "stream_parameter" VALUES(768,835);
 INSERT INTO "stream_parameter" VALUES(768,836);
 INSERT INTO "stream_parameter" VALUES(768,863);
+INSERT INTO "stream_parameter" VALUES(768,8038);
+INSERT INTO "stream_parameter" VALUES(768,8039);
+INSERT INTO "stream_parameter" VALUES(768,8040);
+INSERT INTO "stream_parameter" VALUES(768,8041);
+INSERT INTO "stream_parameter" VALUES(768,8042);
 INSERT INTO "stream_parameter" VALUES(769,7);
 INSERT INTO "stream_parameter" VALUES(769,10);
 INSERT INTO "stream_parameter" VALUES(769,11);
