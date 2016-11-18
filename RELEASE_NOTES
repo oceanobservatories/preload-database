@@ -1,4 +1,4 @@
-NEXT RELEASE
+Version 1.0.0
 
 - Improved incremental load performance by making fewer database queries
 - Changed column definition for Parameter.parameter_function_map to String (postgres compatibility)
