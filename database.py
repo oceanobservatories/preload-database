@@ -1,7 +1,7 @@
 import sqlite3
 import config
 import database_util
-from enum import make_enum
+from pl_enum import make_enum
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
@@ -15,7 +15,7 @@ Session = None
 
 # Private Fields
 __engine_url = None
-__engine_params = None
+__engine_params = {'echo': False}
 
 
 # Public Methods #
