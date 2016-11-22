@@ -10,23 +10,11 @@ import pandas
 from collections import namedtuple
 
 import xml.etree.ElementTree
-from titlecase import titlecase
 
 
 TEST_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.dirname(TEST_DIR)
 CSV_DIR = os.path.join(ROOT_DIR, 'csv')
-
-
-def istitle(string):
-    titled = titlecase(string)
-    if string == titled:
-        return True
-    return False
-
-
-def is_not_title(string):
-    return not(istitle(string))
 
 
 class TestParameter(unittest.TestCase):
@@ -148,12 +136,6 @@ class TestParameter(unittest.TestCase):
                 error_msgs = '%s  %s\n' % (error_msgs, assError.message)
 
         self.assertEqual(error_count, 0, '%r fill value errors found:\n%s' % (error_count, error_msgs))
-
-    def test_display_name(self):
-        """ display name - Enforce Title Case. """
-        idx = (self.data.displayname != '') & self.data.displayname.map(is_not_title)
-        self.assertEqual(len(self.data[idx]), 0, msg='Display name is not in Title Case:\n%s' %
-                                                     self.data[idx][['id', 'displayname']])
 
     def test_precision(self):
         """ precision - Must be an integer value or 'default'. 0 is default. """
