@@ -216,7 +216,7 @@ def create_or_update_stream(session, stream_id, row, value_table_map, bin_sizes,
         stream.id = stream_id
         session.add(stream)
 
-    stream.binsize_minutes = bin_sizes.get(stream_id, config.DEFAULT_BIN_SIZE_MINUTES)
+    stream.binsize_minutes = bin_sizes.get(row.name, config.DEFAULT_BIN_SIZE_MINUTES)
     stream.name = row.name
 
     time_param = row.temporalparameter
@@ -250,7 +250,7 @@ def process_streams(session):
     name = 'ParameterDictionary'
     dataframe = dataframes[name]
     value_table_map = process_value_table_map(session, name)
-    bin_sizes = process_bin_sizes(session)
+    bin_sizes = process_bin_sizes()
 
     all_streams = {stream.id: stream for stream in session.query(Stream).options(joinedload('parameters'))}
     csv_streams = {}
@@ -318,17 +318,13 @@ def process_stream_dependencies(session):
     session.commit()
 
 
-def process_bin_sizes(session):
+def process_bin_sizes():
     log.info('Processing bin sizes')
     dataframe = dataframes['BinSizes']
     bin_size_dict = {}
-    streams = {stream.id: stream.name for stream in session.query(Stream)}
     for row in dataframe.itertuples(index=False):
         if isinstance(row.binsize, Number):
-            binsize = int(row.binsize)
-            stream_id = streams.get(row.stream)
-            if stream_id is not None:
-                bin_size_dict[stream_id] = binsize
+            bin_size_dict[row.stream] = int(row.binsize)
     return bin_size_dict
 
 
