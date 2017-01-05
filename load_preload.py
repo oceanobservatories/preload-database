@@ -23,6 +23,7 @@ log.setLevel(logging.INFO)
 logging.basicConfig()
 
 
+CSV_DIR = os.path.join(os.path.dirname(__file__), 'csv')
 IGNORE_SCENARIOS = ['VOID', 'DOC', 'DOC:WARNING', 'NOTE']
 CSV_FILES = ['ParameterDefs', 'ParameterFunctions', 'ParameterDictionary', 'BinSizes']
 DEFAULT_PRECISION = 5
@@ -332,7 +333,7 @@ def process_nominal_depths(session):
     log.info('Processing nominal depths data')
 
     # Read the dataframe, drop all records without a depth or if the depth column contains 'VAR'
-    dataframe = pd.read_csv('csv/nominal_depths.csv')
+    dataframe = pd.read_csv(os.path.join(CSV_DIR, 'nominal_depths.csv'))
     dataframe.dropna(how='any', inplace=True)
     dataframe = dataframe[dataframe.depth != 'VAR']
 
@@ -404,7 +405,7 @@ def process_value_table_map(session, framename):
 def read_csv_data():
     for csv_file in CSV_FILES:
         filename = '%s.csv' % csv_file
-        filepath = os.path.join('csv', filename)
+        filepath = os.path.join(CSV_DIR, filename)
         log.info('Reading %s', filename)
         df = pd.read_csv(filepath, encoding='utf-8')
         if 'scenario' in df:
@@ -424,11 +425,9 @@ if __name__ == '__main__':
     # The the SQL Script exists open the current database, otherwise
     # create an empty database.
     if os.path.isfile(config.PRELOAD_DATABASE_SCRIPT_FILE_PATH):
-       database.initialize_connection(
-           database.PreloadDatabaseMode.POPULATED_FILE)
+        database.initialize_connection(database.PreloadDatabaseMode.POPULATED_FILE)
     else:
-       database.initialize_connection(
-           database.PreloadDatabaseMode.EMPTY_FILE)
+        database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
     database.open_connection()
 
     # Read in the CSV Resource Data files and update the database by
