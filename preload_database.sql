@@ -4887,6 +4887,15 @@ INSERT INTO "parameter" VALUES(8039,'oxy_temp_voltage',10,1,NULL,38,7,'DOSTA Tem
 INSERT INTO "parameter" VALUES(8040,'dosta_calibrated_phase',10,1,NULL,98,7,'Calibrated Phase Difference',NULL,3,200,'{"phase_volt": "PD8038"}','DOCONCS-DEG_L0','Calibrated phase difference, used to calculate temperature compensated oxygen concentration.',3,1);
 INSERT INTO "parameter" VALUES(8041,'dosta_optode_temperature',10,1,NULL,91,7,'Oxygen Sensor Temperature',NULL,3,199,'{"T_optode_volt": "PD8039"}',NULL,'Oxygen sensor ambient temperature',3,1);
 INSERT INTO "parameter" VALUES(8042,'dosta_tc_oxygen',10,1,NULL,220,7,'Dissolved Oxygen Concentration',NULL,4,59,'{"calphase": "PD8040", "csv": "CC_csv", "do_temp": "PD8041"}','DOCONCS_L1','Dissolved Oxygen Concentration from the Stable Response Dissolved Oxygen (DO) Instrument  is a measure of the concentration of microscopic bubbles of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings.This data product is corrected for temperature from a collocated CTD. Units: µmol L-1.',3,2);
+INSERT INTO "parameter" VALUES(8043,'sci_bb3slo_b470_sig',11,1,NULL,8,7,'BB3SLO B470 Sig',NULL,4,NULL,NULL,'BB3SCT-470_L0',NULL,4,0);
+INSERT INTO "parameter" VALUES(8044,'sci_bb3slo_b470_units',10,1,NULL,133,7,'Total Volume Scattering Coefficient',NULL,6,81,'{"counts_dark": "CC_3_dark_counts_volume_scatter", "scale_factor": "CC_3_scale_factor_volume_scatter", "counts_output": "PD8043"}','BB3SCT-470_L1','Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at the light wavelength of 470 nm and the default angle of 117 degrees for the ECO meter. Units: m-1 sr-1',NULL,1);
+INSERT INTO "parameter" VALUES(8045,'flort_o_bback_b470_total',10,1,NULL,132,7,'Optical Backscatter',NULL,4,78,'{"beta": "PD8044", "degC": "PD1528", "theta": "CC_scattering_angle", "wlngth": "CC_3_measurement_wavelength", "xfactor": "CC_angular_resolution", "psu": "PD1560"}','BB3SCT-470_L2','Optical Backscatter (Blue Wavelength) is a measure of the amount of blue light (470 nm wavelength) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids. Units: m-1',3,2);
+INSERT INTO "parameter" VALUES(8046,'sci_bb3slo_b532_sig',11,1,NULL,8,7,'BB3SLO B532 Sig',NULL,4,NULL,NULL,'BB3SCT-352_L0',NULL,4,0);
+INSERT INTO "parameter" VALUES(8047,'sci_bb3slo_b532_units',10,1,NULL,133,7,'Total Volume Scattering Coefficient',NULL,6,81,'{"counts_dark": "CC_2_dark_counts_volume_scatter", "scale_factor": "CC_2_scale_factor_volume_scatter", "counts_output": "PD8046"}','BB3SCT-532_L1','Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at the light wavelength of 532 nm and the default angle of 117 degrees for the ECO meter. Units: m-1 sr-1',NULL,1);
+INSERT INTO "parameter" VALUES(8048,'flort_o_bback_b532_total',10,1,NULL,132,7,'Optical Backscatter',NULL,4,78,'{"beta": "PD8047", "degC": "PD1528", "theta": "CC_scattering_angle", "wlngth": "CC_2_measurement_wavelength", "xfactor": "CC_angular_resolution", "psu": "PD1560"}','BB3SCT-532_L2','Optical Backscatter (Green Wavelength) is a measure of the amount of green light (532 nm wavelength) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids. Units: m-1',3,2);
+INSERT INTO "parameter" VALUES(8049,'sci_bb3slo_b660_sig',11,1,NULL,8,7,'BB3SLO B660 Sig',NULL,4,NULL,NULL,'BB3SCT-660_L0',NULL,4,0);
+INSERT INTO "parameter" VALUES(8050,'sci_bb3slo_b660_units',10,1,NULL,133,7,'Total Volume Scattering Coefficient',NULL,6,81,'{"counts_dark": "CC_1_dark_counts_volume_scatter", "scale_factor": "CC_1_scale_factor_volume_scatter", "counts_output": "PD8049"}','BB3SCT-660_L1','Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at the light wavelength of 660 nm and the default angle of 117 degrees for the ECO meter. Units: m-1 sr-1',NULL,1);
+INSERT INTO "parameter" VALUES(8051,'flort_o_bback_b660_total',10,1,NULL,132,7,'Optical Backscatter',NULL,4,78,'{"beta": "PD8050", "degC": "PD1528", "theta": "CC_scattering_angle", "wlngth": "CC_1_measurement_wavelength", "xfactor": "CC_angular_resolution", "psu": "PD1560"}','BB3SCT-660_L2','Optical Backscatter (Red Wavelength) is a measure of the amount of red light (660 nm wavelength) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids. Units: m-1',3,2);
 CREATE TABLE parameter_dimension (
 	parameter_id INTEGER NOT NULL, 
 	dimension_id INTEGER NOT NULL, 
@@ -5858,6 +5867,7 @@ INSERT INTO "stream" VALUES(766,'presf_abc_tide_measurement_recovered',7,1440,3,
 INSERT INTO "stream" VALUES(767,'presf_abc_wave_burst_recovered',7,1440,3,160);
 INSERT INTO "stream" VALUES(768,'dosta_abcdjm_ctdbp_p_instrument_recovered',7,1440,3,40);
 INSERT INTO "stream" VALUES(769,'flord_g_ctdbp_p_instrument_recovered',7,1440,3,40);
+INSERT INTO "stream" VALUES(770,'flort_o_glider_data',7,1440,3,40);
 CREATE TABLE stream_content (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
@@ -18989,6 +18999,27 @@ INSERT INTO "stream_parameter" VALUES(769,1139);
 INSERT INTO "stream_parameter" VALUES(769,1141);
 INSERT INTO "stream_parameter" VALUES(769,1151);
 INSERT INTO "stream_parameter" VALUES(769,1152);
+INSERT INTO "stream_parameter" VALUES(770,7);
+INSERT INTO "stream_parameter" VALUES(770,10);
+INSERT INTO "stream_parameter" VALUES(770,11);
+INSERT INTO "stream_parameter" VALUES(770,12);
+INSERT INTO "stream_parameter" VALUES(770,16);
+INSERT INTO "stream_parameter" VALUES(770,863);
+INSERT INTO "stream_parameter" VALUES(770,1401);
+INSERT INTO "stream_parameter" VALUES(770,1402);
+INSERT INTO "stream_parameter" VALUES(770,1494);
+INSERT INTO "stream_parameter" VALUES(770,1495);
+INSERT INTO "stream_parameter" VALUES(770,2759);
+INSERT INTO "stream_parameter" VALUES(770,2760);
+INSERT INTO "stream_parameter" VALUES(770,8043);
+INSERT INTO "stream_parameter" VALUES(770,8044);
+INSERT INTO "stream_parameter" VALUES(770,8045);
+INSERT INTO "stream_parameter" VALUES(770,8046);
+INSERT INTO "stream_parameter" VALUES(770,8047);
+INSERT INTO "stream_parameter" VALUES(770,8048);
+INSERT INTO "stream_parameter" VALUES(770,8049);
+INSERT INTO "stream_parameter" VALUES(770,8050);
+INSERT INTO "stream_parameter" VALUES(770,8051);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
