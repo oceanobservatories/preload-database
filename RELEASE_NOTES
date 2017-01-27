@@ -1,3 +1,7 @@
+Version 1.0.2
+
+- Updated load_preload.py to accept an sqlalchemy engine URI
+
 Version 1.0.1
 
 - Fixed bug affecting setting binsize on Stream records

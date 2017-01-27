@@ -422,18 +422,33 @@ def update_db(session):
 
 
 if __name__ == '__main__':
-    # The the SQL Script exists open the current database, otherwise
-    # create an empty database.
-    if os.path.isfile(config.PRELOAD_DATABASE_SCRIPT_FILE_PATH):
-        database.initialize_connection(database.PreloadDatabaseMode.POPULATED_FILE)
-    else:
-        database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
-    database.open_connection()
+    import sys
 
-    # Read in the CSV Resource Data files and update the database by
-    # processing the CSV data.
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker, scoped_session
+    from model.preload import Base
+
     read_csv_data()
-    update_db(database.Session())
 
-    database_util.generate_script_from_preload_database()
-    database_util.delete_preload_database()
+    if len(sys.argv) == 1:
+        # If the SQL Script exists open the current database, otherwise
+        # create an empty database.
+        if os.path.isfile(config.PRELOAD_DATABASE_SCRIPT_FILE_PATH):
+            database.initialize_connection(database.PreloadDatabaseMode.POPULATED_FILE)
+        else:
+            database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
+        database.open_connection()
+
+        session = database.Session()
+        update_db(session)
+        database_util.generate_script_from_preload_database()
+        database_util.delete_preload_database()
+
+    else:
+        url = sys.argv[1]
+        engine = create_engine(url)
+        Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+        Base.query = Session.query_property()
+        Base.metadata.create_all(bind=engine)
+        session = Session()
+        update_db(session)
