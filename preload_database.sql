@@ -4896,6 +4896,7 @@ INSERT INTO "parameter" VALUES(8048,'flort_o_bback_b532_total',10,1,NULL,132,7,'
 INSERT INTO "parameter" VALUES(8049,'sci_bb3slo_b660_sig',11,1,NULL,8,7,'BB3SLO B660 Sig',NULL,4,NULL,NULL,'BB3SCT-660_L0',NULL,4,0);
 INSERT INTO "parameter" VALUES(8050,'sci_bb3slo_b660_units',10,1,NULL,133,7,'Total Volume Scattering Coefficient',NULL,6,81,'{"counts_dark": "CC_1_dark_counts_volume_scatter", "scale_factor": "CC_1_scale_factor_volume_scatter", "counts_output": "PD8049"}','BB3SCT-660_L1','Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at the light wavelength of 660 nm and the default angle of 117 degrees for the ECO meter. Units: m-1 sr-1',NULL,1);
 INSERT INTO "parameter" VALUES(8051,'flort_o_bback_b660_total',10,1,NULL,132,7,'Optical Backscatter',NULL,4,78,'{"beta": "PD8050", "degC": "PD1528", "theta": "CC_scattering_angle", "wlngth": "CC_1_measurement_wavelength", "xfactor": "CC_angular_resolution", "psu": "PD1560"}','BB3SCT-660_L2','Optical Backscatter (Red Wavelength) is a measure of the amount of red light (660 nm wavelength) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids. Units: m-1',3,2);
+INSERT INTO "parameter" VALUES(8052,'camds_brightness2',11,6,NULL,8,4,'Brightness',NULL,NULL,NULL,NULL,NULL,'Brightness of the second lamp 1-100.',NULL,NULL);
 CREATE TABLE parameter_dimension (
 	parameter_id INTEGER NOT NULL, 
 	dimension_id INTEGER NOT NULL, 
@@ -10476,6 +10477,7 @@ INSERT INTO "stream_parameter" VALUES(379,2664);
 INSERT INTO "stream_parameter" VALUES(379,2665);
 INSERT INTO "stream_parameter" VALUES(379,2666);
 INSERT INTO "stream_parameter" VALUES(379,3808);
+INSERT INTO "stream_parameter" VALUES(379,8052);
 INSERT INTO "stream_parameter" VALUES(380,7);
 INSERT INTO "stream_parameter" VALUES(380,10);
 INSERT INTO "stream_parameter" VALUES(380,11);
