@@ -2380,7 +2380,7 @@ CAMDS_B,CAMDS,camds_resolution,PD2665,camds_resolution_quantity_int8_1,0,quantit
 0x2 = 1/2 Resolution
 0x4 = 1/4 Resolution
 0x8 = 1/8 Resolution",,,,,,
-CAMDS_B,CAMDS,camds_brightness,PD2666,camds_brightness_quantity_int8_1,0,quantity,,int8,,1,-99,Brightness,,,,,,,,,,Brightness of the lamp 1-100.,,,,,,
+CAMDS_B,CAMDS,camds_brightness,PD2666,,0,quantity,,int8,,1,-99,Brightness,,,,,,,,,,Brightness of the lamp 1-100.,,,,,,
 CAMDS_B,CAMDS,camds_temp,PD2667,camds_temp_quantity_int8_DegreesC,0,quantity,,int8,,DegreesC,-99,Temperature,,,,,,,,,,Temperature.  Range is 0 to 80 degrees and there are no decimal places. Accuracy is +/- 1.0 degrees.,,,,,,
 CAMDS_B,CAMDS,camds_humidity,PD2668,camds_humidity_quantity_int8_percent,0,quantity,,int8,,percent,-99,Internal Humidity,,,,,,,,,,Digital still camera internal housing humidity reading,,,Internal Humidity,,,
 CAMDS_B,CAMDS,camds_error,PD2669,camds_error_quantity_int8_1,0,quantity,,int8,,1,-99,Error,,,,,,,,,,"Error message.  Error will have the following possibilities: 
@@ -3891,3 +3891,4 @@ FLORT_O,Gliders,flort_o_bback_b532_total,PD8048,flort_o_bback_b532_total_functio
 FLORT_O,Gliders,sci_bb3slo_b660_sig,PD8049,sci_bb3slo_b660_sig_quantity_float32_1,0,quantity,,float32,,1,-9999999,BB3SLO B660 Sig,4,,,,,,,BB3SCT-660_L0,,,,,,,Unprocessed Data,L0
 FLORT_O,Gliders,sci_bb3slo_b660_units,PD8050,sci_bb3slo_b660_units_function_float32_m_1_sr_1,0,function,,float32,,m-1 sr-1,-9999999,Total Volume Scattering Coefficient,6,,PFID81,"{""counts_output"":""PD8049"",""counts_dark"":""CC_1_dark_counts_volume_scatter"", ""scale_factor"":""CC_1_scale_factor_volume_scatter""}",,BB3SCT,,BB3SCT-660_L1,,Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at the light wavelength of 660 nm and the default angle of 117 degrees for the ECO meter. Units: m-1 sr-1,,,Total Volume Scattering Coefficient,,,L1
 FLORT_O,Gliders,flort_o_bback_b660_total,PD8051,flort_o_bback_b660_total_function_float32_m_1,0,function,,float32,,m-1,-9999999,Optical Backscatter,4,,PFID78,"{""beta"":""PD8050"", ""degC"":""PD1528"", ""psu"":""PD1560"", ""theta"":""CC_scattering_angle"", ""wlngth"":""CC_1_measurement_wavelength"", ""xfactor"":""CC_angular_resolution""}",,,,BB3SCT-660_L2,,"Optical Backscatter (Red Wavelength) is a measure of the amount of red light (660 nm wavelength) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids. Units: m-1",,,Optical Backscatter (Red Wavelength),,Science Data,L2
+CAMDS_B,CAMDS,camds_brightness2,PD8052,,0,quantity,,int8,,1,-99,Brightness,,,,,,,,,,Brightness of the second lamp 1-100.,,,,,,
