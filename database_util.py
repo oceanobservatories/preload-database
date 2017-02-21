@@ -2,7 +2,6 @@ import os
 import os.path
 import sqlite3
 import config
-import ordered_dump
 
 
 def get_preload_database_script_as_string():
@@ -28,8 +27,8 @@ def generate_script_from_preload_database():
     # Dump the SQLite database to a script
     connection = sqlite3.connect(config.PRELOAD_DATABASE_SQLITE_FILE_PATH)
     with open(config.PRELOAD_DATABASE_SCRIPT_FILE_PATH, "w") as sqlFile:
-        for sql_command in ordered_dump._iterdump(connection):
-            sqlFile.write((sql_command + '\n').encode('utf8'))
+        for line in connection.iterdump():
+            sqlFile.write((line + '\n').encode('utf8'))
     connection.close()
 
 

@@ -18,6 +18,7 @@ install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION pandas nose sqlalchemy
   - conda install --yes -c ooi ion-functions
   - pip install titlecase
+  - pip install git+https://github.com/oceanobservatories/ooi-data@v0.0.1
 
 before_script:
   - "rm __init__.py"
