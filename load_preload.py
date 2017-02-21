@@ -1,27 +1,26 @@
 #!/usr/bin/env python
 import json
 import logging
+import os
 from collections import Counter
 from numbers import Number
 
 import numpy as np
-import os
 import pandas as pd
+from ooi_data.postgres.model.preload import (ParameterType, ValueEncoding, CodeSet, Unit,
+                                             FillValue, FunctionType, ParameterFunction,
+                                             Parameter, Stream, StreamDependency, NominalDepth,
+                                             StreamType, StreamContent, Dimension,
+                                             DataProductType)
 from sqlalchemy.orm import joinedload
 
 import config
 import database
 import database_util
-from model.preload import (ParameterType, ValueEncoding, CodeSet, Unit,
-                           FillValue, FunctionType, ParameterFunction,
-                           Parameter, Stream, StreamDependency, NominalDepth,
-                           StreamType, StreamContent, Dimension,
-                           DataProductType)
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
 logging.basicConfig()
-
 
 CSV_DIR = os.path.join(os.path.dirname(__file__), 'csv')
 IGNORE_SCENARIOS = ['VOID', 'DOC', 'DOC:WARNING', 'NOTE']
@@ -426,7 +425,7 @@ if __name__ == '__main__':
 
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker, scoped_session
-    from model.preload import Base
+    from ooi_data.postgres.model import MetadataBase, preload_tables
 
     read_csv_data()
 
@@ -448,7 +447,7 @@ if __name__ == '__main__':
         url = sys.argv[1]
         engine = create_engine(url)
         Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-        Base.query = Session.query_property()
-        Base.metadata.create_all(bind=engine)
+        MetadataBase.query = Session.query_property()
+        MetadataBase.metadata.create_all(bind=engine, tables=preload_tables)
         session = Session()
         update_db(session)

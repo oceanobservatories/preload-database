@@ -5,8 +5,7 @@ import shutil
 import logging
 import jinja2
 import database
-from model.preload import Stream
-
+from ooi_data.postgres.model import Stream
 
 database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
 database.open_connection()
@@ -65,11 +64,10 @@ PRIMARY KEY((subsite, node, sensor, bin), stream, deployment, id)
 
 '''
 
-
 # First part of tuple must be table name from cql script in second part
-ALL_EXTRA_TABLES = [ ("dataset_l0_provenance", CREATE_PROVENANCE),
-                     ("annotations", CREATE_ANNOTATIONS),
-                     ("qc_results", CREATE_QC_RESULTS) ]
+ALL_EXTRA_TABLES = [("dataset_l0_provenance", CREATE_PROVENANCE),
+                    ("annotations", CREATE_ANNOTATIONS),
+                    ("qc_results", CREATE_QC_RESULTS)]
 
 
 def get_logger():
@@ -92,7 +90,6 @@ def get_logger():
 
 
 log = get_logger()
-
 
 cql_parameter_map = {
     'int8': 'int',
@@ -127,7 +124,7 @@ java_promoted_map = {
 
 # format: (value_encoding, parameter_type) : (cqltype, javatype, filltype, java_object, islist)
 map = {
-#    ('blob', 'array<quantity>'): ('blob', 'ByteBuffer', 'Byte'),
+    #    ('blob', 'array<quantity>'): ('blob', 'ByteBuffer', 'Byte'),
     ('int', 'category<int8:str>'): ('int', 'Integer', 'Integer', 'Integer', False),
     ('int', 'category<uint8:str>'): ('int', 'Integer', 'Integer', 'Integer', False),
     ('int', 'boolean'): ('int', 'Integer', 'Integer', 'Integer', False),
@@ -195,7 +192,7 @@ class Column(object):
         elif self.java_object == 'Integer':
             try:
                 fv = int(self.fillvalue)
-                if fv > 2**31-1 or fv < -2**31:
+                if fv > 2 ** 31 - 1 or fv < -2 ** 31:
                     log.error('BAD FILL VALUE for %s %d', self.name, fv)
                     self.fillvalue = -999999999
                 else:
@@ -206,7 +203,7 @@ class Column(object):
         elif self.java_object == 'Long':
             try:
                 fv = int(self.fillvalue)
-                if fv > 2**63-1 or fv < -2**63:
+                if fv > 2 ** 63 - 1 or fv < -2 ** 63:
                     log.error('BAD FILL VALUE for %s %d', self.name, fv)
                     self.fillvalue = -999999999999999999
                 else:
@@ -329,4 +326,3 @@ def main():
 
 
 main()
-
