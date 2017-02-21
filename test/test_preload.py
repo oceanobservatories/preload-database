@@ -2,7 +2,7 @@ import unittest
 
 import database
 from database import PreloadDatabaseMode
-from model.preload import Parameter, Stream, NominalDepth
+from ooi_data.postgres.model.preload import Parameter, Stream, NominalDepth
 
 
 class TestParameter(unittest.TestCase):

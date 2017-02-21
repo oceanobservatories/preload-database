@@ -5,7 +5,8 @@ from pl_enum import make_enum
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
-from model.preload import Base
+from ooi_data.postgres.model import MetadataBase
+from ooi_data.postgres.model.preload import preload_tables
 
 
 PreloadDatabaseMode = make_enum('EMPTY_FILE', 'POPULATED_MEMORY', 'POPULATED_FILE')
@@ -52,8 +53,8 @@ def open_connection():
 
     engine = create_engine(__engine_url, convert_unicode=True, **__engine_params)
     Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-    Base.query = Session.query_property()
-    Base.metadata.create_all(bind=engine)
+    MetadataBase.query = Session.query_property()
+    MetadataBase.metadata.create_all(bind=engine, tables=preload_tables)
 
 
 def close_connection():

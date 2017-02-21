@@ -14,10 +14,12 @@ Usage:
     coefficients as described above for the parameter(s) provided.
 """
 
-from model.preload import Stream, Parameter
-from database import *
-import docopt
 import sys
+
+import docopt
+from ooi_data.postgres.model.preload import Stream, Parameter
+
+from database import *
 
 
 def connect_to_preloaded_model():
