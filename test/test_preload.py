@@ -1,15 +1,16 @@
 import unittest
 
 import database
-from database import PreloadDatabaseMode
-from ooi_data.postgres.model.preload import Parameter, Stream, NominalDepth
+from database import create_engine_from_url, create_scoped_session
+from ooi_data.postgres.model.preload import Parameter, Stream, NominalDepth, MetadataBase
 
 
 class TestParameter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
-        database.open_connection()
+        engine = create_engine_from_url(None)
+        session = create_scoped_session(engine)
+        MetadataBase.query = session.query_property()
 
     def test_identity(self):
         p1 = Parameter.query.get(165)
@@ -91,8 +92,9 @@ class TestParameter(unittest.TestCase):
 class TestStream(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
-        database.open_connection()
+        engine = create_engine_from_url(None)
+        session = create_scoped_session(engine)
+        MetadataBase.query = session.query_property()
 
     def test_needs_no_external(self):
         # Query a stream with NO external dependencies
@@ -333,8 +335,9 @@ class TestStream(unittest.TestCase):
 class TestDepths(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        database.initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
-        database.open_connection()
+        engine = create_engine_from_url(None)
+        session = create_scoped_session(engine)
+        MetadataBase.query = session.query_property()
 
     def test_same_depth_fixed(self):
         subsite = 'CE02SHSM'
