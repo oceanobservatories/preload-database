@@ -17,14 +17,11 @@ Usage:
 import sys
 
 import docopt
-from ooi_data.postgres.model.preload import Stream, Parameter
+from ooi_data.postgres.model import Stream, Parameter, MetadataBase
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm import sessionmaker
 
-from database import *
-
-
-def connect_to_preloaded_model():
-    initialize_connection(PreloadDatabaseMode.POPULATED_MEMORY)
-    open_connection()
+from database import create_engine_from_url, create_scoped_session
 
 
 def get_object_from_preload(klass, field):
@@ -76,7 +73,10 @@ def main():
     name_or_ids = [s.decode('UTF8') for s in options['<name_or_id>']]
     stream = options['stream']
 
-    connect_to_preloaded_model()
+    engine = create_engine_from_url(None)
+    session = create_scoped_session(engine)
+    MetadataBase.query = session.query_property()
+
     if stream:
         streams = [get_object_from_preload(Stream, f)
                    for f in name_or_ids]

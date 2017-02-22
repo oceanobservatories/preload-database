@@ -1,10 +1,21 @@
 #!/usr/bin/env python
+"""
+Usage:
+    load_preload.py
+    load_preload.py <url>
+
+    If no URL is provided the script will create an in-memory database
+    (populated from preload_database.sql if it exists), update that database
+    and write the result to preload_database.sql
+"""
+
 import json
 import logging
 import os
 from collections import Counter
 from numbers import Number
 
+import docopt
 import numpy as np
 import pandas as pd
 from ooi_data.postgres.model.preload import (ParameterType, ValueEncoding, CodeSet, Unit,
@@ -12,11 +23,9 @@ from ooi_data.postgres.model.preload import (ParameterType, ValueEncoding, CodeS
                                              Parameter, Stream, StreamDependency, NominalDepth,
                                              StreamType, StreamContent, Dimension,
                                              DataProductType)
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import sessionmaker, joinedload
 
-import config
 import database
-import database_util
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
@@ -26,6 +35,8 @@ CSV_DIR = os.path.join(os.path.dirname(__file__), 'csv')
 IGNORE_SCENARIOS = ['VOID', 'DOC', 'DOC:WARNING', 'NOTE']
 CSV_FILES = ['ParameterDefs', 'ParameterFunctions', 'ParameterDictionary', 'BinSizes']
 DEFAULT_PRECISION = 5
+DEFAULT_BIN_SIZE_MINUTES = 1440
+
 
 dataframes = {}
 
@@ -216,7 +227,7 @@ def create_or_update_stream(session, stream_id, row, value_table_map, bin_sizes,
         stream.id = stream_id
         session.add(stream)
 
-    stream.binsize_minutes = bin_sizes.get(row.name, config.DEFAULT_BIN_SIZE_MINUTES)
+    stream.binsize_minutes = bin_sizes.get(row.name, DEFAULT_BIN_SIZE_MINUTES)
     stream.name = row.name
 
     time_param = row.temporalparameter
@@ -421,33 +432,19 @@ def update_db(session):
 
 
 if __name__ == '__main__':
-    import sys
-
-    from sqlalchemy import create_engine
-    from sqlalchemy.orm import sessionmaker, scoped_session
-    from ooi_data.postgres.model import MetadataBase, preload_tables
+    options = docopt.docopt(__doc__)
+    url = options['<url>']
 
     read_csv_data()
 
-    if len(sys.argv) == 1:
-        # If the SQL Script exists open the current database, otherwise
-        # create an empty database.
-        if os.path.isfile(config.PRELOAD_DATABASE_SCRIPT_FILE_PATH):
-            database.initialize_connection(database.PreloadDatabaseMode.POPULATED_FILE)
-        else:
-            database.initialize_connection(database.PreloadDatabaseMode.EMPTY_FILE)
-        database.open_connection()
-
-        session = database.Session()
-        update_db(session)
-        database_util.generate_script_from_preload_database()
-        database_util.delete_preload_database()
-
+    if url:
+        engine = database.create_engine_from_url(None)
     else:
-        url = sys.argv[1]
-        engine = create_engine(url)
-        Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-        MetadataBase.query = Session.query_property()
-        MetadataBase.metadata.create_all(bind=engine, tables=preload_tables)
-        session = Session()
-        update_db(session)
+        engine = database.create_engine_from_url(url)
+
+    Session = database.create_scoped_session(engine)
+    session = Session()
+    update_db(session)
+
+    if not url:
+        database.generate_script_from_preload_database(engine.raw_connection().connection)
