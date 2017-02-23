@@ -19033,6 +19033,14 @@ INSERT INTO "stream_parameter" VALUES(770,8049);
 INSERT INTO "stream_parameter" VALUES(770,8050);
 INSERT INTO "stream_parameter" VALUES(770,8051);
 INSERT INTO "stream_parameter" VALUES(699,8053);
+INSERT INTO "stream_parameter" VALUES(409,8054);
+INSERT INTO "stream_parameter" VALUES(409,8055);
+INSERT INTO "stream_parameter" VALUES(409,8056);
+INSERT INTO "stream_parameter" VALUES(409,8057);
+INSERT INTO "stream_parameter" VALUES(408,8054);
+INSERT INTO "stream_parameter" VALUES(408,8055);
+INSERT INTO "stream_parameter" VALUES(408,8056);
+INSERT INTO "stream_parameter" VALUES(408,8057);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
