@@ -339,13 +339,20 @@ def process_bin_sizes():
     return bin_size_dict
 
 
+def parse_refdes(refdes):
+    try:
+        subsite, node, sensor = refdes.split('-', 2)
+    except StandardError:
+        subsite = node = sensor = None
+    return subsite, node, sensor
+
+
 def process_nominal_depths(session):
     log.info('Processing nominal depths data')
 
     # Read the dataframe, drop all records without a depth or if the depth column contains 'VAR'
     dataframe = pd.read_csv(os.path.join(CSV_DIR, 'nominal_depths.csv'))
     dataframe.dropna(how='any', inplace=True)
-    dataframe = dataframe[dataframe.depth != 'VAR']
 
     # fetch the current nominal depths as dictionary
     all_nominals = {nd.reference_designator: nd for nd in session.query(NominalDepth)}
@@ -370,9 +377,10 @@ def process_nominal_depths(session):
         depth = csv_nominals[refdes]
         try:
             depth = int(float(depth))
-            subsite, node, sensor = refdes.split('-', 2)
-            nd = NominalDepth(subsite=subsite, node=node, sensor=sensor, depth=depth)
-            session.add(nd)
+            subsite, node, sensor = parse_refdes(refdes)
+            if all((subsite, node, sensor)):
+                nd = NominalDepth(subsite=subsite, node=node, sensor=sensor, depth=depth)
+                session.add(nd)
         except ValueError:
             log.error('Error processing nominal depth %r: %r', refdes, depth)
 
