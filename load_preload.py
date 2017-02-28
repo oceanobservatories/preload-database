@@ -445,7 +445,7 @@ if __name__ == '__main__':
 
     read_csv_data()
 
-    if url:
+    if not url:
         engine = database.create_engine_from_url(None)
     else:
         engine = database.create_engine_from_url(url)
