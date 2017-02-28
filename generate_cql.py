@@ -8,8 +8,12 @@ import database
 import numpy as np
 from ooi_data.postgres.model import Stream
 
-database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
-database.open_connection()
+engine = database.create_engine_from_url(None)
+
+
+Session = database.create_scoped_session(engine)
+session = Session()
+
 
 DROP_KEYSPACE = 'drop keyspace ooi;\n\n'
 
@@ -289,7 +293,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
                 fh.write('DROP TABLE ooi.%s;' % table + '\n\n')
                 fh.write(schema)
 
-        streams = database.Session.query(Stream).all()
+        streams = session.query(Stream).all()
         for stream in streams:
             # Don't generate CQL or java classes for virtual streams
             if stream.source_streams:

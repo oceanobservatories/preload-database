@@ -7,4 +7,4 @@ Jinja2==2.9.5
 titlecase==0.8.2
 GeoAlchemy2==0.4.0
 
-git+https://github.com/oceanobservatories/ooi-data@v0.0.1
+git+https://github.com/oceanobservatories/ooi-data@v0.0.3
