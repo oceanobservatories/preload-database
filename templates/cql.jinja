@@ -7,11 +7,9 @@ CREATE TABLE ooi.{{table.name}} (
     time double,
     deployment int,
     id uuid,
-    driver_timestamp double,
-    ingestion_timestamp double,
-    internal_timestamp double,
-    port_timestamp double,
-    preferred_timestamp text,
+{% for column in table.common_columns %}
+    {{column.name}} {{column.cqltype}},
+{% endfor %}
     quality_flag text,
     provenance uuid,
 {% for column in table.columns %}

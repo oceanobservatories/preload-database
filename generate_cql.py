@@ -8,8 +8,12 @@ import database
 import numpy as np
 from ooi_data.postgres.model import Stream
 
-database.initialize_connection(database.PreloadDatabaseMode.POPULATED_MEMORY)
-database.open_connection()
+engine = database.create_engine_from_url(None)
+
+
+Session = database.create_scoped_session(engine)
+session = Session()
+
 
 DROP_KEYSPACE = 'drop keyspace ooi;\n\n'
 
@@ -240,11 +244,23 @@ class Table(object):
         self.classname = camelize(self.name, skipfirst=False)
         self.params = stream.parameters
         self.basecolumns = ['driver_timestamp', 'ingestion_timestamp', 'internal_timestamp',
-                            'preferred_timestamp', 'time', 'port_timestamp']
+                            'port_timestamp', 'preferred_timestamp']
         self.valid = True
         self.columns = []
+        self.common_columns = []
         self.column_names = []
         self.build_columns()
+        self.build_common_columns()
+
+    def build_common_columns(self):
+        stream_params_by_name = {p.name: p for p in self.params}
+        for name in self.basecolumns:
+            param = stream_params_by_name.get(name)
+
+            if param:
+                column = Column()
+                column.parse(param)
+                self.common_columns.append(column)
 
     def build_columns(self):
         # sort in name alphabetical order (retrieved in numerical order by ID)
@@ -253,6 +269,9 @@ class Table(object):
         params = [p[1] for p in params]
 
         for param in params:
+            # time? skip
+            if param.id == 7:
+                continue
             # function? skip
             if param.name in self.basecolumns or param.parameter_type == 'function':
                 continue
@@ -289,7 +308,7 @@ def generate(java_template, cql_template, cql_drop_template, mapper_template):
                 fh.write('DROP TABLE ooi.%s;' % table + '\n\n')
                 fh.write(schema)
 
-        streams = database.Session.query(Stream).all()
+        streams = session.query(Stream).all()
         for stream in streams:
             # Don't generate CQL or java classes for virtual streams
             if stream.source_streams:
