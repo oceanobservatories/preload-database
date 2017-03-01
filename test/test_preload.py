@@ -350,17 +350,6 @@ class TestDepths(unittest.TestCase):
         self.assertNotEqual({nd.node}, {c.node for c in colocated})
         self.assertNotEqual({nd.sensor}, {c.sensor for c in colocated})
 
-    def test_same_depth_mobile(self):
-        subsite = 'CP05MOAS'
-        node = 'GL001'
-        sensor = '04-DOSTAM000'
-        nd = NominalDepth.get_nominal_depth(subsite, node, sensor)
-        colocated = nd.get_colocated_node()
-        self.assertEqual({subsite}, {c.subsite for c in colocated})
-        self.assertEqual({nd.depth}, {c.depth for c in colocated})
-        self.assertEqual({nd.node}, {c.node for c in colocated})
-        self.assertNotEqual({nd.sensor}, {c.sensor for c in colocated})
-
     def test_nearby(self):
         subsite = 'CP01CNSM'
         node = 'SBD11'
