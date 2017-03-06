@@ -5796,8 +5796,8 @@ INSERT INTO "stream" VALUES(767,'presf_abc_wave_burst_recovered',7,1440,3,160);
 INSERT INTO "stream" VALUES(768,'dosta_abcdjm_ctdbp_p_instrument_recovered',7,1440,3,40);
 INSERT INTO "stream" VALUES(769,'flord_g_ctdbp_p_instrument_recovered',7,1440,3,40);
 INSERT INTO "stream" VALUES(770,'flort_o_glider_data',7,1440,3,40);
-INSERT INTO "stream" VALUES(771,'botpt_nano_sample_15sec',8058,1440,NULL,NULL);
-INSERT INTO "stream" VALUES(772,'botpt_nano_sample_24hour',8063,1440,NULL,NULL);
+INSERT INTO "stream" VALUES(771,'botpt_nano_sample_15sec',7,1440,NULL,NULL);
+INSERT INTO "stream" VALUES(772,'botpt_nano_sample_24hour',7,1440,NULL,NULL);
 CREATE TABLE stream_content (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
@@ -18970,6 +18970,8 @@ INSERT INTO "stream_parameter" VALUES(772,8063);
 INSERT INTO "stream_parameter" VALUES(772,8064);
 INSERT INTO "stream_parameter" VALUES(772,8065);
 INSERT INTO "stream_parameter" VALUES(772,8066);
+INSERT INTO "stream_parameter" VALUES(771,7);
+INSERT INTO "stream_parameter" VALUES(772,7);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
