@@ -445,7 +445,7 @@ if __name__ == '__main__':
 
     read_csv_data()
 
-    engine = database.create_engine_from_url(None)
+    engine = database.create_engine_from_url(url)
     Session = database.create_scoped_session(engine)
     session = Session()
     update_db(session)
