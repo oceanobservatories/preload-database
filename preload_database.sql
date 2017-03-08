@@ -1476,9 +1476,6 @@ INSERT INTO "parameter" VALUES(557,'correlation_beam_1',11,3,NULL,8,5,'Beam 1 Co
 INSERT INTO "parameter" VALUES(558,'correlation_beam_2',11,3,NULL,8,5,'Beam 2 Correlation, Percentage',NULL,0,NULL,NULL,NULL,'correlation beam 2 (%)',NULL,NULL);
 INSERT INTO "parameter" VALUES(559,'correlation_beam_3',11,3,NULL,8,5,'Beam 3 Correlation, Percentage',NULL,0,NULL,NULL,NULL,'correlation beam 3 (%)',NULL,NULL);
 INSERT INTO "parameter" VALUES(562,'speed_of_sound',11,1,NULL,128,7,'Speed of Sound',NULL,1,NULL,NULL,NULL,'speed of sound (0.1 m/s)',NULL,NULL);
-INSERT INTO "parameter" VALUES(563,'VOID_heading',11,1,NULL,98,7,'VOID Heading',NULL,NULL,NULL,NULL,NULL,'VOID heading (0.1 deg)',NULL,NULL);
-INSERT INTO "parameter" VALUES(564,'VOID_pitch',11,1,NULL,98,7,'VOID Pitch',NULL,NULL,NULL,NULL,NULL,'VOID pitch (0.1 deg)',NULL,NULL);
-INSERT INTO "parameter" VALUES(565,'VOID_roll',11,1,NULL,98,7,'VOID Roll',NULL,NULL,NULL,NULL,NULL,'VOID roll (0.1 deg)',NULL,NULL);
 INSERT INTO "parameter" VALUES(567,'error_code',11,12,NULL,8,10,'Error Code',NULL,0,NULL,NULL,NULL,'error code',NULL,NULL);
 INSERT INTO "parameter" VALUES(568,'status_code',11,12,NULL,8,10,'Status Code',NULL,0,NULL,NULL,NULL,'status code',NULL,NULL);
 INSERT INTO "parameter" VALUES(569,'analog_input',11,9,NULL,8,10,'Analog Input',NULL,0,NULL,NULL,NULL,'analog input',NULL,NULL);
