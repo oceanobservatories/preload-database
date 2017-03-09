@@ -1,5 +1,6 @@
 NEXT RELEASE
 
+- Added columns for preload tool stream query
 - Fixed unit test issue
 - Deleted unused parameters / streams
 - Created new parameter (PD4) for streams which produce TEMPWAT_L1 natively as "temperature"
