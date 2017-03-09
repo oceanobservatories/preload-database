@@ -178,44 +178,34 @@ class TestParameter(unittest.TestCase):
         present. Must be a valid JSON. Each value must be valid parameter
         (if starting with PD).
         """
+        errors = []
 
         # Start with rows with both the parameter function id and parameter
         # function map are populated.
-        idx = ((self.data.parameterfunctionid == '') & (self.data.parameterfunctionmap == '')) | \
-              ((self.data.parameterfunctionid != '') & (self.data.parameterfunctionmap != ''))
-        for data in self.data[idx][['parameterfunctionid', 'parameterfunctionmap']].itertuples():
-            # if both the parameter function id and parameter fucntion map are
-            # both empty, that's ok.
-            if data.parameterfunctionid == '':
-                continue
+        idx = ((self.data.parameterfunctionid != '') | (self.data.parameterfunctionmap != ''))
 
+        data = self.data[idx][['id', 'parameterfunctionid', 'parameterfunctionmap']]
+        for row in data.itertuples():
             # Test if the function map exists for the entered parameter
             # function id if it is a valid json mapping.
             try:
-                function_map = json.loads(data.parameterfunctionmap)
-                isinstance(function_map, dict)
+                function_map = json.loads(row.parameterfunctionmap)
+                function_map.get('test')
             except (TypeError, ValueError):
-                idx[data.Index-1] = False
+                errors.append('Invalid functionmap: %r' % row)
                 continue
 
             # We got here, so the function map is valid. Now check if the
             # parameters are valid.
             for key, value in function_map.iteritems():
-                try:
-                    if str(value).startswith('CC_'):
-                        continue
-
-                    if str(value).startswith('PD') and value not in self.data.id.values:
-                        idx[data.Index-1] = False
-                        break
-
-                except TypeError:
-                    idx[data.Index-1] = False
+                if str(value).startswith('PD') and value not in self.data.id.values:
+                    errors.append('Invalid PD (%s) in functionmap: %r' % (value, row))
                     break
 
-        idx = numpy.logical_not(idx)
-        self.assertEqual(len(self.data[idx]), 0, msg='Parameter function map is not a valid:\n%s' %
-                                                     self.data[idx][['id', 'parameterfunctionmap']])
+            if not row.parameterfunctionid.startswith('PFID'):
+                errors.append('Missing PFID: %r' % row)
+
+        self.assertEqual(len(errors), 0, msg=errors)
 
     def test_qc_functions(self):
         """ qc functions - Enforce ALL CAPS. Must only contain alphabetic characters and hyphens. """

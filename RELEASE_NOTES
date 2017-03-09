@@ -1,3 +1,8 @@
+NEXT RELEASE
+
+- Fixed unit test issue
+- Deleted unused parameters / streams
+
 Version 1.0.6 (2017-03-06)
 
 - Fixed conda env to contain all needed packages
