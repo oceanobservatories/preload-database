@@ -2,6 +2,7 @@ NEXT RELEASE
 
 - Fixed unit test issue
 - Deleted unused parameters / streams
+- Created new parameter (PD4) for streams which produce TEMPWAT_L1 natively as "temperature"
 
 Version 1.0.6 (2017-03-06)
 

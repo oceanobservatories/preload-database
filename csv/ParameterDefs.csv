@@ -18,8 +18,9 @@ DOC:Vocabulary,,,,,,,,,,,,,,,,http://cf-pcmdi.llnl.gov/documents/cf-standard-nam
 DOC: Required,no,yes,yes,yes,,yes,yes if ParameterType == category,yes,yes,yes,,,not yet,not yet,,no,no,no,no,,
 DOC:CI_Attribute_Name,,Parameter.name,[X],Parameter.parameter_type,,Parameter.value_encoding,[into code_report],Parameter.units,Parameter.fill_value,Parameter.display_name,Parameter.precision,,[X],[X],[X],Parameter.standard_name,Parameter.ooi_short_name,Parameter.description,[X],,
 BASE,,conductivity,PD1,quantity,,float32,,S m-1,-9999999,Seawater Conductivity,6,,,,CONDWAT,sea_water_electrical_conductivity,CONDWAT_L1,"Seawater conductivity refers to the ability of seawater to conduct electricity. The presence of ions in the seawater, such as salt, increases the electrical conducting ability of seawater. As such, conductivity can be used as a proxy for determining the quantity of salt in a sample of seawater. Units: S m-1",Seawater Electrical Conductivity,Science Data,L1
-"BASE,VELPT_D",,pressure,PD2,quantity,,float32,,dbar,-9999999,Seawater Pressure,3,,,,PRESWAT,sea_water_pressure,PRESWAT_L1,Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar,Seawater Pressure,Science Data,L1
+BASE,,pressure,PD2,quantity,,float32,,dbar,-9999999,Seawater Pressure,3,,,,PRESWAT,sea_water_pressure,PRESWAT_L1,Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar,Seawater Pressure,Science Data,L1
 BASE,,salinity,PD3,quantity,,float32,,1,-9999999,Practical Salinity,3,,,,PRACSAL,sea_water_practical_salinity,PRACSAL_L2,Salinity is generally defined as the concentration of dissolved salt in a parcel of seawater. Practical Salinity is a more specific unitless quantity calculated from the conductivity of seawater and adjusted for temperature and pressure. It is approximately equivalent to Absolute Salinity (the mass fraction of dissolved salt in seawater) but they are not interchangeable. Units: unitless,Seawater Practical Salinity,Science Data,L2
+BASE,,temperature,PD4,quantity,,float32,,deg_C,-9999999,Seawater Temperature,4,,,,TEMPWAT,sea_water_temperature,TEMPWAT_L1,Seawater temperature near the sensor. Units: degrees Celsius,Seawater Temperature,Science Data,L1
 BASE,,density,PD5,quantity,,float32,,kg m-3,-9999999,Seawater Density,3,,,,DENSITY,sea_water_density,DENSITY_L2,"Seawater density is defined as mass per unit volume and is calculated using the temperature, salinity, and pressure of a seawater sample. Units: kg m-3",Seawater Density,Science Data,L2
 BASE,,temp,PD6,quantity,,float32,,deg_C,-9999999,Seawater Temperature,4,,,,TEMPWAT,sea_water_temperature,TEMPWAT_L1,Seawater temperature near the sensor. Units: degrees Celsius,Seawater Temperature,Science Data,L1
 BASE,,time,PD7,quantity,,float64,,seconds since 1900-01-01,-9999999,"Time, UTC",,,,,,time,,"Time, UTC",,,
@@ -30,12 +31,6 @@ BASE,,driver_timestamp,PD11,quantity,,float64,,seconds since 1900-01-01,-9999999
 BASE,,internal_timestamp,PD12,quantity,,float64,,seconds since 1900-01-01,-9999999,"Internal Timestamp, UTC",,FALSE,,,,,,"Internal timestamp, UTC",,,
 "BASE,PARAD_A",PARAD,checksum,PD15,quantity,,int32,,1,-9999999,Checksum,0,,,,,,,Checksum,,,
 BASE,,preferred_timestamp,PD16,quantity,,string,,1,empty,Preferred Timestamp,,FALSE,,,,,,Timestamp preferred as official record.,,,
-BASE,,viz_product_type,PD19,array<>,,,,,,,,,,,,,,,,,
-BASE,,image_obj,PD20,array<>,,,,,,Image Object,0,,,,,,,,,,
-BASE,,image_name,PD21,array<>,,,,,,Image Name,0,,,,,,,,,,
-BASE,,content_type,PD22,array<>,,,,,,Content Type,0,,,,,,,,,,
-BASE,,google_dt_components,PD23,record<>,,,,,,,0,,,,,,,,,,
-BASE,,mpl_graph,PD24,record<>,,,,,,,0,,,,,,,,,,
 "BASE,PARAD_A",PARAD,elapsed_time,PD28,quantity,,float64,,s,-1,Time Since Reset,,,,,,,,,,,
 BASE,,pressure_temp,PD29,quantity,,float32,,deg_C,-9999,Pressure Sensor Internal Temperature,,,,,,,,"The temperature at the pressure sensor (inside the housing, but isolated from housing and the electronics.",,,
 "BETA,CTDMO_GHQR",,sample_number,PD73,quantity,,int32,,count,-9999,Sample Number,0,FALSE,,,,,,,,,
