@@ -1,7 +1,8 @@
 NEXT RELEASE
 
+- Consolidated parameters producing practical salinity. 
 - Added query by data product identifier to list_stream_data.py
-- Updated parameter (PD5) for seawater density, now computed from TEMPWAT, PRESWAT, PRACSAL dpis
+- Consolidated parameters producing seawater density.
 - Added columns for preload tool stream query
 - Fixed unit test issue
 - Deleted unused parameters / streams
