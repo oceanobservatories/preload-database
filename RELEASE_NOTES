@@ -1,5 +1,6 @@
 NEXT RELEASE
 
+- Consolidated parameters producing dissolved oxygen (Redmine #4107). 
 - Consolidated parameters producing practical salinity. 
 - Added query by data product identifier to list_stream_data.py
 - Consolidated parameters producing seawater density.
