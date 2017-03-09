@@ -1,5 +1,6 @@
 NEXT RELEASE
 
+- Added query by data product identifier to list_stream_data.py
 - Updated parameter (PD5) for seawater density, now computed from TEMPWAT, PRESWAT, PRACSAL dpis
 - Added columns for preload tool stream query
 - Fixed unit test issue

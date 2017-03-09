@@ -18,6 +18,8 @@ from collections import namedtuple
 import docopt
 
 from ooi_data.postgres.model import Stream, Parameter, MetadataBase
+from sqlalchemy import or_
+
 from database import create_engine_from_url, create_scoped_session
 
 
@@ -31,11 +33,16 @@ header = Header('name', 'type', 'encoding', 'units', 'pfid', 'dpi')
 header2 = Header('-' * 40, '-' * 15, '-' * 10, '-' * 30, '-' * 10, '-' * 10)
 
 
-def get_object_from_preload(klass, field):
-    if field.isnumeric():
-        return klass.query.get(field)
-    else:
-        return klass.query.filter(klass.name == field).first()
+def get_objects_from_preload(klass, fields):
+    for field in fields:
+        if field.isnumeric():
+            yield klass.query.get(field)
+        if klass is Parameter:
+            for each in klass.query.filter(or_(klass.name == field, klass.data_product_identifier == field)):
+                yield each
+        else:
+            for each in klass.query.filter(klass.name == field):
+                yield each
 
 
 def print_parameter(parameter, indent_level, stream=None):
@@ -111,10 +118,10 @@ def main():
     MetadataBase.query = session.query_property()
 
     if stream:
-        streams = [get_object_from_preload(Stream, f) for f in name_or_ids]
+        streams = get_objects_from_preload(Stream, name_or_ids)
         list_stream_parameters(name_or_ids, streams)
     else:
-        parameters = [get_object_from_preload(Parameter, f) for f in name_or_ids]
+        parameters = get_objects_from_preload(Parameter, name_or_ids)
         list_parameters(name_or_ids, parameters)
 
 
