@@ -2,6 +2,6 @@ pandas
 psycopg2
 docopt
 titlecase
-GeoAlchemy2
+geoalchemy2
 
-git+https://github.com/oceanobservatories/ooi-data@v0.0.3
+git+https://github.com/oceanobservatories/ooi-data@v0.0.4

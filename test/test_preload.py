@@ -1,17 +1,24 @@
+import os
 import unittest
 
-import database
-from database import create_engine_from_url, create_scoped_session
-from ooi_data.postgres.model.preload import Parameter, Stream, NominalDepth, MetadataBase
+from ooi_data.postgres.model import MetadataBase, Parameter, Stream, NominalDepth
+
+from database import create_engine_from_url
+from database import create_scoped_session
+
+here = os.path.dirname(__file__)
+preload_sql = 'preload_database.sql'
 
 
-class TestParameter(unittest.TestCase):
+class PreloadUnitTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         engine = create_engine_from_url(None)
         session = create_scoped_session(engine)
         MetadataBase.query = session.query_property()
 
+
+class TestParameter(PreloadUnitTest):
     def test_identity(self):
         p1 = Parameter.query.get(165)
         p2 = Parameter.query.get(165)
@@ -19,7 +26,7 @@ class TestParameter(unittest.TestCase):
         self.assertEqual(p1, p2)
 
     def test_properties(self):
-        p = Parameter.query.get(911)
+        p = Parameter.query.get(13)
         self.assertEqual(p.value_encoding, 'float32')
         self.assertEqual(p.unit, '1')
         self.assertEqual(p.parameter_type, 'function')
@@ -70,32 +77,22 @@ class TestParameter(unittest.TestCase):
         sci_water_pressure = Parameter.query.get(1537)
         self.assertEqual(sci_water_pressure.is_function, False)
 
-    def test_is_l1(self):
+    def test_is_l1_l2(self):
         pressure = Parameter.query.get(195)  # L0
         tempwat = Parameter.query.get(908)  # L1
-        practical_salinity = Parameter.query.get(911)  # L2
+        practical_salinity = Parameter.query.get(13)  # L2
 
         self.assertFalse(pressure.is_l1)
-        self.assertTrue(tempwat.is_l1)
-        self.assertFalse(practical_salinity.is_l1)
-
-    def test_is_l2(self):
-        pressure = Parameter.query.get(195)  # L0
-        tempwat = Parameter.query.get(908)  # L1
-        practical_salinity = Parameter.query.get(911)  # L2
-
         self.assertFalse(pressure.is_l2)
+
+        self.assertTrue(tempwat.is_l1)
         self.assertFalse(tempwat.is_l2)
+
+        self.assertFalse(practical_salinity.is_l1)
         self.assertTrue(practical_salinity.is_l2)
 
 
-class TestStream(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        engine = create_engine_from_url(None)
-        session = create_scoped_session(engine)
-        MetadataBase.query = session.query_property()
-
+class TestStream(PreloadUnitTest):
     def test_needs_no_external(self):
         # Query a stream with NO external dependencies
         # Verify that the stream object reports no needed parameters
@@ -113,8 +110,9 @@ class TestStream(unittest.TestCase):
         #  'frame_type':'PD311','wllower':'CC_lower_wavelength_limit_for_spectra_fit',
         #  'wlupper':'CC_upper_wavelength_limit_for_spectra_fit'}
 
-        # nutnr needs pracsal(911) and tempwat(908) from the co-located CTD
-        needed = [(None, (Parameter.query.get(x),)) for x in [908, 911]]
+        # nutnr needs pracsal(13) and tempwat(908) from the co-located CTD
+        needed = [(None, (Parameter.query.get(908),)),
+                  (None, (Parameter.query.get(3), Parameter.query.get(13)))]
 
         # fetch the stream, assert needs returns just the list above
         nutnr_a_sample = Stream.query.get(342)
@@ -144,14 +142,20 @@ class TestStream(unittest.TestCase):
 
         # calculate the UNION of the needs for both streams
         needs = nutnr_a_sample.needs.union(ctdpf_optode_sample.needs)
+        provided = set(nutnr_a_sample.parameters + ctdpf_optode_sample.parameters)
         # remove all parameters provided by the two streams
-        needs = needs.difference([(None, (p,)) for p in nutnr_a_sample.parameters])
-        needs = needs.difference([(None, (p,)) for p in ctdpf_optode_sample.parameters])
+        for entry in list(needs):
+            _, poss_params = entry
+            for p in poss_params:
+                if p in provided:
+                    needs.remove(entry)
+
         # assert all needs have been satisfied
         self.assertEqual(needs, set())
 
     def test_needs_not_met(self):
-        missing = [(None, (Parameter.query.get(x),)) for x in [908, 911]]
+        missing = [(None, (Parameter.query.get(908),)),
+                   (None, (Parameter.query.get(3), Parameter.query.get(13)))]
         nutnr_a_sample = Stream.query.get(342)
         needs = nutnr_a_sample.needs
         # remove all parameters provided by the source stream
@@ -186,7 +190,7 @@ class TestStream(unittest.TestCase):
         tempwat = Parameter.query.get(908)
         preswat = Parameter.query.get(909)
         condwat = Parameter.query.get(910)
-        practical_salinity = Parameter.query.get(911)
+        practical_salinity = Parameter.query.get(13)
 
         self.assertEqual(ctdpf_optode_sample.needs_internal([preswat]), preswat_expected)
         self.assertEqual(ctdpf_optode_sample.needs_internal([condwat]), condwat_expected)
@@ -221,7 +225,7 @@ class TestStream(unittest.TestCase):
     def test_create_function_map_internal_l2(self):
         # {'c':'PD910','t':'PD908','p':'PD909'}
         ctdpf_optode_sample = Stream.query.get(330)
-        practical_salinity = Parameter.query.get(911)
+        practical_salinity = Parameter.query.get(13)
 
         seawater_temperature = Parameter.query.get(908)
         seawater_pressure = Parameter.query.get(909)
@@ -247,7 +251,7 @@ class TestStream(unittest.TestCase):
         ctdpf_optode_sample = Stream.query.get(330)
         temp_sal_corrected_nitrate = Parameter.query.get(2443)
 
-        practical_salinity = Parameter.query.get(911)
+        practical_salinity = Parameter.query.get(13)
         seawater_temperature = Parameter.query.get(908)
         nutnr_dark_value_used_for_fit = Parameter.query.get(2325)
 
@@ -296,7 +300,7 @@ class TestStream(unittest.TestCase):
         reference_light_measurements = Parameter.query.get(933)
         ph_light_measurements = Parameter.query.get(2708)
         phsen_thermistor_temperature = Parameter.query.get(938)
-        practical_salinity = Parameter.query.get(911)
+        practical_salinity = Parameter.query.get(13)
 
         fmap, missing = phsen_data_record.create_function_map(ph_seawater, [ctdpf_optode_sample])
 
@@ -331,14 +335,20 @@ class TestStream(unittest.TestCase):
         self.assertDictContainsSubset(expected, fmap)
         self.assertIn('psal', missing)
 
+    def test_deep_parameter_external_needs(self):
+        # See redmine #12040
+        # not identifying external parameters under internal function needed by other internal function
+        stream = Stream.query.filter(Stream.name == 'metbk_a_dcl_instrument').first()
+        heatflx = Parameter.query.get(8054)
+        needs = stream.needs_external([heatflx])
+        expected_needs = {
+            (None, (Parameter.query.get(1154),)),
+            (None, (Parameter.query.get(1155),))
+        }
+        self.assertEqual(needs, expected_needs)
 
-class TestDepths(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        engine = create_engine_from_url(None)
-        session = create_scoped_session(engine)
-        MetadataBase.query = session.query_property()
 
+class TestDepths(PreloadUnitTest):
     def test_same_depth_fixed(self):
         subsite = 'CE02SHSM'
         node = 'RID27'
