@@ -16,6 +16,7 @@ BETA,PFID1,TEMPWAT_L1_CTDMO_,TEMPWAT_L1,CTDMO,,NumexprFunction,(T / 10000) - 10,
 BETA,PFID2,CONDWAT_L1_CTDMO_,CONDWAT_L1,CTDMO,,NumexprFunction,(C / 100000) - 0.5,,['C'],,,,,
 BETA,PFID3,PRESWAT_L1_CTDMO_,PRESWAT_L1,CTDMO,,NumexprFunction,(P * p_range / (0.85 * 65536)) - (0.05 * p_range),,"['P', 'p_range']",,,,,
 BETA,PFID6,"SFLPRES_L1_PRESF, PREST_All",SFLPRES_L1,"PRESF, PREST",All,NumexprFunction,p_psia * 0.689475728,,['p_psia'],,Scaling function to convert the absolute pressure measurement in psi to dbar.,,,
+BETA,PFID16,identity,identity,,,NumexprFunction,x,,['x'],,Returns the value (identify function).,,,
 BASE,PFID17,global_range_test__,global_range_test,,,QCPythonFunction,dataqc_globalrangetest_minmax,ion_functions.qc.qc_functions,"['dat','dat_min','dat_max']",,,,,0b0000000000000001
 BASE,PFID18,dataqc_localrangetest__,dataqc_localrangetest,,,QCPythonFunction,dataqc_localrangetest_wrapper,ion_functions.qc.qc_functions,"['dat','datlim*', 'datlimz*', 'dims*', 'pv_callback']",,,,,0b0000000000000010
 BASE,PFID19,dataqc_spiketest__,dataqc_spiketest,,,QCPythonFunction,dataqc_spiketest_wrapper,ion_functions.qc.qc_functions,"['dat','acc','N','L']",,,,,0b0000000000000100

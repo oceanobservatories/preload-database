@@ -1,3 +1,8 @@
+Version 1.0.8 (2017-03-14)
+
+- Updates to distinguish dissolved oxygen parameters coming from a buoy or collocated CTD (Redmine #4390).
+- Updated version of ooi-data (0.0.5).
+
 Version 1.0.7 (2017-03-10)
 
 - Consolidated parameters producing dissolved oxygen (Redmine #4107). 

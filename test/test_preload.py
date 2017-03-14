@@ -1,13 +1,11 @@
 import os
 import unittest
+from operator import attrgetter
 
 from ooi_data.postgres.model import MetadataBase, Parameter, Stream, NominalDepth
 
 from database import create_engine_from_url
 from database import create_scoped_session
-
-here = os.path.dirname(__file__)
-preload_sql = 'preload_database.sql'
 
 
 class PreloadUnitTest(unittest.TestCase):
@@ -59,7 +57,7 @@ class TestParameter(PreloadUnitTest):
         #  'eb578':'CC_eb578','ind_slp':'CC_ind_slp','ind_off':'CC_ind_off','psal':'dpi_PRACSAL_L2'}
         needed = [(None, (Parameter.query.get(x),)) for x in [357, 933, 938]]
         pracsal = Parameter.query.filter(Parameter.data_product_identifier == 'PRACSAL_L2').all()
-        needed.append((None, tuple(pracsal)))
+        needed.append((None, tuple(sorted(pracsal, key=attrgetter('id')))))
         phsen_abcdef_ph_seawater = Parameter.query.get(2767)
         self.assertEqual(set(phsen_abcdef_ph_seawater.needs), set(needed))
 
@@ -90,6 +88,23 @@ class TestParameter(PreloadUnitTest):
 
         self.assertFalse(practical_salinity.is_l1)
         self.assertTrue(practical_salinity.is_l2)
+
+    def test_multiple_dpi(self):
+        p = Parameter.query.get(14)
+        pracsal = Parameter.query.filter(Parameter.data_product_identifier == 'PRACSAL_L2').all()
+        salsurf = Parameter.query.filter(Parameter.data_product_identifier == 'SALSURF_L2').all()
+        combined = (None, tuple(sorted(pracsal + salsurf, key=attrgetter('id'))))
+        self.assertIn(combined, p.needs)
+
+        tempwat = Parameter.query.filter(Parameter.data_product_identifier == 'TEMPWAT_L1').all()
+        tempsrf = Parameter.query.filter(Parameter.data_product_identifier == 'TEMPSRF_L1').all()
+        combined = (None, tuple(sorted(tempwat + tempsrf, key=attrgetter('id'))))
+        self.assertIn(combined, p.needs)
+
+        preswat = Parameter.query.filter(Parameter.data_product_identifier == 'PRESWAT_L1').all()
+        pressrf = Parameter.query.get(17)
+        combined = (None, tuple(sorted(preswat + [pressrf], key=attrgetter('id'))))
+        self.assertIn(combined, p.needs)
 
 
 class TestStream(PreloadUnitTest):
