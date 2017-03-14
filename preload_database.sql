@@ -18919,6 +18919,8 @@ INSERT INTO "stream_parameter" VALUES(702,14);
 INSERT INTO "stream_parameter" VALUES(410,14);
 INSERT INTO "stream_parameter" VALUES(496,14);
 INSERT INTO "stream_parameter" VALUES(492,14);
+INSERT INTO "stream_parameter" VALUES(409,17);
+INSERT INTO "stream_parameter" VALUES(408,17);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
