@@ -1,5 +1,6 @@
 Version 1.0.8 (2017-03-14)
 
+- Updates to distinguish temperature and salinity corrected nitrate concentration parameters coming from a buoy or collocated CTD (Redmine #12102).
 - Updates to distinguish dissolved oxygen parameters coming from a buoy or collocated CTD (Redmine #4390).
 - Updated version of ooi-data (0.0.5).
 
