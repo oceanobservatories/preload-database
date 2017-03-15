@@ -88,7 +88,7 @@ def list_stream_parameters(stream_names, streams):
             print "Stream: DICT%s: %s " % (stream.id, stream.name)
             print indent * (max_indent + 1) + '  ' + param_format.format(header)
             print indent * (max_indent + 1) + '  ' + param_format.format(header2)
-            for parameter in streams[index].parameters:
+            for parameter in stream.parameters:
                 print_parameter(parameter, 1)
                 list_parameter_needs(parameter, 2)
         else:
