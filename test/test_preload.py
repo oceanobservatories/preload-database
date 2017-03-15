@@ -3,6 +3,7 @@ import unittest
 from operator import attrgetter
 
 from ooi_data.postgres.model import MetadataBase, Parameter, Stream, NominalDepth
+from sqlalchemy import or_
 
 from database import create_engine_from_url
 from database import create_scoped_session
@@ -126,8 +127,15 @@ class TestStream(PreloadUnitTest):
         #  'wlupper':'CC_upper_wavelength_limit_for_spectra_fit'}
 
         # nutnr needs pracsal(13) and tempwat(908) from the co-located CTD
-        needed = [(None, (Parameter.query.get(908),)),
-                  (None, (Parameter.query.get(3), Parameter.query.get(13)))]
+        tempwats = tuple(Parameter.query.filter(or_(
+            Parameter.data_product_identifier == 'TEMPWAT_L1',
+            Parameter.data_product_identifier == 'TEMPSRF_L1'
+        )).order_by(Parameter.id).all())
+        pracsals = tuple(Parameter.query.filter(or_(
+            Parameter.data_product_identifier == 'PRACSAL_L2',
+            Parameter.data_product_identifier == 'SALSURF_L2'
+        )).order_by(Parameter.id).all())
+        needed = [(None, tempwats), (None, pracsals)]
 
         # fetch the stream, assert needs returns just the list above
         nutnr_a_sample = Stream.query.get(342)
@@ -136,14 +144,14 @@ class TestStream(PreloadUnitTest):
     def test_needs_external_limited_params(self):
         # Query a stream with external dependencies, but specify limited parameters
         # so those dependencies do not exist. Verify no dependencies returned.
-        # PD2443: {'cal_temp':'CC_cal_temp','wl':'CC_wl','eno3':'CC_eno3', 'eswa':'CC_eswa',
+        # PD18: {'cal_temp':'CC_cal_temp','wl':'CC_wl','eno3':'CC_eno3', 'eswa':'CC_eswa',
         #  'di':'CC_di','dark_value':'PD2325','ctd_t':'PD908','ctd_sp':'PD911','data_in':'PD332',
         #  'frame_type':'PD311','wllower':'CC_lower_wavelength_limit_for_spectra_fit',
         #  'wlupper':'CC_upper_wavelength_limit_for_spectra_fit'}
 
         # fetch the stream, assert needs returns nothing
         nutnr_a_sample = Stream.query.get(342)
-        nutnr_a_sample_limited_parameters = [p for p in nutnr_a_sample.parameters if p.id != 2443]
+        nutnr_a_sample_limited_parameters = [p for p in nutnr_a_sample.parameters if p.id != 18]
         self.assertEqual(set(nutnr_a_sample.needs_external(nutnr_a_sample_limited_parameters)), set())
 
     def test_needs_cc(self):
@@ -169,8 +177,16 @@ class TestStream(PreloadUnitTest):
         self.assertEqual(needs, set())
 
     def test_needs_not_met(self):
-        missing = [(None, (Parameter.query.get(908),)),
-                   (None, (Parameter.query.get(3), Parameter.query.get(13)))]
+        tempwats = tuple(Parameter.query.filter(or_(
+            Parameter.data_product_identifier == 'TEMPWAT_L1',
+            Parameter.data_product_identifier == 'TEMPSRF_L1'
+        )).order_by(Parameter.id).all())
+        pracsals = tuple(Parameter.query.filter(or_(
+            Parameter.data_product_identifier == 'PRACSAL_L2',
+            Parameter.data_product_identifier == 'SALSURF_L2'
+        )).order_by(Parameter.id).all())
+        missing = [(None, tempwats),
+                   (None, pracsals)]
         nutnr_a_sample = Stream.query.get(342)
         needs = nutnr_a_sample.needs
         # remove all parameters provided by the source stream
@@ -264,7 +280,7 @@ class TestStream(PreloadUnitTest):
         #  'wlupper':'CC_upper_wavelength_limit_for_spectra_fit'}
         nutnr_a_sample = Stream.query.get(342)
         ctdpf_optode_sample = Stream.query.get(330)
-        temp_sal_corrected_nitrate = Parameter.query.get(2443)
+        temp_sal_corrected_nitrate = Parameter.query.get(18)
 
         practical_salinity = Parameter.query.get(13)
         seawater_temperature = Parameter.query.get(908)
