@@ -75,13 +75,13 @@ class TestStream(unittest.TestCase):
     def test_parameter_ids(self):
         """ parameter_ids - Verify parameter ids have been defined. """
 
-        def parameter_does_not_exist(ids):
-            ids = set(ids.replace(' ', '').split(','))
-            return bool(ids - self.pd_id)
-
-        idx = (self.data.parameterids != '') & self.data.parameterids.map(parameter_does_not_exist)
-        self.assertEqual(len(self.data[idx]), 0, msg='Streams specified with undefined parameters:\n%s' %
-                                                     self.data[idx][['id', 'parameterids']])
+        errors = []
+        for index, row in self.data.iterrows():
+            ids = set(row.parameterids.replace(' ', '').split(','))
+            missing = ids - self.pd_id
+            if missing:
+                errors.append('%r: invalid parameters: %r' % (row.id, sorted(missing)))
+        self.assertEqual(errors, [], msg='\n'.join(errors))
 
     def test_temporal_parameter(self):
         """
