@@ -4709,8 +4709,8 @@ INSERT INTO "parameter" VALUES(8032,'presf_tide_temperature_number',11,4,NULL,66
 INSERT INTO "parameter" VALUES(8033,'presf_wave_press_temp_comp_number',11,4,NULL,66,7,'Pressure Temperature Compensation Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure family of instruments (PRESF) pressure temperature compensation number.  Units: counts',4,0);
 INSERT INTO "parameter" VALUES(8034,'presf_wave_burst_pressure_number',3,4,NULL,66,7,'Seafloor Pressure Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure wave measurements, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure
 (SFLPRES) core data product.  Units: counts',4,0);
-INSERT INTO "parameter" VALUES(8035,'presf_tide_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,131,'{"slope": "CC_slope_correction_factor", "p_dec_tide": "PD8030", "b": "CC_b", "m": "CC_m", "offset": "CC_offset_correction_factor"}','SFLPRES_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
-INSERT INTO "parameter" VALUES(8036,'presf_tide_temperature',10,1,NULL,91,7,'Seawater Temperature','sea_water_temperature_at_sea_floor',4,208,'{"t0": "PD8031"}','SFLPRES_L1','Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: counts',3,1);
+INSERT INTO "parameter" VALUES(8035,'presf_tide_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,131,'{"slope": "CC_slope_correction_factor", "p_dec_tide": "PD8031", "b": "CC_b", "m": "CC_m", "offset": "CC_offset_correction_factor"}','SFLPRES_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
+INSERT INTO "parameter" VALUES(8036,'presf_tide_temperature',10,1,NULL,91,7,'Seawater Temperature','sea_water_temperature_at_sea_floor',4,208,'{"t0": "PD8032"}','PRESTMP_L1','Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: deg_C',3,1);
 INSERT INTO "parameter" VALUES(8037,'presf_wave_burst_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,132,'{"slope": "CC_slope_correction_factor", "ptcn": "PD8033", "t4": "CC_t4", "t1": "CC_t1", "t2": "CC_t2", "p_dec_wave": "PD8034", "u0": "CC_u0", "t3": "CC_t3", "c3": "CC_c3", "poff": "CC_pressure_offset_calibration_coefficient", "offset": "CC_offset_correction_factor", "y1": "CC_y1", "c2": "CC_c2", "y3": "CC_y3", "y2": "CC_y2", "d2": "CC_d2", "c1": "CC_c1", "d1": "CC_d1"}','SFLPRES-WAVE_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
 INSERT INTO "parameter" VALUES(8038,'oxy_calphase_voltage',10,1,NULL,38,7,'Calibrated Phase Difference',NULL,3,209,'{"counts": "PD835"}','DOCONCS-VLT_L0','Calibrated phase difference in Volts, used to calculate temperature compensated oxygen concentration.',4,0);
 INSERT INTO "parameter" VALUES(8039,'oxy_temp_voltage',10,1,NULL,38,7,'DOSTA Temperature',NULL,3,209,'{"counts": "PD836"}','DOCONCS-VLT_L0','Oxygen sensor ambient temperature in Volts',4,0);
@@ -11693,7 +11693,6 @@ INSERT INTO "stream_parameter" VALUES(437,94);
 INSERT INTO "stream_parameter" VALUES(437,742);
 INSERT INTO "stream_parameter" VALUES(437,863);
 INSERT INTO "stream_parameter" VALUES(437,2605);
-INSERT INTO "stream_parameter" VALUES(437,2768);
 INSERT INTO "stream_parameter" VALUES(438,7);
 INSERT INTO "stream_parameter" VALUES(438,10);
 INSERT INTO "stream_parameter" VALUES(438,11);
@@ -18877,6 +18876,7 @@ INSERT INTO "stream_parameter" VALUES(407,22);
 INSERT INTO "stream_parameter" VALUES(407,23);
 INSERT INTO "stream_parameter" VALUES(407,24);
 INSERT INTO "stream_parameter" VALUES(407,25);
+INSERT INTO "stream_parameter" VALUES(437,3250);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
