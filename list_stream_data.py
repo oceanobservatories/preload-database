@@ -25,8 +25,8 @@ from database import create_engine_from_url, create_scoped_session
 
 indent = '    '
 max_indent = 6
-param_format = '{0.name:40} {0.parameter_type:15} {0.value_encoding:10} {0.unit:30} {0.parameter_function_id:<10} ' \
-               '{0.data_product_identifier:16}'
+param_format = u'{0.name:40} {0.parameter_type:15} {0.value_encoding:10} {0.unit:30} {0.parameter_function_id:<10} ' \
+               u'{0.data_product_identifier:16}'
 Header = namedtuple('Header', ['name', 'parameter_type', 'value_encoding', 'unit', 'parameter_function_id',
                                'data_product_identifier'])
 header = Header('name', 'type', 'encoding', 'units', 'pfid', 'dpi')
