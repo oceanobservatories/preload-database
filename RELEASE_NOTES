@@ -1,3 +1,7 @@
+NEXT RELEASE
+
+- Removed all unicode characters from ParameterDefs.csv
+
 Version 1.0.9 (2017-03-21)
 
 - Update to allow unicode processing by the list_stream utility.
