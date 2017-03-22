@@ -54,7 +54,7 @@ botpt_iris_sample,1440,86400,70000,1,"86,400",,Sample data 60k-70k per day
 botpt_lily_leveling,20160,24,580000,14,"8,120,000",Conflict,Sample data 580k per day
 botpt_lily_sample,1440,86400,75000,1,"86,400",,Sample data 65k-75k per day
 botpt_nano_sample,180,864000,1500000,0.125,"187,500",Conflict,Sample data 1300k -1500k per day
-botpt_nano_sample_15sec,10080,,,,,,
+botpt_nano_sample_15sec,80640,,,,,,
 botpt_nano_sample_24hour,525600,,,,,,
 botpt_status,20160,2,,14,28,,No ingested data
 calibration_status,10080,,15000,7,"105,000",,Sample data 5k-15k per day

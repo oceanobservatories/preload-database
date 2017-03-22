@@ -1,8 +1,11 @@
-Version 1.0.8 (2017-03-21)
+Version 1.0.9 (2017-03-21)
 
 - Update to allow unicode processing by the list_stream utility.
 - Correct parameter resolution for PRESF instrument streams (Redmine #12125).
 - Correct parameter resolution for instruments on surface buoys (Redmine #12102).
+
+Version 1.0.8 (2017-03-13)
+
 - Updates to distinguish dissolved oxygen parameters coming from a buoy or collocated CTD (Redmine #4390).
 - Updated version of ooi-data (0.0.5).
 
