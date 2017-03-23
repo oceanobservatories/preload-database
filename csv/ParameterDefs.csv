@@ -3297,6 +3297,11 @@ ZPLSC_C,ZPLSC,zplsc_c_transmission_timestamp,PD3730,quantity,,float64,,1,empty,T
  Where: yyyy is the hear, mm is the month, dd is the day, hh is the hour, mm is the minute, and ss is the second.
  Indicates the date and time the data was transmitted by the unit.",,,
 ZPLSC_C,ZPLSC,zplsc_c_phase,PD3731,quantity,,int16,,1,-32768,Phase,0,,,,,,,Phase (up to 12) used to acquire this profile data. A phase is a data collection sequence with a unique set of operating parameters.,,,
+ZPLSC_C,ZPLSC,zplsc_c_tilt_x_counts,PD3732,quantity,,uint16,,counts,65535,Tilt in X Direction,1,,,,,,,Tilt in X direction,,,
+ZPLSC_C,ZPLSC,zplsc_c_tilt_y_counts,PD3733,quantity,,uint16,,counts,65535,Tilt in Y Direction,1,,,,,,,Tilt in Y direction,,,
+ZPLSC_C,ZPLSC,zplsc_c_battery_voltage_counts,PD3734,quantity,,uint16,,counts,65535,Voltage of the Main Battery Pack,1,,,,,,,Voltage of the main battery pack,,,
+ZPLSC_C,ZPLSC,zplsc_c_temperature_counts,PD3735,quantity,,uint16,,counts,65535,Temperature,1,,,,,,,Water temperature in degrees Celsius,,,
+ZPLSC_C,ZPLSC,zplsc_c_pressure_counts,PD3736,quantity,,uint16,,counts,65535,Seawater Pressure,1,,,,,,,Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar,Seawater Pressure,,
 ZPLSC_C,ZPLSC,zplsc_c_tilt_x,PD3742,quantity,,float32,,deg,-9999999,Tilt in X Direction,1,,,,,,,Tilt in X direction,,,
 ZPLSC_C,ZPLSC,zplsc_c_tilt_y,PD3743,quantity,,float32,,deg,-9999999,Tilt in Y Direction,1,,,,,,,Tilt in Y direction,,,
 ZPLSC_C,ZPLSC,zplsc_c_battery_voltage,PD3744,quantity,,float32,,volt,-9999999,Voltage of the Main Battery Pack,1,,,,,,,Voltage of the main battery pack,,,
