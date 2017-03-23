@@ -4301,6 +4301,11 @@ INSERT INTO "parameter" VALUES(3730,'zplsc_c_transmission_timestamp',11,2,NULL,8
  Where: yyyy is the hear, mm is the month, dd is the day, hh is the hour, mm is the minute, and ss is the second.
  Indicates the date and time the data was transmitted by the unit.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3731,'zplsc_c_phase',11,3,NULL,8,2,'Phase',NULL,0,NULL,NULL,NULL,'Phase (up to 12) used to acquire this profile data. A phase is a data collection sequence with a unique set of operating parameters.',NULL,NULL);
+INSERT INTO "parameter" VALUES(3732,'zplsc_c_tilt_x_counts',11,9,NULL,66,13,'Tilt in X Direction',NULL,1,NULL,NULL,NULL,'Tilt in X direction',NULL,NULL);
+INSERT INTO "parameter" VALUES(3733,'zplsc_c_tilt_y_counts',11,9,NULL,66,13,'Tilt in Y Direction',NULL,1,NULL,NULL,NULL,'Tilt in Y direction',NULL,NULL);
+INSERT INTO "parameter" VALUES(3734,'zplsc_c_battery_voltage_counts',11,9,NULL,66,13,'Voltage of the Main Battery Pack',NULL,1,NULL,NULL,NULL,'Voltage of the main battery pack',NULL,NULL);
+INSERT INTO "parameter" VALUES(3735,'zplsc_c_temperature_counts',11,9,NULL,66,13,'Temperature',NULL,1,NULL,NULL,NULL,'Water temperature in degrees Celsius',NULL,NULL);
+INSERT INTO "parameter" VALUES(3736,'zplsc_c_pressure_counts',11,9,NULL,66,13,'Seawater Pressure',NULL,1,NULL,NULL,NULL,'Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar',NULL,NULL);
 INSERT INTO "parameter" VALUES(3742,'zplsc_c_tilt_x',11,1,NULL,87,7,'Tilt in X Direction',NULL,1,NULL,NULL,NULL,'Tilt in X direction',NULL,NULL);
 INSERT INTO "parameter" VALUES(3743,'zplsc_c_tilt_y',11,1,NULL,87,7,'Tilt in Y Direction',NULL,1,NULL,NULL,NULL,'Tilt in Y direction',NULL,NULL);
 INSERT INTO "parameter" VALUES(3744,'zplsc_c_battery_voltage',11,1,NULL,228,7,'Voltage of the Main Battery Pack',NULL,1,NULL,NULL,NULL,'Voltage of the main battery pack',NULL,NULL);
@@ -5700,6 +5705,7 @@ INSERT INTO "stream" VALUES(769,'flord_g_ctdbp_p_instrument_recovered',7,1440,3,
 INSERT INTO "stream" VALUES(770,'flort_o_glider_data',7,1440,3,40);
 INSERT INTO "stream" VALUES(771,'botpt_nano_sample_15sec',7,80640,NULL,NULL);
 INSERT INTO "stream" VALUES(772,'botpt_nano_sample_24hour',7,525600,NULL,NULL);
+INSERT INTO "stream" VALUES(773,'zplsc_c_recovered',7,1440,NULL,NULL);
 CREATE TABLE stream_content (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
@@ -18848,6 +18854,29 @@ INSERT INTO "stream_parameter" VALUES(407,23);
 INSERT INTO "stream_parameter" VALUES(407,24);
 INSERT INTO "stream_parameter" VALUES(407,25);
 INSERT INTO "stream_parameter" VALUES(437,3250);
+INSERT INTO "stream_parameter" VALUES(773,7);
+INSERT INTO "stream_parameter" VALUES(773,10);
+INSERT INTO "stream_parameter" VALUES(773,11);
+INSERT INTO "stream_parameter" VALUES(773,12);
+INSERT INTO "stream_parameter" VALUES(773,16);
+INSERT INTO "stream_parameter" VALUES(773,312);
+INSERT INTO "stream_parameter" VALUES(773,761);
+INSERT INTO "stream_parameter" VALUES(773,863);
+INSERT INTO "stream_parameter" VALUES(773,3730);
+INSERT INTO "stream_parameter" VALUES(773,3731);
+INSERT INTO "stream_parameter" VALUES(773,3732);
+INSERT INTO "stream_parameter" VALUES(773,3733);
+INSERT INTO "stream_parameter" VALUES(773,3734);
+INSERT INTO "stream_parameter" VALUES(773,3735);
+INSERT INTO "stream_parameter" VALUES(773,3736);
+INSERT INTO "stream_parameter" VALUES(773,3748);
+INSERT INTO "stream_parameter" VALUES(773,3749);
+INSERT INTO "stream_parameter" VALUES(773,3751);
+INSERT INTO "stream_parameter" VALUES(773,3752);
+INSERT INTO "stream_parameter" VALUES(773,3754);
+INSERT INTO "stream_parameter" VALUES(773,3755);
+INSERT INTO "stream_parameter" VALUES(773,3757);
+INSERT INTO "stream_parameter" VALUES(773,3758);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
