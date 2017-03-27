@@ -46,8 +46,10 @@ def get_objects_from_preload(klass, fields):
 
 
 def print_parameter(parameter, indent_level, stream=None):
+    #  fix for python problem printing unicode with redirection
     print indent * indent_level + 'PD{0:<4}'.format(parameter.id) + \
-          indent * (max_indent - indent_level) + param_format.format(parameter),
+          indent * (max_indent - indent_level) + \
+          param_format.format(parameter).encode('utf-8'),
     if stream is None:
         print
     else:
