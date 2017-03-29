@@ -2,7 +2,8 @@ NEXT RELEASE
 
 - Removed all unicode characters from ParameterDefs.csv.
 - Added new counts parameters for the zplsc_c_recovered.
-- Added the zplsc_c_recovered stream.
+- Added the zplsc_c_recovered stream (Redmine #10398).
+- Correct the pressure parameter for sci_abs_oxygen (Redmine #12136).
 
 Version 1.0.9 (2017-03-21)
 
