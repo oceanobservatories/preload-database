@@ -1,3 +1,4 @@
+.toc
 *.pyc
 preload.db
 .idea/
