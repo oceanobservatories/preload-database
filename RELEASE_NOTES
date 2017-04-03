@@ -1,3 +1,7 @@
+NEXT_VERSION (2017-04-03)
+
+- Added offset for CTD pressure calculations of optode_sample and ctdpf_sbe43_sample streams (Redmine #8655).
+
 Version 1.0.10 (2017-03-30)
 
 - Removed all unicode characters from ParameterDefs.csv.
