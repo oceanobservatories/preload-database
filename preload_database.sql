@@ -1779,7 +1779,7 @@ INSERT INTO "parameter" VALUES(927,'absorbance_ratio_620',10,1,NULL,66,7,'Optica
 INSERT INTO "parameter" VALUES(928,'absorbance_blank_434',10,1,NULL,8,7,'Optical Absorbance Ratio at 434 Nm - Blank',NULL,4,39,'{"light": "PD2712"}','CO2ABS1_L0','The Optical Absorbance ratio at 434 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(929,'absorbance_blank_620',10,1,NULL,8,7,'Optical Absorbance Ratio at 620 Nm - Blank',NULL,4,40,'{"light": "PD2712"}','CO2ABS2_L0','The Optical Absorbance ratio at 620 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(930,'pco2w_thermistor_temperature',10,1,NULL,91,7,'Thermistor Temperature',NULL,4,43,'{"traw": "PD359"}',NULL,NULL,NULL,NULL);
-INSERT INTO "parameter" VALUES(931,'pco2_seawater',10,1,NULL,217,7,'pCO2 Seawater',NULL,4,44,'{"a434blank": "PD928", "therm": "PD930", "ea620": "CC_ea620", "light": "PD357", "ea434": "CC_ea434", "calt": "CC_calt", "eb434": "CC_eb434", "mtype": "PD355", "a620blank": "PD929", "eb620": "CC_eb620", "cala": "CC_cala", "calb": "CC_calb", "calc": "CC_calc"}','PCO2WAT_L1','Partial Pressure of CO2 in Seawater provides a measure of the amount of CO2 and HCO3 in seawater. Specifically, it refers to the pressure that would be exerted by CO2 if all other gases were removed. Partial pressure of a gas dissolved in seawater is understood as the partial pressure in air that the gas would exert in a hypothetical air volume in equilibrium with that seawater. Units: uatm',3,1);
+INSERT INTO "parameter" VALUES(931,'pco2_seawater',10,1,NULL,217,7,'pCO2 Seawater',NULL,4,44,'{"a434blank": "dpi_CO2ABS1_L0", "therm": "PD359", "ea620": "CC_ea620", "light": "PD357", "ea434": "CC_ea434", "calt": "CC_calt", "eb434": "CC_eb434", "mtype": "PD355", "a620blank": "dpi_CO2ABS2_L0", "eb620": "CC_eb620", "cala": "CC_cala", "calb": "CC_calb", "calc": "CC_calc"}','PCO2WAT_L1','Partial Pressure of CO2 in Seawater provides a measure of the amount of CO2 and HCO3 in seawater. Specifically, it refers to the pressure that would be exerted by CO2 if all other gases were removed. Partial pressure of a gas dissolved in seawater is understood as the partial pressure in air that the gas would exert in a hypothetical air volume in equilibrium with that seawater. Units: uatm',3,1);
 INSERT INTO "parameter" VALUES(932,'thermistor_start',11,3,NULL,66,5,'Thermistor Resistivity at Start of Measurement',NULL,0,NULL,NULL,NULL,'Starting thermistor value',NULL,NULL);
 INSERT INTO "parameter" VALUES(933,'reference_light_measurements',3,3,NULL,66,5,'Array of Reference Light Measurements',NULL,0,NULL,NULL,NULL,'Array of reference light measurements',NULL,NULL);
 INSERT INTO "parameter" VALUES(935,'thermistor_end',11,3,NULL,66,5,'Thermistor Resistivity at End of Measurement',NULL,0,NULL,NULL,NULL,'Thermistor resistivity with a DC volt range of 0 to 5',NULL,NULL);
@@ -4296,7 +4296,6 @@ INSERT INTO "parameter" VALUES(3722,'fdchp_a_fluxmom_crosswind',10,1,NULL,137,7,
 INSERT INTO "parameter" VALUES(3723,'fdchp_a_time_L1',10,1,NULL,199,7,'L1 Timestamps',NULL,4,197,'{"timestamp": "PD7"}','TIME_L1-AUX','The time metadata product TIME_L1-AUX associated with the L1 wind and temperature data products from the FDCHP instrument, which collects 20 minutes of data every hour. For each of the L1 data products, 30 seconds of data is stripped out from the beginning and end of each 20 minute, 12000 record dataset. The TIME_L1-AUX values are the remaining timestamps for each dataset.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3724,'fdchp_a_time_L2',10,1,NULL,199,7,'L2 Timestamps',NULL,4,198,'{"timestamp": "PD7"}','TIME_L2-AUX','The time metadata product TIME_L2-AUX associated with the L2 flux data products from the FDCHP instrument. FDCHP collects 20 minutes of data every hour; for each of the L2 flux data products, one data value is calculated for each 20 minute dataset. The TIME_L2-AUX values are the median timestamps for each dataset.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3726,'par_auv_biospherical_mobile',10,1,NULL,223,8,'PAR Scaling Factor','downwelling_photosynthetic_photon_flux_in_sea_water',4,90,'{"output": "PD3462", "scale_wet": "CC_scale_wet", "dark_offset": "CC_dark_offset"}','OPTPARW_L1','The PAR scaling factor is a calibration parameter used in converting PAR digital voltage counts to scientific units. Units: umol photons m-2 s-1 count-1',3,1);
-INSERT INTO "parameter" VALUES(3729,'pco2w_seawater',10,1,NULL,217,7,'pCO2 Seawater',NULL,4,44,'{"a434blank": "pco2w_a_sami_data_record_cal.PD3778", "therm": "PD930", "ea620": "CC_ea620", "light": "PD357", "ea434": "CC_ea434", "calt": "CC_calt", "eb434": "CC_eb434", "mtype": "PD355", "a620blank": "pco2w_a_sami_data_record_cal.PD3779", "eb620": "CC_eb620", "cala": "CC_cala", "calb": "CC_calb", "calc": "CC_calc"}','PCO2WAT_L1','Partial Pressure of CO2 in Seawater provides a measure of the amount of CO2 and HCO3 in seawater. Specifically, it refers to the pressure that would be exerted by CO2 if all other gases were removed. Partial pressure of a gas dissolved in seawater is understood as the partial pressure in air that the gas would exert in a hypothetical air volume in equilibrium with that seawater. Units: uatm',3,1);
 INSERT INTO "parameter" VALUES(3730,'zplsc_c_transmission_timestamp',11,2,NULL,8,7,'Timestamp',NULL,NULL,NULL,NULL,NULL,'Timestamp that indicates the date and time the data was transmitted by the unit.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3731,'zplsc_c_phase',11,3,NULL,8,2,'Phase',NULL,0,NULL,NULL,NULL,'Phase (up to 12) used to acquire this profile data. A phase is a data collection sequence with a unique set of operating parameters.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3732,'zplsc_c_tilt_x_counts',11,9,NULL,66,13,'Tilt in X Direction',NULL,1,NULL,NULL,NULL,'Counts from A/D converter for the tilt in the X direction',NULL,NULL);
@@ -4338,7 +4337,6 @@ INSERT INTO "parameter" VALUES(3783,'hpies_travel_time4_L1',10,1,NULL,203,6,'Rou
 INSERT INTO "parameter" VALUES(3784,'hpies_bliley_temperature_L1',10,1,NULL,100,6,'Bliley Oscillator Temperature',NULL,3,189,'{"scaler": 0.001, "value": "PD2583"}',NULL,'Bliley oscillator temperature, degrees Celsius. L1 Metadata',NULL,NULL);
 INSERT INTO "parameter" VALUES(3785,'hpies_pressure_L1',10,1,NULL,80,6,'Seafloor Pressure',NULL,3,189,'{"scaler": 0.001, "value": "PD2581"}','IESPRES_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
 INSERT INTO "parameter" VALUES(3786,'hpies_temperature',10,1,NULL,91,6,'Seawater Temperature',NULL,3,189,'{"scaler": 0.001, "value": "PD2582"}',NULL,'Seawater temperature near the sensor. Units: degrees Celsius',NULL,NULL);
-INSERT INTO "parameter" VALUES(3787,'pco2w_b_seawater',10,1,NULL,217,7,'pCO2 Seawater',NULL,4,44,'{"a434blank": "pco2w_b_sami_data_record_cal.PD3788", "therm": "PD930", "ea620": "CC_ea620", "light": "PD357", "ea434": "CC_ea434", "calt": "CC_calt", "eb434": "CC_eb434", "mtype": "PD355", "a620blank": "pco2w_b_sami_data_record_cal.PD3789", "eb620": "CC_eb620", "cala": "CC_cala", "calb": "CC_calb", "calc": "CC_calc"}','PCO2WAT_L1','Partial Pressure of CO2 in Seawater provides a measure of the amount of CO2 and HCO3 in seawater. Specifically, it refers to the pressure that would be exerted by CO2 if all other gases were removed. Partial pressure of a gas dissolved in seawater is understood as the partial pressure in air that the gas would exert in a hypothetical air volume in equilibrium with that seawater. Units: uatm',3,1);
 INSERT INTO "parameter" VALUES(3788,'pco2w_b_absorbance_blank_434',10,1,NULL,8,7,'Optical Absorbance Ratio at 434 Nm - Blank',NULL,4,39,'{"light": "pco2w_b_sami_data_record_cal.PD357"}','CO2ABS1_L0','The Optical Absorbance ratio at 434 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(3789,'pco2w_b_absorbance_blank_620',10,1,NULL,8,7,'Optical Absorbance Ratio at 620 Nm - Blank',NULL,4,40,'{"light": "pco2w_b_sami_data_record_cal.PD357"}','CO2ABS2_L0','The Optical Absorbance ratio at 620 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(3790,'oxy_calphase_volts',11,1,NULL,38,7,'Calibrated Phase Difference',NULL,3,NULL,NULL,'DOCONCS-VLT_L0','Calibrated phase difference in Volts, used to calculate temperature compensated oxygen concentration.',4,0);
@@ -10479,7 +10477,6 @@ INSERT INTO "stream_parameter" VALUES(384,863);
 INSERT INTO "stream_parameter" VALUES(384,926);
 INSERT INTO "stream_parameter" VALUES(384,927);
 INSERT INTO "stream_parameter" VALUES(384,930);
-INSERT INTO "stream_parameter" VALUES(384,3729);
 INSERT INTO "stream_parameter" VALUES(385,7);
 INSERT INTO "stream_parameter" VALUES(385,10);
 INSERT INTO "stream_parameter" VALUES(385,11);
@@ -10497,7 +10494,6 @@ INSERT INTO "stream_parameter" VALUES(385,863);
 INSERT INTO "stream_parameter" VALUES(385,926);
 INSERT INTO "stream_parameter" VALUES(385,927);
 INSERT INTO "stream_parameter" VALUES(385,930);
-INSERT INTO "stream_parameter" VALUES(385,3787);
 INSERT INTO "stream_parameter" VALUES(386,7);
 INSERT INTO "stream_parameter" VALUES(386,10);
 INSERT INTO "stream_parameter" VALUES(386,11);
@@ -18875,6 +18871,8 @@ INSERT INTO "stream_parameter" VALUES(773,3754);
 INSERT INTO "stream_parameter" VALUES(773,3755);
 INSERT INTO "stream_parameter" VALUES(773,3757);
 INSERT INTO "stream_parameter" VALUES(773,3758);
+INSERT INTO "stream_parameter" VALUES(385,931);
+INSERT INTO "stream_parameter" VALUES(384,931);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
