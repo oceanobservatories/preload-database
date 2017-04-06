@@ -4303,6 +4303,7 @@ INSERT INTO "parameter" VALUES(3733,'zplsc_c_tilt_y_counts',11,9,NULL,66,13,'Til
 INSERT INTO "parameter" VALUES(3734,'zplsc_c_battery_voltage_counts',11,9,NULL,66,13,'Voltage of the Main Battery Pack',NULL,1,NULL,NULL,NULL,'Counts from the A/D converter for the voltage of the main battery pack.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3735,'zplsc_c_temperature_counts',11,9,NULL,66,13,'Temperature',NULL,1,NULL,NULL,NULL,'Counts from the A/D converter for the the water temperature.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3736,'zplsc_c_pressure_counts',11,9,NULL,66,13,'Seawater Pressure',NULL,1,NULL,NULL,NULL,'Counts from the A/D converter for the seawater pressure exerted on a sensor in situ by the weight of the column of seawater above it.',NULL,NULL);
+INSERT INTO "parameter" VALUES(3737,'zplsc_c_is_averaged_data',3,6,NULL,8,4,'Data Type',NULL,0,NULL,NULL,NULL,'Array of flags, one for each channel, that indicate if the data is averaged for that channel.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3742,'zplsc_c_tilt_x',11,1,NULL,87,7,'Tilt in X Direction',NULL,1,NULL,NULL,NULL,'Tilt in X direction',NULL,NULL);
 INSERT INTO "parameter" VALUES(3743,'zplsc_c_tilt_y',11,1,NULL,87,7,'Tilt in Y Direction',NULL,1,NULL,NULL,NULL,'Tilt in Y direction',NULL,NULL);
 INSERT INTO "parameter" VALUES(3744,'zplsc_c_battery_voltage',11,1,NULL,228,7,'Voltage of the Main Battery Pack',NULL,1,NULL,NULL,NULL,'Voltage of the main battery pack',NULL,NULL);
@@ -5140,6 +5141,7 @@ INSERT INTO "parameter_type" VALUES(9,'external');
 INSERT INTO "parameter_type" VALUES(10,'function');
 INSERT INTO "parameter_type" VALUES(11,'quantity');
 INSERT INTO "parameter_type" VALUES(12,'record<>');
+INSERT INTO "parameter_type" VALUES(13,'array<boolean>');
 CREATE TABLE stream (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250) NOT NULL, 
@@ -18873,6 +18875,7 @@ INSERT INTO "stream_parameter" VALUES(773,3757);
 INSERT INTO "stream_parameter" VALUES(773,3758);
 INSERT INTO "stream_parameter" VALUES(385,931);
 INSERT INTO "stream_parameter" VALUES(384,931);
+INSERT INTO "stream_parameter" VALUES(773,3737);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 

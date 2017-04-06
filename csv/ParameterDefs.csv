@@ -3299,6 +3299,7 @@ ZPLSC_C,ZPLSC,zplsc_c_tilt_y_counts,PD3733,quantity,,uint16,,counts,65535,Tilt i
 ZPLSC_C,ZPLSC,zplsc_c_battery_voltage_counts,PD3734,quantity,,uint16,,counts,65535,Voltage of the Main Battery Pack,1,,,,,,,Counts from the A/D converter for the voltage of the main battery pack.,,,
 ZPLSC_C,ZPLSC,zplsc_c_temperature_counts,PD3735,quantity,,uint16,,counts,65535,Temperature,1,,,,,,,Counts from the A/D converter for the the water temperature.,,,
 ZPLSC_C,ZPLSC,zplsc_c_pressure_counts,PD3736,quantity,,uint16,,counts,65535,Seawater Pressure,1,,,,,,,Counts from the A/D converter for the seawater pressure exerted on a sensor in situ by the weight of the column of seawater above it.,Seawater Pressure,,
+ZPLSC_C,ZPLSC,zplsc_c_is_averaged_data,PD3737,array<quantity>,,int8,,1,-99,Data Type,0,,,,,,,"Array of flags, one for each channel, that indicate if the data is averaged for that channel.",,,
 ZPLSC_C,ZPLSC,zplsc_c_tilt_x,PD3742,quantity,,float32,,deg,-9999999,Tilt in X Direction,1,,,,,,,Tilt in X direction,,,
 ZPLSC_C,ZPLSC,zplsc_c_tilt_y,PD3743,quantity,,float32,,deg,-9999999,Tilt in Y Direction,1,,,,,,,Tilt in Y direction,,,
 ZPLSC_C,ZPLSC,zplsc_c_battery_voltage,PD3744,quantity,,float32,,volt,-9999999,Voltage of the Main Battery Pack,1,,,,,,,Voltage of the main battery pack,,,
