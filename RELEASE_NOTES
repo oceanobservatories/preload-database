@@ -1,5 +1,7 @@
-NEXT_VERSION (2017-04-03)
+Version 1.0.11 (2017-04-07)
 
+- Removed some non-standard standard names
+- Added zplsc_c_is_averaged_data to zplsc_c_recovered stream
 - Updated pco2_seawater calculation to use raw thermistor values. Removed two duplicate pco2_seawater params (Redmine #9113).
 - Added flag for VELPT usage in metbk calculations (Redmine #12060).
 - Added offset for CTD pressure calculations of optode_sample and ctdpf_sbe43_sample streams (Redmine #8655).
