@@ -106,6 +106,11 @@ class TestParameter(unittest.TestCase):
         error_msgs = ''
         for x in self.data[idx][['id', 'valueencoding', 'fillvalue']].itertuples(index=False):
             try:
+                # No equality checks on NaN values (nan or an empty string) for floats
+                if x.valueencoding in ('float32', 'float64'):
+                    if x.fillvalue in ['nan', '']:
+                        continue
+
                 self.assertLessEqual(value_encoding_limits.get(x.valueencoding).min, float(x.fillvalue),
                                      msg='%s: %s should be greater than %s minimum of %s. Did you mean %s?' %
                                          (x.id, x.fillvalue, x.valueencoding,
@@ -123,15 +128,6 @@ class TestParameter(unittest.TestCase):
                              (error_msgs, x.id, x.fillvalue, assError.message)
 
             except AssertionError as assError:
-                # If the assertion error was because a float had a fill value
-                # of 'nan', then that's OK.  Otherwise, go through the normal
-                # error counting and save the error for later.
-                if x.valueencoding in ('float32', 'float64'):
-                    try:
-                        self.assertEqual(x.fillvalue, 'nan')
-                        continue
-                    except AssertionError:
-                        pass
                 error_count += 1
                 error_msgs = '%s  %s\n' % (error_msgs, assError.message)
 
