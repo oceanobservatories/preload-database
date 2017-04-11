@@ -72,6 +72,11 @@ INSERT INTO "dimension" VALUES(17,'wavss_four_dim0');
 INSERT INTO "dimension" VALUES(18,'wavss_four_dim1');
 INSERT INTO "dimension" VALUES(19,'wavss_move');
 INSERT INTO "dimension" VALUES(20,'wvs_series');
+INSERT INTO "dimension" VALUES(21,'channel_1_bins');
+INSERT INTO "dimension" VALUES(22,'channel_2_bins');
+INSERT INTO "dimension" VALUES(23,'channel_3_bins');
+INSERT INTO "dimension" VALUES(24,'channel_4_bins');
+INSERT INTO "dimension" VALUES(25,'channels');
 CREATE TABLE fill_value (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -4695,10 +4700,6 @@ INSERT INTO "parameter_dimension" VALUES(3356,4);
 INSERT INTO "parameter_dimension" VALUES(3357,4);
 INSERT INTO "parameter_dimension" VALUES(3358,4);
 INSERT INTO "parameter_dimension" VALUES(3359,4);
-INSERT INTO "parameter_dimension" VALUES(3749,5);
-INSERT INTO "parameter_dimension" VALUES(3752,5);
-INSERT INTO "parameter_dimension" VALUES(3755,5);
-INSERT INTO "parameter_dimension" VALUES(3758,5);
 INSERT INTO "parameter_dimension" VALUES(3799,13);
 INSERT INTO "parameter_dimension" VALUES(3811,4);
 INSERT INTO "parameter_dimension" VALUES(3812,4);
@@ -4723,6 +4724,11 @@ INSERT INTO "parameter_dimension" VALUES(7984,4);
 INSERT INTO "parameter_dimension" VALUES(7985,4);
 INSERT INTO "parameter_dimension" VALUES(19,15);
 INSERT INTO "parameter_dimension" VALUES(20,14);
+INSERT INTO "parameter_dimension" VALUES(3758,24);
+INSERT INTO "parameter_dimension" VALUES(3752,22);
+INSERT INTO "parameter_dimension" VALUES(3737,25);
+INSERT INTO "parameter_dimension" VALUES(3749,21);
+INSERT INTO "parameter_dimension" VALUES(3755,23);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 
