@@ -1,6 +1,7 @@
 NEXT RELEASE
 
 - Made all zplsc_c dimensions unique due to possible channel bin count variance
+- Set FillValue for all glider floating point variables to NaN
 
 Version 1.0.11 (2017-04-07)
 
