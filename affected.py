@@ -1,32 +1,15 @@
 #!/usr/bin/env python
-import os
 
-import requests
-import time
+import yaml
 from ooi_data.postgres.model import *
 
+from tools import m2m
 from database import create_engine_from_url, create_scoped_session
 
 engine = create_engine_from_url(None)
 session = create_scoped_session(engine)
 
 MetadataBase.query = session.query_property()
-
-
-def cached_toc(url, api_user, api_key, cache_file='.toc'):
-    """
-    Return the cached TOC if it exists and is less than 1 day old, otherwise fetch and cache the current TOC
-    :param url:
-    :param cache_file:
-    :return:
-    """
-    now = time.time()
-    if not os.path.exists(cache_file) or now - os.stat(cache_file).st_mtime > 86400:
-        toc = requests.get(url, auth=(api_user, api_key)).json()
-        json.dump(toc, open(cache_file, 'w'))
-    else:
-        toc = json.load(open(cache_file))
-    return toc
 
 
 def build_dpi_map():
@@ -123,9 +106,8 @@ def find_affected(affected_streams, subsite, node, toc):
                         parameter=parameter)
 
 
-api_user = ''
-api_key = ''
-toc = cached_toc('https://ooinet.oceanobservatories.org/api/m2m/12576/sensor/inv/toc', api_user, api_key)
+config = yaml.load(open('m2m_config.yml'))
+toc = m2m.toc(config['url'], config['apiname'], config['apikey'])
 affects_map = build_affects_map()
 affected_streams = parameter_affects(194, affects_map)
 find_affected(affected_streams, 'RS03AXPS', 'SF03A', toc)

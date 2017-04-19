@@ -4,3 +4,5 @@ preload.db
 .idea/
 cql/
 java/
+*.sqlite
+m2m_config.yml
