@@ -67,7 +67,9 @@ def find_parameter(poss_params, poss_sources):
 
 
 def print_parameter(param, stream='', rd='', indent_level=0):
-    print '{indent}PD{parameter.id:<4} {parameter.name:<40} {rd} {stream}'.format(
+    pd_pad = 16 - len(indent) * indent_level
+    fmt_string = '{indent}PD{parameter.id:<%d} {parameter.name:<40} {rd} {stream}' % pd_pad
+    print fmt_string.format(
         parameter=param, stream=stream, rd=rd, indent=indent * indent_level)
 
 
