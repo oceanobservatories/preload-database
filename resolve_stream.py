@@ -95,12 +95,13 @@ def print_parameter(param, stream='', rd='', indent_level=0):
 
 def resolve_stream(refdes, method, stream, stream_map, m2m):
     s = Stream.query.filter(Stream.name == stream).first()
+    depth_variance = 17 if 'METBK' in refdes else 6
     needs = s.needs
     if needs:
         this = {refdes}
         same = same_node(refdes, m2m)
         collocated = get_collocated(refdes).difference(same).difference(this)
-        near = get_within(refdes, 7).difference(collocated).difference(same).difference(this)
+        near = get_within(refdes, depth_variance).difference(collocated).difference(same).difference(this)
     else:
         same = set()
         collocated = set()
