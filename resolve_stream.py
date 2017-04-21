@@ -44,15 +44,19 @@ def make_parameter_map(instruments, method, stream_map):
     return parameter_map
 
 
-def get_collocated(refdes, m2m):
+def same_node(refdes, m2m):
+    subsite, node, sensor = refdes.split('-', 2)
+    # fetch instruments on the same node from the sensor inventory
+    same_node = set(m2m.node_inventory(subsite, node))
+    same_node.remove(refdes)
+    return same_node
+
+
+def get_collocated(refdes):
     subsite, node, sensor = refdes.split('-', 2)
     nominal_depth = NominalDepth.get_nominal_depth(subsite, node, sensor)
     if nominal_depth is None:
-        # missing a nominal depth record, fetch instruments
-        # on the same node from the sensor inventory instead
-        same_node = set(m2m.node_inventory(subsite, node))
-        same_node.remove(refdes)
-        return same_node
+        return set()
     if is_mobile(node):
         collocated = nominal_depth.get_colocated_node()
     else:
@@ -93,13 +97,17 @@ def resolve_stream(refdes, method, stream, stream_map, m2m):
     s = Stream.query.filter(Stream.name == stream).first()
     needs = s.needs
     if needs:
-        collocated = get_collocated(refdes, m2m)
-        near = get_within(refdes, 7).difference(collocated)
+        this = {refdes}
+        same = same_node(refdes, m2m)
+        collocated = get_collocated(refdes).difference(same).difference(this)
+        near = get_within(refdes, 7).difference(collocated).difference(same).difference(this)
     else:
+        same = set()
         collocated = set()
         near = set()
 
-    same = make_parameter_map([refdes], method, stream_map)
+    mine = make_parameter_map([refdes], method, stream_map)
+    same = make_parameter_map(same, method, stream_map)
     collocated = make_parameter_map(collocated, method, stream_map)
     near = make_parameter_map(near, method, stream_map)
 
@@ -114,6 +122,11 @@ def resolve_stream(refdes, method, stream, stream_map, m2m):
                         found_param = local.pop()
                         print_parameter(found_param, stream=stream, rd=refdes, indent_level=1)
                         continue
+
+                found_rd, found_stream, poss = find_parameter(poss_params, mine, needed_stream)
+                if found_rd:
+                    print_parameter(poss, stream=found_stream, rd=found_rd, indent_level=1)
+                    continue
 
                 found_rd, found_stream, poss = find_parameter(poss_params, same, needed_stream)
                 if found_rd:
