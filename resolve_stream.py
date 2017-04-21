@@ -8,7 +8,7 @@ Usage:
 import yaml
 from ooi_data.postgres.model import *
 
-from tools import m2m
+from tools.m2m import MachineToMachine
 from database import create_engine_from_url, create_scoped_session
 
 engine = create_engine_from_url(None)
@@ -44,12 +44,15 @@ def make_parameter_map(instruments, method, stream_map):
     return parameter_map
 
 
-def get_collocated(refdes):
+def get_collocated(refdes, m2m):
     subsite, node, sensor = refdes.split('-', 2)
     nominal_depth = NominalDepth.get_nominal_depth(subsite, node, sensor)
     if nominal_depth is None:
-        print 'MISSING NOMINAL DEPTH RECORD: %r' % refdes
-        return set()
+        # missing a nominal depth record, fetch instruments
+        # on the same node from the sensor inventory instead
+        same_node = set(m2m.node_inventory(subsite, node))
+        same_node.remove(refdes)
+        return same_node
     if is_mobile(node):
         collocated = nominal_depth.get_colocated_node()
     else:
@@ -86,11 +89,11 @@ def print_parameter(param, stream='', rd='', indent_level=0):
         parameter=param, stream=stream, rd=rd, indent=indent * indent_level)
 
 
-def resolve_stream(refdes, method, stream, stream_map):
+def resolve_stream(refdes, method, stream, stream_map, m2m):
     s = Stream.query.filter(Stream.name == stream).first()
     needs = s.needs
     if needs:
-        collocated = get_collocated(refdes)
+        collocated = get_collocated(refdes, m2m)
         near = get_within(refdes, 7).difference(collocated)
     else:
         collocated = set()
@@ -134,8 +137,8 @@ def main():
     import docopt
     options = docopt.docopt(__doc__)
     config = yaml.load(open('m2m_config.yml'))
-    toc = m2m.toc(config['url'], config['apiname'], config['apikey'])
-    stream_map = m2m.streams(toc)
+    m2m = MachineToMachine(config['url'], config['apiname'], config['apikey'])
+    stream_map = m2m.streams()
 
     refdes = options['<refdes>']
     method = options['<method>']
@@ -149,10 +152,10 @@ def main():
                 for stream in sorted(stream_map[refdes][method]):
                     if has_functions(stream):
                         print refdes, method, stream
-                        resolve_stream(refdes, method, stream, stream_map)
+                        resolve_stream(refdes, method, stream, stream_map, m2m)
 
     if stream_exists(refdes, method, stream, stream_map):
-        resolve_stream(refdes, method, stream, stream_map)
+        resolve_stream(refdes, method, stream, stream_map, m2m)
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 import yaml
 from ooi_data.postgres.model import *
 
-from tools import m2m
+from tools.m2m import MachineToMachine
 from database import create_engine_from_url, create_scoped_session
 
 engine = create_engine_from_url(None)
@@ -107,7 +107,8 @@ def find_affected(affected_streams, subsite, node, toc):
 
 
 config = yaml.load(open('m2m_config.yml'))
-toc = m2m.toc(config['url'], config['apiname'], config['apikey'])
+m2m = MachineToMachine(config['url'], config['apiname'], config['apikey'])
+toc = m2m.toc()
 affects_map = build_affects_map()
 affected_streams = parameter_affects(194, affects_map)
 find_affected(affected_streams, 'RS03AXPS', 'SF03A', toc)
