@@ -1436,7 +1436,7 @@ INSERT INTO "parameter" VALUES(522,'file_comments',11,8,NULL,8,17,'File Comments
 INSERT INTO "parameter" VALUES(523,'wave_data_rate',6,6,1,22,4,'Wave Data Rate',NULL,0,NULL,NULL,NULL,'Data Rate (0=1 Hz, 1=2 Hz)',NULL,NULL);
 INSERT INTO "parameter" VALUES(524,'wave_cell_position',6,6,23,8,4,'Wave Cell Position',NULL,0,NULL,NULL,NULL,'Wave Cell Position (0=Fixed, 1=Dynamic)',NULL,NULL);
 INSERT INTO "parameter" VALUES(525,'dynamic_position_type',6,6,26,8,4,'Dynamic Position Type',NULL,0,NULL,NULL,NULL,'Type Of Dynamic Position (0=% Of Mean Pressure, 1=Pct Of Min Re)',NULL,NULL);
-INSERT INTO "parameter" VALUES(526,'percent_wave_cell_position',11,4,NULL,8,9,'Percent Wave Cell Position',NULL,0,NULL,NULL,NULL,'percentage for wave cell positioning (=32767×#%/100) (# means number of)',NULL,NULL);
+INSERT INTO "parameter" VALUES(526,'percent_wave_cell_position',11,4,NULL,8,9,'Percent Wave Cell Position',NULL,0,NULL,NULL,NULL,'percentage for wave cell positioning (=32767x#%/100) (# means number of)',NULL,NULL);
 INSERT INTO "parameter" VALUES(527,'wave_transmit_pulse',11,3,NULL,8,5,'Wave Transmit Pulse',NULL,0,NULL,NULL,NULL,'Wave Transmit Pulse',NULL,NULL);
 INSERT INTO "parameter" VALUES(528,'fixed_wave_blanking_distance',11,9,NULL,66,10,'Fixed Wave Blanking Distance',NULL,0,NULL,NULL,NULL,'Fixed Wave Blanking Distance (Counts)',NULL,NULL);
 INSERT INTO "parameter" VALUES(529,'wave_measurement_cell_size',11,9,NULL,127,10,'Wave Measurement Cell Size',NULL,0,NULL,NULL,NULL,'Wave Measurement Cell Size',NULL,NULL);
@@ -1847,7 +1847,7 @@ INSERT INTO "parameter" VALUES(1087,'vel3d_c_upward_turbulent_velocity',10,1,NUL
 INSERT INTO "parameter" VALUES(1088,'transmit_pulse_length_2nd',11,9,NULL,66,10,'Transmit Pulse Length',NULL,0,NULL,NULL,NULL,'transmit pulse length (counts) second lag',NULL,NULL);
 INSERT INTO "parameter" VALUES(1089,'instrument_id',11,8,NULL,8,17,'Instrument ID',NULL,0,NULL,NULL,NULL,'SAT + instrument type',NULL,NULL);
 INSERT INTO "parameter" VALUES(1091,'timer',11,2,NULL,199,7,'Elapsed Time Since Initialization',NULL,2,NULL,NULL,NULL,'number of seconds that have passed since the end of the initialization sequence.',NULL,NULL);
-INSERT INTO "parameter" VALUES(1092,'sample_delay',11,3,NULL,183,5,'Sample Delay',NULL,0,NULL,NULL,NULL,'representing the number of milliseconds to offset the Timer value to give an accurate indication of when the frame’s sensors were sampled',NULL,NULL);
+INSERT INTO "parameter" VALUES(1092,'sample_delay',11,3,NULL,183,5,'Sample Delay',NULL,0,NULL,NULL,NULL,'representing the number of milliseconds to offset the Timer value to give an accurate indication of when the frame''s sensors were sampled',NULL,NULL);
 INSERT INTO "parameter" VALUES(1093,'spkir_samples',3,10,NULL,66,10,'Downwelling Spectral Irradiance Measurement',NULL,0,NULL,NULL,'SPECTIR_L0','This data product is the Downwelling Spectral Irrandiance unprocessed measurement from the following wavebands: 1 = 412nm; 2 = 443nm; 3 = 490nm; 4 = 510nm; 5 = 555nm; 6 = 620nm; 7 = 683nm. Units: counts',4,0);
 INSERT INTO "parameter" VALUES(1100,'vin_sense',11,9,NULL,66,10,'Regulated Supply Voltage',NULL,0,NULL,NULL,NULL,'regulated input voltage',NULL,NULL);
 INSERT INTO "parameter" VALUES(1101,'va_sense',11,9,NULL,66,10,'Analog Rail Voltage',NULL,0,NULL,NULL,NULL,'analog rail voltage for the operational components of the instrument',NULL,NULL);
@@ -1927,10 +1927,10 @@ INSERT INTO "parameter" VALUES(1179,'bt_beam1_eval_amp',11,12,NULL,66,10,'BT Bot
 INSERT INTO "parameter" VALUES(1180,'bt_beam2_eval_amp',11,12,NULL,66,10,'BT Bottom Beam 2 Evaluation Amplitude',NULL,0,NULL,NULL,NULL,'Contains the evaluation amplitude of the matching filter used in determining the strength of the bottom echo. Scaling: LSD = 1 count; Range = 0 to 255 counts',NULL,NULL);
 INSERT INTO "parameter" VALUES(1181,'bt_beam3_eval_amp',11,12,NULL,66,10,'BT Bottom Beam 3 Evaluation Amplitude',NULL,0,NULL,NULL,NULL,'Contains the evaluation amplitude of the matching filter used in determining the strength of the bottom echo. Scaling: LSD = 1 count; Range = 0 to 255 counts',NULL,NULL);
 INSERT INTO "parameter" VALUES(1182,'bt_beam4_eval_amp',11,12,NULL,66,10,'BT Bottom Beam 4 Evaluation Amplitude',NULL,0,NULL,NULL,NULL,'Contains the evaluation amplitude of the matching filter used in determining the strength of the bottom echo. Scaling: LSD = 1 count; Range = 0 to 255 counts',NULL,NULL);
-INSERT INTO "parameter" VALUES(1183,'bt_beam1_percent_good',11,12,NULL,187,10,'BT Bottom Beam 1 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP‟s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
-INSERT INTO "parameter" VALUES(1184,'bt_beam2_percent_good',11,12,NULL,187,10,'BT Bottom Beam 2 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP‟s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
-INSERT INTO "parameter" VALUES(1185,'bt_beam3_percent_good',11,12,NULL,187,10,'BT Bottom Beam 3 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP‟s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
-INSERT INTO "parameter" VALUES(1186,'bt_beam4_percent_good',11,12,NULL,187,10,'BT Bottom Beam 4 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP‟s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
+INSERT INTO "parameter" VALUES(1183,'bt_beam1_percent_good',11,12,NULL,187,10,'BT Bottom Beam 1 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP''s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
+INSERT INTO "parameter" VALUES(1184,'bt_beam2_percent_good',11,12,NULL,187,10,'BT Bottom Beam 2 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP''s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
+INSERT INTO "parameter" VALUES(1185,'bt_beam3_percent_good',11,12,NULL,187,10,'BT Bottom Beam 3 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP''s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
+INSERT INTO "parameter" VALUES(1186,'bt_beam4_percent_good',11,12,NULL,187,10,'BT Bottom Beam 4 Percent Good, Percent',NULL,0,NULL,NULL,NULL,'Contains bottom-track percent-good data for each beam, which indicate the reliability of bottom-track data. It is the percentage of bottom-track pings that have passed the ADCP''s bottom-track validity algorithm during an ensemble. Scaling: LSD = 1 percent; Range = 0 to 100 percent',NULL,NULL);
 INSERT INTO "parameter" VALUES(1187,'bt_ref_layer_min',11,9,NULL,102,12,'BT Reference Layer Minimum Size',NULL,0,NULL,NULL,NULL,'Stores the minimum layer size, the near boundary, and the far boundary of the BT water-reference layer (BL-command). Scaling (minimum layer size): LSD = 1 dm; Range = 0-999 dm. Scaling (near/far boundaries): LSD = 1 dm; Range = 0-9999 dm.',NULL,NULL);
 INSERT INTO "parameter" VALUES(1188,'bt_ref_layer_near',11,9,NULL,102,12,'BT Reference Layer Near Boundary',NULL,0,NULL,NULL,NULL,'Stores the minimum layer size, the near boundary, and the far boundary of the BT water-reference layer (BL-command). Scaling (minimum layer size): LSD = 1 dm; Range = 0-999 dm. Scaling (near/far boundaries): LSD = 1 dm; Range = 0-9999 dm.',NULL,NULL);
 INSERT INTO "parameter" VALUES(1189,'bt_ref_layer_far',11,9,NULL,102,12,'BT Reference Layer Far Boundary',NULL,0,NULL,NULL,NULL,'Stores the minimum layer size, the near boundary, and the far boundary of the BT water-reference layer (BL-command). Scaling (minimum layer size): LSD = 1 dm; Range = 0-999 dm. Scaling (near/far boundaries): LSD = 1 dm; Range = 0-9999 dm.',NULL,NULL);
@@ -2704,16 +2704,16 @@ INSERT INTO "parameter" VALUES(2029,'trhph_eprom_status',5,6,10,8,4,'Eprom Memor
 INSERT INTO "parameter" VALUES(2030,'trhph_cycle_time',11,6,NULL,66,4,'Cycle Time',NULL,0,NULL,NULL,NULL,'The time in seconds or minutes to cycle between data points',NULL,NULL);
 INSERT INTO "parameter" VALUES(2031,'trhph_cycle_time_units',6,6,27,8,4,'Cycle Time Units',NULL,NULL,NULL,NULL,NULL,'Defines whether cycle time will be in minutes or seconds (0=seconds, 1=minutes)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2032,'trhph_power_control_word',11,6,NULL,66,4,'Power Control Word',NULL,0,NULL,NULL,NULL,'Indicates the power on/off state for the collection of sensors. Ex) Power Control Word = 1 + 2 + 4 + 16 + 32 = 55 if all on',NULL,NULL);
-INSERT INTO "parameter" VALUES(2033,'trhph_res_power_status',5,6,13,8,4,'Resistivity Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the resistivity sensor (0 = Off, 1 = On)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2034,'trhph_thermo_hydro_amp_power_status',5,6,13,8,4,'Instrumentation Amp Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the instrumentation amp (0 = Off, 1 = On)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2035,'trhph_eh_amp_power_status',5,6,13,8,4,'eH Isolation Amp Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the eH isolation amp (0 = Off, 1 = On)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2036,'trhph_hydro_sensor_power_status',5,6,13,8,4,'Hydrogen Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the hydrogen sensor (0 = Off, 1 = On)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2037,'trhph_ref_temp_power_status',5,6,13,8,4,'Reference Temperature Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the reference temp sensor (0 = Off, 1 = On)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2038,'trhph_metadata_on_powerup',5,6,8,8,4,'Metadata at Startup',NULL,0,NULL,NULL,NULL,'Toggles display of metadata at startup (0 = No Print on Powerup, 1 = Print)',NULL,NULL);
-INSERT INTO "parameter" VALUES(2039,'trhph_metadata_on_restart',5,6,8,8,4,'Metadata at Restart',NULL,0,NULL,NULL,NULL,'Toggles display of metadata at restart (0 = No Print on Restart Data, 1 = Print)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2033,'trhph_res_power_status',5,6,13,8,4,'Resistivity Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the resistivity sensor (0 = Off, 1 = On)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2034,'trhph_thermo_hydro_amp_power_status',5,6,13,8,4,'Instrumentation Amp Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the instrumentation amp (0 = Off, 1 = On)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2035,'trhph_eh_amp_power_status',5,6,13,8,4,'eH Isolation Amp Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the eH isolation amp (0 = Off, 1 = On)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2036,'trhph_hydro_sensor_power_status',5,6,13,8,4,'Hydrogen Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the hydrogen sensor (0 = Off, 1 = On)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2037,'trhph_ref_temp_power_status',5,6,13,8,4,'Reference Temperature Sensor Power Status',NULL,0,NULL,NULL,NULL,'Toggles power on/off to the reference temp sensor (0 = Off, 1 = On)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2038,'trhph_metadata_on_powerup',5,6,8,8,4,'Metadata at Startup',NULL,0,NULL,NULL,NULL,'Toggles display of metadata at startup (0 = No Print on Powerup, 1 = Print)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2039,'trhph_metadata_on_restart',5,6,8,8,4,'Metadata at Restart',NULL,0,NULL,NULL,NULL,'Toggles display of metadata at restart (0 = No Print on Restart Data, 1 = Print)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2040,'spkir_a_firmware_version',11,8,NULL,8,17,'Firmware Version',NULL,0,NULL,NULL,NULL,'SPKIR-A firmware version',NULL,NULL);
-INSERT INTO "parameter" VALUES(2043,'number_measurements_per_reported_value',11,9,NULL,66,10,'Number of Measurements Per Value',NULL,0,NULL,NULL,NULL,'Number of measurements for each reported value.',NULL,NULL);
-INSERT INTO "parameter" VALUES(2044,'number_of_reported_values_per_packet',11,9,NULL,66,10,'Number of Values Per Packet',NULL,0,NULL,NULL,NULL,'Number of individual measurements in each packet. 0 is continuous operation.',NULL,NULL);
+INSERT INTO "parameter" VALUES(2043,'number_measurements_per_reported_value',11,9,NULL,66,10,'Number of Measurements Per Value',NULL,0,NULL,NULL,NULL,'Number of measurements for each reported value.',NULL,NULL);
+INSERT INTO "parameter" VALUES(2044,'number_of_reported_values_per_packet',11,9,NULL,66,10,'Number of Values Per Packet',NULL,0,NULL,NULL,NULL,'Number of individual measurements in each packet. 0 is continuous operation.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2045,'measurement_1_dark_count_value',11,9,NULL,66,10,'Measurement 1 (Scattering) Dark Count Value',NULL,0,NULL,NULL,NULL,'Measurement 1 dark count value for calculating engineering unit output.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2046,'measurement_2_dark_count_value',11,9,NULL,66,10,'Measurement 2 (Chlorophyll) Dark Count Value',NULL,0,NULL,NULL,NULL,'Measurement 2 dark count value for calculating engineering unit output.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2047,'measurement_3_dark_count_value',11,9,NULL,66,10,'Measurement 3 (CDOM) Dark Count Value',NULL,0,NULL,NULL,NULL,'Measurement 3 dark count value for calculating engineering unit output.',NULL,NULL);
@@ -2722,7 +2722,7 @@ INSERT INTO "parameter" VALUES(2049,'measurement_2_slope_value',11,1,NULL,219,5,
 INSERT INTO "parameter" VALUES(2050,'measurement_3_slope_value',11,1,NULL,190,5,'Measurement 3 (CDOM) Scale Factor',NULL,0,NULL,NULL,NULL,'Measurement 3 slope value used for calculating engineering unit output.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2051,'predefined_output_sequence',11,9,NULL,66,10,'Predefined Output Sequence',NULL,0,NULL,NULL,NULL,'Selects which of the pre-defined output sequences to use when outputting data.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2052,'baud_rate',11,9,NULL,15,10,'Baud Rate',NULL,0,NULL,NULL,NULL,'Baud rate for instrument communications.',NULL,NULL);
-INSERT INTO "parameter" VALUES(2053,'number_of_packets_per_set',11,9,NULL,66,10,'Number of Packets Per Set',NULL,0,NULL,NULL,NULL,'Number of packets in a set. 0 results in the stored configuration repeating continuously.',NULL,NULL);
+INSERT INTO "parameter" VALUES(2053,'number_of_packets_per_set',11,9,NULL,66,10,'Number of Packets Per Set',NULL,0,NULL,NULL,NULL,'Number of packets in a set. 0 results in the stored configuration repeating continuously.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2054,'recording_mode',11,9,NULL,8,10,'Recording Mode',NULL,0,NULL,NULL,NULL,'Enables or disables data recording to internal memory.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2055,'manual_mode',11,9,NULL,8,10,'Manual Mode',NULL,0,NULL,NULL,NULL,'Enables or disables manual start time.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2056,'sampling_interval',11,8,NULL,8,17,'Sampling Interval',NULL,0,NULL,NULL,NULL,'Time from the start of one packet to the start of the next packet in a set.',NULL,NULL);
@@ -2755,10 +2755,10 @@ INSERT INTO "parameter" VALUES(2185,'adcp_transmit_impedance',11,1,NULL,31,7,'Tr
 INSERT INTO "parameter" VALUES(2186,'adcp_transmit_test_results',11,8,NULL,8,17,'Transmit Test Results',NULL,NULL,NULL,NULL,NULL,'ADCP Transmit Path produced in response to the "PT4" command.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2188,'lily_leveling_status',11,8,NULL,8,17,'LILY Re-Level Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2221,'botpt_iris_status_01',11,8,NULL,8,17,'Iris Status 1',NULL,NULL,NULL,NULL,NULL,'status provided by the IRIS,*9900XY-DUMP-SETTINGS command',NULL,NULL);
-INSERT INTO "parameter" VALUES(2222,'botpt_iris_status_02',11,8,NULL,8,17,'Iris Status 2',NULL,NULL,NULL,NULL,NULL,'status provided by the IRIS,*9900XY-DUMP2 command',NULL,NULL);
-INSERT INTO "parameter" VALUES(2223,'botpt_lily_status_01',11,8,NULL,8,17,'Lily Status 1',NULL,NULL,NULL,NULL,NULL,'status provided by the LILY,*9900XY-DUMP-SETTINGS command',NULL,NULL);
-INSERT INTO "parameter" VALUES(2224,'botpt_lily_status_02',11,8,NULL,8,17,'Lily Status 2',NULL,NULL,NULL,NULL,NULL,'status provided by the LILY,*9900XY-DUMP2 command',NULL,NULL);
-INSERT INTO "parameter" VALUES(2225,'botpt_nano_status',11,8,NULL,8,17,'Nano Status',NULL,NULL,NULL,NULL,NULL,'status provided by the NANO,*0100IF command',NULL,NULL);
+INSERT INTO "parameter" VALUES(2222,'botpt_iris_status_02',11,8,NULL,8,17,'Iris Status 2',NULL,NULL,NULL,NULL,NULL,'status provided by the IRIS,*9900XY-DUMP2 command',NULL,NULL);
+INSERT INTO "parameter" VALUES(2223,'botpt_lily_status_01',11,8,NULL,8,17,'Lily Status 1',NULL,NULL,NULL,NULL,NULL,'status provided by the LILY,*9900XY-DUMP-SETTINGS command',NULL,NULL);
+INSERT INTO "parameter" VALUES(2224,'botpt_lily_status_02',11,8,NULL,8,17,'Lily Status 2',NULL,NULL,NULL,NULL,NULL,'status provided by the LILY,*9900XY-DUMP2 command',NULL,NULL);
+INSERT INTO "parameter" VALUES(2225,'botpt_nano_status',11,8,NULL,8,17,'Nano Status',NULL,NULL,NULL,NULL,NULL,'status provided by the NANO,*0100IF command',NULL,NULL);
 INSERT INTO "parameter" VALUES(2226,'ctd_time_offset',11,4,NULL,199,4,'CTD Time Correction Offset',NULL,NULL,NULL,NULL,NULL,'Time correction offset to compensate for clock drift.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2228,'passed_checksum',5,6,NULL,8,4,'Checksum Result',NULL,NULL,NULL,NULL,NULL,'Passed the checksum, False or True.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2229,'vel3d_l_date_time_array',3,9,NULL,8,10,'Date Time Array',NULL,0,NULL,NULL,NULL,'Array of date and time values, yyyy, mm, dd, hh, mm, ss',NULL,NULL);
@@ -2981,7 +2981,7 @@ INSERT INTO "parameter" VALUES(2472,'massp_ph_meter_status',11,3,NULL,8,5,'Statu
 INSERT INTO "parameter" VALUES(2473,'massp_inlet_temp_status',11,3,NULL,8,5,'Status of the External Temperature MicroLAN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2474,'massp_power_relay_turbo',11,6,NULL,8,4,'Turbo Pump Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2475,'massp_power_relay_rga',11,6,NULL,8,4,'RGA Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO "parameter" VALUES(2476,'massp_power_relay_main_rough',11,6,NULL,8,4,'Main Roughing Pump Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "parameter" VALUES(2476,'massp_power_relay_main_rough',11,6,NULL,8,4,'Main Roughing Pump Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2477,'massp_power_relay_sec_rough',11,6,NULL,8,4,'Secondary Roughing Pump Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2478,'massp_power_relay_fan1',11,6,NULL,8,4,'Fan1 Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2479,'massp_power_relay_fan2',11,6,NULL,8,4,'Fan2 Power Relay Status',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -3096,7 +3096,7 @@ INSERT INTO "parameter" VALUES(2584,'hpies_bliley_frequency',11,1,NULL,22,6,'Bli
 INSERT INTO "parameter" VALUES(2585,'hpies_data_validity',5,12,NULL,8,10,'Data Validity',NULL,NULL,NULL,NULL,NULL,'indicates CRC passed  Combined data validity for all four status lines',NULL,NULL);
 INSERT INTO "parameter" VALUES(2586,'hpies_status_travel_times',3,10,NULL,236,10,'Status Travel Times',NULL,NULL,NULL,NULL,NULL,'list of travel times (24)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2587,'hpies_status_pressures',3,9,NULL,6,10,'Status Pressures',NULL,NULL,NULL,NULL,NULL,'list of depths (6); pressure and temperature readings are paired in the status string',NULL,NULL);
-INSERT INTO "parameter" VALUES(2588,'hpies_status_temperatures',3,9,NULL,7,10,'Status Temperatures',NULL,NULL,NULL,NULL,NULL,'list of temperature readings (6)',NULL,NULL);
+INSERT INTO "parameter" VALUES(2588,'hpies_status_temperatures',3,9,NULL,238,10,'Status Temperatures',NULL,NULL,NULL,NULL,NULL,'list of temperature readings (6)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2589,'hpies_status_pressure_frequencies',3,10,NULL,142,10,'Status Pressure Frequencies',NULL,NULL,NULL,NULL,NULL,'list of pressure frequencies (6)..  pressure and temperature frequencies are paired in the status string',NULL,NULL);
 INSERT INTO "parameter" VALUES(2590,'hpies_status_temperature_frequencies',3,10,NULL,142,10,'Status Temperature Frequencies',NULL,NULL,NULL,NULL,NULL,'list of pressure frequencies (6)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2591,'hpies_backup_battery_voltage',11,1,NULL,38,6,'Backup Battery Voltage',NULL,NULL,NULL,NULL,NULL,'battery voltage of the backup battery',NULL,NULL);
@@ -3105,10 +3105,10 @@ INSERT INTO "parameter" VALUES(2593,'hpies_system_drain',11,1,NULL,140,6,'System
 INSERT INTO "parameter" VALUES(2594,'hpies_release_battery_voltage',11,1,NULL,38,6,'Release Battery Voltage',NULL,NULL,NULL,NULL,NULL,'release battery voltage',NULL,NULL);
 INSERT INTO "parameter" VALUES(2595,'hpies_system_battery_voltage',11,1,NULL,38,6,'System Battery Voltage',NULL,NULL,NULL,NULL,NULL,'system battery voltage',NULL,NULL);
 INSERT INTO "parameter" VALUES(2596,'hpies_release_system_voltage',11,1,NULL,38,6,'Release System Voltage',NULL,NULL,NULL,NULL,NULL,'release system +5V',NULL,NULL);
-INSERT INTO "parameter" VALUES(2597,'hpies_internal_temperature',11,1,NULL,234,6,'Internal Temperature',NULL,NULL,NULL,NULL,NULL,'internal temperature',NULL,NULL);
+INSERT INTO "parameter" VALUES(2597,'hpies_internal_temperature',11,1,NULL,88,6,'Internal Temperature',NULL,NULL,NULL,NULL,NULL,'internal temperature',NULL,NULL);
 INSERT INTO "parameter" VALUES(2598,'hpies_average_travel_time',11,1,NULL,236,6,'Average Travel Time',NULL,NULL,NULL,NULL,NULL,'average travel time for the previous day',NULL,NULL);
 INSERT INTO "parameter" VALUES(2599,'hpies_average_pressure',11,9,NULL,5,10,'Average Pressure',NULL,NULL,NULL,NULL,NULL,'average pressure for the previous day',NULL,NULL);
-INSERT INTO "parameter" VALUES(2600,'hpies_average_temperature',11,9,NULL,7,10,'Average Temperature',NULL,NULL,NULL,NULL,NULL,'average temperature for the previous day',NULL,NULL);
+INSERT INTO "parameter" VALUES(2600,'hpies_average_temperature',11,9,NULL,238,10,'Average Temperature',NULL,NULL,NULL,NULL,NULL,'average temperature for the previous day',NULL,NULL);
 INSERT INTO "parameter" VALUES(2601,'hpies_last_pressure',11,1,NULL,22,6,'Last Pressure',NULL,NULL,NULL,NULL,NULL,'last pressure sensor raw data value',NULL,NULL);
 INSERT INTO "parameter" VALUES(2602,'hpies_last_temperature',11,1,NULL,22,6,'Last Temperature',NULL,NULL,NULL,NULL,NULL,'last temperature sensor raw data value',NULL,NULL);
 INSERT INTO "parameter" VALUES(2603,'hpies_ies_clock_error',11,1,NULL,22,6,'IES Clock Error',NULL,NULL,NULL,NULL,NULL,'IES clock crystal error from 32768 Hz',NULL,NULL);
@@ -3218,8 +3218,8 @@ INSERT INTO "parameter" VALUES(2704,'zplsc_gpts_enabled',5,6,NULL,NULL,4,'GPTS E
 INSERT INTO "parameter" VALUES(2705,'zplsc_schedule_filename',11,8,NULL,NULL,17,'Schedule Filename',NULL,NULL,NULL,NULL,NULL,'Filename for .yaml schedule file',NULL,NULL);
 INSERT INTO "parameter" VALUES(2707,'startup_time_string',11,8,NULL,8,17,'Startup Time, UTC',NULL,0,NULL,NULL,NULL,'Time ISUS was powered on (using Unix Epoch value)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2708,'ph_light_measurements',3,3,NULL,66,5,'Array of PH Light Measurements',NULL,0,NULL,NULL,NULL,'Array of ph light measurements',NULL,NULL);
-INSERT INTO "parameter" VALUES(2709,'dcl_controller_start_timestamp',11,8,NULL,8,17,'DCL Controller Start Timestamp',NULL,0,NULL,NULL,NULL,'DCL controller timestamp at the first line of wave burst data record; marks the beginning of the line containing ''wave: start time''. "yyyy/mm/dd hh:mm:ss.sss"* note space between dd and hh',NULL,NULL);
-INSERT INTO "parameter" VALUES(2710,'dcl_controller_end_timestamp',11,8,NULL,8,17,'DCL Controller End Timestamp',NULL,0,NULL,NULL,NULL,'DCL controller timestamp at the last line of wave burst data record; marks the beginning of the line containing ''wave: end burst''. "yyyy/mm/dd hh:mm:ss.sss"* note space between dd and hh',NULL,NULL);
+INSERT INTO "parameter" VALUES(2709,'dcl_controller_start_timestamp',11,8,NULL,8,17,'DCL Controller Start Timestamp',NULL,0,NULL,NULL,NULL,'DCL controller timestamp at the first line of wave burst data record; marks the beginning of the line containing ''wave: start time''. "yyyy/mm/dd hh:mm:ss.sss"* note space between dd and hh',NULL,NULL);
+INSERT INTO "parameter" VALUES(2710,'dcl_controller_end_timestamp',11,8,NULL,8,17,'DCL Controller End Timestamp',NULL,0,NULL,NULL,NULL,'DCL controller timestamp at the last line of wave burst data record; marks the beginning of the line containing ''wave: end burst''. "yyyy/mm/dd hh:mm:ss.sss"* note space between dd and hh',NULL,NULL);
 INSERT INTO "parameter" VALUES(2712,'blank_light_measurements',3,3,NULL,66,5,'Blank Light Measurements',NULL,0,NULL,NULL,NULL,'Blank light measurements collected during calibration of the instrument. Measurements are in counts.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2713,'temperature01',11,1,NULL,91,7,'Seawater Temperature in Spatial Grid 01',NULL,4,NULL,NULL,NULL,'Seawater Temperature in Spatial Grid 01 is temperature measured at 1 of 24 locations along the thermistor string that is positioned in a spatial array. The position of each thermistor is given in the metadata, using <x y z> coordinates in centimeters with an origin at the seafloor beneath thermistor #2. Units: degrees Celsius',NULL,NULL);
 INSERT INTO "parameter" VALUES(2714,'temperature02',11,1,NULL,91,7,'Seawater Temperature in Spatial Grid 02',NULL,4,NULL,NULL,NULL,'Seawater Temperature in Spatial Grid 02 is temperature measured at 1 of 24 locations along the thermistor string that is positioned in a spatial array. The position of each thermistor is given in the metadata, using <x y z> coordinates in centimeters with an origin at the seafloor beneath thermistor #2. Units: degrees Celsius',NULL,NULL);
@@ -3282,8 +3282,8 @@ INSERT INTO "parameter" VALUES(2788,'initial_frequency',11,1,NULL,22,7,'Initial 
 INSERT INTO "parameter" VALUES(2789,'frequency_spacing',11,1,NULL,22,7,'Frequency Spacing',NULL,4,NULL,NULL,NULL,'frequency spacing',NULL,NULL);
 INSERT INTO "parameter" VALUES(2790,'psd_non_directional',3,1,NULL,135,7,'PSD Non Directional',NULL,4,NULL,NULL,'WAVSTAT-PND_L0','Power spectral density values for non-directional spectra in m2 Hz-1.',4,0);
 INSERT INTO "parameter" VALUES(2791,'psd_mean_directional',3,1,NULL,135,7,'PSD Mean Directional',NULL,4,NULL,NULL,'WAVSTAT-PDS_L0','Power spectral density values for directional spectra in units of m2 Hz-1.',4,0);
-INSERT INTO "parameter" VALUES(2792,'mean_direction_array',3,1,NULL,98,7,'Mean Directional Array',NULL,4,NULL,NULL,'WAVSTAT-DDS_L0','Direction of waves from directional spectra against true north in units of ° (degrees).',4,0);
-INSERT INTO "parameter" VALUES(2793,'directional_spread_array',3,1,NULL,98,7,'Directional Spread Array',NULL,4,NULL,NULL,'WAVSTAT-SDS_L0','Direction spread from directional spectra in units of ° (degrees).',4,0);
+INSERT INTO "parameter" VALUES(2792,'mean_direction_array',3,1,NULL,98,7,'Mean Directional Array',NULL,4,NULL,NULL,'WAVSTAT-DDS_L0','Direction of waves from directional spectra against true north in degrees.',4,0);
+INSERT INTO "parameter" VALUES(2793,'directional_spread_array',3,1,NULL,98,7,'Directional Spread Array',NULL,4,NULL,NULL,'WAVSTAT-SDS_L0','Direction spread from directional spectra in degrees.',4,0);
 INSERT INTO "parameter" VALUES(2794,'number_time_samples',11,4,NULL,8,7,'Number Time Samples',NULL,0,NULL,NULL,NULL,'number of time samples',NULL,NULL);
 INSERT INTO "parameter" VALUES(2795,'initial_time',11,1,NULL,200,7,'Initial Time',NULL,4,NULL,NULL,NULL,'initial time',NULL,NULL);
 INSERT INTO "parameter" VALUES(2796,'time_spacing',11,1,NULL,200,7,'Time Spacing',NULL,4,NULL,NULL,NULL,'time spacing',NULL,NULL);
@@ -3466,7 +3466,7 @@ INSERT INTO "parameter" VALUES(2995,'murata_24v_temp',11,1,NULL,99,7,'24V Murata
 INSERT INTO "parameter" VALUES(2996,'vicor_12v_bcm_temp',11,1,NULL,99,7,'12V Vicor BCM Temperature',NULL,4,NULL,NULL,NULL,'12V Vicor BCM Temperature',NULL,NULL);
 INSERT INTO "parameter" VALUES(2997,'sht25_humidity',11,1,NULL,2,7,'SHT25 Humidity, %Relative',NULL,4,NULL,NULL,NULL,'SHT25 Humidity',NULL,NULL);
 INSERT INTO "parameter" VALUES(2998,'bmp085_pressure',11,1,NULL,193,7,'BMP085 Pressure',NULL,4,NULL,NULL,NULL,'BMP085 pressure',NULL,NULL);
-INSERT INTO "parameter" VALUES(2999,'active_swgf_channels',11,6,NULL,8,4,'Active SWGF Channels (Bitmask); ‘7’ = All 3 Enabled',NULL,0,NULL,NULL,NULL,'Active SWGF channels (bitmask); ‘7’ = all 3 enabled',NULL,NULL);
+INSERT INTO "parameter" VALUES(2999,'active_swgf_channels',11,6,NULL,8,4,'Active SWGF Channels (Bitmask); ''7'' = All 3 Enabled',NULL,0,NULL,NULL,NULL,'Active SWGF channels (bitmask); ''7'' = all 3 enabled',NULL,NULL);
 INSERT INTO "parameter" VALUES(3000,'swgf_c1_max_leakage',11,1,NULL,8,7,'SWGF Channel 1 Maximum Leakage',NULL,4,NULL,NULL,NULL,'SWGF channel 1 maximum leakage (console to CPM, uA) positive -> DCL_RTN_CPM wet, negative -> DCL_ISO_3v3 wet',NULL,NULL);
 INSERT INTO "parameter" VALUES(3001,'swgf_c2_max_leakage',11,1,NULL,8,7,'SWGF Channel 2 Maximum Leakage',NULL,4,NULL,NULL,NULL,'SWGF channel 2 maximum leakage (Vmain/Gmain), uAmp, Vmain/Gmain; positive -> Vmain wet, negative -> Gmain wet',NULL,NULL);
 INSERT INTO "parameter" VALUES(3002,'swgf_c3_max_leakage',11,1,NULL,8,7,'SWGF Channel 3 Maximum Leakage',NULL,4,NULL,NULL,NULL,'SWGF channel 3 maximum leakage (isolated instrument 12/24V), uAmp, sensor 12v/24v & SNSR_COM,; positive -> sensor 12 and/or 24V wet, negative -> SNSR_COM wet',NULL,NULL);
@@ -3595,7 +3595,7 @@ INSERT INTO "parameter" VALUES(3124,'num_vel_bins',11,12,NULL,66,10,'Num Vel Bin
 INSERT INTO "parameter" VALUES(3125,'num_int_bins',11,12,NULL,66,10,'Num Int Bins',NULL,0,NULL,NULL,NULL,'# int bins',NULL,NULL);
 INSERT INTO "parameter" VALUES(3126,'num_beams',11,12,NULL,66,10,'Num Beams',NULL,0,NULL,NULL,NULL,'# beams in ADCP',NULL,NULL);
 INSERT INTO "parameter" VALUES(3127,'beam_conf',11,12,NULL,98,10,'Beam Conf',NULL,0,NULL,NULL,NULL,'ADCP Janus Beam angle',NULL,NULL);
-INSERT INTO "parameter" VALUES(3128,'wave_param_source',11,12,NULL,8,10,'Wave Param Source',NULL,0,NULL,NULL,NULL,'‘V’ = use velocity derived wave spectrum to determine wave params. P=Pressure, S = Surface track',NULL,NULL);
+INSERT INTO "parameter" VALUES(3128,'wave_param_source',11,12,NULL,8,10,'Wave Param Source',NULL,0,NULL,NULL,NULL,'''V'' = use velocity derived wave spectrum to determine wave params. P=Pressure, S = Surface track',NULL,NULL);
 INSERT INTO "parameter" VALUES(3129,'nfft_samples',11,9,NULL,66,10,'Nfft Samples',NULL,0,NULL,NULL,NULL,'Samples from the burst used for wave processing. Is always a power of 2.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3130,'num_directional_slices',11,9,NULL,66,10,'Num Directional Slices',NULL,0,NULL,NULL,NULL,'# directional slices = output directional spectrum resolution',NULL,NULL);
 INSERT INTO "parameter" VALUES(3131,'num_freq_bins',11,9,NULL,66,10,'Num Freq Bins',NULL,0,NULL,NULL,NULL,'Output frequency resolution',NULL,NULL);
@@ -3626,8 +3626,8 @@ INSERT INTO "parameter" VALUES(3155,'small_wave_thresh',11,3,NULL,173,5,'Small W
 INSERT INTO "parameter" VALUES(3156,'tilts',11,12,NULL,8,10,'Tilts',NULL,0,NULL,NULL,NULL,'Use tilts algorithms to correct for tilted deployment context.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3157,'fixed_pitch',11,3,NULL,87,5,'Fixed Pitch',NULL,0,NULL,NULL,NULL,'Force fixed pitch',NULL,NULL);
 INSERT INTO "parameter" VALUES(3158,'fixed_roll',11,3,NULL,87,5,'Fixed Roll',NULL,0,NULL,NULL,NULL,'Force fixed roll',NULL,NULL);
-INSERT INTO "parameter" VALUES(3159,'bottom_slope_x',11,3,NULL,127,5,'Bottom Slope X',NULL,0,NULL,NULL,NULL,'X axis change in bottom slope – for horizontal systems, per 1000m',NULL,NULL);
-INSERT INTO "parameter" VALUES(3160,'bottom_slope_y',11,3,NULL,127,5,'Bottom Slope Y',NULL,0,NULL,NULL,NULL,'Y axis change in bottom slope – for horizontal systems, "-20" means 20m increase in water depth over 1000m moving offshore. per 1000m',NULL,NULL);
+INSERT INTO "parameter" VALUES(3159,'bottom_slope_x',11,3,NULL,127,5,'Bottom Slope X',NULL,0,NULL,NULL,NULL,'X axis change in bottom slope for horizontal systems, per 1000m',NULL,NULL);
+INSERT INTO "parameter" VALUES(3160,'bottom_slope_y',11,3,NULL,127,5,'Bottom Slope Y',NULL,0,NULL,NULL,NULL,'Y axis change in bottom slope for horizontal systems, "-20" means 20m increase in water depth over 1000m moving offshore. per 1000m',NULL,NULL);
 INSERT INTO "parameter" VALUES(3161,'down',11,12,NULL,8,10,'Down',NULL,0,NULL,NULL,NULL,'Downward facing waves system',NULL,NULL);
 INSERT INTO "parameter" VALUES(3162,'trans_v2_surf',11,12,NULL,8,10,'Trans V2 Surf',NULL,0,NULL,NULL,NULL,'0= do not translate orbital velocity spectrum to surface displacement.
  >0 do',NULL,NULL);
@@ -3635,7 +3635,7 @@ INSERT INTO "parameter" VALUES(3163,'scale_spec',11,12,NULL,8,10,'Scale Spec',NU
 INSERT INTO "parameter" VALUES(3164,'sample_rate',11,1,NULL,199,7,'Sample Rate',NULL,0,NULL,NULL,NULL,'Input data sample rate in seconds',NULL,NULL);
 INSERT INTO "parameter" VALUES(3165,'freq_thresh',11,1,NULL,114,7,'Freq Thresh',NULL,0,NULL,NULL,NULL,'Upper cutoff frequency',NULL,NULL);
 INSERT INTO "parameter" VALUES(3166,'dummy_surf',11,12,NULL,8,10,'Dummy Surf',NULL,0,NULL,NULL,NULL,'reserved',NULL,NULL);
-INSERT INTO "parameter" VALUES(3167,'remove_bias',11,12,NULL,8,10,'Remove Bias',NULL,0,NULL,NULL,NULL,'Switch, remove power from spectra, introduced by rectifying measurement noise. – always leave this on.',NULL,NULL);
+INSERT INTO "parameter" VALUES(3167,'remove_bias',11,12,NULL,8,10,'Remove Bias',NULL,0,NULL,NULL,NULL,'Switch, remove power from spectra, introduced by rectifying measurement noise. - always leave this on.',NULL,NULL);
 INSERT INTO "parameter" VALUES(3168,'dir_cutoff',11,9,NULL,22,10,'Dir Cutoff',NULL,0,NULL,NULL,NULL,'Upper cutoff frequency for directional spectra',NULL,NULL);
 INSERT INTO "parameter" VALUES(3169,'heading_variation',11,3,NULL,58,5,'Heading Variation',NULL,0,NULL,NULL,NULL,'Offset from ADCP beam 3 to',NULL,NULL);
 INSERT INTO "parameter" VALUES(3170,'soft_rev',11,12,NULL,8,10,'Soft Rev',NULL,0,NULL,NULL,NULL,'Software revision used to process the data',NULL,NULL);
@@ -3714,7 +3714,7 @@ INSERT INTO "parameter" VALUES(3248,'pressure_mbar',11,4,NULL,5,7,'Seawater Pres
 INSERT INTO "parameter" VALUES(3249,'seawater_pressure_mbar',11,4,NULL,5,7,'Seawater Pressure',NULL,2,NULL,NULL,NULL,'Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: 0.001dbar',NULL,NULL);
 INSERT INTO "parameter" VALUES(3250,'abs_seafloor_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,130,'{"p_psia": "PD94"}','SFLPRES-RTIME_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
 INSERT INTO "parameter" VALUES(3251,'datalog_manager_version',11,8,NULL,8,17,'Datalog Manager Version',NULL,NULL,NULL,NULL,NULL,'Internal - indicates data version',NULL,NULL);
-INSERT INTO "parameter" VALUES(3252,'system_software_version',11,8,NULL,8,17,'System Software Version',NULL,NULL,NULL,NULL,NULL,'Internal – system SW version',NULL,NULL);
+INSERT INTO "parameter" VALUES(3252,'system_software_version',11,8,NULL,8,17,'System Software Version',NULL,NULL,NULL,NULL,NULL,'Internal - system SW version',NULL,NULL);
 INSERT INTO "parameter" VALUES(3253,'total_run_time',11,10,NULL,37,10,'Total Run Time',NULL,NULL,NULL,NULL,NULL,'Total run time of system',NULL,NULL);
 INSERT INTO "parameter" VALUES(3254,'fuel_cell_voltage',11,4,NULL,150,7,'Fuel Cell Voltage',NULL,NULL,NULL,NULL,NULL,'Fuel Cell voltage',NULL,NULL);
 INSERT INTO "parameter" VALUES(3255,'fuel_cell_current',11,4,NULL,138,7,'Fuel Cell Current',NULL,NULL,NULL,NULL,NULL,'Fuel cell current',NULL,NULL);
@@ -3726,7 +3726,7 @@ INSERT INTO "parameter" VALUES(3260,'fuel_pump_pwm_drive_percent',11,4,NULL,1,7,
 INSERT INTO "parameter" VALUES(3261,'air_pump_pwm_drive_percent',11,4,NULL,1,7,'Air Pump Pwm Drive Percent',NULL,NULL,NULL,NULL,NULL,'Air pump PWM drive percent',NULL,NULL);
 INSERT INTO "parameter" VALUES(3262,'coolant_pump_pwm_drive_percent',11,4,NULL,1,7,'Coolant Pump Pwm Drive Percent',NULL,NULL,NULL,NULL,NULL,'Coolant pump PWM drive percent',NULL,NULL);
 INSERT INTO "parameter" VALUES(3263,'air_pump_tach_count',11,4,NULL,18,7,'Air Pump Tach Count',NULL,NULL,NULL,NULL,NULL,'Air pump tach count',NULL,NULL);
-INSERT INTO "parameter" VALUES(3264,'fuel_cell_state',11,4,NULL,8,7,'Fuel Cell State',NULL,NULL,NULL,NULL,NULL,'Fuel Cell state – see next table',NULL,NULL);
+INSERT INTO "parameter" VALUES(3264,'fuel_cell_state',11,4,NULL,8,7,'Fuel Cell State',NULL,NULL,NULL,NULL,NULL,'Fuel Cell state - see next table',NULL,NULL);
 INSERT INTO "parameter" VALUES(3265,'fuel_remaining',11,4,NULL,143,7,'Fuel Remaining',NULL,NULL,NULL,NULL,NULL,'Fuel remaining in bladder',NULL,NULL);
 INSERT INTO "parameter" VALUES(3266,'power_to_battery1',11,4,NULL,151,7,'Power to Battery1',NULL,NULL,NULL,NULL,NULL,'Power to battery 1',NULL,NULL);
 INSERT INTO "parameter" VALUES(3267,'battery1_converter_temperature',11,4,NULL,81,7,'Battery1 Converter Temperature',NULL,NULL,NULL,NULL,NULL,'Converter 1 temperature',NULL,NULL);
@@ -18986,6 +18986,7 @@ INSERT INTO "unit" VALUES(234,'ºC');
 INSERT INTO "unit" VALUES(235,'µg L-1');
 INSERT INTO "unit" VALUES(236,'10 useconds');
 INSERT INTO "unit" VALUES(237,'umol/L');
+INSERT INTO "unit" VALUES(238,'0.001 deg Celsius');
 CREATE TABLE value_encoding (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
