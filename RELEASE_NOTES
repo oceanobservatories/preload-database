@@ -1,3 +1,7 @@
+Version 1.0.13 (2017-04-26)
+
+- Update ADCP to use calibration depth for bin_depths (Redmine #9306).
+
 Version 1.0.12 (2017-04-13)
 
 - Made all zplsc_c dimensions unique due to possible channel bin count variance

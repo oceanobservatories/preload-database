@@ -4503,7 +4503,7 @@ INSERT INTO "parameter" VALUES(7979,'ts_status_secondary_reference_clock',11,8,N
 INSERT INTO "parameter" VALUES(7980,'ts_status_time_error',11,8,NULL,8,17,'Status Time Error Quantity',NULL,NULL,NULL,NULL,NULL,'Status Time Error Quantity',NULL,NULL);
 INSERT INTO "parameter" VALUES(7981,'ts_status_timeout_error',11,8,NULL,8,17,'Status Timout Error',NULL,NULL,NULL,NULL,NULL,'Status Timout Error',NULL,NULL);
 INSERT INTO "parameter" VALUES(7982,'ts_system_up_time',11,4,NULL,65,7,'System Up Time',NULL,0,NULL,NULL,NULL,'System Up Time',NULL,NULL);
-INSERT INTO "parameter" VALUES(7983,'bin_depths',10,1,NULL,127,7,'Bin Depths',NULL,0,201,'{"pressure": "PD710", "bin_size": "PD623", "adcp_orientation": "PD617", "latitude": "CC_lat", "dist_first_bin": "PD651", "num_bins": "PD621"}','?','Bin Depths',NULL,NULL);
+INSERT INTO "parameter" VALUES(7983,'bin_depths',10,1,NULL,127,7,'Bin Depths',NULL,0,203,'{"sensor_depth": "CC_depth", "bin_size": "PD623", "dist_first_bin": "PD651", "num_bins": "PD621", "adcp_orientation": "PD617"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7984,'bin_depths',10,1,NULL,127,7,'Bin Depths',NULL,0,202,'{"pressure": "PD1527", "bin_size": "PD623", "adcp_orientation": "PD617", "latitude": "PD1335", "dist_first_bin": "PD651", "num_bins": "PD621"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7985,'bin_depths',10,1,NULL,127,7,'Bin Depths',NULL,0,203,'{"sensor_depth": "CC_depth", "bin_size": "CC_bin_size", "dist_first_bin": "CC_dist_first_bin", "num_bins": "PD621", "adcp_orientation": "CC_orientation"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7986,'parad_m_par',10,1,NULL,222,NULL,'Photosynthetically Active Radiation','downwelling_photosynthetic_photon_flux_in_sea_water',4,189,'{"scaler": "CC_bsipar_par_scaling", "value": "PD1470"}','OPTPARW_L1','Photosynthetically Active Radiation (PAR) is the measure of the density of photons per unit area that are in the spectral range of light (400-700 nanometers) that primary producers use for photosynthesis. Units: umol photons m-2 s-1',3,1);
@@ -4719,7 +4719,6 @@ INSERT INTO "parameter_dimension" VALUES(3825,4);
 INSERT INTO "parameter_dimension" VALUES(3826,4);
 INSERT INTO "parameter_dimension" VALUES(3827,4);
 INSERT INTO "parameter_dimension" VALUES(3828,4);
-INSERT INTO "parameter_dimension" VALUES(7983,4);
 INSERT INTO "parameter_dimension" VALUES(7984,4);
 INSERT INTO "parameter_dimension" VALUES(7985,4);
 INSERT INTO "parameter_dimension" VALUES(19,15);
@@ -4729,6 +4728,7 @@ INSERT INTO "parameter_dimension" VALUES(3752,22);
 INSERT INTO "parameter_dimension" VALUES(3737,25);
 INSERT INTO "parameter_dimension" VALUES(3749,21);
 INSERT INTO "parameter_dimension" VALUES(3755,23);
+INSERT INTO "parameter_dimension" VALUES(7983,4);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 
@@ -17853,7 +17853,6 @@ INSERT INTO "stream_parameter" VALUES(743,3819);
 INSERT INTO "stream_parameter" VALUES(743,3820);
 INSERT INTO "stream_parameter" VALUES(743,3821);
 INSERT INTO "stream_parameter" VALUES(743,3822);
-INSERT INTO "stream_parameter" VALUES(743,7983);
 INSERT INTO "stream_parameter" VALUES(744,7);
 INSERT INTO "stream_parameter" VALUES(744,10);
 INSERT INTO "stream_parameter" VALUES(744,11);
@@ -17896,7 +17895,6 @@ INSERT INTO "stream_parameter" VALUES(744,3823);
 INSERT INTO "stream_parameter" VALUES(744,3824);
 INSERT INTO "stream_parameter" VALUES(744,3825);
 INSERT INTO "stream_parameter" VALUES(744,3826);
-INSERT INTO "stream_parameter" VALUES(744,7983);
 INSERT INTO "stream_parameter" VALUES(745,7);
 INSERT INTO "stream_parameter" VALUES(745,10);
 INSERT INTO "stream_parameter" VALUES(745,11);
@@ -18220,7 +18218,6 @@ INSERT INTO "stream_parameter" VALUES(752,3819);
 INSERT INTO "stream_parameter" VALUES(752,3820);
 INSERT INTO "stream_parameter" VALUES(752,3827);
 INSERT INTO "stream_parameter" VALUES(752,3828);
-INSERT INTO "stream_parameter" VALUES(752,7983);
 INSERT INTO "stream_parameter" VALUES(753,7);
 INSERT INTO "stream_parameter" VALUES(753,10);
 INSERT INTO "stream_parameter" VALUES(753,11);
@@ -18734,6 +18731,9 @@ INSERT INTO "stream_parameter" VALUES(773,3758);
 INSERT INTO "stream_parameter" VALUES(385,931);
 INSERT INTO "stream_parameter" VALUES(384,931);
 INSERT INTO "stream_parameter" VALUES(773,3737);
+INSERT INTO "stream_parameter" VALUES(744,7983);
+INSERT INTO "stream_parameter" VALUES(743,7983);
+INSERT INTO "stream_parameter" VALUES(752,7983);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
