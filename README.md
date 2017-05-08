@@ -1,0 +1,33 @@
+This git module stores the data (as CSV) and code for parsing this data and inserting it
+into an SQL database.
+
+Files of interest:
+* load_preload.py      - Python script that generates a SQL script from CSV files
+* preload_database.sql - The SQL script output by the parse script suitable for creating an SQLite database
+
+To create a virtualenv capable of running load_preload.py (requires postgres libraries installed):
+```sh
+mkvirtualenv preload
+pip install -r requirements.txt
+```
+
+To create a conda env capable of running load_preload.py:
+```sh
+conda env create -f conda_env.yml
+source activate preload
+```
+
+To create or update the preload_database.sql file:
+```sh
+python load_preload.py
+```
+
+To directly create or update an SQLite database:
+```sh
+python load_preload.py sqlite:///preload.db
+```
+
+To fill or update a postgres database:
+```
+python load_preload.py postgresql://user@localhost/dbname
+```
