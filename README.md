@@ -38,7 +38,7 @@ python load_preload.py postgresql://user@localhost/dbname
 
 ## `resolve_stream.py`
 
-List all particles and sources for derived particles for a specific data stream. 
+List all parameter and sources for derived parameters for a specific data stream. 
 
 Usage:
 ```
@@ -47,7 +47,8 @@ Usage:
 ```
 If no arguments are provided, all reference designators will be resolved (this will take awhile).
 
-The tool will list 
+The output is column data with parameter id, parameter name, source reference designator and stream. Any parameters that require derivation provide the supporting parameters indented under them.
+
 Example:
 ```
 $ ./resolve_stream.py CE02SHSP-SP001-07-FLORTJ000 recovered_cspp flort_dj_cspp_instrument_recovered
