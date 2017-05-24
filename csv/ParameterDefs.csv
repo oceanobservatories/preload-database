@@ -1,5 +1,17 @@
 scenario,confluence,name,id,parametertype,dimensions,valueencoding,codeset,unitofmeasure,fillvalue,displayname,precision,visible,parameterfunctionid,parameterfunctionmap,qcfunctions,standardname,dataproductidentifier,description,longname,dataproducttype,datalevel
-DOC:Definition,,"System internal name of the parameter.  Parameter are allowed to have the same name, as long as the attributes are different.  The HID and ID columns determine uniqueness.","Parameter Definition IdentifierThis is the ""global"" identifier for the parameter.  It should be UNIQUE and STATIC among all parameters as it will be used to identify this parameter within other spreadsheets / contexts.  There is outstanding debate as to if this ID should be a simple incrementing ID (as below) or a computable SHA style identifier.",Member of the code set ParameterType,,"The encoding of the value.  Typically an intrinsic type.  'opaque' indicates an undefined value encoding and is stored as raw bits (blob)If the Parameter Type is 'category', the value encoding should match the encoding of the KEY","If the Parameter Type is ""category"", this column holds the definition of the key:value map of meanings""Code Set"" is the general term for an EnumerationRemember to have the fill value as a category",From UDUNITS vocabulary,"A value used to represent missing or undefined data. Please ensure that the fill_value is NOT a valid value for the parameter. For example, 0 is typically a very poor fill_value since it is usually valid (i.e. for temp, lat, lon, pressure, salinity, etc).",The Expected display name for R2.1 and beyond. Will be a required field in R2.1 and beyond. May not be Used in 2.0,"This column should contain the decimal precision that the UI Charts/Tables will utilize to display the appropriate values.If a precision is not known, leave it blank (it will still use the default).  If the default is to be used (currently precision of 5 decimal digits), and its approved to use whatever the default value is, set the value to ""default"".  If the value is not a float, the value should be set to 0.",Whether the parameter should be visible to the UI,The ID to the parameter function that the function executes,A key-value mapping using JSON or Python dictionary syntax. The key represents the function's argument and the value is the parameter name to be used as input. Values that are named CC_xxx represent calibration coefficients and are dynamically created at preload when they are found. Any parameter named CC_xxx will be dynamically created as a quanity type float32 with no metadata.,,The CF Standard Name for this parameter: http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/20/cf-standard-name-table.html,OOI Data Product Identifier as defined in SAF. This column is required to apply QC and calibrations to data products.,A human-readable description of the parameter.,"CF Long Name. A long descriptive name, which may be used, for example, for labeling plots.",,
+DOC:Definition,,"System internal name of the parameter.  
+
+Parameter are allowed to have the same name, as long as the attributes are different.  The HID and ID columns determine uniqueness.","Parameter Definition Identifier
+
+This is the ""global"" identifier for the parameter.  It should be UNIQUE and STATIC among all parameters as it will be used to identify this parameter within other spreadsheets / contexts.  There is outstanding debate as to if this ID should be a simple incrementing ID (as below) or a computable SHA style identifier.",Member of the code set ParameterType,,"The encoding of the value.  Typically an intrinsic type.  'opaque' indicates an undefined value encoding and is stored as raw bits (blob)
+
+If the Parameter Type is 'category', the value encoding should match the encoding of the KEY","If the Parameter Type is ""category"", this column holds the definition of the key:value map of meanings
+
+""Code Set"" is the general term for an Enumeration
+
+Remember to have the fill value as a category",From UDUNITS vocabulary,"A value used to represent missing or undefined data. Please ensure that the fill_value is NOT a valid value for the parameter. For example, 0 is typically a very poor fill_value since it is usually valid (i.e. for temp, lat, lon, pressure, salinity, etc).",The Expected display name for R2.1 and beyond. Will be a required field in R2.1 and beyond. May not be Used in 2.0,"This column should contain the decimal precision that the UI Charts/Tables will utilize to display the appropriate values.
+
+If a precision is not known, leave it blank (it will still use the default).  If the default is to be used (currently precision of 5 decimal digits), and its approved to use whatever the default value is, set the value to ""default"".  If the value is not a float, the value should be set to 0.",Whether the parameter should be visible to the UI,The ID to the parameter function that the function executes,A key-value mapping using JSON or Python dictionary syntax. The key represents the function's argument and the value is the parameter name to be used as input. Values that are named CC_xxx represent calibration coefficients and are dynamically created at preload when they are found. Any parameter named CC_xxx will be dynamically created as a quanity type float32 with no metadata.,,The CF Standard Name for this parameter: http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/20/cf-standard-name-table.html,OOI Data Product Identifier as defined in SAF. This column is required to apply QC and calibrations to data products.,A human-readable description of the parameter.,"CF Long Name. A long descriptive name, which may be used, for example, for labeling plots.",,
 DOC:WARNING,,r2deploy loads the BASE scenario from CSV files located in ion-definitions/res/preload/r2_ioc and NOT from this document or the one in TESTED_DOC. Please export changes to CSV files to change system bootstrap!,,,,,,,,,,,,,,,,,,,
 DOC:Namespace,,ION::Name,,ION::ParameterType,,ION::Value Encoding,ION::Code Set,ION::Unit of Measure,ION:Fill Value,ION::Display Name (May be removed),,,,,,CF::Standard Name,OOI::Data Product Identifier,ION::Description,CF::Long Name,,
 DOC:Vocabulary,,,,,,,,,,,,,,,,http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/20/cf-standard-name-table.html,,,,,
@@ -747,7 +759,7 @@ LC_TEST,,reference_designator,PD906,array,,,,,,,,,,,,,,,,,
 "SP_TEST,SP_MFLM",DOSTA,raw_temperature,PD949,quantity,,float32,,mV,-9999999,Thermistor Voltage,1,,,,,,,"Raw temperature, voltage from thermistor.",,,
 "CW_TEST,ADCPT_DE,ADCPS_IK,ADCPT_ACFGM_PD0_DCL,ADCPT_ACFGM_PD8_DCL",ADCP,upward_earth_seawater_velocity,PD960,function,"[""bin""]",float32,,m s-1,-9999999,Upward Seawater Velocity,4,,PFID128,"{""w"":""PD716""}",VELPROF-VLU,upward_sea_water_velocity,VELPROF-VLU_L1,A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the upward seawater velocity component. Units: m s-1,Upward Seawater Velocity Profile,Science Data,L1
 "CW_TEST,ADCPT_DE,ADCPS_IK,ADCPT_ACFGM_PD0_DCL,ADCPT_ACFGM_PD8_DCL",ADCP,earth_error_velocity,PD961,function,"[""bin""]",float32,,m s-1,-9999999,Error Velocity,4,,PFID129,"{""e"":""PD717""}",VELPROF-ERR,,VELPROF-ERR_L1,A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the error component. Units: m s-1,Error Seawater Velocity Profile,Science Data,L1
-"SP_TEST,CTD_CABLED","DOSTA, CTDBP",ctd_tc_oxygen,PD964,function,,float32,,umol L-1,-9999999,DO,4,,PFID60,"{""o2_counts"":""PD197""}",DOCONCS,,DOCONCS_L1,"Dissolved Oxygen (DO) Concentration from the Stable Response Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings. This data product is corrected for temperature from a collocated CTD. Units: umol L-1.",Dissolved Oxygen Concentration from Stable DO Instrument,Science Data,L1
+"SP_TEST,CTD_CABLED","DOSTA, CTDBP",ctd_tc_oxygen,PD964,function,,float32,,umol L-1,-9999999,DO,4,,PFID60,"{""o2_counts"":""PD197""}",DOCONCS,,DOCONCS_L1,"Dissolved Oxygen (DO) Concentration from the Stable Response Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. Units: umol L-1.",Dissolved Oxygen Concentration from Stable DO Instrument,Science Data,L1
 TRHPH_A,TRHPH,vent_fluid_temperaure,PD965,function,,float32,,deg_C,-9999999,Vent Fluid Absolute Temperature,4,,PFID63,"{""V_ts"":""PD428"",""V_tc"":""PD430"",""tc_slope"":""CC_tc_slope"",""ts_slope"":""CC_ts_slope""}",TRHPHTE,,TRHPHTE-ABS_L1,Vent Fluid Absolute Temperature refers to temperature calculated from the Temperature-Resistivity Probe Instrument (TRHPH) Thermistor and Thermocouple. It is calculated using response curves from Thermocouple and Thermistor Temperature (in volts) that are adjusted to the custom instrument design and corrected by laboratory calibration. Units: degrees Celsius,Vent Fluid Temperature,Science Data,L1
 TRHPH_A,TRHPH,vent_fluid_chloride_conc,PD966,function,,float32,,mmol kg-1,-9999999,Vent Fluid Chloride Concentration,4,,PFID64,"{""V_R1"":""PD421"",""V_R2"":""PD422"",""V_R3"":""PD423"",""T"":""PD965""}",TRHPHCC,,TRHPHCC_L2,Vent Fluid Chloride Concentration (Cl-) is calculated using resistivity and temperature measured by a Hydrothermal Vent Fluid Temperature and Resistivity sensor placed in a high-temperature hydrothermal vent. Units: mmol kg-1,Vent Fluid Chloride Concentration (CI-),Science Data,L2
 TRHPH_A,TRHPH,vent_fluid_orp,PD967,function,,float32,,mV,-9999999,Vent Fluid Oxidation-Reduction Potential,4,,PFID65,"{""V"":""PD427"",""offset"":""CC_offset"",""gain"":""CC_gain""}",TRHPHEH,,TRHPHEH_L1,"Vent Fluid Oxidation-Reduction Potential (ORP) is a measure of the tendency of a vent fluid, and the chemical species within it, to acquire electrons (i.e. be reduced). The more positive the potential, the greater the affinity for electrons and tendency to be reduced. Units: mV",Vent Fluid Oxidation-Reduction Potential (ORP),Science Data,L1
@@ -2010,8 +2022,12 @@ MASSP_A,MASSP,massp_rga_readings_per_scan,PD2524,quantity,,int16,,count,-9999,An
 MASSP_A,MASSP,massp_scan_data,PD2525,array<quantity>,,int32,,10e-16 Amps,-9999999,Array of Measurements Representing One Scan of the RGA,,,,,,,,,,,
 HPIES,HPIES,hpies_data_valid,PD2526,boolean,,uint8,,1,0,Data Valid,,,,,,,,indicates if the data is valid (CRC matches data),,,
 HPIES,HPIES,hpies_ver,PD2527,quantity,,uint8,,1,0,Version Number,,,,,,,,two-digit version number,,,
-HPIES,HPIES,hpies_type,PD2528,quantity,,string,,1,empty,Data Type,,,,,,,,"""E"" for EF data ""C"" for calibration data ""f"" for motor data in forward direction ""r"" for motor data in reverse direction",,,
-HPIES,HPIES,hpies_dest,PD2529,quantity,,string,,1,empty,Pinched Tube,,,,,,,,"""a"" for pinching the ""A"" tubes ""b"" for pinching the ""B"" tubes",,,
+HPIES,HPIES,hpies_type,PD2528,quantity,,string,,1,empty,Data Type,,,,,,,,"""E"" for EF data 
+""C"" for calibration data 
+""f"" for motor data in forward direction 
+""r"" for motor data in reverse direction",,,
+HPIES,HPIES,hpies_dest,PD2529,quantity,,string,,1,empty,Pinched Tube,,,,,,,,"""a"" for pinching the ""A"" tubes 
+""b"" for pinching the ""B"" tubes",,,
 HPIES,HPIES,hpies_ibeg,PD2530,quantity,,uint16,,1,0,Index Begin,,,,,,,,index of first A/D buffer value,,,
 HPIES,HPIES,hpies_iend,PD2531,quantity,,uint16,,1,0,Index End,,,,,,,,index+1 of last A/D buffer value,,,
 HPIES,HPIES,hpies_hcno,PD2532,quantity,,uint16,,1,0,Half Cycle Number,,,,,,,,half-cycle number which increments,,,
@@ -2140,11 +2156,20 @@ CAMDS_B,CAMDS,camds_focus_position,PD2661,quantity,,int8,,1,-99,Focus Position,,
 CAMDS_B,CAMDS,camds_zoom_position,PD2662,quantity,,int8,,1,-99,Zoom Position,,,,,,,,Zoom,,,
 CAMDS_B,CAMDS,camds_iris_position,PD2663,quantity,,int8,,1,-99,Iris Position,,,,,,,,Iris,,,
 CAMDS_B,CAMDS,camds_gain,PD2664,quantity,,int8,,1,-99,Gain,,,,,,,,Gain,,,
-CAMDS_B,CAMDS,camds_resolution,PD2665,quantity,,int8,,1,-99,Resolution,,,,,,,,"Image resolution as a divider of the full image resolution.  Hex number to convert to string:0x1 = Full resolution0x2 = 1/2 Resolution0x4 = 1/4 Resolution0x8 = 1/8 Resolution",,,
+CAMDS_B,CAMDS,camds_resolution,PD2665,quantity,,int8,,1,-99,Resolution,,,,,,,,"Image resolution as a divider of the full image resolution.  Hex number to convert to string:
+0x1 = Full resolution
+0x2 = 1/2 Resolution
+0x4 = 1/4 Resolution
+0x8 = 1/8 Resolution",,,
 CAMDS_B,CAMDS,camds_brightness,PD2666,quantity,,int8,,1,-99,Brightness,,,,,,,,Brightness of the lamp 1-100.,,,
 CAMDS_B,CAMDS,camds_temp,PD2667,quantity,,int8,,DegreesC,-99,Temperature,,,,,,,,Temperature.  Range is 0 to 80 degrees and there are no decimal places. Accuracy is +/- 1.0 degrees.,,,
 CAMDS_B,CAMDS,camds_humidity,PD2668,quantity,,int8,,percent,-99,Internal Humidity,,,,,,,,Digital still camera internal housing humidity reading,Internal Humidity,,
-CAMDS_B,CAMDS,camds_error,PD2669,quantity,,int8,,1,-99,Error,,,,,,,,"Error message.  Error will have the following possibilities: 0x00 = No Error 0x01 = Camera Not connected 0x02 = I2C Error Convert to string so that error text is provided to user rather than number.",,,
+CAMDS_B,CAMDS,camds_error,PD2669,quantity,,int8,,1,-99,Error,,,,,,,,"Error message.  Error will have the following possibilities: 
+0x00 = No Error 
+0x01 = Camera Not connected 
+0x02 = I2C Error 
+
+Convert to string so that error text is provided to user rather than number.",,,
 CAMDS_B,CAMDS,camds_disk_size,PD2670,quantity,,int16,,MB,-9999,Disk Size,,,,,,,,Size of disk in MB,,,
 CAMDS_B,CAMDS,camds_disk_remaining,PD2671,quantity,,int8,,%,-99,Disk Remaining,,,,,,,,Percentage of disk unused,,,
 CAMDS_B,CAMDS,camds_images_remaining,PD2672,quantity,,int16,,counts,-9999,Images Remaining,,,,,,,,Provides the storage of the disk in terms of the number of images remaining.,,,
@@ -2595,7 +2620,8 @@ ADCPT_M,ADCPT-M,fixed_roll,PD3158,quantity,,int16,,deg,-9999,Fixed Roll,0,,,,,,,
 ADCPT_M,ADCPT-M,bottom_slope_x,PD3159,quantity,,int16,,m,-9999,Bottom Slope X,0,,,,,,,"X axis change in bottom slope for horizontal systems, per 1000m",,,
 ADCPT_M,ADCPT-M,bottom_slope_y,PD3160,quantity,,int16,,m,-9999,Bottom Slope Y,0,,,,,,,"Y axis change in bottom slope for horizontal systems, ""-20"" means 20m increase in water depth over 1000m moving offshore. per 1000m",,,
 ADCPT_M,ADCPT-M,down,PD3161,quantity,,uint8,,1,0,Down,0,,,,,,,Downward facing waves system,,,
-ADCPT_M,ADCPT-M,trans_v2_surf,PD3162,quantity,,uint8,,1,0,Trans V2 Surf,0,,,,,,,"0= do not translate orbital velocity spectrum to surface displacement. >0 do",,,
+ADCPT_M,ADCPT-M,trans_v2_surf,PD3162,quantity,,uint8,,1,0,Trans V2 Surf,0,,,,,,,"0= do not translate orbital velocity spectrum to surface displacement.
+ >0 do",,,
 ADCPT_M,ADCPT-M,scale_spec,PD3163,quantity,,uint8,,1,0,Scale Spec,0,,,,,,,reserved,,,
 ADCPT_M,ADCPT-M,sample_rate,PD3164,quantity,,float32,,s,-9999999,Sample Rate,0,,,,,,,Input data sample rate in seconds,,,
 ADCPT_M,ADCPT-M,freq_thresh,PD3165,quantity,,float32,,hz,-9999999,Freq Thresh,0,,,,,,,Upper cutoff frequency,,,
@@ -2607,12 +2633,17 @@ ADCPT_M,ADCPT-M,soft_rev,PD3170,quantity,,uint8,,1,0,Soft Rev,0,,,,,,,Software r
 ADCPT_M,ADCPT-M,clip_pwr_spec,PD3171,quantity,,uint8,,1,0,Clip Pwr Spec,0,,,,,,,"Switch, Clips negative values in power spectra",,,
 ADCPT_M,ADCPT-M,dir_p2,PD3172,quantity,,uint8,,1,0,Dir P2,0,,,,,,,Output spectra in units of Power not Height,,,
 ADCPT_M,ADCPT-M,horizontal,PD3173,quantity,,uint8,,1,0,Horizontal,0,,,,,,,">0 Indicates Horizontal Waves System, 0 = vertical",,,
-ADCPT_M,ADCPT-M,start_time,PD3174,array<quantity>,,uint8,,1,0,Start Time,0,,,,,,,"Start of Burst interval Cent,year,month,day,hour,minute,sec,sec100",,,
-ADCPT_M,ADCPT-M,stop_time,PD3175,array<quantity>,,uint8,,1,0,Stop Time,0,,,,,,,"Stop time Cent,year,month,day,hour,minute,sec,sec100",,,
+ADCPT_M,ADCPT-M,start_time,PD3174,array<quantity>,,uint8,,1,0,Start Time,0,,,,,,,"Start of Burst interval
+ Cent,year,month,day,hour,minute,sec,sec100",,,
+ADCPT_M,ADCPT-M,stop_time,PD3175,array<quantity>,,uint8,,1,0,Stop Time,0,,,,,,,"Stop time
+ Cent,year,month,day,hour,minute,sec,sec100",,,
 ADCPT_M,ADCPT-M,freq_lo,PD3176,quantity,,uint16,,milliHz,0,Frequency Low,0,,,,,,,Lower Frequency threshold for all spectra,,,
 ADCPT_M,ADCPT-M,average_depth,PD3177,quantity,,uint32,,mm,0,Average Depth,0,,,,,,,Mean submergence during burst,,,
 ADCPT_M,ADCPT-M,altitude,PD3178,quantity,,uint32,,cm,0,Altitude,0,,,,,,,Altitude of instrument above bottom,,,
-ADCPT_M,ADCPT-M,bin_map,PD3179,array<quantity>,"[""b_map""]",uint8,,1,0,Bin Map,0,,,,,,,"128 element array 1 = cell to use for non dir spec 2 = cell to use for dir spec 3 = cell used for both",,,
+ADCPT_M,ADCPT-M,bin_map,PD3179,array<quantity>,"[""b_map""]",uint8,,1,0,Bin Map,0,,,,,,,"128 element array
+ 1 = cell to use for non dir spec
+ 2 = cell to use for dir spec
+ 3 = cell used for both",,,
 ADCPT_M,ADCPT-M,disc_flag,PD3180,quantity,,uint8,,1,0,Disc Flag,0,,,,,,,reserved,,,
 ADCPT_M,ADCPT-M,pct_gd_press,PD3181,quantity,,uint8,,0%,0,"Pct Gd Press, %",0,,,,,,,Percent good Pressure measurements,,,
 ADCPT_M,ADCPT-M,avg_ss,PD3182,quantity,,uint16,,m s-1,0,Avg Ss,0,,,,,,,Average speed of Sound,,,
@@ -3492,12 +3523,14 @@ CSPP_ENG,CSPP_ENG_DCL,cspp_winch_end_position,PD8010,quantity,,int32,,count,-999
 CSPP_ENG,CSPP_ENG_DCL,cspp_filename,PD8011,quantity,,string,,1,empty,Filename,,,,,,,,The name of the .ppb file for this profile,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_file_size,PD8012,quantity,,int32,,bytes,-9999999,File Size,,,,,,,,The size in bytes of the file,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_file_space,PD8013,quantity,,int32,,bytes,-9999999,File Space,,,,,,,,The remaining space in bytes on the package controller flash drive,,Engineering Data,L0
-CSPP_ENG,CSPP_ENG_DCL,cspp_num_files,PD8014,quantity,,int32,,count,-9999999,Number of Files,,,,,,,,"The number of files in the current data directory onthe profiler",,Engineering Data,L0
+CSPP_ENG,CSPP_ENG_DCL,cspp_num_files,PD8014,quantity,,int32,,count,-9999999,Number of Files,,,,,,,,"The number of files in the current data directory on
+the profiler",,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_profile_number,PD8015,quantity,,int32,,count,-9999999,Profile Number,,,,,,,,The number of the profile for the deployment,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_low_voltage,PD8016,quantity,,float32,,volts,-9999999,Low Voltage,,,,,,,,The reported voltage of the lowest Bluefin battery in the system or 0 if a Bluefin battery is not installed.,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_low_cell_voltage,PD8017,quantity,,float32,,volts,-9999999,Low Cell Voltage,,,,,,,,The reported low cell voltage of the lowest voltage Bluefin battery in the system or 0 if a Bluefin battery is not installed.,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_watts_used,PD8018,quantity,,float32,,Watts,-9999999,Watts Used,,,,,,,,The watts used as reported by the Bluefin battery,,Engineering Data,L0
-CSPP_ENG,CSPP_ENG_DCL,cspp_low_battery_number,PD8019,quantity,,int8,,1,-99,Low Battery Number,,,,,,,,"The battery number of the Bluefin with the lowestoverall voltage",,Engineering Data,L0
+CSPP_ENG,CSPP_ENG_DCL,cspp_low_battery_number,PD8019,quantity,,int8,,1,-99,Low Battery Number,,,,,,,,"The battery number of the Bluefin with the lowest
+overall voltage",,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_home_depth,PD8020,quantity,,float32,,meters,-9999999,Home Depth,,,,,,,,home depth/home position,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_start_time,PD8021,quantity,,uint32,,seconds,0,Profile Start Time,,,,,,,,time for the start of the next profile ascent ((number of seconds from when the command is received),,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_setup_rate,PD8022,quantity,,float32,,m s-1,-9999999,Setup Rate,,,,,,,,profile setup rate,,Engineering Data,L0
@@ -3509,10 +3542,12 @@ CSPP_ENG,CSPP_ENG_DCL,cspp_num_profiles,PD8027,quantity,,int32,,count,-9999999,N
 CSPP_ENG,CSPP_ENG_DCL,cspp_interval_time,PD8028,quantity,,uint32,,seconds,0,Interval Time,,,,,,,,interval in seconds between the start of the ascent of one profile and the start of the next ascent,,Engineering Data,L0
 CSPP_ENG,CSPP_ENG_DCL,cspp_start_delay,PD8029,quantity,,uint32,,seconds,0,Start Delay,,,,,,,,start delay in seconds,,Engineering Data,L0
 PRESF_ABC,PRESF,presf_time,PD8030,quantity,,int32,,seconds since 2000-01-01,-9999999,"Time, UTC",0,,,,,,,Time in seconds since 2000-01-01.,,,
-PRESF_ABC,PRESF,presf_tide_pressure_number,PD8031,quantity,,int32,,counts,-9999999,Seafloor Pressure Number,0,,,,,,,"Seafloor Pressure tide measurement, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure(SFLPRES) core data product.  Units: counts",Seawater Tide Pressure Number,Unprocessed Data,L0
+PRESF_ABC,PRESF,presf_tide_pressure_number,PD8031,quantity,,int32,,counts,-9999999,Seafloor Pressure Number,0,,,,,,,"Seafloor Pressure tide measurement, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure
+(SFLPRES) core data product.  Units: counts",Seawater Tide Pressure Number,Unprocessed Data,L0
 PRESF_ABC,PRESF,presf_tide_temperature_number,PD8032,quantity,,int32,,counts,-9999999,Seawater Temperature Number,0,,,,,,,Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: counts,Seawater Tide Temperature Number,Unprocessed Data,L0
 PRESF_ABC,PRESF,presf_wave_press_temp_comp_number,PD8033,quantity,,int32,,counts,-9999999,Pressure Temperature Compensation Number,0,,,,,,,Seafloor Pressure family of instruments (PRESF) pressure temperature compensation number.  Units: counts,Seawater Wave Pressure Temperature Compensation Number,Unprocessed Data,L0
-PRESF_ABC,PRESF,presf_wave_burst_pressure_number,PD8034,array<quantity>,,int32,,counts,-9999999,Seafloor Pressure Number,0,,,,,,,"Seafloor Pressure wave measurements, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure(SFLPRES) core data product.  Units: counts",Seawater Wave Pressure Numbers,Unprocessed Data,L0
+PRESF_ABC,PRESF,presf_wave_burst_pressure_number,PD8034,array<quantity>,,int32,,counts,-9999999,Seafloor Pressure Number,0,,,,,,,"Seafloor Pressure wave measurements, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure
+(SFLPRES) core data product.  Units: counts",Seawater Wave Pressure Numbers,Unprocessed Data,L0
 PRESF_ABC,PRESF,presf_tide_pressure,PD8035,function,,float32,,dbar,-9999999,Seafloor Pressure,4,,PFID131,"{""p_dec_tide"":""PD8031"",""b"":""CC_b"",""m"":""CC_m"",""slope"":""CC_slope_correction_factor"",""offset"":""CC_offset_correction_factor""}",SFLPRES,sea_water_pressure_at_sea_floor,SFLPRES_L1,Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar,Seawater Tide Pressure,Science Data,L1
 PRESF_ABC,PRESF,presf_tide_temperature,PD8036,function,,float32,,deg_C,-9999999,Seawater Temperature,4,,PFID208,"{""t0"":""PD8032""}",PRESTMP,sea_water_temperature,PRESTMP_L1,Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: deg_C,Seawater Tide Temperature,Science Data,L1
 PRESF_ABC,PRESF,presf_wave_burst_pressure,PD8037,function,,float32,,dbar,-9999999,Seafloor Pressure,4,,PFID132,"{""ptcn"":""PD8033"",""p_dec_wave"":""PD8034"",""u0"":""CC_u0"",""y1"":""CC_y1"",""y2"":""CC_y2"",""y3"":""CC_y3"",""c1"":""CC_c1"",""c2"":""CC_c2"",""c3"":""CC_c3"",""d1"":""CC_d1"",""d2"":""CC_d2"",""t1"":""CC_t1"",""t2"":""CC_t2"",""t3"":""CC_t3"",""t4"":""CC_t4"",""poff"":""CC_pressure_offset_calibration_coefficient"",""slope"":""CC_slope_correction_factor"",""offset"":""CC_offset_correction_factor""}",SFLPRES,sea_water_pressure_at_sea_floor,SFLPRES-WAVE_L1,Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar,Seafloor Pressure,Science Data,L1
