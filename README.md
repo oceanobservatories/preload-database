@@ -24,14 +24,13 @@ To create or update the preload_database.sql file:
 python load_preload.py
 ```
 
-To directly create or update an SQLite database (required by stream_engine):
-```sh
-python load_preload.py sqlite:///preload.db
-```
+Stream engine must be synchronized with any updates to preload, it has preload-database as a submodule; see 
+`~/uframes/engines/stream_engine/preload_database`. Either run the `load_preload.py` script locally or copy the 
+`preload_database.sql` into that directory.
 
 To fill or update a postgres database (required by uFrame):
-```
-python load_preload.py postgresql://user@localhost/dbname
+```sh
+python load_preload.py postgresql://awips@localhost/metadata
 ```
 
 # Utilities
