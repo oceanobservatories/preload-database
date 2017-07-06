@@ -24,14 +24,30 @@ To create or update the preload_database.sql file:
 python load_preload.py
 ```
 
-To directly create or update an SQLite database:
+## Update Stream Engine
+
+Stream engine must be synchronized with any updates to preload, it has preload-database as a submodule; see 
+`~/uframes/engines/stream_engine/preload_database`. Either run the `load_preload.py` script locally or copy the 
+`preload_database.sql` into that directory.
+
+Stream engine must be restarted after any changes to the `preload_database.sql` file:
 ```sh
-python load_preload.py sqlite:///preload.db
+cd ~/uframes/engines/stream_engine
+./manage_streamng reload
 ```
 
-To fill or update a postgres database:
+## Update uFrame
+
+uFrame uses the definition of preload in the postgres metadata database. To fill or update a postgres database:
+```sh
+python load_preload.py postgresql://awips@localhost/metadata
 ```
-python load_preload.py postgresql://user@localhost/dbname
+
+Edex must be restarted after any changes to the postgres metadata database:
+```sh
+cd ~/uframes/ooi/bin
+./edex-server edex stop
+./edex-server edex start
 ```
 
 # Utilities
