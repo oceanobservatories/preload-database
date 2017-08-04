@@ -1,13 +1,31 @@
-Version 1.0.13 (2017-04-26)
+# Version 1.0.14 (2017-08-03)
+
+- Issue #12435 FLOR - Consolidate Streams:
+    * flort_sample now replaces:
+        * flort_kn_stc_imodem_instrument
+        * flort_kn_stc_imodem_instrument_recovered
+        * flort_dj_dcl_instrument
+        * flort_dj_dcl_instrument_recovered
+        * flort_dj_cspp_instrument
+        * flort_dj_sio_instrument
+        * flort_dj_sio_instrument_recovered
+    * flort_m_sample now replaces:
+         * flort_m_glider_instrument
+         * flort_m_glider_recovered
+    * flort_kn_sample now replaces:
+         * flort_kn_auv_instrument
+         * flort_kn_auv_instrument_recovered
+
+# Version 1.0.13 (2017-04-26)
 
 - Update ADCP to use calibration depth for bin_depths (Redmine #9306).
 
-Version 1.0.12 (2017-04-13)
+# Version 1.0.12 (2017-04-13)
 
 - Made all zplsc_c dimensions unique due to possible channel bin count variance
 - Set FillValue for all glider floating point variables to NaN
 
-Version 1.0.11 (2017-04-07)
+# Version 1.0.11 (2017-04-07)
 
 - Removed some non-standard standard names
 - Added zplsc_c_is_averaged_data to zplsc_c_recovered stream
@@ -15,7 +33,7 @@ Version 1.0.11 (2017-04-07)
 - Added flag for VELPT usage in metbk calculations (Redmine #12060).
 - Added offset for CTD pressure calculations of optode_sample and ctdpf_sbe43_sample streams (Redmine #8655).
 
-Version 1.0.10 (2017-03-30)
+# Version 1.0.10 (2017-03-30)
 
 - Removed all unicode characters from ParameterDefs.csv.
 - Added new counts parameters for the zplsc_c_recovered.
@@ -23,18 +41,18 @@ Version 1.0.10 (2017-03-30)
 - Correct the pressure parameters for sci_abs_oxygen and sci_seawater_density from bar to dbar (Redmine #12136).
 - Added affected.py
 
-Version 1.0.9 (2017-03-21)
+# Version 1.0.9 (2017-03-21)
 
 - Update to allow unicode processing by the list_stream utility.
 - Correct parameter resolution for PRESF instrument streams (Redmine #12125).
 - Correct parameter resolution for instruments on surface buoys (Redmine #12102).
 
-Version 1.0.8 (2017-03-13)
+# Version 1.0.8 (2017-03-13)
 
 - Updates to distinguish dissolved oxygen parameters coming from a buoy or collocated CTD (Redmine #4390).
 - Updated version of ooi-data (0.0.5).
 
-Version 1.0.7 (2017-03-10)
+# Version 1.0.7 (2017-03-10)
 
 - Consolidated parameters producing dissolved oxygen (Redmine #4107). 
 - Consolidated parameters producing practical salinity. 
@@ -45,36 +63,36 @@ Version 1.0.7 (2017-03-10)
 - Deleted unused parameters / streams
 - Created new parameter (PD4) for streams which produce TEMPWAT_L1 natively as "temperature"
 
-Version 1.0.6 (2017-03-06)
+# Version 1.0.6 (2017-03-06)
 
 - Fixed conda env to contain all needed packages
 - Generated latest preload_database.sql
 
-Version 1.0.5 (2017-03-06)
+# Version 1.0.5 (2017-03-06)
 
 - Added precomputed botpt streams
 - Fixed url handling in load_preload.py
 
-Version 1.0.4 (2017-02-21)
+# Version 1.0.4 (2017-02-21)
 
 - Moved model code into ooi-data module.
 - Updated METBK hourly algoithm definitions (Redmine #9261).
 - Updated nutnr_b_temp_sal_corrected_nitrate (Redmine #3308).
 
-Version 1.0.3 (2017-02-01)
+# Version 1.0.3 (2017-02-01)
 
 - Added camds_abc_dcl data parser.
 
-Version 1.0.2
+# Version 1.0.2
 
 - Updated load_preload.py to accept an sqlalchemy engine URI.
 - Added new stream flort_o_glider_data and associated parameters.
 
-Version 1.0.1
+# Version 1.0.1
 
 - Fixed bug affecting setting binsize on Stream records.
 
-Version 1.0.0
+# Version 1.0.0
 
 - Improved incremental load performance by making fewer database queries.
 - Changed column definition for Parameter.parameter_function_map to String (postgres compatibility).
