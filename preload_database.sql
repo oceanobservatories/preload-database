@@ -1770,7 +1770,7 @@ INSERT INTO "parameter" VALUES(948,'red_amplitude',11,1,NULL,150,7,'Red Light Am
 INSERT INTO "parameter" VALUES(949,'raw_temperature',11,1,NULL,150,7,'Thermistor Voltage',NULL,1,NULL,NULL,NULL,'Raw temperature, voltage from thermistor.',NULL,NULL);
 INSERT INTO "parameter" VALUES(960,'upward_earth_seawater_velocity',10,1,NULL,128,7,'Upward Seawater Velocity','upward_sea_water_velocity',4,128,'{"w": "PD716"}','VELPROF-VLU_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the upward seawater velocity component. Units: m s-1',3,1);
 INSERT INTO "parameter" VALUES(961,'earth_error_velocity',10,1,NULL,128,7,'Error Velocity',NULL,4,129,'{"e": "PD717"}','VELPROF-ERR_L1','A Velocity Profile includes water velocity (speed & direction) throughout the depth range of an ADCP sensor. This instance is the error component. Units: m s-1',3,1);
-INSERT INTO "parameter" VALUES(964,'ctd_tc_oxygen',10,1,NULL,220,7,'DO',NULL,4,60,'{"o2_counts": "PD197"}','DOCONCS_L1','Dissolved Oxygen (DO) Concentration from the Stable Response Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. This instrument measures dissolved oxygen concentrations on mobile assets, deep profilers, and moorings. This data product is corrected for temperature from a collocated CTD. Units: umol L-1.',3,1);
+INSERT INTO "parameter" VALUES(964,'ctd_tc_oxygen',10,1,NULL,220,7,'DO',NULL,4,60,'{"o2_counts": "PD197"}','DOCONCS_L1','Dissolved Oxygen (DO) Concentration from the Stable Response Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. Units: umol L-1.',3,1);
 INSERT INTO "parameter" VALUES(965,'vent_fluid_temperaure',10,1,NULL,91,7,'Vent Fluid Absolute Temperature',NULL,4,63,'{"ts_slope": "CC_ts_slope", "tc_slope": "CC_tc_slope", "V_tc": "PD430", "V_ts": "PD428"}','TRHPHTE-ABS_L1','Vent Fluid Absolute Temperature refers to temperature calculated from the Temperature-Resistivity Probe Instrument (TRHPH) Thermistor and Thermocouple. It is calculated using response curves from Thermocouple and Thermistor Temperature (in volts) that are adjusted to the custom instrument design and corrected by laboratory calibration. Units: degrees Celsius',3,1);
 INSERT INTO "parameter" VALUES(966,'vent_fluid_chloride_conc',10,1,NULL,179,7,'Vent Fluid Chloride Concentration',NULL,4,64,'{"V_R3": "PD423", "V_R2": "PD422", "V_R1": "PD421", "T": "PD965"}','TRHPHCC_L2','Vent Fluid Chloride Concentration (Cl-) is calculated using resistivity and temperature measured by a Hydrothermal Vent Fluid Temperature and Resistivity sensor placed in a high-temperature hydrothermal vent. Units: mmol kg-1',3,2);
 INSERT INTO "parameter" VALUES(967,'vent_fluid_orp',10,1,NULL,150,7,'Vent Fluid Oxidation-Reduction Potential',NULL,4,65,'{"offset": "CC_offset", "gain": "CC_gain", "V": "PD427"}','TRHPHEH_L1','Vent Fluid Oxidation-Reduction Potential (ORP) is a measure of the tendency of a vent fluid, and the chemical species within it, to acquire electrons (i.e. be reduced). The more positive the potential, the greater the affinity for electrons and tendency to be reduced. Units: mV',3,1);
@@ -3033,8 +3033,12 @@ INSERT INTO "parameter" VALUES(2524,'massp_rga_readings_per_scan',11,3,NULL,65,5
 INSERT INTO "parameter" VALUES(2525,'massp_scan_data',3,4,NULL,11,7,'Array of Measurements Representing One Scan of the RGA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(2526,'hpies_data_valid',5,12,NULL,8,10,'Data Valid',NULL,NULL,NULL,NULL,NULL,'indicates if the data is valid (CRC matches data)',NULL,NULL);
 INSERT INTO "parameter" VALUES(2527,'hpies_ver',11,12,NULL,8,10,'Version Number',NULL,NULL,NULL,NULL,NULL,'two-digit version number',NULL,NULL);
-INSERT INTO "parameter" VALUES(2528,'hpies_type',11,8,NULL,8,17,'Data Type',NULL,NULL,NULL,NULL,NULL,'"E" for EF data "C" for calibration data "f" for motor data in forward direction "r" for motor data in reverse direction',NULL,NULL);
-INSERT INTO "parameter" VALUES(2529,'hpies_dest',11,8,NULL,8,17,'Pinched Tube',NULL,NULL,NULL,NULL,NULL,'"a" for pinching the "A" tubes "b" for pinching the "B" tubes',NULL,NULL);
+INSERT INTO "parameter" VALUES(2528,'hpies_type',11,8,NULL,8,17,'Data Type',NULL,NULL,NULL,NULL,NULL,'"E" for EF data 
+"C" for calibration data 
+"f" for motor data in forward direction 
+"r" for motor data in reverse direction',NULL,NULL);
+INSERT INTO "parameter" VALUES(2529,'hpies_dest',11,8,NULL,8,17,'Pinched Tube',NULL,NULL,NULL,NULL,NULL,'"a" for pinching the "A" tubes 
+"b" for pinching the "B" tubes',NULL,NULL);
 INSERT INTO "parameter" VALUES(2530,'hpies_ibeg',11,9,NULL,8,10,'Index Begin',NULL,NULL,NULL,NULL,NULL,'index of first A/D buffer value',NULL,NULL);
 INSERT INTO "parameter" VALUES(2531,'hpies_iend',11,9,NULL,8,10,'Index End',NULL,NULL,NULL,NULL,NULL,'index+1 of last A/D buffer value',NULL,NULL);
 INSERT INTO "parameter" VALUES(2532,'hpies_hcno',11,9,NULL,8,10,'Half Cycle Number',NULL,NULL,NULL,NULL,NULL,'half-cycle number which increments',NULL,NULL);
@@ -3162,11 +3166,20 @@ INSERT INTO "parameter" VALUES(2661,'camds_focus_position',11,6,NULL,8,4,'Focus 
 INSERT INTO "parameter" VALUES(2662,'camds_zoom_position',11,6,NULL,8,4,'Zoom Position',NULL,NULL,NULL,NULL,NULL,'Zoom',NULL,NULL);
 INSERT INTO "parameter" VALUES(2663,'camds_iris_position',11,6,NULL,8,4,'Iris Position',NULL,NULL,NULL,NULL,NULL,'Iris',NULL,NULL);
 INSERT INTO "parameter" VALUES(2664,'camds_gain',11,6,NULL,8,4,'Gain',NULL,NULL,NULL,NULL,NULL,'Gain',NULL,NULL);
-INSERT INTO "parameter" VALUES(2665,'camds_resolution',11,6,NULL,8,4,'Resolution',NULL,NULL,NULL,NULL,NULL,'Image resolution as a divider of the full image resolution.  Hex number to convert to string:0x1 = Full resolution0x2 = 1/2 Resolution0x4 = 1/4 Resolution0x8 = 1/8 Resolution',NULL,NULL);
+INSERT INTO "parameter" VALUES(2665,'camds_resolution',11,6,NULL,8,4,'Resolution',NULL,NULL,NULL,NULL,NULL,'Image resolution as a divider of the full image resolution.  Hex number to convert to string:
+0x1 = Full resolution
+0x2 = 1/2 Resolution
+0x4 = 1/4 Resolution
+0x8 = 1/8 Resolution',NULL,NULL);
 INSERT INTO "parameter" VALUES(2666,'camds_brightness',11,6,NULL,8,4,'Brightness',NULL,NULL,NULL,NULL,NULL,'Brightness of the lamp 1-100.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2667,'camds_temp',11,6,NULL,19,4,'Temperature',NULL,NULL,NULL,NULL,NULL,'Temperature.  Range is 0 to 80 degrees and there are no decimal places. Accuracy is +/- 1.0 degrees.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2668,'camds_humidity',11,6,NULL,187,4,'Internal Humidity',NULL,NULL,NULL,NULL,NULL,'Digital still camera internal housing humidity reading',NULL,NULL);
-INSERT INTO "parameter" VALUES(2669,'camds_error',11,6,NULL,8,4,'Error',NULL,NULL,NULL,NULL,NULL,'Error message.  Error will have the following possibilities: 0x00 = No Error 0x01 = Camera Not connected 0x02 = I2C Error Convert to string so that error text is provided to user rather than number.',NULL,NULL);
+INSERT INTO "parameter" VALUES(2669,'camds_error',11,6,NULL,8,4,'Error',NULL,NULL,NULL,NULL,NULL,'Error message.  Error will have the following possibilities: 
+0x00 = No Error 
+0x01 = Camera Not connected 
+0x02 = I2C Error 
+
+Convert to string so that error text is provided to user rather than number.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2670,'camds_disk_size',11,3,NULL,28,5,'Disk Size',NULL,NULL,NULL,NULL,NULL,'Size of disk in MB',NULL,NULL);
 INSERT INTO "parameter" VALUES(2671,'camds_disk_remaining',11,6,NULL,1,4,'Disk Remaining',NULL,NULL,NULL,NULL,NULL,'Percentage of disk unused',NULL,NULL);
 INSERT INTO "parameter" VALUES(2672,'camds_images_remaining',11,3,NULL,66,5,'Images Remaining',NULL,NULL,NULL,NULL,NULL,'Provides the storage of the disk in terms of the number of images remaining.',NULL,NULL);
@@ -3521,7 +3534,7 @@ INSERT INTO "parameter" VALUES(3063,'freq_w_band',11,2,NULL,114,7,'Width of Freq
 INSERT INTO "parameter" VALUES(3064,'freq_0',11,2,NULL,114,7,'Center Frequency of First Frequency Band',NULL,4,NULL,NULL,NULL,'Center frequency of first Frequency band',NULL,NULL);
 INSERT INTO "parameter" VALUES(3065,'start_dir',11,2,NULL,98,7,'Starting Direction of (NumDir) Directions',NULL,4,NULL,NULL,NULL,'Starting Direction of (NumDir) Directions',NULL,NULL);
 INSERT INTO "parameter" VALUES(3066,'directional_surface_spectrum',3,10,NULL,178,10,'Directional Surface Spectrum',NULL,0,NULL,NULL,NULL,'NumFreq by NumDir Matrix of Directional Surface Spectrum values',NULL,NULL);
-INSERT INTO "parameter" VALUES(3067,'met_barpres',10,1,NULL,33,7,'Barometric Pressure','air_pressure_at_sea_level',2,143,'{"mbar": "PD1051"}','BARPRES_L1','Barometric Pressure is a measure of the weight of the column of air above the sensor. It is also commonly referred to as atmospheric pressure. This data products is calculated by converting the measured Level 0 Barometric Pressure from mbar to Pa',3,1);
+INSERT INTO "parameter" VALUES(3067,'met_barpres',10,1,NULL,33,7,'Barometric Pressure','air_pressure',2,143,'{"mbar": "PD1051"}','BARPRES_L1','Barometric Pressure is a measure of the weight of the column of air above the sensor. It is also commonly referred to as atmospheric pressure. This data products is calculated by converting the measured Level 0 Barometric Pressure from mbar to Pa.',3,1);
 INSERT INTO "parameter" VALUES(3068,'met_windavg_mag_corr_east',10,1,NULL,128,7,'Mean Wind Velocity - Eastward Relative to True North','eastward_wind',2,144,'{"zwindsp": "CC_height_of_windspeed_sensor_above_sealevel_m", "uu": "PD1059", "timestamp": "PD7", "lon": "CC_lon", "vv": "PD1060", "lat": "CC_lat"}','WINDAVG-VLE_L1','WINDAVG-VLE_L1, the OOI Level 1 core data product for windspeed in the true eastward direction, for the METBK instrument by correcting for magnetic declination.',3,1);
 INSERT INTO "parameter" VALUES(3069,'met_windavg_mag_corr_north',10,1,NULL,128,7,'Mean Wind Velocity - Northward Relative to True North','northward_wind',2,145,'{"zwindsp": "CC_height_of_windspeed_sensor_above_sealevel_m", "uu": "PD1059", "timestamp": "PD7", "lon": "CC_lon", "vv": "PD1060", "lat": "CC_lat"}','WINDAVG-VLN_L1','WINDAVG-VLN_L1, the OOI Level 1 core data product for windspeed in the true northward direction, for the METBK instrument by correcting for magnetic declination.',3,1);
 INSERT INTO "parameter" VALUES(3070,'met_current_direction',10,1,NULL,98,7,'Surface Current Direction',NULL,4,146,'{"vle_water": "PD1154", "use_velptmn_with_metbk": "CC_use_velpt", "vln_water": "PD1155"}','CURRENT_DIR','The direction of the surface current using the eastward and northward velocity components from the VELPT mounted on the surface buoy.',NULL,NULL);
@@ -3616,7 +3629,8 @@ INSERT INTO "parameter" VALUES(3158,'fixed_roll',11,3,NULL,87,5,'Fixed Roll',NUL
 INSERT INTO "parameter" VALUES(3159,'bottom_slope_x',11,3,NULL,127,5,'Bottom Slope X',NULL,0,NULL,NULL,NULL,'X axis change in bottom slope for horizontal systems, per 1000m',NULL,NULL);
 INSERT INTO "parameter" VALUES(3160,'bottom_slope_y',11,3,NULL,127,5,'Bottom Slope Y',NULL,0,NULL,NULL,NULL,'Y axis change in bottom slope for horizontal systems, "-20" means 20m increase in water depth over 1000m moving offshore. per 1000m',NULL,NULL);
 INSERT INTO "parameter" VALUES(3161,'down',11,12,NULL,8,10,'Down',NULL,0,NULL,NULL,NULL,'Downward facing waves system',NULL,NULL);
-INSERT INTO "parameter" VALUES(3162,'trans_v2_surf',11,12,NULL,8,10,'Trans V2 Surf',NULL,0,NULL,NULL,NULL,'0= do not translate orbital velocity spectrum to surface displacement. >0 do',NULL,NULL);
+INSERT INTO "parameter" VALUES(3162,'trans_v2_surf',11,12,NULL,8,10,'Trans V2 Surf',NULL,0,NULL,NULL,NULL,'0= do not translate orbital velocity spectrum to surface displacement.
+ >0 do',NULL,NULL);
 INSERT INTO "parameter" VALUES(3163,'scale_spec',11,12,NULL,8,10,'Scale Spec',NULL,0,NULL,NULL,NULL,'reserved',NULL,NULL);
 INSERT INTO "parameter" VALUES(3164,'sample_rate',11,1,NULL,199,7,'Sample Rate',NULL,0,NULL,NULL,NULL,'Input data sample rate in seconds',NULL,NULL);
 INSERT INTO "parameter" VALUES(3165,'freq_thresh',11,1,NULL,114,7,'Freq Thresh',NULL,0,NULL,NULL,NULL,'Upper cutoff frequency',NULL,NULL);
@@ -3628,12 +3642,17 @@ INSERT INTO "parameter" VALUES(3170,'soft_rev',11,12,NULL,8,10,'Soft Rev',NULL,0
 INSERT INTO "parameter" VALUES(3171,'clip_pwr_spec',11,12,NULL,8,10,'Clip Pwr Spec',NULL,0,NULL,NULL,NULL,'Switch, Clips negative values in power spectra',NULL,NULL);
 INSERT INTO "parameter" VALUES(3172,'dir_p2',11,12,NULL,8,10,'Dir P2',NULL,0,NULL,NULL,NULL,'Output spectra in units of Power not Height',NULL,NULL);
 INSERT INTO "parameter" VALUES(3173,'horizontal',11,12,NULL,8,10,'Horizontal',NULL,0,NULL,NULL,NULL,'>0 Indicates Horizontal Waves System, 0 = vertical',NULL,NULL);
-INSERT INTO "parameter" VALUES(3174,'start_time',3,12,NULL,8,10,'Start Time',NULL,0,NULL,NULL,NULL,'Start of Burst interval Cent,year,month,day,hour,minute,sec,sec100',NULL,NULL);
-INSERT INTO "parameter" VALUES(3175,'stop_time',3,12,NULL,8,10,'Stop Time',NULL,0,NULL,NULL,NULL,'Stop time Cent,year,month,day,hour,minute,sec,sec100',NULL,NULL);
+INSERT INTO "parameter" VALUES(3174,'start_time',3,12,NULL,8,10,'Start Time',NULL,0,NULL,NULL,NULL,'Start of Burst interval
+ Cent,year,month,day,hour,minute,sec,sec100',NULL,NULL);
+INSERT INTO "parameter" VALUES(3175,'stop_time',3,12,NULL,8,10,'Stop Time',NULL,0,NULL,NULL,NULL,'Stop time
+ Cent,year,month,day,hour,minute,sec,sec100',NULL,NULL);
 INSERT INTO "parameter" VALUES(3176,'freq_lo',11,9,NULL,163,10,'Frequency Low',NULL,0,NULL,NULL,NULL,'Lower Frequency threshold for all spectra',NULL,NULL);
 INSERT INTO "parameter" VALUES(3177,'average_depth',11,10,NULL,173,10,'Average Depth',NULL,0,NULL,NULL,NULL,'Mean submergence during burst',NULL,NULL);
 INSERT INTO "parameter" VALUES(3178,'altitude',11,10,NULL,59,10,'Altitude',NULL,0,NULL,NULL,NULL,'Altitude of instrument above bottom',NULL,NULL);
-INSERT INTO "parameter" VALUES(3179,'bin_map',3,12,NULL,8,10,'Bin Map',NULL,0,NULL,NULL,NULL,'128 element array 1 = cell to use for non dir spec 2 = cell to use for dir spec 3 = cell used for both',NULL,NULL);
+INSERT INTO "parameter" VALUES(3179,'bin_map',3,12,NULL,8,10,'Bin Map',NULL,0,NULL,NULL,NULL,'128 element array
+ 1 = cell to use for non dir spec
+ 2 = cell to use for dir spec
+ 3 = cell used for both',NULL,NULL);
 INSERT INTO "parameter" VALUES(3180,'disc_flag',11,12,NULL,8,10,'Disc Flag',NULL,0,NULL,NULL,NULL,'reserved',NULL,NULL);
 INSERT INTO "parameter" VALUES(3181,'pct_gd_press',11,12,NULL,4,10,'Pct Gd Press, %',NULL,0,NULL,NULL,NULL,'Percent good Pressure measurements',NULL,NULL);
 INSERT INTO "parameter" VALUES(3182,'avg_ss',11,9,NULL,128,10,'Avg Ss',NULL,0,NULL,NULL,NULL,'Average speed of Sound',NULL,NULL);
@@ -4513,12 +4532,14 @@ INSERT INTO "parameter" VALUES(8010,'cspp_winch_end_position',11,4,NULL,65,7,'Wi
 INSERT INTO "parameter" VALUES(8011,'cspp_filename',11,8,NULL,8,17,'Filename',NULL,NULL,NULL,NULL,NULL,'The name of the .ppb file for this profile',2,0);
 INSERT INTO "parameter" VALUES(8012,'cspp_file_size',11,4,NULL,50,7,'File Size',NULL,NULL,NULL,NULL,NULL,'The size in bytes of the file',2,0);
 INSERT INTO "parameter" VALUES(8013,'cspp_file_space',11,4,NULL,50,7,'File Space',NULL,NULL,NULL,NULL,NULL,'The remaining space in bytes on the package controller flash drive',2,0);
-INSERT INTO "parameter" VALUES(8014,'cspp_num_files',11,4,NULL,65,7,'Number of Files',NULL,NULL,NULL,NULL,NULL,'The number of files in the current data directory onthe profiler',2,0);
+INSERT INTO "parameter" VALUES(8014,'cspp_num_files',11,4,NULL,65,7,'Number of Files',NULL,NULL,NULL,NULL,NULL,'The number of files in the current data directory on
+the profiler',2,0);
 INSERT INTO "parameter" VALUES(8015,'cspp_profile_number',11,4,NULL,65,7,'Profile Number',NULL,NULL,NULL,NULL,NULL,'The number of the profile for the deployment',2,0);
 INSERT INTO "parameter" VALUES(8016,'cspp_low_voltage',11,1,NULL,229,7,'Low Voltage',NULL,NULL,NULL,NULL,NULL,'The reported voltage of the lowest Bluefin battery in the system or 0 if a Bluefin battery is not installed.',2,0);
 INSERT INTO "parameter" VALUES(8017,'cspp_low_cell_voltage',11,1,NULL,229,7,'Low Cell Voltage',NULL,NULL,NULL,NULL,NULL,'The reported low cell voltage of the lowest voltage Bluefin battery in the system or 0 if a Bluefin battery is not installed.',2,0);
 INSERT INTO "parameter" VALUES(8018,'cspp_watts_used',11,1,NULL,41,7,'Watts Used',NULL,NULL,NULL,NULL,NULL,'The watts used as reported by the Bluefin battery',2,0);
-INSERT INTO "parameter" VALUES(8019,'cspp_low_battery_number',11,6,NULL,8,4,'Low Battery Number',NULL,NULL,NULL,NULL,NULL,'The battery number of the Bluefin with the lowestoverall voltage',2,0);
+INSERT INTO "parameter" VALUES(8019,'cspp_low_battery_number',11,6,NULL,8,4,'Low Battery Number',NULL,NULL,NULL,NULL,NULL,'The battery number of the Bluefin with the lowest
+overall voltage',2,0);
 INSERT INTO "parameter" VALUES(8020,'cspp_home_depth',11,1,NULL,157,7,'Home Depth',NULL,NULL,NULL,NULL,NULL,'home depth/home position',2,0);
 INSERT INTO "parameter" VALUES(8021,'cspp_start_time',11,10,NULL,203,10,'Profile Start Time',NULL,NULL,NULL,NULL,NULL,'time for the start of the next profile ascent ((number of seconds from when the command is received)',2,0);
 INSERT INTO "parameter" VALUES(8022,'cspp_setup_rate',11,1,NULL,128,7,'Setup Rate',NULL,NULL,NULL,NULL,NULL,'profile setup rate',2,0);
@@ -4530,10 +4551,12 @@ INSERT INTO "parameter" VALUES(8027,'cspp_num_profiles',11,4,NULL,65,7,'Number o
 INSERT INTO "parameter" VALUES(8028,'cspp_interval_time',11,10,NULL,203,10,'Interval Time',NULL,NULL,NULL,NULL,NULL,'interval in seconds between the start of the ascent of one profile and the start of the next ascent',2,0);
 INSERT INTO "parameter" VALUES(8029,'cspp_start_delay',11,10,NULL,203,10,'Start Delay',NULL,NULL,NULL,NULL,NULL,'start delay in seconds',2,0);
 INSERT INTO "parameter" VALUES(8030,'presf_time',11,4,NULL,208,7,'Time, UTC',NULL,0,NULL,NULL,NULL,'Time in seconds since 2000-01-01.',NULL,NULL);
-INSERT INTO "parameter" VALUES(8031,'presf_tide_pressure_number',11,4,NULL,66,7,'Seafloor Pressure Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure tide measurement, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure(SFLPRES) core data product.  Units: counts',4,0);
+INSERT INTO "parameter" VALUES(8031,'presf_tide_pressure_number',11,4,NULL,66,7,'Seafloor Pressure Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure tide measurement, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure
+(SFLPRES) core data product.  Units: counts',4,0);
 INSERT INTO "parameter" VALUES(8032,'presf_tide_temperature_number',11,4,NULL,66,7,'Seawater Temperature Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: counts',4,0);
 INSERT INTO "parameter" VALUES(8033,'presf_wave_press_temp_comp_number',11,4,NULL,66,7,'Pressure Temperature Compensation Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure family of instruments (PRESF) pressure temperature compensation number.  Units: counts',4,0);
-INSERT INTO "parameter" VALUES(8034,'presf_wave_burst_pressure_number',3,4,NULL,66,7,'Seafloor Pressure Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure wave measurements, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure(SFLPRES) core data product.  Units: counts',4,0);
+INSERT INTO "parameter" VALUES(8034,'presf_wave_burst_pressure_number',3,4,NULL,66,7,'Seafloor Pressure Number',NULL,0,NULL,NULL,NULL,'Seafloor Pressure wave measurements, from the Seafloor Pressure family of instruments (PRESF), used to calculate the OOI Level 1 Seafloor Pressure
+(SFLPRES) core data product.  Units: counts',4,0);
 INSERT INTO "parameter" VALUES(8035,'presf_tide_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,131,'{"slope": "CC_slope_correction_factor", "p_dec_tide": "PD8031", "b": "CC_b", "m": "CC_m", "offset": "CC_offset_correction_factor"}','SFLPRES_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
 INSERT INTO "parameter" VALUES(8036,'presf_tide_temperature',10,1,NULL,91,7,'Seawater Temperature','sea_water_temperature',4,208,'{"t0": "PD8032"}','PRESTMP_L1','Seafloor Pressure family of instruments (PRESF) temperature measurement near the sensor. Units: deg_C',3,1);
 INSERT INTO "parameter" VALUES(8037,'presf_wave_burst_pressure',10,1,NULL,80,7,'Seafloor Pressure','sea_water_pressure_at_sea_floor',4,132,'{"slope": "CC_slope_correction_factor", "ptcn": "PD8033", "t4": "CC_t4", "t1": "CC_t1", "t2": "CC_t2", "p_dec_wave": "PD8034", "u0": "CC_u0", "t3": "CC_t3", "c3": "CC_c3", "poff": "CC_pressure_offset_calibration_coefficient", "offset": "CC_offset_correction_factor", "y1": "CC_y1", "c2": "CC_c2", "y3": "CC_y3", "y2": "CC_y2", "d2": "CC_d2", "c1": "CC_c1", "d1": "CC_d1"}','SFLPRES-WAVE_L1','Seafloor Pressure is a measurement of the force on the seafloor exerted by the weight of the overlying seawater column plus the weight of the atmosphere (hydrostatic plus atmospheric). Units: dbar',3,1);
@@ -5055,7 +5078,7 @@ INSERT INTO "stream" VALUES(153,'ctdpf_ckl_wfp_instrument',7,10080,3,40);
 INSERT INTO "stream" VALUES(154,'ctdpf_ckl_wfp_metadata',7,20160,2,96);
 INSERT INTO "stream" VALUES(155,'dofst_k_wfp_instrument',7,10080,3,40);
 INSERT INTO "stream" VALUES(156,'dofst_k_wfp_metadata',7,20160,2,96);
-INSERT INTO "stream" VALUES(157,'flort_kn_stc_imodem_instrument',7,1440,3,43);
+INSERT INTO "stream" VALUES(157,'flort_sample',7,1440,3,16);
 INSERT INTO "stream" VALUES(158,'parad_k__stc_imodem_instrument',7,20160,3,43);
 INSERT INTO "stream" VALUES(159,'wfp_eng_stc_imodem_status',7,20160,2,136);
 INSERT INTO "stream" VALUES(160,'wfp_eng_stc_imodem_engineering',7,20160,2,134);
@@ -5071,8 +5094,7 @@ INSERT INTO "stream" VALUES(171,'ctdgv_m_glider_instrument',7,20160,3,40);
 INSERT INTO "stream" VALUES(172,'dosta_abcdjm_glider_instrument',7,20160,3,40);
 INSERT INTO "stream" VALUES(173,'dosta_abcdjm_glider_recovered',7,4320,3,40);
 INSERT INTO "stream" VALUES(174,'flord_m_glider_instrument',7,20160,3,40);
-INSERT INTO "stream" VALUES(175,'flort_m_glider_instrument',7,1440,3,40);
-INSERT INTO "stream" VALUES(176,'flort_m_glider_recovered',7,1440,3,40);
+INSERT INTO "stream" VALUES(175,'flort_m_sample',7,1440,3,40);
 INSERT INTO "stream" VALUES(177,'parad_m_glider_instrument',7,20160,3,40);
 INSERT INTO "stream" VALUES(178,'parad_m_glider_recovered',7,360,3,40);
 INSERT INTO "stream" VALUES(179,'glider_eng_telemetered',7,1440,2,33);
@@ -5179,7 +5201,6 @@ INSERT INTO "stream" VALUES(390,'parad_k__stc_imodem_instrument_recovered',7,201
 INSERT INTO "stream" VALUES(391,'wfp_eng_stc_imodem_start_time_recovered',7,20160,2,135);
 INSERT INTO "stream" VALUES(392,'wfp_eng__stc_imodem_status_recovered',7,1440,NULL,NULL);
 INSERT INTO "stream" VALUES(393,'wfp_eng_stc_imodem_engineering_recovered',7,20160,2,134);
-INSERT INTO "stream" VALUES(394,'flort_kn_stc_imodem_instrument_recovered',7,1440,3,43);
 INSERT INTO "stream" VALUES(395,'cg_stc_eng_stc_recovered',7,20160,2,133);
 INSERT INTO "stream" VALUES(396,'mopak_o_dcl_accel_recovered',7,180,2,3);
 INSERT INTO "stream" VALUES(397,'mopak_o_dcl_rate_recovered',7,1440,2,131);
@@ -5191,8 +5212,6 @@ INSERT INTO "stream" VALUES(402,'nutnr_b_dcl_full_metadata_recovered',7,20160,2,
 INSERT INTO "stream" VALUES(403,'pco2w_a_sami_data_record_cal',7,20160,2,17);
 INSERT INTO "stream" VALUES(404,'pco2w_b_sami_data_record_cal',7,20160,2,17);
 INSERT INTO "stream" VALUES(405,'wfp_eng_stc_imodem_status_recovered',7,20160,2,136);
-INSERT INTO "stream" VALUES(406,'flort_dj_dcl_instrument',7,10080,3,41);
-INSERT INTO "stream" VALUES(407,'flort_dj_dcl_instrument_recovered',7,10080,3,41);
 INSERT INTO "stream" VALUES(408,'metbk_a_dcl_instrument',7,20160,3,41);
 INSERT INTO "stream" VALUES(409,'metbk_a_dcl_instrument_recovered',7,20160,3,41);
 INSERT INTO "stream" VALUES(410,'dosta_abcdjm_dcl_instrument',7,10080,3,41);
@@ -5273,8 +5292,6 @@ INSERT INTO "stream" VALUES(496,'dosta_ln_wfp_instrument_recovered',7,20160,3,40
 INSERT INTO "stream" VALUES(498,'flcdr_x_mmp_cds_instrument',7,1440,3,40);
 INSERT INTO "stream" VALUES(499,'flntu_x_mmp_cds_instrument',7,1440,3,40);
 INSERT INTO "stream" VALUES(500,'flord_l_wfp_instrument_recovered',7,20160,3,40);
-INSERT INTO "stream" VALUES(502,'flort_dj_cspp_instrument',7,20160,3,16);
-INSERT INTO "stream" VALUES(503,'flort_dj_cspp_instrument_recovered',7,20160,3,16);
 INSERT INTO "stream" VALUES(504,'flort_dj_cspp_metadata',7,20160,2,96);
 INSERT INTO "stream" VALUES(505,'flort_dj_cspp_metadata_recovered',7,20160,2,96);
 INSERT INTO "stream" VALUES(506,'cg_cpm_eng_cpm',7,20160,2,14);
@@ -5328,8 +5345,6 @@ INSERT INTO "stream" VALUES(554,'adcpt_m_instrument_fcoeff_recovered',7,1440,3,5
 INSERT INTO "stream" VALUES(555,'adcpt_m_wvs_recovered',7,1440,3,161);
 INSERT INTO "stream" VALUES(556,'dpc_mmp_instrument',7,1440,2,33);
 INSERT INTO "stream" VALUES(557,'dpc_mmp_instrument_recovered',7,1440,2,33);
-INSERT INTO "stream" VALUES(558,'flort_dj_sio_instrument',7,1440,3,40);
-INSERT INTO "stream" VALUES(559,'flort_dj_sio_instrument_recovered',7,1440,3,40);
 INSERT INTO "stream" VALUES(560,'pco2w_abc_imodem_instrument',7,20160,3,42);
 INSERT INTO "stream" VALUES(561,'pco2w_abc_imodem_instrument_recovered',7,1440,3,42);
 INSERT INTO "stream" VALUES(562,'pco2w_abc_imodem_instrument_blank',7,1440,3,82);
@@ -5427,8 +5442,7 @@ INSERT INTO "stream" VALUES(653,'hyd_o_dcl_instrument_recovered',7,1440,2,34);
 INSERT INTO "stream" VALUES(654,'adcpa_n_auv_instrument',7,1440,3,1);
 INSERT INTO "stream" VALUES(655,'flort_kn_auv_metadata',7,1440,2,96);
 INSERT INTO "stream" VALUES(656,'flort_kn_auv_metadata_recovered',7,1440,2,96);
-INSERT INTO "stream" VALUES(657,'flort_kn_auv_instrument',7,1440,3,40);
-INSERT INTO "stream" VALUES(658,'flort_kn_auv_instrument_recovered',7,1440,3,40);
+INSERT INTO "stream" VALUES(657,'flort_kn_sample',7,1440,3,40);
 INSERT INTO "stream" VALUES(659,'dosta_ln_auv_instrument',7,1440,3,40);
 INSERT INTO "stream" VALUES(660,'dosta_ln_auv_instrument_recovered',7,1440,3,40);
 INSERT INTO "stream" VALUES(661,'ctdav_n_auv_instrument',7,1440,3,40);
@@ -7271,8 +7285,6 @@ INSERT INTO "stream_parameter" VALUES(133,11);
 INSERT INTO "stream_parameter" VALUES(133,12);
 INSERT INTO "stream_parameter" VALUES(133,16);
 INSERT INTO "stream_parameter" VALUES(133,863);
-INSERT INTO "stream_parameter" VALUES(133,1136);
-INSERT INTO "stream_parameter" VALUES(133,1137);
 INSERT INTO "stream_parameter" VALUES(133,1138);
 INSERT INTO "stream_parameter" VALUES(133,1139);
 INSERT INTO "stream_parameter" VALUES(133,1140);
@@ -7353,7 +7365,6 @@ INSERT INTO "stream_parameter" VALUES(157,863);
 INSERT INTO "stream_parameter" VALUES(157,1139);
 INSERT INTO "stream_parameter" VALUES(157,1141);
 INSERT INTO "stream_parameter" VALUES(157,1143);
-INSERT INTO "stream_parameter" VALUES(157,1622);
 INSERT INTO "stream_parameter" VALUES(158,7);
 INSERT INTO "stream_parameter" VALUES(158,10);
 INSERT INTO "stream_parameter" VALUES(158,11);
@@ -7610,27 +7621,6 @@ INSERT INTO "stream_parameter" VALUES(175,1482);
 INSERT INTO "stream_parameter" VALUES(175,1485);
 INSERT INTO "stream_parameter" VALUES(175,1494);
 INSERT INTO "stream_parameter" VALUES(175,1495);
-INSERT INTO "stream_parameter" VALUES(176,7);
-INSERT INTO "stream_parameter" VALUES(176,10);
-INSERT INTO "stream_parameter" VALUES(176,11);
-INSERT INTO "stream_parameter" VALUES(176,12);
-INSERT INTO "stream_parameter" VALUES(176,16);
-INSERT INTO "stream_parameter" VALUES(176,863);
-INSERT INTO "stream_parameter" VALUES(176,1401);
-INSERT INTO "stream_parameter" VALUES(176,1402);
-INSERT INTO "stream_parameter" VALUES(176,1477);
-INSERT INTO "stream_parameter" VALUES(176,1478);
-INSERT INTO "stream_parameter" VALUES(176,1479);
-INSERT INTO "stream_parameter" VALUES(176,1480);
-INSERT INTO "stream_parameter" VALUES(176,1481);
-INSERT INTO "stream_parameter" VALUES(176,1482);
-INSERT INTO "stream_parameter" VALUES(176,1483);
-INSERT INTO "stream_parameter" VALUES(176,1484);
-INSERT INTO "stream_parameter" VALUES(176,1485);
-INSERT INTO "stream_parameter" VALUES(176,1487);
-INSERT INTO "stream_parameter" VALUES(176,1488);
-INSERT INTO "stream_parameter" VALUES(176,1494);
-INSERT INTO "stream_parameter" VALUES(176,1495);
 INSERT INTO "stream_parameter" VALUES(177,7);
 INSERT INTO "stream_parameter" VALUES(177,10);
 INSERT INTO "stream_parameter" VALUES(177,11);
@@ -10407,16 +10397,6 @@ INSERT INTO "stream_parameter" VALUES(393,1586);
 INSERT INTO "stream_parameter" VALUES(393,1587);
 INSERT INTO "stream_parameter" VALUES(393,1588);
 INSERT INTO "stream_parameter" VALUES(393,1622);
-INSERT INTO "stream_parameter" VALUES(394,7);
-INSERT INTO "stream_parameter" VALUES(394,10);
-INSERT INTO "stream_parameter" VALUES(394,11);
-INSERT INTO "stream_parameter" VALUES(394,12);
-INSERT INTO "stream_parameter" VALUES(394,16);
-INSERT INTO "stream_parameter" VALUES(394,863);
-INSERT INTO "stream_parameter" VALUES(394,1139);
-INSERT INTO "stream_parameter" VALUES(394,1141);
-INSERT INTO "stream_parameter" VALUES(394,1143);
-INSERT INTO "stream_parameter" VALUES(394,1622);
 INSERT INTO "stream_parameter" VALUES(395,7);
 INSERT INTO "stream_parameter" VALUES(395,10);
 INSERT INTO "stream_parameter" VALUES(395,11);
@@ -10904,38 +10884,6 @@ INSERT INTO "stream_parameter" VALUES(405,1582);
 INSERT INTO "stream_parameter" VALUES(405,1583);
 INSERT INTO "stream_parameter" VALUES(405,1584);
 INSERT INTO "stream_parameter" VALUES(405,1585);
-INSERT INTO "stream_parameter" VALUES(406,7);
-INSERT INTO "stream_parameter" VALUES(406,10);
-INSERT INTO "stream_parameter" VALUES(406,11);
-INSERT INTO "stream_parameter" VALUES(406,12);
-INSERT INTO "stream_parameter" VALUES(406,16);
-INSERT INTO "stream_parameter" VALUES(406,863);
-INSERT INTO "stream_parameter" VALUES(406,1136);
-INSERT INTO "stream_parameter" VALUES(406,1137);
-INSERT INTO "stream_parameter" VALUES(406,1138);
-INSERT INTO "stream_parameter" VALUES(406,1139);
-INSERT INTO "stream_parameter" VALUES(406,1140);
-INSERT INTO "stream_parameter" VALUES(406,1141);
-INSERT INTO "stream_parameter" VALUES(406,1142);
-INSERT INTO "stream_parameter" VALUES(406,1143);
-INSERT INTO "stream_parameter" VALUES(406,1144);
-INSERT INTO "stream_parameter" VALUES(406,2605);
-INSERT INTO "stream_parameter" VALUES(407,7);
-INSERT INTO "stream_parameter" VALUES(407,10);
-INSERT INTO "stream_parameter" VALUES(407,11);
-INSERT INTO "stream_parameter" VALUES(407,12);
-INSERT INTO "stream_parameter" VALUES(407,16);
-INSERT INTO "stream_parameter" VALUES(407,863);
-INSERT INTO "stream_parameter" VALUES(407,1136);
-INSERT INTO "stream_parameter" VALUES(407,1137);
-INSERT INTO "stream_parameter" VALUES(407,1138);
-INSERT INTO "stream_parameter" VALUES(407,1139);
-INSERT INTO "stream_parameter" VALUES(407,1140);
-INSERT INTO "stream_parameter" VALUES(407,1141);
-INSERT INTO "stream_parameter" VALUES(407,1142);
-INSERT INTO "stream_parameter" VALUES(407,1143);
-INSERT INTO "stream_parameter" VALUES(407,1144);
-INSERT INTO "stream_parameter" VALUES(407,2605);
 INSERT INTO "stream_parameter" VALUES(408,7);
 INSERT INTO "stream_parameter" VALUES(408,10);
 INSERT INTO "stream_parameter" VALUES(408,11);
@@ -12577,42 +12525,6 @@ INSERT INTO "stream_parameter" VALUES(500,1139);
 INSERT INTO "stream_parameter" VALUES(500,1141);
 INSERT INTO "stream_parameter" VALUES(500,1144);
 INSERT INTO "stream_parameter" VALUES(500,1622);
-INSERT INTO "stream_parameter" VALUES(502,7);
-INSERT INTO "stream_parameter" VALUES(502,10);
-INSERT INTO "stream_parameter" VALUES(502,11);
-INSERT INTO "stream_parameter" VALUES(502,12);
-INSERT INTO "stream_parameter" VALUES(502,16);
-INSERT INTO "stream_parameter" VALUES(502,863);
-INSERT INTO "stream_parameter" VALUES(502,1136);
-INSERT INTO "stream_parameter" VALUES(502,1137);
-INSERT INTO "stream_parameter" VALUES(502,1138);
-INSERT INTO "stream_parameter" VALUES(502,1139);
-INSERT INTO "stream_parameter" VALUES(502,1140);
-INSERT INTO "stream_parameter" VALUES(502,1141);
-INSERT INTO "stream_parameter" VALUES(502,1142);
-INSERT INTO "stream_parameter" VALUES(502,1143);
-INSERT INTO "stream_parameter" VALUES(502,1144);
-INSERT INTO "stream_parameter" VALUES(502,2311);
-INSERT INTO "stream_parameter" VALUES(502,2606);
-INSERT INTO "stream_parameter" VALUES(502,2622);
-INSERT INTO "stream_parameter" VALUES(503,7);
-INSERT INTO "stream_parameter" VALUES(503,10);
-INSERT INTO "stream_parameter" VALUES(503,11);
-INSERT INTO "stream_parameter" VALUES(503,12);
-INSERT INTO "stream_parameter" VALUES(503,16);
-INSERT INTO "stream_parameter" VALUES(503,863);
-INSERT INTO "stream_parameter" VALUES(503,1136);
-INSERT INTO "stream_parameter" VALUES(503,1137);
-INSERT INTO "stream_parameter" VALUES(503,1138);
-INSERT INTO "stream_parameter" VALUES(503,1139);
-INSERT INTO "stream_parameter" VALUES(503,1140);
-INSERT INTO "stream_parameter" VALUES(503,1141);
-INSERT INTO "stream_parameter" VALUES(503,1142);
-INSERT INTO "stream_parameter" VALUES(503,1143);
-INSERT INTO "stream_parameter" VALUES(503,1144);
-INSERT INTO "stream_parameter" VALUES(503,2311);
-INSERT INTO "stream_parameter" VALUES(503,2606);
-INSERT INTO "stream_parameter" VALUES(503,2622);
 INSERT INTO "stream_parameter" VALUES(504,7);
 INSERT INTO "stream_parameter" VALUES(504,10);
 INSERT INTO "stream_parameter" VALUES(504,11);
@@ -14096,38 +14008,6 @@ INSERT INTO "stream_parameter" VALUES(557,1587);
 INSERT INTO "stream_parameter" VALUES(557,1588);
 INSERT INTO "stream_parameter" VALUES(557,2246);
 INSERT INTO "stream_parameter" VALUES(557,2247);
-INSERT INTO "stream_parameter" VALUES(558,7);
-INSERT INTO "stream_parameter" VALUES(558,10);
-INSERT INTO "stream_parameter" VALUES(558,11);
-INSERT INTO "stream_parameter" VALUES(558,12);
-INSERT INTO "stream_parameter" VALUES(558,16);
-INSERT INTO "stream_parameter" VALUES(558,863);
-INSERT INTO "stream_parameter" VALUES(558,1136);
-INSERT INTO "stream_parameter" VALUES(558,1137);
-INSERT INTO "stream_parameter" VALUES(558,1138);
-INSERT INTO "stream_parameter" VALUES(558,1139);
-INSERT INTO "stream_parameter" VALUES(558,1140);
-INSERT INTO "stream_parameter" VALUES(558,1141);
-INSERT INTO "stream_parameter" VALUES(558,1142);
-INSERT INTO "stream_parameter" VALUES(558,1143);
-INSERT INTO "stream_parameter" VALUES(558,1144);
-INSERT INTO "stream_parameter" VALUES(558,2174);
-INSERT INTO "stream_parameter" VALUES(559,7);
-INSERT INTO "stream_parameter" VALUES(559,10);
-INSERT INTO "stream_parameter" VALUES(559,11);
-INSERT INTO "stream_parameter" VALUES(559,12);
-INSERT INTO "stream_parameter" VALUES(559,16);
-INSERT INTO "stream_parameter" VALUES(559,863);
-INSERT INTO "stream_parameter" VALUES(559,1136);
-INSERT INTO "stream_parameter" VALUES(559,1137);
-INSERT INTO "stream_parameter" VALUES(559,1138);
-INSERT INTO "stream_parameter" VALUES(559,1139);
-INSERT INTO "stream_parameter" VALUES(559,1140);
-INSERT INTO "stream_parameter" VALUES(559,1141);
-INSERT INTO "stream_parameter" VALUES(559,1142);
-INSERT INTO "stream_parameter" VALUES(559,1143);
-INSERT INTO "stream_parameter" VALUES(559,1144);
-INSERT INTO "stream_parameter" VALUES(559,2174);
 INSERT INTO "stream_parameter" VALUES(560,7);
 INSERT INTO "stream_parameter" VALUES(560,10);
 INSERT INTO "stream_parameter" VALUES(560,11);
@@ -15998,29 +15878,6 @@ INSERT INTO "stream_parameter" VALUES(657,3450);
 INSERT INTO "stream_parameter" VALUES(657,3451);
 INSERT INTO "stream_parameter" VALUES(657,3452);
 INSERT INTO "stream_parameter" VALUES(657,3453);
-INSERT INTO "stream_parameter" VALUES(658,7);
-INSERT INTO "stream_parameter" VALUES(658,10);
-INSERT INTO "stream_parameter" VALUES(658,11);
-INSERT INTO "stream_parameter" VALUES(658,12);
-INSERT INTO "stream_parameter" VALUES(658,16);
-INSERT INTO "stream_parameter" VALUES(658,863);
-INSERT INTO "stream_parameter" VALUES(658,1276);
-INSERT INTO "stream_parameter" VALUES(658,3412);
-INSERT INTO "stream_parameter" VALUES(658,3413);
-INSERT INTO "stream_parameter" VALUES(658,3430);
-INSERT INTO "stream_parameter" VALUES(658,3431);
-INSERT INTO "stream_parameter" VALUES(658,3432);
-INSERT INTO "stream_parameter" VALUES(658,3443);
-INSERT INTO "stream_parameter" VALUES(658,3444);
-INSERT INTO "stream_parameter" VALUES(658,3445);
-INSERT INTO "stream_parameter" VALUES(658,3446);
-INSERT INTO "stream_parameter" VALUES(658,3447);
-INSERT INTO "stream_parameter" VALUES(658,3448);
-INSERT INTO "stream_parameter" VALUES(658,3449);
-INSERT INTO "stream_parameter" VALUES(658,3450);
-INSERT INTO "stream_parameter" VALUES(658,3451);
-INSERT INTO "stream_parameter" VALUES(658,3452);
-INSERT INTO "stream_parameter" VALUES(658,3453);
 INSERT INTO "stream_parameter" VALUES(659,3);
 INSERT INTO "stream_parameter" VALUES(659,7);
 INSERT INTO "stream_parameter" VALUES(659,10);
@@ -18617,11 +18474,6 @@ INSERT INTO "stream_parameter" VALUES(133,24);
 INSERT INTO "stream_parameter" VALUES(133,25);
 INSERT INTO "stream_parameter" VALUES(770,21);
 INSERT INTO "stream_parameter" VALUES(770,25);
-INSERT INTO "stream_parameter" VALUES(558,21);
-INSERT INTO "stream_parameter" VALUES(558,22);
-INSERT INTO "stream_parameter" VALUES(558,23);
-INSERT INTO "stream_parameter" VALUES(558,24);
-INSERT INTO "stream_parameter" VALUES(558,25);
 INSERT INTO "stream_parameter" VALUES(157,21);
 INSERT INTO "stream_parameter" VALUES(157,22);
 INSERT INTO "stream_parameter" VALUES(157,23);
@@ -18637,32 +18489,10 @@ INSERT INTO "stream_parameter" VALUES(500,21);
 INSERT INTO "stream_parameter" VALUES(500,22);
 INSERT INTO "stream_parameter" VALUES(500,24);
 INSERT INTO "stream_parameter" VALUES(500,25);
-INSERT INTO "stream_parameter" VALUES(502,21);
-INSERT INTO "stream_parameter" VALUES(502,22);
-INSERT INTO "stream_parameter" VALUES(502,23);
-INSERT INTO "stream_parameter" VALUES(502,24);
-INSERT INTO "stream_parameter" VALUES(502,25);
-INSERT INTO "stream_parameter" VALUES(176,21);
-INSERT INTO "stream_parameter" VALUES(176,25);
 INSERT INTO "stream_parameter" VALUES(188,21);
 INSERT INTO "stream_parameter" VALUES(188,22);
 INSERT INTO "stream_parameter" VALUES(188,24);
 INSERT INTO "stream_parameter" VALUES(188,25);
-INSERT INTO "stream_parameter" VALUES(559,21);
-INSERT INTO "stream_parameter" VALUES(559,22);
-INSERT INTO "stream_parameter" VALUES(559,23);
-INSERT INTO "stream_parameter" VALUES(559,24);
-INSERT INTO "stream_parameter" VALUES(559,25);
-INSERT INTO "stream_parameter" VALUES(503,21);
-INSERT INTO "stream_parameter" VALUES(503,22);
-INSERT INTO "stream_parameter" VALUES(503,23);
-INSERT INTO "stream_parameter" VALUES(503,24);
-INSERT INTO "stream_parameter" VALUES(503,25);
-INSERT INTO "stream_parameter" VALUES(394,21);
-INSERT INTO "stream_parameter" VALUES(394,22);
-INSERT INTO "stream_parameter" VALUES(394,23);
-INSERT INTO "stream_parameter" VALUES(394,24);
-INSERT INTO "stream_parameter" VALUES(394,25);
 INSERT INTO "stream_parameter" VALUES(728,22);
 INSERT INTO "stream_parameter" VALUES(728,24);
 INSERT INTO "stream_parameter" VALUES(729,22);
@@ -18671,16 +18501,6 @@ INSERT INTO "stream_parameter" VALUES(377,21);
 INSERT INTO "stream_parameter" VALUES(377,25);
 INSERT INTO "stream_parameter" VALUES(175,21);
 INSERT INTO "stream_parameter" VALUES(175,25);
-INSERT INTO "stream_parameter" VALUES(406,21);
-INSERT INTO "stream_parameter" VALUES(406,22);
-INSERT INTO "stream_parameter" VALUES(406,23);
-INSERT INTO "stream_parameter" VALUES(406,24);
-INSERT INTO "stream_parameter" VALUES(406,25);
-INSERT INTO "stream_parameter" VALUES(407,21);
-INSERT INTO "stream_parameter" VALUES(407,22);
-INSERT INTO "stream_parameter" VALUES(407,23);
-INSERT INTO "stream_parameter" VALUES(407,24);
-INSERT INTO "stream_parameter" VALUES(407,25);
 INSERT INTO "stream_parameter" VALUES(437,3250);
 INSERT INTO "stream_parameter" VALUES(773,7);
 INSERT INTO "stream_parameter" VALUES(773,10);
@@ -18711,6 +18531,20 @@ INSERT INTO "stream_parameter" VALUES(773,3737);
 INSERT INTO "stream_parameter" VALUES(744,7983);
 INSERT INTO "stream_parameter" VALUES(743,7983);
 INSERT INTO "stream_parameter" VALUES(752,7983);
+INSERT INTO "stream_parameter" VALUES(157,1138);
+INSERT INTO "stream_parameter" VALUES(157,1140);
+INSERT INTO "stream_parameter" VALUES(157,1142);
+INSERT INTO "stream_parameter" VALUES(157,1144);
+INSERT INTO "stream_parameter" VALUES(157,2606);
+INSERT INTO "stream_parameter" VALUES(157,2622);
+INSERT INTO "stream_parameter" VALUES(175,1477);
+INSERT INTO "stream_parameter" VALUES(175,1478);
+INSERT INTO "stream_parameter" VALUES(175,1480);
+INSERT INTO "stream_parameter" VALUES(175,1481);
+INSERT INTO "stream_parameter" VALUES(175,1483);
+INSERT INTO "stream_parameter" VALUES(175,1484);
+INSERT INTO "stream_parameter" VALUES(175,1487);
+INSERT INTO "stream_parameter" VALUES(175,1488);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
