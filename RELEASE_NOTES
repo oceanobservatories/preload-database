@@ -1,3 +1,21 @@
+# Version 1.0.15 (2017-08-24)
+
+- Issue #12435 FLOR - Consolidate Streams:
+    * Added FLOR stream called "flort_sample" and deprecated:
+        * flort_kn_stc_imodem_instrument
+        * flort_kn_stc_imodem_instrument_recovered
+        * flort_dj_dcl_instrument
+        * flort_dj_dcl_instrument_recovered
+        * flort_dj_cspp_instrument
+        * flort_dj_sio_instrument
+        * flort_dj_sio_instrument_recovered
+    * Added FLOR stream called "flort_m_sample" and deprecated:
+         * flort_m_glider_instrument
+         * flort_m_glider_recovered
+    * Added FLOR stream called "flort_kn_sample" and deprecated:
+         * flort_kn_auv_instrument
+         * flort_kn_auv_instrument_recovered
+
 # Version 1.0.14 (2017-08-03)
 
 - Issue #12435 FLOR - Consolidate Streams:
