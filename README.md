@@ -40,7 +40,7 @@ cd ~/uframes/engines/stream_engine
 
 uFrame uses the definition of preload in the postgres metadata database. To fill or update a postgres database:
 ```sh
-python load_preload.py postgresql://awips@localhost/metadata
+python load_preload.py postgresql://awips:awips@localhost/metadata
 ```
 
 Edex must be restarted after any changes to the postgres metadata database:
