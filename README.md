@@ -52,6 +52,22 @@ cd ~/uframes/ooi/bin
 
 # Utilities
 
+## `generate_cql.py`
+
+Create Cassandra table entries and Java stream definitions for all streams.
+
+Usage:
+```
+./generate_cql.py
+```
+Creates the following files:
+- `cql/<stream>.cql` - Cassandra table entry for each stream
+- `cql/all.cql` - Complete list of all Cassandra table stream entries
+- `java/ParticleMapper.java` - Maps Java stream to the corresponding Cassandra stream table entry
+- `java/tables/<stream>.java` - Java stream definition for each stream
+
+Once these files are created, they need to be moved to the edex source tree and edex needs to be rebuilt. Be careful to ensure that any streams that have been removed are also removed from the edex source. 
+
 ## `resolve_stream.py`
 
 List all parameter and sources for derived parameters for a specific data stream. 
