@@ -1884,8 +1884,8 @@ INSERT INTO "parameter" VALUES(1132,'salinity_delay',11,12,NULL,66,10,'Salinity 
 INSERT INTO "parameter" VALUES(1133,'corrected_compass_direction',10,1,NULL,98,7,'Seafloor High-Resolution Corrected Compass Direction',NULL,0,71,'{"scmp": "PD841", "sn": "PD312"}','BOTTILT-CCMP','Seafloor High-resolution Tilt measurements are very precise measurements of seafloor tilt, measured in micro-radians. This high resolution enables the measurement of the "tilting" of the seafloor as it deforms in response to uplifting mantle at the summit of Axial Volcano. Seafloor High-resolution Corrected Compass Direction is the compass direction of the positive Y-tilt axis (in degrees, clockwise from North) after corrections for calibration offsets and magnetic declination. Units: integer degrees.',3,1);
 INSERT INTO "parameter" VALUES(1134,'seafloor_tilt_magnitude',10,1,NULL,226,7,'Seafloor High-Resolution Tilt Magnitude',NULL,3,72,'{"x_tilt": "PD839", "y_tilt": "PD840"}','BOTTILT-TMAG_L1','Seafloor High-resolution Tilt measurements are very precise measurements of seafloor tilt, measured in micro-radians. This high resolution enables the measurement of the "tilting" of the seafloor as it deforms in response to uplifting mantle at the summit of Axial Volcano. Seafloor High-resolution Tilt Magnitude is the magnitude of the seafloor tilt since the last re-leveling of the sensor. Units: microradians',3,1);
 INSERT INTO "parameter" VALUES(1135,'seafloor_tilt_direction',10,1,NULL,98,7,'Seafloor High-Resolution Tilt Direction',NULL,0,73,'{"x_tilt": "PD839", "ccmp": "PD1133", "y_tilt": "PD840"}','BOTTILT-TDIR_L1','Seafloor High-resolution Tilt measurements are very precise measurements of seafloor tilt, measured in micro-radians. This high resolution enables the measurement of the "tilting" of the seafloor as it deforms in response to uplifting mantle at the summit of Axial Volcano. Seafloor High-resolution Corrected Tilt Direction is the corrected direction (in degrees clockwise from North) of the seafloor downward tilt since the last re-leveling of the sensor. Units: integer degrees.',3,1);
-INSERT INTO "parameter" VALUES(1136,'date_string',11,8,NULL,8,17,'Measurement Date, UTC',NULL,NULL,NULL,NULL,NULL,'Measurement date in string format.',NULL,NULL);
-INSERT INTO "parameter" VALUES(1137,'time_string',11,8,NULL,8,17,'Measurement Time, UTC',NULL,NULL,NULL,NULL,NULL,'Measurement time in string format',NULL,NULL);
+INSERT INTO "parameter" VALUES(1136,'date_string',11,8,NULL,8,17,'Measurement Date, UTC',NULL,NULL,NULL,NULL,NULL,'Deprecated - Measurement date in string format.',NULL,NULL);
+INSERT INTO "parameter" VALUES(1137,'time_string',11,8,NULL,8,17,'Measurement Time, UTC',NULL,NULL,NULL,NULL,NULL,'Deprecated - Measurement time in string format',NULL,NULL);
 INSERT INTO "parameter" VALUES(1138,'measurement_wavelength_beta',11,9,NULL,185,10,'Measurement Wavelength, Scattering',NULL,NULL,NULL,NULL,NULL,'Wavelength used by sensor for its scattering measurement.',NULL,NULL);
 INSERT INTO "parameter" VALUES(1139,'raw_signal_beta',11,9,NULL,66,10,'Optical Backscatter Measurement',NULL,NULL,NULL,NULL,'FLUBSCT_L0','Optical backscatter unprocessed measurement output from the sensor. Units: counts',4,0);
 INSERT INTO "parameter" VALUES(1140,'measurement_wavelength_chl',11,9,NULL,185,10,'Measurement Wavelength, Chlorophyll',NULL,NULL,NULL,NULL,NULL,'Wavelength used by sensor for its chlorophyll measurement .',NULL,NULL);
@@ -2321,7 +2321,7 @@ INSERT INTO "parameter" VALUES(1618,'vel3d_k_amp2',11,12,NULL,66,10,'Amplitude2'
 INSERT INTO "parameter" VALUES(1619,'vel3d_k_number_of_records',11,9,NULL,66,10,'Number of Records',NULL,0,NULL,NULL,NULL,'Number of Records in counts',NULL,NULL);
 INSERT INTO "parameter" VALUES(1620,'vel3d_k_time_on',11,10,NULL,199,16,'Time Sensor Start',NULL,0,NULL,NULL,NULL,'Time Sensor Start in seconds',NULL,NULL);
 INSERT INTO "parameter" VALUES(1621,'vel3d_k_time_off',11,10,NULL,199,16,'Time Sensor Stop',NULL,0,NULL,NULL,NULL,'Time Sensor Stop in seconds',NULL,NULL);
-INSERT INTO "parameter" VALUES(1622,'wfp_timestamp',11,10,NULL,207,16,'Wire Following Profiler Timestamp',NULL,0,NULL,NULL,NULL,'Timestamp in seconds since January 01, 1970 UTC.',NULL,NULL);
+INSERT INTO "parameter" VALUES(1622,'wfp_timestamp',11,10,NULL,207,16,'Wire Following Profiler Timestamp',NULL,0,NULL,NULL,NULL,'Deprecated - Timestamp in seconds since January 01, 1970 UTC.',NULL,NULL);
 INSERT INTO "parameter" VALUES(1623,'adcps_jln_record',11,10,NULL,8,10,'Record Number',NULL,0,NULL,NULL,NULL,'ASCII Record number',NULL,NULL);
 INSERT INTO "parameter" VALUES(1624,'adcps_jln_number',11,10,NULL,8,10,'Ensemble Number',NULL,0,NULL,NULL,NULL,'Ensemble Number',NULL,NULL);
 INSERT INTO "parameter" VALUES(1625,'adcps_jln_unit_id',11,12,NULL,8,10,'Unit ID',NULL,0,NULL,NULL,NULL,'The ID of the ADCP as set by the CI command.',NULL,NULL);
@@ -2740,7 +2740,7 @@ INSERT INTO "parameter" VALUES(2067,'sensor_available_temperature_eu',5,6,NULL,8
 INSERT INTO "parameter" VALUES(2070,'sysconfig_beam_angle',6,6,3,8,4,'Beam Angle',NULL,0,NULL,NULL,NULL,'System configuration for beam angle, 0 = 15E, 1 = 20E, 2 = 30E, 4 = Other',NULL,NULL);
 INSERT INTO "parameter" VALUES(2071,'sysconfig_beam_config',6,6,30,8,4,'Beam Configuration',NULL,0,NULL,NULL,NULL,'System configuration for beam configuration, 4 = 4-Beam Janus, 5 = 5-Beam Janus DEMOD, 15 = 5-Beam Janus 2DEMOD',NULL,NULL);
 INSERT INTO "parameter" VALUES(2173,'sio_controller_id',11,10,NULL,8,16,'SIO Controller Id',NULL,NULL,NULL,NULL,NULL,'sio controller id',NULL,NULL);
-INSERT INTO "parameter" VALUES(2174,'sio_controller_timestamp',11,10,NULL,207,16,'SIO Controller Time',NULL,NULL,NULL,NULL,NULL,'sio controller timestamp, seconds since 1970-01-01',NULL,NULL);
+INSERT INTO "parameter" VALUES(2174,'sio_controller_timestamp',11,10,NULL,207,16,'SIO Controller Time',NULL,NULL,NULL,NULL,NULL,'Deprecated - sio controller timestamp, seconds since 1970-01-01',NULL,NULL);
 INSERT INTO "parameter" VALUES(2175,'sio_eng_voltage',11,1,NULL,38,7,'SIO Eng Voltage',NULL,4,NULL,NULL,NULL,'sio eng voltage, V',NULL,NULL);
 INSERT INTO "parameter" VALUES(2176,'sio_eng_temperature',11,1,NULL,91,7,'SIO Eng Temperature Celsius',NULL,4,NULL,NULL,NULL,'sio eng temperature, degrees Celsius',NULL,NULL);
 INSERT INTO "parameter" VALUES(2177,'sio_eng_on_time',11,10,NULL,199,16,'SIO Eng on Time',NULL,NULL,NULL,NULL,NULL,'sio eng on time, seconds',NULL,NULL);
@@ -2824,7 +2824,7 @@ INSERT INTO "parameter" VALUES(2306,'enable_rawdata',5,6,NULL,NULL,3,'Enable Raw
 INSERT INTO "parameter" VALUES(2307,'analog_output',11,8,NULL,8,17,'Analog Output',NULL,NULL,NULL,NULL,NULL,'Controls which parameter is presented at analog Output 1; O2Concentration, AirSaturation, CalPhase, Fixed1, Fixed2',NULL,NULL);
 INSERT INTO "parameter" VALUES(2308,'interval',11,1,NULL,203,3,'Interval',NULL,3,NULL,NULL,NULL,'Sampling Interval in seconds',NULL,NULL);
 INSERT INTO "parameter" VALUES(2310,'ext_volt0',11,4,NULL,66,9,'External Voltage Reading From Oxygen Sensor',NULL,NULL,NULL,NULL,NULL,'SBE43 voltage reading',NULL,NULL);
-INSERT INTO "parameter" VALUES(2311,'profiler_timestamp',11,2,NULL,207,16,'Surface-Piercing Profiler Timestamp, UTC',NULL,0,NULL,NULL,NULL,'Timestamp in seconds since January 01, 1970 UTC.',NULL,NULL);
+INSERT INTO "parameter" VALUES(2311,'profiler_timestamp',11,2,NULL,207,16,'Surface-Piercing Profiler Timestamp, UTC',NULL,0,NULL,NULL,NULL,'Deprecated - Timestamp in seconds since January 01, 1970 UTC.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2312,'last_character_controller_id',11,8,NULL,8,17,'Last Character Controller ID',NULL,NULL,NULL,NULL,NULL,'Last character of the controller''s ID',NULL,NULL);
 INSERT INTO "parameter" VALUES(2313,'day_of_year_number',11,9,NULL,8,15,'Day of Year Number',NULL,NULL,NULL,NULL,NULL,'1/1 is 0, 2/1 is 32, etc...',NULL,NULL);
 INSERT INTO "parameter" VALUES(2314,'fraction_of_day',11,9,NULL,8,15,'Fraction of Day',NULL,NULL,NULL,NULL,NULL,'midnight is 0, noon is 5000, 13:30 is 5625, etc...',NULL,NULL);
@@ -3113,7 +3113,7 @@ INSERT INTO "parameter" VALUES(2601,'hpies_last_pressure',11,1,NULL,22,6,'Last P
 INSERT INTO "parameter" VALUES(2602,'hpies_last_temperature',11,1,NULL,22,6,'Last Temperature',NULL,NULL,NULL,NULL,NULL,'last temperature sensor raw data value',NULL,NULL);
 INSERT INTO "parameter" VALUES(2603,'hpies_ies_clock_error',11,1,NULL,22,6,'IES Clock Error',NULL,NULL,NULL,NULL,NULL,'IES clock crystal error from 32768 Hz',NULL,NULL);
 INSERT INTO "parameter" VALUES(2604,'hpies_rsn_timestamp',11,11,NULL,203,10,'RSN Timestamp',NULL,NULL,NULL,NULL,NULL,'RSN network time in elapsed seconds since midnight Jan 1, 1970',NULL,NULL);
-INSERT INTO "parameter" VALUES(2605,'dcl_controller_timestamp',11,8,NULL,8,17,'DCL Controller Timestamp',NULL,0,NULL,NULL,NULL,'Timestamp from the DCL controller',NULL,NULL);
+INSERT INTO "parameter" VALUES(2605,'dcl_controller_timestamp',11,8,NULL,8,17,'DCL Controller Timestamp',NULL,0,NULL,NULL,NULL,'Deprecated - Timestamp from the DCL controller',NULL,NULL);
 INSERT INTO "parameter" VALUES(2606,'pressure_depth',11,1,NULL,80,7,'Seawater Pressure',NULL,3,NULL,NULL,NULL,'Seawater Pressure refers to the pressure exerted on a sensor in situ by the weight of the column of seawater above it. It is calculated by subtracting one standard atmosphere from the absolute pressure at the sensor to remove the weight of the atmosphere on top of the water column. The pressure at a sensor in situ provides a metric of the depth of that sensor. Units: dbar',NULL,NULL);
 INSERT INTO "parameter" VALUES(2607,'velpt_pressure',11,1,NULL,80,7,'VELPT Pressure',NULL,3,NULL,NULL,NULL,'Pressure measured by the VELPT-J instrumnet.',NULL,NULL);
 INSERT INTO "parameter" VALUES(2608,'velocity_beam1_m_s',11,1,NULL,128,7,'Velocity Beam1 or X or East Coordinates',NULL,4,NULL,NULL,NULL,'velocity beam1 or X or East coordinates (m/s)',NULL,NULL);
@@ -18801,6 +18801,8 @@ INSERT INTO "stream_parameter" VALUES(407,1142);
 INSERT INTO "stream_parameter" VALUES(407,1143);
 INSERT INTO "stream_parameter" VALUES(407,1144);
 INSERT INTO "stream_parameter" VALUES(407,2605);
+INSERT INTO "stream_parameter" VALUES(133,1136);
+INSERT INTO "stream_parameter" VALUES(133,1137);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
