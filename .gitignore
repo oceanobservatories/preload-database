@@ -6,3 +6,4 @@ cql/
 java/
 *.sqlite
 m2m_config.yml
+.DS_Store

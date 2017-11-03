@@ -1,4 +1,12 @@
-# Version 1.0.15 (2017-08-24)
+# Version 1.0.15 (2017-10-31)
+
+- Issue #12323 - Preload Database updated for ZPLSC Echograms
+    * Renamed zplsc_c_xxxx parameters to zplsc_xxxx
+    * Added the zplsc_echogram_data stream
+
+- Issue #12865 Preload Database Cleanup Of Deprecated Parameters and New Streams
+    * Deprecated PD1136 and PD1137 (date_string and time_string)
+    * Added PD1136 and PD1137 back into the flort_d_data_record
 
 - Issue #12435 FLOR - Consolidate Streams:
     * Added FLOR stream called "flort_sample" and deprecated:
