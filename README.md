@@ -71,6 +71,8 @@ Creates the following files:
 - `java/tables/<stream>.java` - Java stream definition for each stream
 
 Once these files are created, they need to be moved to the edex source tree and edex needs to be rebuilt. Be careful to ensure that any streams that have been removed are also removed from the edex source. 
+- cql files are saved to uframe-ooi repository
+- java files are saved to the uframe package com.raytheon.uf.common.ooi.dataparticle
 
 ## `resolve_stream.py`
 
