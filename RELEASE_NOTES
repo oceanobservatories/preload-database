@@ -1,4 +1,6 @@
 # Version 1.0.15 (2017-10-31)
+- Issue #9950 - VADCP  missing expected parameters and failed creation of true upward velocity
+    * Added parameter PD3822 (error_seawater_velocity) in stream "vadcp_velocity_beam
 
 - Issue #12323 - Preload Database updated for ZPLSC Echograms
     * Renamed zplsc_c_xxxx parameters to zplsc_xxxx
