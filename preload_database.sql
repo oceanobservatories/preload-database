@@ -4192,7 +4192,7 @@ INSERT INTO "parameter" VALUES(3766,'camhd_laser',5,5,NULL,8,10,'Laser On/Off',N
 INSERT INTO "parameter" VALUES(3767,'camhd_channel_name',3,6,NULL,8,17,'Array of Channel Names',NULL,0,NULL,NULL,NULL,'Array of channel names',NULL,NULL);
 INSERT INTO "parameter" VALUES(3768,'camhd_channel_value',3,1,NULL,8,7,'Array of Channel Values',NULL,0,NULL,NULL,NULL,'Array of channel values',NULL,NULL);
 INSERT INTO "parameter" VALUES(3769,'camhd_value_units',3,6,NULL,8,17,'Array of Value Units',NULL,0,NULL,NULL,NULL,'Array of value units',NULL,NULL);
-INSERT INTO "parameter" VALUES(3777,'corrected_dissolved_oxygen',8,1,NULL,217,7,'DO - Pressure Temp Sal Corrected (CTD)',NULL,4,87,'{"Voffset": "CC_frequency_offset", "A": "CC_residual_temperature_correction_factor_a", "Soc": "CC_oxygen_signal_slope", "B": "CC_residual_temperature_correction_factor_b", "E": "CC_residual_temperature_correction_factor_e", "voltage_counts": "PD2310", "SP": "dpi_PRACSAL_L2", "lon": "CC_lon", "C": "CC_residual_temperature_correction_factor_c", "P": "PD909", "T": "PD908", "lat": "CC_lat"}','DOCONCF_L2','Dissolved Oxygen (DO) Concentration from the Fast Response (Fastrep) Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. This Instrument measures dissolved oxygen concentrations on shallow coastal profilers through rapid oxygen gradients.This data product is corrected for salinity, temperature, and depth from a collocated CTD. Units: umol kg-1.',3,2);
+INSERT INTO "parameter" VALUES(3777,'corrected_dissolved_oxygen',8,1,NULL,232,7,'DO - Pressure Temp Sal Corrected (CTD)',NULL,4,87,'{"Voffset": "CC_frequency_offset", "A": "CC_residual_temperature_correction_factor_a", "Soc": "CC_oxygen_signal_slope", "B": "CC_residual_temperature_correction_factor_b", "E": "CC_residual_temperature_correction_factor_e", "voltage_counts": "PD2310", "SP": "dpi_PRACSAL_L2", "lon": "CC_lon", "C": "CC_residual_temperature_correction_factor_c", "P": "PD909", "T": "PD908", "lat": "CC_lat"}','DOCONCF_L2','Dissolved Oxygen (DO) Concentration from the Fast Response (Fastrep) Dissolved Oxygen Instrument is a measure of the concentration of gaseous oxygen mixed in seawater. This Instrument measures dissolved oxygen concentrations on shallow coastal profilers through rapid oxygen gradients. This data product is corrected for salinity, temperature, and depth from a collocated CTD.',3,2);
 INSERT INTO "parameter" VALUES(3778,'pco2w_a_absorbance_blank_434',8,1,NULL,8,7,'Optical Absorbance Ratio at 434 Nm - Blank',NULL,4,39,'{"light": "pco2w_a_sami_data_record_cal.PD357"}','CO2ABS1-BLNK_L0','The Optical Absorbance ratio at 434 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(3779,'pco2w_a_absorbance_blank_620',8,1,NULL,8,7,'Optical Absorbance Ratio at 620 Nm - Blank',NULL,4,40,'{"light": "pco2w_a_sami_data_record_cal.PD357"}','CO2ABS2-BLNK_L0','The Optical Absorbance ratio at 620 nm collected during the blank cycle and used to calculate the PCO2WAT data product.',4,0);
 INSERT INTO "parameter" VALUES(3780,'hpies_travel_time1_L1',8,1,NULL,199,6,'Round-Trip Acoustic Travel Time 1',NULL,5,189,'{"scaler": 1e-05, "value": "PD2577"}','IESRATT_L1','1st Round-trip acoustic travel time (RATT) in Seconds.',NULL,1);
@@ -5034,6 +5034,7 @@ CREATE TABLE stream (
 INSERT INTO "stream" VALUES(15,'presf_tide_measurement',7,1440,3,149);
 INSERT INTO "stream" VALUES(16,'presf_operating_status',7,1440,2,140);
 INSERT INTO "stream" VALUES(17,'presf_calibration_coefficients',7,20160,2,17);
+INSERT INTO "stream" VALUES(21,'do_fast_sample',7,1440,3,40);
 INSERT INTO "stream" VALUES(22,'do_stable_sample',7,1440,3,40);
 INSERT INTO "stream" VALUES(23,'ctdbp_no_sample',7,1440,3,40);
 INSERT INTO "stream" VALUES(24,'ctdbp_no_hardware',7,20160,2,69);
@@ -18851,6 +18852,15 @@ INSERT INTO "stream_parameter" VALUES(22,835);
 INSERT INTO "stream_parameter" VALUES(22,863);
 INSERT INTO "stream_parameter" VALUES(22,964);
 INSERT INTO "stream_parameter" VALUES(752,3822);
+INSERT INTO "stream_parameter" VALUES(21,7);
+INSERT INTO "stream_parameter" VALUES(21,10);
+INSERT INTO "stream_parameter" VALUES(21,11);
+INSERT INTO "stream_parameter" VALUES(21,12);
+INSERT INTO "stream_parameter" VALUES(21,16);
+INSERT INTO "stream_parameter" VALUES(21,863);
+INSERT INTO "stream_parameter" VALUES(21,2310);
+INSERT INTO "stream_parameter" VALUES(21,3777);
+INSERT INTO "stream_parameter" VALUES(22,836);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
