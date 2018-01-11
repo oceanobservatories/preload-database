@@ -1,8 +1,15 @@
+# Version 1.0.18 (2018-01-11)
+
+- Issue #13025 OPTAA add wavelength dimensional parameter
+    * add new derived wavelength parameter for calculating wavelength from
+      a and c wavelength calibration constant data 
+    * update existing optaa parameters to use shared wavelength dimension
+
 # Version 1.0.17 (2018-01-03)
 
 - Issue #9950 - VADCP  missing expected parameters and failed creation of true upward velocity
-    * Added parameter PD3822 (error_seawater_velocity) in stream "vadcp_velocity_beam
-    * Note:previous changes to ParameterDefs.csv, adding "Science Data" to the temperature parameters'
+    * Added parameter PD3822 (error_seawater_velocity) in stream "vadcp_velocity_beam"
+    * Note:previous changes to ParameterDefs.csv, adding "Science Data" to the temperature parameters
     * dataproducttype column, were not updated in preload_database.sql.
     * Those changes are also being committed in this issue.
 
