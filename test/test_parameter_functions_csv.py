@@ -5,6 +5,7 @@ import numpy
 import os
 import pandas
 import re
+import ast
 
 TEST_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.dirname(TEST_DIR)
@@ -100,7 +101,13 @@ class TestFunctions(unittest.TestCase):
         idx = (self.data.owner != '') | (self.data.functiontype == 'NumexprFunction')
         for data in self.data[idx][['owner', 'function']].itertuples():
             # TODO - Validate the numeric functions.
-            if data.owner != '':
+            if data.owner == '__builtin__':
+                try:
+                    ast.parse(data.function)
+                    idx[data.Index - 1] = True
+                except SyntaxError:
+                    idx[data.Index - 1] = False
+            elif data.owner != '':
                 try:
                     module = importlib.import_module(data.owner)
                     idx[data.Index - 1] = hasattr(module, data.function)
