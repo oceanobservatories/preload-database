@@ -1,4 +1,4 @@
-# Next Version 1.0.19 (2018-01-22)
+# Version 1.0.19 (2018-01-22)
 
 - Issue #13114 - Corrected FLORT stream content name
 
