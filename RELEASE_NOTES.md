@@ -1,4 +1,8 @@
-# Next Version 1.0.19 (2018-01-22)
+# Next Version 1.1.0 (2018-03-19)
+
+- Issue #13221 - Added `resolve_parameter` function to determine parameters required to resolve derived parameter.
+
+# Version 1.0.19 (2018-01-22)
 
 - Issue #13114 - Corrected FLORT stream content name
 
