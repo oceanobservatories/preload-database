@@ -3,7 +3,7 @@
 Usage:
     resolve_stream.py <refdes> <method> <stream>
     resolve_stream.py <refdes> <method> <stream> <parameter>
-    resolve_stream.py
+    resolve_stream.py [--save <filename>]
 """
 
 import os
@@ -11,6 +11,7 @@ from collections import namedtuple
 from exceptions import NameError, UserWarning
 
 import yaml
+import pickle
 
 from ooi_data.postgres.model import *
 from tools.m2m import MachineToMachine
@@ -53,8 +54,8 @@ def make_parameter_map(instruments, method, stream_map):
 
 
 def same_node(refdes, m2m):
+    """Get set of the other instruments on the shared node."""
     subsite, node, sensor = refdes.split('-', 2)
-    # fetch instruments on the same node from the sensor inventory
     same_node = set(m2m.node_inventory(subsite, node))
     same_node.remove(refdes)
     return same_node
@@ -136,7 +137,7 @@ def resolve_parameter(refdes, method, stream, param, stream_map, m2m, depth=1):
     :param method:  Manner in which data is collected (e.g. 'telemetered').
     :param stream:  Stream name in which the parameter resides (e.g. ctdpf_sbe43_sample).
     :param param:  Parameter to resolve (e.g. Parameter(seawater_temperature)).
-    :param stream_map:
+    :param stream_map:  dictionary with reference designator as a key and set of available streams c.f. m2m.streams()
     :param m2m:  OOI asset management machine to machine credential object.
     :return: The set of qualified parameters or None if the parameter is not a derived data product.
     :throws: ParameterException if input parameter is invalid or if unable to resolve all required parameters
@@ -261,18 +262,12 @@ def resolve_stream(refdes, method, stream, stream_map, m2m):
                 print '%sNOT FOUND: needed_stream=%r poss_params=%r' % (indent, needed_stream, poss_params)
 
 
-# TODO - need to configure this to either use asset management directly or M2M
-m2m_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'm2m_config.yml')
-config = yaml.load(open(m2m_config_file))
-m2m = MachineToMachine(config['url'], config['apiname'], config['apikey'])
-stream_map = m2m.streams()
-
-
-def fully_resolve_parameter(qparam):
+def fully_resolve_parameter(qparam, stream_map, m2m=None):
     """
     Find all fully qualified parameters required to resolve a single qualified parameter.
 
     :param: qparam - QualifiedParameter to resolve
+    :param stream_map:  dictionary with reference designator as a key and set of available streams c.f. m2m.streams()
     :return: tuple (list of qualified parameters, list of unresolved parameters)
     :notes: The list of unresolved parameters should always be empty. If not, it is an indication of an error in
     preload or deployment.
@@ -326,7 +321,7 @@ def main():
 
     if all((refdes, method, stream, param)):
         qp = lookup_parameter(param, stream, refdes, method)
-        required, unresolved = fully_resolve_parameter(qp)
+        required, unresolved = fully_resolve_parameter(qp, stream_map, m2m)
         print_qparameter(qp)
         for p in required:
             print_qparameter(p, indent_level=1)

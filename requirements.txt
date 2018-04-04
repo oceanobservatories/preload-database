@@ -1,8 +1,10 @@
+mock
 pyyaml
 pandas
 psycopg2
 docopt
 titlecase
 geoalchemy2
+requests
 requests_cache
 git+https://github.com/oceanobservatories/ooi-data@v0.0.5

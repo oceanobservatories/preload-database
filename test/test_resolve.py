@@ -1,8 +1,69 @@
+import os
+
 import unittest
+import mock
+import pickle
+import yaml
 
-from resolve_stream import QualifiedParameter, get_parameter, fully_resolve_parameter, lookup_parameter
+from tools.m2m import MachineToMachine
+from resolve_stream import QualifiedParameter, fully_resolve_parameter, lookup_parameter
+
+STREAM_MAP = 'stream_map.p'
+INSTRUMENTS = 'instruments.p'
+M2M_CONFIG = 'm2m_config.yml'
 
 
+def get_instruments(filename=None):
+    """read the saved instruments file for offline testing"""
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), INSTRUMENTS), 'rb') as f:
+        return pickle.load(f)
+
+
+def get_stream_map(filename=None):
+    if not filename:
+        filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), STREAM_MAP)
+
+    with open(filename, 'rb') as f:
+        read_stream_map = pickle.load(f)
+
+    return read_stream_map
+
+
+def same_node(refdes, m2m=None):
+    """same_node using the saved instrument list instead of the machine to machine interface"""
+    instruments = get_instruments()
+    node = '-'.join(refdes.split('-')[0:2])
+    return set([x for x in instruments if node in x and x is not refdes])
+
+
+def save_asset_data(stream_map_file=None, instrument_file=None):
+    """
+    Connect to the OOI web service and save all nodes for later use.
+    :param stream_map_file  filename to save dictionary of stream names (pickle)
+    :param instrument_file  filename to save instrument list (pickle)
+    Files are saved to same directory as this test code. Must have an m2m_config.yml file with
+    necessary credentials. c.f. m2m_config.yml.template. This must be run prior to nosetests.
+    It should be rerun additional tests are added that use different preload or instrument
+    configuration. The stream_map.p and instruments.p files are expected to be under CM.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    if not stream_map_file:
+        stream_map_file = os.path.join(here, STREAM_MAP)
+    if not instrument_file:
+        instrument_file = os.path.join(here, INSTRUMENTS)
+
+    m2m_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), M2M_CONFIG)
+    config = yaml.load(open(m2m_config_file))
+    m2m = MachineToMachine(config['url'], config['apiname'], config['apikey'])
+
+    with open(instrument_file, 'wb') as f:
+        pickle.dump(m2m.instruments(), f)
+
+    with open(stream_map_file, 'wb') as f:
+        pickle.dump(m2m.streams(), f)
+
+
+@mock.patch('resolve_stream.same_node', new=same_node)
 class TestResolveParameter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -11,9 +72,8 @@ class TestResolveParameter(unittest.TestCase):
         reference designators
         :return:
         """
-        # config = yaml.load(open('../m2m_config.yml'))
-        # cls.m2m = MachineToMachine(config['url'], config['apiname'], config['apikey'])
-        # cls.stream_map = cls.m2m.streams()
+        cls.stream_map = get_stream_map()
+        cls.instruments = get_instruments()
 
     def lookup(self, base_qp, *parameter_names):
         """
@@ -31,7 +91,7 @@ class TestResolveParameter(unittest.TestCase):
 
     def assertParameterResolved(self, parameter, expected_resolved, expected_unresolved):
         """Assert parameter was resolved as expected."""
-        resolved, unresolved = fully_resolve_parameter(parameter)
+        resolved, unresolved = fully_resolve_parameter(parameter, self.stream_map)
 
         # print '----- resolved -----'
         # print '\n'.join(str(x) for x in sorted(resolved))
@@ -53,7 +113,7 @@ class TestResolveParameter(unittest.TestCase):
         # starting with the last element, make sure that none of the previous parameters are required for resolution
         parameters = parameters[::-1]
         for i, p in enumerate(parameters):
-            resolved, unresolved = fully_resolve_parameter(p)
+            resolved, unresolved = fully_resolve_parameter(p, self.stream_map)
             for r in resolved:
                 self.assertNotIn(p, parameters[i+1:], '%r should be listed after %r' % (p, r))
 
@@ -175,20 +235,24 @@ class TestResolveParameter(unittest.TestCase):
 
         parameter = self.lookup(dosta_base, 'dissolved_oxygen')
 
-        expected_resolved = [
-            parameter,
-            self.lookup(dosta_base, 'estimated_oxygen_concentration'),
-            self.lookup(ctdbp_base, 'practical_salinity'),
-            self.lookup(ctdbp_base, 'pressure'),
-            self.lookup(ctdbp_base, 'conductivity'),
-            self.lookup(ctdbp_base, 'temp'),
-        ]
+        expected_resolved = [parameter]
+        expected_resolved.extend(self.lookup(dosta_base,
+                                             'dosta_abcdjm_cspp_tc_oxygen',
+                                             'calibrated_phase',
+                                             'optode_temperature'))
+        expected_resolved.extend(self.lookup(ctdbp_base,
+                                             'practical_salinity',
+                                             'pressure',
+                                             'conductivity',
+                                             'temp'))
+
         self.assertParameterResolved(parameter, expected_resolved, [])
 
     def test_missing_parameters(self):
         """ 13038 issue where optional VELPT input is missing """
         metbk_base = QualifiedParameter(None, 'GS01SUMO-SBD12-06-METBKA000', 'telemetered', 'metbk_a_dcl_instrument')
-        velpt_base = QualifiedParameter(None, 'GS01SUMO-RID16-04-VELPTA000', 'telemetered', 'velpt_ab_dcl_diagnostics')
+        # velpt_base = QualifiedParameter(None, 'GS01SUMO-RID16-04-VELPTA000', 'telemetered', 'velpt_ab_dcl_diagnostics')
+        velpt_base = QualifiedParameter(None, 'GS01SUMO-RID16-04-VELPTA000', 'telemetered', 'velpt_ab_dcl_instrument')
         parameter = self.lookup(metbk_base, 'met_relwind_speed')
 
         expected_resolved = [parameter]
@@ -202,7 +266,7 @@ class TestResolveParameter(unittest.TestCase):
                         'time', 'eastward_velocity', 'northward_velocity', 'velocity_beam1', 'velocity_beam2')
         )
         # note that this process will only determine what is needed, it does not actually fetch the data - that test
-        # needs to be realized in stream engine
+        # needs to be performed in stream engine
         expected_unresolved = [
         ]
 
