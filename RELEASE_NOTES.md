@@ -1,4 +1,8 @@
-# Next Version 1.0.19 (2018-01-22)
+# Next Version 1.0.20 (2018-04-11)
+
+- Issue #11419 - Added table ctdav_auv_data for the new Neil Brown CTD.
+
+# Version 1.0.19 (2018-01-22)
 
 - Issue #13114 - Corrected FLORT stream content name
 
