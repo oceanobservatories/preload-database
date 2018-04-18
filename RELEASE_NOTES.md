@@ -1,4 +1,6 @@
-# Next Version 1.0.20 (2018-04-11)
+# Next Version 1.1.0 (2018-04-13)
+
+- Issue #13221 - Added `resolve_parameter` function to determine parameters required to resolve derived parameter.
 
 - Issue #11419 - Added table ctdav_auv_data for the new Neil Brown CTD.
 
