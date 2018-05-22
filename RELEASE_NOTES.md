@@ -1,4 +1,8 @@
-# Next Version 1.1.0 (2018-04-13)
+# Next Version 1.1.1 (2018-05-22)
+
+- Issue #2693 - Updated parameter units for consistency.
+
+# Version 1.1.0 (2018-04-13)
 
 - Issue #13221 - Added `resolve_parameter` function to determine parameters required to resolve derived parameter.
 
