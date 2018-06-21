@@ -5596,6 +5596,8 @@ INSERT INTO "stream" VALUES(772,'botpt_nano_sample_24hour',7,525600,NULL,NULL);
 INSERT INTO "stream" VALUES(773,'zplsc_c_recovered',7,1440,NULL,NULL);
 INSERT INTO "stream" VALUES(774,'zplsc_echogram_data',7,1440,NULL,NULL);
 INSERT INTO "stream" VALUES(775,'ctdav_auv_data',7,1440,3,40);
+INSERT INTO "stream" VALUES(776,'suna_instrument_recovered',7,1440,3,40);
+INSERT INTO "stream" VALUES(777,'suna_instrument_recovered1',7,1440,3,40);
 CREATE TABLE stream_content (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
