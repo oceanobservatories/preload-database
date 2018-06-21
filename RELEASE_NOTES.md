@@ -1,3 +1,44 @@
+# Next Version 1.1.1 (2018-05-22)
+
+- Issue #2693 - Updated parameter units for consistency.
+
+# Version 1.1.0 (2018-04-13)
+
+- Issue #13221 - Added `resolve_parameter` function to determine parameters required to resolve derived parameter.
+
+- Issue #11419 - Added table ctdav_auv_data for the new Neil Brown CTD.
+
+# Version 1.0.19 (2018-01-22)
+
+- Issue #13114 - Corrected FLORT stream content name
+
+# Version 1.0.18 (2018-01-11)
+
+- Issue #13025 OPTAA add wavelength dimensional parameter
+    * add new derived wavelength parameter for calculating wavelength from
+      a and c wavelength calibration constant data 
+    * update existing optaa parameters to use shared wavelength dimension
+
+# Version 1.0.17 (2018-01-03)
+
+- Issue #9950 - VADCP  missing expected parameters and failed creation of true upward velocity
+    * Added parameter PD3822 (error_seawater_velocity) in stream "vadcp_velocity_beam"
+    * Note:previous changes to ParameterDefs.csv, adding "Science Data" to the temperature parameters
+    * dataproducttype column, were not updated in preload_database.sql.
+    * Those changes are also being committed in this issue.
+
+# Version 1.0.16 (2018-01-02)
+
+- Issue #12293 - Split CTD/DO Cabled Drivers
+    * Added do_stable_sample:
+        * Stable-response dissolved oxygen data
+        * Applies to ctdbp_no_sample, ctdpf_optode_sample
+        * Will replace (TBD) dosta_abcdjm_ctdbp_instrument_recovered
+    * Added do_fast_sample:
+        * Fast-response dissolved oxygen data
+        * Applies to ctdpf_sbe43_sample
+        * Will replace (TBD) dofst_k_wfp_instrument, dofst_k_wfp_instrument_recovered
+
 # Version 1.0.15 (2017-10-31)
 
 - Issue #12323 - Preload Database updated for ZPLSC Echograms
