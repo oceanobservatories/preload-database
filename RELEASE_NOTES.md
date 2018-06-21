@@ -1,6 +1,6 @@
 # Next Version 1.1.1 (2018-05-22)
 
-- Issue #13288 - Added SUNA to Dictionary
+- Issue #13288 - Added SUNA to Dictionary.
 
 - Issue #2693 - Updated parameter units for consistency.
 
