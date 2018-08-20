@@ -76,11 +76,20 @@ Once these files are created, they need to be moved to the edex source tree and 
 
 ## `resolve_stream.py`
 
-List all parameter and sources for derived parameters for a specific data stream. 
+List all parameter and sources for derived parameters for a specific data stream (and optionally for a specific parameter in that stream). 
+
+Requirements:
+
+This requires credentials to hit the M2M interface. Copy the m2m_config.yml.template file provided in the root folder of this repository, naming it m2m_config.yml as
+```
+cp m2m_config.yml.template m2m_config.yml
+```
+
+Edit this file and provide the necessary values to populate the *apiname* and *apikey* values. This file is used when running the tool.
 
 Usage:
 ```
-./resolve_stream.py <refdes> <stream method> <stream name>
+./resolve_stream.py <refdes> <stream method> <stream name> (<parameter name>)
 ./resolve_stream.py
 ```
 If no arguments are provided, all reference designators will be resolved (this will take awhile).
