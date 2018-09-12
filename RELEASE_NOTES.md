@@ -1,10 +1,10 @@
-# Next Version 1.1.2 (2018-09-xx)
+# Next Version 1.1.2 (2018-09-11)
 
 - Issue # 9365 - Updated PFID48's data product identifier "PHWATER_L1" to "PHWATER_L2".
-
 - Issue # 11056 - Updated PD2606's attributes.
+- Issue #13228 - Fix incorrectly defined function args for PFID59
 
-# Next Version 1.1.1 (2018-05-22)
+# Version 1.1.1 (2018-05-22)
 
 - Issue #13288 - Added SUNA to Dictionary.
 
