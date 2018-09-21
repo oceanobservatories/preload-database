@@ -30,6 +30,9 @@ public class {{table.classname}} extends CassandraParticle {
 
     // Cassandra columns
 {% for column in table.columns %}
+  {% if column.javatype == 'Long' or column.javatype == 'long' %}
+    @CassandraType(type = BIGINT)
+  {% endif %}
     private {{column.javatype}} {{column.javaname}};
 {% endfor %}
 
