@@ -1,5 +1,7 @@
 # Next Version 1.1.2 (2018-09-11)
 
+- Issue #13303 - Fixed the creation of stream Cassandra Table using auto-generated Java class.
+
 - Issue #13127 - Added deprecation comments for pco2_pco2wat calibration arguments
 
 - Issue #9365 - Updated PFID48's data product identifier "PHWATER_L1" to "PHWATER_L2".
