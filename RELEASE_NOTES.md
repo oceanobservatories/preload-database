@@ -1,4 +1,8 @@
-# Next Version 1.1.2 (2018-09-11)
+# Next Version 1.1.3 (2019-02-27)
+
+- Issue #12435 - Deprecated consolidated FLOR streams and time parameters
+
+# Version 1.1.2 (2018-09-11)
 
 - Issue #13303 - Fixed the creation of stream Cassandra Table using auto-generated Java class.
 
