@@ -1817,7 +1817,7 @@ CTD_CABLED,"CTDBP, CTDPF",enable_rawdata,PD2306,boolean,,int8,,,-9,Enable Raw Da
 CTD_CABLED,"CTDBP, CTDPF",analog_output,PD2307,quantity,,string,,1,empty,Analog Output,,,,,,,,"Controls which parameter is presented at analog Output 1; O2Concentration, AirSaturation, CalPhase, Fixed1, Fixed2",,,
 CTD_CABLED,"CTDBP, CTDPF",interval,PD2308,quantity,,float32,,seconds,-9,Interval,3,,,,,,,Sampling Interval in seconds,,,
 CTD_CABLED_SBE43,CTDPF,ext_volt0,PD2310,quantity,,int32,,counts,-999999999,External Voltage Reading From Oxygen Sensor,,,,,,,,SBE43 voltage reading,,,
-DEPRECATED,CSPP_ENG_CSPP",CTDPF,profiler_timestamp,PD2311,quantity,,float64,,seconds since 1970-01-01,9999999,"Surface-Piercing Profiler Timestamp, UTC",0,,,,,,,"Timestamp in seconds since January 01, 1970 UTC.",,,
+DEPRECATED,CTDPF,profiler_timestamp,PD2311,quantity,,float64,,seconds since 1970-01-01,9999999,"Surface-Piercing Profiler Timestamp, UTC",0,,,,,,,"Timestamp in seconds since January 01, 1970 UTC.",,,
 "CTDPF_J_CSPP,CSPP_ENG_CSPP",CTDPF,last_character_controller_id,PD2312,quantity,,string,,1,empty,Last Character Controller ID,,,,,,,,Last character of the controller's ID,,,
 "CTDPF_J_CSPP,CSPP_ENG_CSPP",CTDPF,day_of_year_number,PD2313,quantity,,uint16,,1,9999,Day of Year Number,,,,,,,,"1/1 is 0, 2/1 is 32, etc...",,,
 "CTDPF_J_CSPP,CSPP_ENG_CSPP",CTDPF,fraction_of_day,PD2314,quantity,,uint16,,1,9999,Fraction of Day,,,,,,,,"midnight is 0, noon is 5000, 13:30 is 5625, etc...",,,
