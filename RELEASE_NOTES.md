@@ -1,4 +1,8 @@
-# Next Version 1.1.3 (2019-02-27)
+# Next Version 1.1.4 (2019-03-27)
+
+- Issue #13369 - Added supply_voltage parameter to pco2a_a_dcl_instrument_air/water streams
+
+# Version 1.1.3 (2019-02-27)
 
 - Issue #12435 - Deprecated consolidated FLOR streams and time parameters
 
