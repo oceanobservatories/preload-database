@@ -1,4 +1,4 @@
-# Next Version 1.2.0 (2019-03-27)
+# Version 1.2.0 (2019-03-27)
 
 - Issue #13369 - Added supply_voltage parameter to pco2a_a_dcl_instrument_air/water streams
 
