@@ -74,6 +74,8 @@ INSERT INTO "dimension" VALUES(20,'wavss_four_dim0');
 INSERT INTO "dimension" VALUES(21,'wavss_four_dim1');
 INSERT INTO "dimension" VALUES(22,'wavss_move');
 INSERT INTO "dimension" VALUES(23,'wvs_series');
+INSERT INTO "dimension" VALUES(24,'fdchp_time_L1');
+INSERT INTO "dimension" VALUES(25,'fdchp_time_L2');
 CREATE TABLE fill_value (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -4757,6 +4759,24 @@ INSERT INTO "parameter_dimension" VALUES(3822,5);
 INSERT INTO "parameter_dimension" VALUES(2272,5);
 INSERT INTO "parameter_dimension" VALUES(2274,5);
 INSERT INTO "parameter_dimension" VALUES(2275,5);
+INSERT INTO "parameter_dimension" VALUES(3719,24);
+INSERT INTO "parameter_dimension" VALUES(3719,1);
+INSERT INTO "parameter_dimension" VALUES(3716,24);
+INSERT INTO "parameter_dimension" VALUES(3716,1);
+INSERT INTO "parameter_dimension" VALUES(3723,24);
+INSERT INTO "parameter_dimension" VALUES(3723,1);
+INSERT INTO "parameter_dimension" VALUES(3720,1);
+INSERT INTO "parameter_dimension" VALUES(3720,25);
+INSERT INTO "parameter_dimension" VALUES(3724,1);
+INSERT INTO "parameter_dimension" VALUES(3724,25);
+INSERT INTO "parameter_dimension" VALUES(3718,24);
+INSERT INTO "parameter_dimension" VALUES(3718,1);
+INSERT INTO "parameter_dimension" VALUES(3721,1);
+INSERT INTO "parameter_dimension" VALUES(3721,25);
+INSERT INTO "parameter_dimension" VALUES(3717,24);
+INSERT INTO "parameter_dimension" VALUES(3717,1);
+INSERT INTO "parameter_dimension" VALUES(3722,1);
+INSERT INTO "parameter_dimension" VALUES(3722,25);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 

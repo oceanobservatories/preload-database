@@ -1,3 +1,7 @@
+# Version 1.3.0 (2019-06-03)
+
+- Issue #13402 - Updated FDCHP parameter dimensions to use L1/L2 aux parameters
+
 # Version 1.2.0 (2019-03-27)
 
 - Issue #13369 - Added supply_voltage parameter to pco2a_a_dcl_instrument_air/water streams
