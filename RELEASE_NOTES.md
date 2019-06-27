@@ -1,3 +1,7 @@
+# Next Version 1.3.0 (2019-06-19)
+
+- Issue 13182 - Added m_lat,m_lon parameters to glider_gps_position stream
+
 # Version 1.2.0 (2019-03-27)
 
 - Issue #13369 - Added supply_voltage parameter to pco2a_a_dcl_instrument_air/water streams
