@@ -4604,6 +4604,10 @@ INSERT INTO "parameter" VALUES(8079,'zplsc_values_channel_4',3,1,NULL,73,7,'Chan
 INSERT INTO "parameter" VALUES(8080,'wavelength_a',8,1,NULL,177,7,'Optical Absorption Wavelength',NULL,6,16,'{"x": "CC_awlngth"}',NULL,'The wavelength at which optical absorption measurements where taken in nm.',3,2);
 INSERT INTO "parameter" VALUES(8081,'wavelength_c',8,1,NULL,177,7,'Beam Attenuation Wavelength',NULL,6,16,'{"x": "CC_cwlngth"}',NULL,'The wavelength at which beam attenuation measurements where taken in nm.',3,2);
 INSERT INTO "parameter" VALUES(8082,'wavelength',8,4,NULL,10,7,'Wavelength',NULL,6,215,'{"x": "CC_cwlngth"}',NULL,'The wavelength dimension.',3,2);
+INSERT INTO "parameter" VALUES(8083,'non_zero_pressure',8,1,NULL,80,7,'Non-zero Pressure',NULL,3,216,'{"a1": "PD710", "a1_scale_factor": 0.001, "a2": ["dpi_PRESWAT_L1", "None"]}',NULL,'A non-zero pressure value.',NULL,1);
+INSERT INTO "parameter" VALUES(8084,'depth_from_pressure',8,1,NULL,122,7,'Depth calculated from pressure',NULL,3,217,'{"latitude": "CC_lat", "pressure": "PD8083"}',NULL,'Depth (m) calculated from pressure (dbar) and latitude.',NULL,1);
+INSERT INTO "parameter" VALUES(8085,'non_zero_depth',8,1,NULL,122,7,'Non-zero Depth',NULL,3,216,'{"a1": "PD8084", "a2": "CC_depth"}',NULL,'A non-zero depth value.',NULL,1);
+INSERT INTO "parameter" VALUES(8086,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,3,203,'{"sensor_depth": "PD8085", "bin_size": "PD623", "dist_first_bin": "PD651", "num_bins": "PD621", "adcp_orientation": "PD617"}',NULL,'Bin Depths',NULL,1);
 CREATE TABLE parameter_dimension (
 	parameter_id INTEGER NOT NULL, 
 	dimension_id INTEGER NOT NULL, 
@@ -4757,6 +4761,7 @@ INSERT INTO "parameter_dimension" VALUES(3822,5);
 INSERT INTO "parameter_dimension" VALUES(2272,5);
 INSERT INTO "parameter_dimension" VALUES(2274,5);
 INSERT INTO "parameter_dimension" VALUES(2275,5);
+INSERT INTO "parameter_dimension" VALUES(8086,5);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 
@@ -5010,6 +5015,8 @@ INSERT INTO "parameter_function" VALUES(212,'LATNFLX_MINUTE_L2',2,'met_latnflx_m
 INSERT INTO "parameter_function" VALUES(213,'NETLIRR_MINUTE_L2',2,'met_netlirr_minute','ion_functions.data.met_functions','Calculates the net upward longwave irradiance NETLIRR_MINUTE_L2.',NULL);
 INSERT INTO "parameter_function" VALUES(214,'SENSFLX_MINUTE_L2',2,'met_sensflx_minute','ion_functions.data.met_functions','Calculates the net upward sensible heat flux SENSFLX_MINUTE_L2.',NULL);
 INSERT INTO "parameter_function" VALUES(215,'enumerate',2,'[[idx for idx, _ in enumerate(x[0])]]','__builtin__','Returns an array of indexes based on the number of data items in a single observation of data.',NULL);
+INSERT INTO "parameter_function" VALUES(216,'select_non_zero_arg',2,'select_non_zero_arg','util.common','Select a non-zero arg.',NULL);
+INSERT INTO "parameter_function" VALUES(217,'depth_from_pressure_dbar',2,'depth_from_pressure_dbar','ion_functions.data.adcp_functions','Calculates depth from pressure in decibar (dbar)',NULL);
 CREATE TABLE parameter_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -10707,7 +10714,6 @@ INSERT INTO "stream_parameter" VALUES(752,3820);
 INSERT INTO "stream_parameter" VALUES(752,3822);
 INSERT INTO "stream_parameter" VALUES(752,3827);
 INSERT INTO "stream_parameter" VALUES(752,3828);
-INSERT INTO "stream_parameter" VALUES(752,7983);
 INSERT INTO "stream_parameter" VALUES(410,7);
 INSERT INTO "stream_parameter" VALUES(410,10);
 INSERT INTO "stream_parameter" VALUES(410,11);
@@ -18758,7 +18764,6 @@ INSERT INTO "stream_parameter" VALUES(743,3819);
 INSERT INTO "stream_parameter" VALUES(743,3820);
 INSERT INTO "stream_parameter" VALUES(743,3821);
 INSERT INTO "stream_parameter" VALUES(743,3822);
-INSERT INTO "stream_parameter" VALUES(743,7983);
 INSERT INTO "stream_parameter" VALUES(629,7);
 INSERT INTO "stream_parameter" VALUES(629,10);
 INSERT INTO "stream_parameter" VALUES(629,11);
@@ -18954,6 +18959,14 @@ INSERT INTO "stream_parameter" VALUES(121,842);
 INSERT INTO "stream_parameter" VALUES(122,842);
 INSERT INTO "stream_parameter" VALUES(761,1382);
 INSERT INTO "stream_parameter" VALUES(761,1391);
+INSERT INTO "stream_parameter" VALUES(743,8083);
+INSERT INTO "stream_parameter" VALUES(743,8084);
+INSERT INTO "stream_parameter" VALUES(743,8085);
+INSERT INTO "stream_parameter" VALUES(743,8086);
+INSERT INTO "stream_parameter" VALUES(752,8083);
+INSERT INTO "stream_parameter" VALUES(752,8084);
+INSERT INTO "stream_parameter" VALUES(752,8085);
+INSERT INTO "stream_parameter" VALUES(752,8086);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
