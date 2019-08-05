@@ -5015,7 +5015,7 @@ INSERT INTO "parameter_function" VALUES(212,'LATNFLX_MINUTE_L2',2,'met_latnflx_m
 INSERT INTO "parameter_function" VALUES(213,'NETLIRR_MINUTE_L2',2,'met_netlirr_minute','ion_functions.data.met_functions','Calculates the net upward longwave irradiance NETLIRR_MINUTE_L2.',NULL);
 INSERT INTO "parameter_function" VALUES(214,'SENSFLX_MINUTE_L2',2,'met_sensflx_minute','ion_functions.data.met_functions','Calculates the net upward sensible heat flux SENSFLX_MINUTE_L2.',NULL);
 INSERT INTO "parameter_function" VALUES(215,'enumerate',2,'[[idx for idx, _ in enumerate(x[0])]]','__builtin__','Returns an array of indexes based on the number of data items in a single observation of data.',NULL);
-INSERT INTO "parameter_function" VALUES(216,'select_non_zero_arg',2,'select_non_zero_arg','util.common','Select a non-zero arg.',NULL);
+INSERT INTO "parameter_function" VALUES(216,'select_non_zero_arg',2,'select_non_zero_arg','ion_functions.data.generic_functions','Select a non-zero arg.',NULL);
 INSERT INTO "parameter_function" VALUES(217,'depth_from_pressure_dbar',2,'depth_from_pressure_dbar','ion_functions.data.adcp_functions','Calculates depth from pressure in decibar (dbar)',NULL);
 CREATE TABLE parameter_type (
 	id INTEGER NOT NULL, 

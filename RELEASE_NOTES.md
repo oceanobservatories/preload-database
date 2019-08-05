@@ -2,6 +2,8 @@
 
 - Issue 13182 - Added m_lat,m_lon parameters to glider_gps_position stream
 
+- Issue #11399 - Bin depths for adcp_velocity_beam and vadcp_velocity_beam streams
+
 # Version 1.2.0 (2019-03-27)
 
 - Issue #13369 - Added supply_voltage parameter to pco2a_a_dcl_instrument_air/water streams
