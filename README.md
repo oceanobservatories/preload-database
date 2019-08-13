@@ -19,9 +19,24 @@ conda env create -f conda_env.yml
 source activate preload
 ```
 
+To set to the desired version of the preload-database repository:
+```sh
+git checkout <version>
+```
+
 To create or update the preload_database.sql file:
 ```sh
 python load_preload.py
+```
+
+To update the preload database in Postgres:
+```sh
+python load_preload.py postgresql://awips:awips@localhost/metadata
+```
+
+Once done running load_preload.py, deactivate the conda environment:
+```sh
+source deactivate
 ```
 
 ## Update Stream Engine
