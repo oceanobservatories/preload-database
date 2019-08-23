@@ -222,14 +222,13 @@ class TestParameter(unittest.TestCase):
         """
         errors = []
 
-        # Start with rows with both the parameter function id and parameter
+        # Select all the rows where both the parameter function id and parameter
         # function map are populated.
         idx = ((self.data.parameterfunctionid != '') & (self.data.parameterfunctionmap != ''))
 
         data = self.data[idx][['id', 'parameterfunctionid', 'parameterfunctionmap']]
         for row in data.itertuples():
-            # Test if the function map exists for the entered parameter
-            # function id if it is a valid json mapping.
+            # Ensure that the parameter function map is valid json
             try:
                 function_map = json.loads(row.parameterfunctionmap)
                 function_map.get('test')
@@ -240,7 +239,7 @@ class TestParameter(unittest.TestCase):
             # We got here, so the function map is valid. Now check if the
             # parameters are valid.
             for key, value in function_map.iteritems():
-                # If 'None' is specified as a pram in a list, check to see that
+                # If 'None' is specified as a param in a list, check to see that
                 # the function using it specifies a default. If it is not specified,
                 # the checks below do not apply so just continue.
                 if not (isinstance(value, list) and 'None' in value):
@@ -248,7 +247,7 @@ class TestParameter(unittest.TestCase):
 
                 # Get the ParameterFunction rows for the specified
                 # parameter function id
-                pf_idx = (self.pf_data.id == row.parameterfunctionid)
+                pf_idx = self.pf_data.id == row.parameterfunctionid
                 pf_data = self.pf_data[pf_idx][['owner', 'function']]
                 for pf_row in pf_data.itertuples():
                     if pf_row.owner == '' or pf_row.function == '':
