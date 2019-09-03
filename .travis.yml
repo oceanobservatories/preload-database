@@ -17,7 +17,7 @@ before_install:
 install:
   - conda create --yes -n preload python=2.7 pandas nose sqlalchemy
   - source activate preload
-  - conda install --yes -c ooi ion-functions=2.4.3
+  - conda install --yes -c conda-forge -c ooi ion-functions=2.4.3
   - pip install -r requirements.txt
   - pip install git+https://github.com/oceanobservatories/ooi-data@v0.0.5
 
