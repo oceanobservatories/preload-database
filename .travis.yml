@@ -15,8 +15,8 @@ before_install:
 
 # Install packages
 install:
-  - conda remove --yes -n preload --all
   - conda create --yes -n preload python=2.7 pandas nose sqlalchemy
+  - conda remove --yes -n preload numpy
   - source activate preload
   - conda install --yes -c conda-forge -c ooi ion-functions=2.4.3
   - pip install -r requirements.txt
