@@ -1,4 +1,6 @@
+import importlib
 import ast
+import inspect
 
 import os
 import json
@@ -25,6 +27,12 @@ class TestParameter(unittest.TestCase):
 
         # ignore DOC lines
         cls.data = cls.data[numpy.logical_not(cls.data.scenario.str.startswith('DOC:'))]
+
+        filename = os.path.join(CSV_DIR, 'ParameterFunctions.csv')
+        cls.pf_data = pandas.read_csv(filename, na_values=[], keep_default_na=False)
+
+        # ignore DOC lines
+        cls.pf_data = cls.pf_data[numpy.logical_not(cls.pf_data.scenario.str.startswith('DOC'))]
 
     def test_id(self):
         """ id - Every parameter definition identifier must be unique. """
@@ -200,6 +208,80 @@ class TestParameter(unittest.TestCase):
 
             if not row.parameterfunctionid.startswith('PFID'):
                 errors.append('Missing PFID: %r' % row)
+
+        self.assertEqual(len(errors), 0, msg=errors)
+
+    def test_optional_args(self):
+        """
+        Parameter Function Map Optional Args - If the string 'None' is specified
+        as a possible argument to a function, Stream Engine will consider that
+        argument to be optional and will call the function even if a Parameter
+        could not be found for that argument. However, the actual function that is
+        called should specify default value for that arg or the interpreter will
+        not be able to resolve the function signature during the call.
+        """
+        errors = []
+
+        # Select all the rows where both the parameter function id and parameter
+        # function map are populated.
+        idx = ((self.data.parameterfunctionid != '') & (self.data.parameterfunctionmap != ''))
+
+        data = self.data[idx][['id', 'parameterfunctionid', 'parameterfunctionmap']]
+        for row in data.itertuples():
+            # Ensure that the parameter function map is valid json
+            try:
+                function_map = json.loads(row.parameterfunctionmap)
+                function_map.get('test')
+            except (TypeError, ValueError):
+                errors.append('Invalid functionmap: %r' % row)
+                continue
+
+            # We got here, so the function map is valid. Now check if the
+            # parameters are valid.
+            for key, value in function_map.iteritems():
+                # If 'None' is specified as a param in a list, check to see that
+                # the function using it specifies a default. If it is not specified,
+                # the checks below do not apply so just continue.
+                if not (isinstance(value, list) and 'None' in value):
+                    continue
+
+                # Get the ParameterFunction rows for the specified
+                # parameter function id
+                pf_idx = self.pf_data.id == row.parameterfunctionid
+                pf_data = self.pf_data[pf_idx][['owner', 'function']]
+                for pf_row in pf_data.itertuples():
+                    if pf_row.owner == '' or pf_row.function == '':
+                        errors.append('function or owner not specified for ParameterFunction %s'
+                                      % row.parameterfunctionid)
+                        break
+
+                    # Ensure the module exists
+                    try:
+                        module = importlib.import_module(pf_row.owner)
+                    except ImportError:
+                        errors.append('Could not import module %s' % pf_row.owner)
+                        break
+
+                    # Ensure the function exists in the module
+                    if not hasattr(module, pf_row.function):
+                        errors.append('function %s not found in module %s for ParameterFunction %s'
+                                      % (pf_row.function, pf_row.owner, row.parameterfunctionid))
+                        break
+
+                    # Get the argument specification for the actual function
+                    arg_spec = inspect.getargspec(getattr(module, pf_row.function))
+
+                    # Ensure the parameter is named as an argument in the actual function
+                    if key not in arg_spec.args:
+                        errors.append('Named parameter %s not found in function %s for ParameterFunction %s'
+                                      % (key, pf_row.function, row.parameterfunctionid))
+                        break
+
+                    # Ensure the argument has a default specified in the actual function
+                    if arg_spec.args.index(key) < len(arg_spec.args)-len(arg_spec.defaults):
+                        errors.append('Argument %s in function %s for ParameterFunction %s '
+                                      'does not have a default value'
+                                      % (key, pf_row.function, row.parameterfunctionid))
 
         self.assertEqual(len(errors), 0, msg=errors)
 
