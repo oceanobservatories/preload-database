@@ -1,8 +1,8 @@
-# Next Version 1.3.0 (2019-06-19)
-
-- Issue 13182 - Added m_lat,m_lon parameters to glider_gps_position stream
+# Version 1.3.0 (2019-09-069)
 
 - Issue #11399 - Bin depths for adcp_velocity_beam and vadcp_velocity_beam streams
+
+- Issue #13182 - Added m_lat,m_lon parameters to glider_gps_position stream
 
 # Version 1.2.0 (2019-03-27)
 
