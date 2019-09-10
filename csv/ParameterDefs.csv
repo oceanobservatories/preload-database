@@ -3609,4 +3609,3 @@ ADCP_PD0,ADCP_PD0,bin_depths,PD8086,function,"[""bin""]",float32,,m,-9999999,Bin
 PARAD_A,PARAD,x_accel_counts,PD8087,quantity,,int32,,counts,0,X-Axis Acceleration Counts,0,FALSE,,,,,,X-Axis Accelerometer Counts,X-Axis Acceleration Counts,Engineering Data,L0
 PARAD_A,PARAD,y_accel_counts,PD8088,quantity,,int32,,counts,0,Y-Axis Acceleration Counts,0,FALSE,,,,,,Y-Axis Accelerometer Counts,Y-Axis Acceleration Counts,Engineering Data,L0
 PARAD_A,PARAD,z_accel_counts,PD8089,quantity,,int32,,counts,0,Z-Axis Acceleratiton Counts,0,FALSE,,,,,,Z-Axis Accelerometer Counts,Z-Axis Acceleratiton Counts,Engineering Data,L0
-PARAD_A,PARAD,status,PD8090,quantity,,int32,,,0,Z-Axis Acceleratiton Counts,0,FALSE,,,,,,Z-Axis Accelerometer Counts,Z-Axis Acceleratiton Counts,Engineering Data,L0
