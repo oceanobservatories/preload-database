@@ -1,3 +1,7 @@
+# Version 1.4.0 (2019-09-11)
+
+- Issue #14170 - Added support for new Seabird version of PARAD_A.
+
 # Version 1.3.0 (2019-09-069)
 
 - Issue #11399 - Bin depths for adcp_velocity_beam and vadcp_velocity_beam streams
