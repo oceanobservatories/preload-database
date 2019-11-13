@@ -1051,6 +1051,7 @@ INSERT INTO "parameter" VALUES(22,'fluorometric_chlorophyll_a',8,1,NULL,217,7,'C
 INSERT INTO "parameter" VALUES(23,'fluorometric_cdom',8,1,NULL,181,7,'CDOM Concentration',NULL,6,79,'{"counts_dark": "CC_dark_counts_cdom", "scale_factor": "CC_scale_factor_cdom", "counts_output": "PD1143"}','CDOMFLO_L1','Fluorometric CDOM Concentration is a measure of how much light has been re-emitted (fluoresced) from colored organic compounds found in the colored dissolved organic matter (CDOM) in seawater. Examples of CDOM include tannins (polyphenols that bind to proteins and other large molecules) or lignins (polymers of phenolic acids) from decaying plant material and byproducts from the decomposition of animals. It accounts for the tea-like color in seawater. CDOM is not particulate, but seawater can contain both CDOM and turbidity.',3,1);
 INSERT INTO "parameter" VALUES(24,'total_volume_scattering_coefficient',8,1,NULL,128,7,'Total Volume Scattering Coefficient',NULL,6,81,'{"counts_dark": "CC_dark_counts_volume_scatter", "scale_factor": "CC_scale_factor_volume_scatter", "counts_output": "dpi_FLUBSCT_L0"}','FLUBSCT_L1','Total Volume Scattering Coefficient values represent the volume scattering from particles and the molecular scattering from water at a given wavelength of light and the default angle of 117 degrees for the ECO meter.',NULL,1);
 INSERT INTO "parameter" VALUES(25,'optical_backscatter',8,1,NULL,127,7,'Optical Backscatter',NULL,4,78,'{"beta": "dpi_FLUBSCT_L1", "degC": ["dpi_TEMPWAT_L1", "dpi_TEMPSRF_L1"], "theta": "CC_scattering_angle", "wlngth": "CC_measurement_wavelength", "xfactor": "CC_angular_resolution", "psu": ["dpi_PRACSAL_L2", "dpi_SALSURF_L2"]}','FLUBSCT_L2','Optical Backscatter (Red Wavelengths) is a measure of the amount of red light (630-740 nm wavelengths) scattered in the backward direction due to suspended matter within seawater, providing a proxy for turbidity and suspended solids.',3,2);
+INSERT INTO "parameter" VALUES(27,'input_voltage',9,1,NULL,209,8,'Instrument Input Voltage',NULL,9,NULL,NULL,NULL,'Instrument input voltage.',2,0);
 INSERT INTO "parameter" VALUES(28,'elapsed_time',9,2,NULL,191,1,'Time Since Reset',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(29,'pressure_temp',9,1,NULL,225,5,'Pressure Sensor Internal Temperature',NULL,NULL,NULL,NULL,NULL,'The temperature at the pressure sensor (inside the housing, but isolated from housing and the electronics.',NULL,NULL);
 INSERT INTO "parameter" VALUES(73,'sample_number',9,4,NULL,66,5,'Sample Number',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -1138,6 +1139,9 @@ INSERT INTO "parameter" VALUES(185,'cond_coeff_ctcor',9,1,NULL,10,7,'Conductivit
 INSERT INTO "parameter" VALUES(186,'cond_coeff_cpcor',9,1,NULL,10,7,'Conductivity Coefficient PCor',NULL,6,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(187,'cond_coeff_cslope',9,1,NULL,10,7,'Conductivity Coefficient Slope',NULL,6,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(188,'par',9,8,NULL,67,10,'PAR Measurement',NULL,0,NULL,NULL,'OPTPARW_L0','Photosynthetically Active Radiation (PAR) unprocessed sensor reading.',4,0);
+INSERT INTO "parameter" VALUES(189,'voltage_out',9,1,NULL,209,8,'Instrument Output Voltage',NULL,7,NULL,NULL,NULL,'Instrument output voltage.',2,0);
+INSERT INTO "parameter" VALUES(190,'temperature_volts',9,1,NULL,209,8,'Internal Temperature Raw Voltage',NULL,5,NULL,NULL,NULL,'Raw analog voltage of instrument internal temperature sensor.',2,0);
+INSERT INTO "parameter" VALUES(191,'par_measured',9,1,NULL,220,8,'Measured Photosynthetically Active Radiation','downwelling_photosynthetic_photon_flux_in_sea_water',4,NULL,NULL,'OPTPARW_L1','Photosynthetically Active Radiation (PAR) is the measure of the density of photons per unit area that are in the spectral range of light (400-700 nanometers) that primary producers use for photosynthesis.',3,1);
 INSERT INTO "parameter" VALUES(192,'par_counts_output',8,1,NULL,220,8,'Photosynthetically Active Radiation','downwelling_photosynthetic_photon_flux_in_sea_water',4,83,'{"a1": "CC_a1", "a0": "CC_a0", "Im": "CC_Im", "counts_output": "PD188"}','OPTPARW_L1','Photosynthetically Active Radiation (PAR) is the measure of the density of photons per unit area that are in the spectral range of light (400-700 nanometers) that primary producers use for photosynthesis.',3,1);
 INSERT INTO "parameter" VALUES(193,'temperature',9,4,NULL,67,7,'Seawater Temperature Measurement',NULL,0,NULL,NULL,'TEMPWAT_L0','Seawater temperature unprocessed measurement near the sensor.',4,0);
 INSERT INTO "parameter" VALUES(194,'conductivity',9,4,NULL,67,7,'Seawater Conductivity Measurement',NULL,0,NULL,NULL,'CONDWAT_L0','Seawater conductivity refers to the ability of seawater to conduct electricity. The presence of ions in the seawater, such as salt, increases the electrical conducting ability of seawater. As such, conductivity can be used as a proxy for determining the quantity of salt in a sample of seawater. This is the unprocessed data that are output directly from the sensor which are then converted to salinity in S m-1.',4,0);
@@ -2080,8 +2084,8 @@ INSERT INTO "parameter" VALUES(1331,'m_gps_ignored_lat',9,2,NULL,95,NULL,'GPS Ig
 INSERT INTO "parameter" VALUES(1332,'m_gps_ignored_lon',9,2,NULL,95,NULL,'GPS Ignored Longitude',NULL,4,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1333,'m_gps_invalid_lat',9,2,NULL,95,NULL,'GPS Invalid Latitude',NULL,4,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1334,'m_gps_invalid_lon',9,2,NULL,95,NULL,'GPS Invalid Longitude',NULL,4,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO "parameter" VALUES(1335,'m_gps_lat',9,1,NULL,94,NULL,'Measured GPS Latitude','latitude',4,NULL,NULL,NULL,'Measured GPS latitude in decimal degrees',NULL,NULL);
-INSERT INTO "parameter" VALUES(1336,'m_gps_lon',9,1,NULL,93,NULL,'Measured GPS Longitude','longitude',4,NULL,NULL,NULL,'Measured GPS longitude in decimal degrees',NULL,NULL);
+INSERT INTO "parameter" VALUES(1335,'m_gps_lat',9,1,NULL,94,NULL,'Measured GPS Latitude','latitude',4,NULL,NULL,NULL,'Measured GPS latitude in decimal degrees. If this variable lacks necessary data, consider expanding the download timeframe to at least 12 hours.',NULL,NULL);
+INSERT INTO "parameter" VALUES(1336,'m_gps_lon',9,1,NULL,93,NULL,'Measured GPS Longitude','longitude',4,NULL,NULL,NULL,'Measured GPS longitude in decimal degrees. If this variable lacks necessary data, consider expanding the download timeframe to at least 12 hours.',NULL,NULL);
 INSERT INTO "parameter" VALUES(1337,'m_gps_mag_var',9,1,NULL,186,NULL,'GPS Mag Var',NULL,4,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1338,'m_gps_num_satellites',9,1,NULL,10,NULL,'GPS Number of Satellites',NULL,4,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "parameter" VALUES(1339,'m_gps_on',9,5,NULL,10,4,'GPS On',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -4504,7 +4508,7 @@ INSERT INTO "parameter" VALUES(7979,'ts_status_secondary_reference_clock',9,6,NU
 INSERT INTO "parameter" VALUES(7980,'ts_status_time_error',9,6,NULL,10,17,'Status Time Error Quantity',NULL,NULL,NULL,NULL,NULL,'Status Time Error Quantity',NULL,NULL);
 INSERT INTO "parameter" VALUES(7981,'ts_status_timeout_error',9,6,NULL,10,17,'Status Timout Error',NULL,NULL,NULL,NULL,NULL,'Status Timout Error',NULL,NULL);
 INSERT INTO "parameter" VALUES(7982,'ts_system_up_time',9,4,NULL,66,7,'System Up Time',NULL,0,NULL,NULL,NULL,'System Up Time',NULL,NULL);
-INSERT INTO "parameter" VALUES(7983,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,0,201,'{"pressure": "PD710", "bin_size": "PD623", "adcp_orientation": "PD617", "latitude": "CC_lat", "dist_first_bin": "PD651", "num_bins": "PD621"}','?','Bin Depths',NULL,NULL);
+INSERT INTO "parameter" VALUES(7983,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,0,203,'{"sensor_depth": "PD8085", "bin_size": "PD623", "dist_first_bin": "PD651", "num_bins": "PD621", "adcp_orientation": "PD617"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7984,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,0,202,'{"pressure": "PD1527", "bin_size": "PD623", "adcp_orientation": "PD617", "latitude": "PD1335", "dist_first_bin": "PD651", "num_bins": "PD621"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7985,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,0,203,'{"sensor_depth": "CC_depth", "bin_size": "CC_bin_size", "dist_first_bin": "CC_dist_first_bin", "num_bins": "PD621", "adcp_orientation": "CC_orientation"}','?','Bin Depths',NULL,NULL);
 INSERT INTO "parameter" VALUES(7986,'parad_m_par',8,1,NULL,220,NULL,'Photosynthetically Active Radiation','downwelling_photosynthetic_photon_flux_in_sea_water',4,189,'{"scaler": "CC_bsipar_par_scaling", "value": "PD1470"}','OPTPARW_L1','Photosynthetically Active Radiation (PAR) is the measure of the density of photons per unit area that are in the spectral range of light (400-700 nanometers) that primary producers use for photosynthesis.',3,1);
@@ -4608,6 +4612,9 @@ INSERT INTO "parameter" VALUES(8083,'non_zero_pressure',8,1,NULL,80,7,'Non-zero 
 INSERT INTO "parameter" VALUES(8084,'depth_from_pressure',8,1,NULL,122,7,'Depth calculated from pressure',NULL,3,217,'{"latitude": "CC_lat", "pressure": "PD8083"}',NULL,'Depth (m) calculated from pressure (dbar) and latitude.',NULL,1);
 INSERT INTO "parameter" VALUES(8085,'non_zero_depth',8,1,NULL,122,7,'Non-zero Depth',NULL,3,216,'{"a1": "PD8084", "a2": "CC_depth"}',NULL,'A non-zero depth value.',NULL,1);
 INSERT INTO "parameter" VALUES(8086,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,3,203,'{"sensor_depth": "PD8085", "bin_size": "PD623", "dist_first_bin": "PD651", "num_bins": "PD621", "adcp_orientation": "PD617"}',NULL,'Bin Depths',NULL,1);
+INSERT INTO "parameter" VALUES(8087,'x_accel_counts',9,4,NULL,67,10,'X-Axis Acceleration Counts',NULL,0,NULL,NULL,NULL,'X-Axis Accelerometer Counts',2,0);
+INSERT INTO "parameter" VALUES(8088,'y_accel_counts',9,4,NULL,67,10,'Y-Axis Acceleration Counts',NULL,0,NULL,NULL,NULL,'Y-Axis Accelerometer Counts',2,0);
+INSERT INTO "parameter" VALUES(8089,'z_accel_counts',9,4,NULL,67,10,'Z-Axis Acceleratiton Counts',NULL,0,NULL,NULL,NULL,'Z-Axis Accelerometer Counts',2,0);
 CREATE TABLE parameter_dimension (
 	parameter_id INTEGER NOT NULL, 
 	dimension_id INTEGER NOT NULL, 
@@ -18962,11 +18969,25 @@ INSERT INTO "stream_parameter" VALUES(761,1391);
 INSERT INTO "stream_parameter" VALUES(743,8083);
 INSERT INTO "stream_parameter" VALUES(743,8084);
 INSERT INTO "stream_parameter" VALUES(743,8085);
-INSERT INTO "stream_parameter" VALUES(743,8086);
 INSERT INTO "stream_parameter" VALUES(752,8083);
 INSERT INTO "stream_parameter" VALUES(752,8084);
 INSERT INTO "stream_parameter" VALUES(752,8085);
-INSERT INTO "stream_parameter" VALUES(752,8086);
+INSERT INTO "stream_parameter" VALUES(28,27);
+INSERT INTO "stream_parameter" VALUES(28,189);
+INSERT INTO "stream_parameter" VALUES(28,190);
+INSERT INTO "stream_parameter" VALUES(28,191);
+INSERT INTO "stream_parameter" VALUES(28,320);
+INSERT INTO "stream_parameter" VALUES(28,437);
+INSERT INTO "stream_parameter" VALUES(28,438);
+INSERT INTO "stream_parameter" VALUES(28,1144);
+INSERT INTO "stream_parameter" VALUES(28,8087);
+INSERT INTO "stream_parameter" VALUES(28,8088);
+INSERT INTO "stream_parameter" VALUES(28,8089);
+INSERT INTO "stream_parameter" VALUES(752,7983);
+INSERT INTO "stream_parameter" VALUES(744,8083);
+INSERT INTO "stream_parameter" VALUES(744,8084);
+INSERT INTO "stream_parameter" VALUES(744,8085);
+INSERT INTO "stream_parameter" VALUES(743,7983);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
