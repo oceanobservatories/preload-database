@@ -1,5 +1,7 @@
 # Version 1.4.1 (2019-12-04)
 
+- Issue #14304 - Add parameters for new METBK CT DCL parser
+
 - Issue #14524 - Use CTD pressure if needed for bin_depths in adcp_velocity_earth stream.
 
 # Version 1.4.0 (2019-09-11)
