@@ -5610,6 +5610,7 @@ INSERT INTO "stream" VALUES(774,'zplsc_echogram_data',7,1440,3,35);
 INSERT INTO "stream" VALUES(775,'ctdav_auv_data',7,1440,3,35);
 INSERT INTO "stream" VALUES(776,'suna_dcl_recovered',7,1440,3,35);
 INSERT INTO "stream" VALUES(777,'suna_instrument_recovered',7,1440,3,35);
+INSERT INTO "stream" VALUES(778,'metbk_ct_dcl_instrument',7,20160,3,35);
 CREATE TABLE stream_content (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
@@ -18988,6 +18989,17 @@ INSERT INTO "stream_parameter" VALUES(744,8083);
 INSERT INTO "stream_parameter" VALUES(744,8084);
 INSERT INTO "stream_parameter" VALUES(744,8085);
 INSERT INTO "stream_parameter" VALUES(743,7983);
+INSERT INTO "stream_parameter" VALUES(778,7);
+INSERT INTO "stream_parameter" VALUES(778,10);
+INSERT INTO "stream_parameter" VALUES(778,11);
+INSERT INTO "stream_parameter" VALUES(778,12);
+INSERT INTO "stream_parameter" VALUES(778,16);
+INSERT INTO "stream_parameter" VALUES(778,193);
+INSERT INTO "stream_parameter" VALUES(778,194);
+INSERT INTO "stream_parameter" VALUES(778,198);
+INSERT INTO "stream_parameter" VALUES(778,312);
+INSERT INTO "stream_parameter" VALUES(778,863);
+INSERT INTO "stream_parameter" VALUES(778,1558);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
