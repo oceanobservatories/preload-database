@@ -4,6 +4,8 @@
 
 - Issue #14524 - Use CTD pressure if needed for bin_depths in adcp_velocity_earth stream.
 
+- Issue #14542 - Add bin_depth parameter to ADCP pd12 streams
+
 # Version 1.4.0 (2019-09-11)
 
 - Issue #14170 - Added support for new Seabird version of PARAD_A.
