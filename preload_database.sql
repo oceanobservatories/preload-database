@@ -4611,7 +4611,7 @@ INSERT INTO "parameter" VALUES(8082,'wavelength',8,4,NULL,10,7,'Wavelength',NULL
 INSERT INTO "parameter" VALUES(8083,'non_zero_pressure',8,1,NULL,80,7,'Non-zero Pressure',NULL,3,216,'{"a1": "PD710", "a1_scale_factor": 0.001, "a2": ["dpi_PRESWAT_L1", "None"]}',NULL,'A non-zero pressure value.',NULL,1);
 INSERT INTO "parameter" VALUES(8084,'depth_from_pressure',8,1,NULL,122,7,'Depth calculated from pressure',NULL,3,217,'{"latitude": "CC_lat", "pressure": "PD8083"}',NULL,'Depth (m) calculated from pressure (dbar) and latitude.',NULL,1);
 INSERT INTO "parameter" VALUES(8085,'non_zero_depth',8,1,NULL,122,7,'Non-zero Depth',NULL,3,216,'{"a1": "PD8084", "a2": "CC_depth"}',NULL,'A non-zero depth value.',NULL,1);
-INSERT INTO "parameter" VALUES(8086,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,3,203,'{"sensor_depth": "PD8085", "bin_size": "PD623", "dist_first_bin": "PD651", "num_bins": "PD621", "adcp_orientation": "PD617"}',NULL,'Bin Depths',NULL,1);
+INSERT INTO "parameter" VALUES(8086,'bin_depths',8,1,NULL,122,7,'Bin Depths',NULL,3,201,'{"bin_size": "CC_bin_size", "pressure": "PD1639", "adcp_orientation": "CC_orientation", "latitude": "CC_lat", "dist_first_bin": "CC_dist_first_bin", "num_bins": "PD1641"}',NULL,'Bin Depths',NULL,1);
 INSERT INTO "parameter" VALUES(8087,'x_accel_counts',9,4,NULL,67,10,'X-Axis Acceleration Counts',NULL,0,NULL,NULL,NULL,'X-Axis Accelerometer Counts',2,0);
 INSERT INTO "parameter" VALUES(8088,'y_accel_counts',9,4,NULL,67,10,'Y-Axis Acceleration Counts',NULL,0,NULL,NULL,NULL,'Y-Axis Accelerometer Counts',2,0);
 INSERT INTO "parameter" VALUES(8089,'z_accel_counts',9,4,NULL,67,10,'Z-Axis Acceleratiton Counts',NULL,0,NULL,NULL,NULL,'Z-Axis Accelerometer Counts',2,0);
@@ -19000,6 +19000,9 @@ INSERT INTO "stream_parameter" VALUES(778,198);
 INSERT INTO "stream_parameter" VALUES(778,312);
 INSERT INTO "stream_parameter" VALUES(778,863);
 INSERT INTO "stream_parameter" VALUES(778,1558);
+INSERT INTO "stream_parameter" VALUES(595,8086);
+INSERT INTO "stream_parameter" VALUES(319,8086);
+INSERT INTO "stream_parameter" VALUES(301,8086);
 CREATE TABLE stream_type (
 	id INTEGER NOT NULL, 
 	value VARCHAR(250) NOT NULL, 
