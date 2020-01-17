@@ -1,3 +1,7 @@
+# Version 1.4.2 (2020-02-05)
+
+- Issue #14589 - Preload changes for ADCP 3 beam solution
+
 # Version 1.4.1 (2019-12-04)
 
 - Issue #14304 - Add parameters for new METBK CT DCL parser
