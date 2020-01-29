@@ -1,5 +1,7 @@
 # Version 1.4.2 (2020-02-05)
 
+- Issue #14486 - Change lat/lon function inputs to use DR lat/lon values
+
 - Issue #14589 - Preload changes for ADCP 3 beam solution
 
 # Version 1.4.1 (2019-12-04)
