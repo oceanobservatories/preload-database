@@ -1,3 +1,7 @@
+# Version 1.4.4 (2020-02-07)
+
+- Issue #14609 - Remove inductive_id from metbk_ct_dcl_instrument stream
+
 # Version 1.4.3 (2020-02-05)
 
 - Issue #14486 - Change lat/lon function inputs to use DR lat/lon values
