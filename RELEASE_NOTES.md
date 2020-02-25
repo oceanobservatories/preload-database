@@ -1,3 +1,7 @@
+# Version 1.4.5 (2020-03-03)
+
+- Issue #14643 - Pass pressure to botpt 15s stream timestamp function in preload
+
 # Version 1.4.4 (2020-02-07)
 
 - Issue #14609 - Remove inductive_id from metbk_ct_dcl_instrument stream
