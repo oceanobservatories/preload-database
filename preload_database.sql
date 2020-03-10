@@ -74,6 +74,8 @@ INSERT INTO "dimension" VALUES(20,'wavss_four_dim0');
 INSERT INTO "dimension" VALUES(21,'wavss_four_dim1');
 INSERT INTO "dimension" VALUES(22,'wavss_move');
 INSERT INTO "dimension" VALUES(23,'wvs_series');
+INSERT INTO "dimension" VALUES(24,'fdchp_a_time_L1');
+INSERT INTO "dimension" VALUES(25,'fdchp_a_time_L2');
 CREATE TABLE fill_value (
 	id INTEGER NOT NULL, 
 	value VARCHAR(20) NOT NULL, 
@@ -4153,7 +4155,7 @@ INSERT INTO "parameter" VALUES(3704,'sci_suna_nitrate_um',9,1,NULL,222,NULL,'Nit
 INSERT INTO "parameter" VALUES(3705,'sci_suna_nitrate_mg',9,1,NULL,152,NULL,'Nitrate Concentration',NULL,4,NULL,NULL,NULL,'Nitrate concentration in mg/L',NULL,NULL);
 INSERT INTO "parameter" VALUES(3706,'dpc_ctd_seawater_conductivity',8,1,NULL,38,7,'Seawater Conductivity','sea_water_electrical_conductivity',6,189,'{"scaler": 0.1, "value": "PD2934"}','CONDWAT_L1','Seawater conductivity refers to the ability of seawater to conduct electricity. The presence of ions in the seawater, such as salt, increases the electrical conducting ability of seawater. As such, conductivity can be used as a proxy for determining the quantity of salt in a sample of seawater.',3,1);
 INSERT INTO "parameter" VALUES(3715,'flntu_x_mmp_cds_scat_seawater',8,1,NULL,127,7,'Total Scattering Coefficient of Pure Seawater',NULL,4,97,'{"delta": "CC_depolarization_ratio", "theta": "CC_scattering_angle", "wlngth": "CC_measurement_wavelength", "degC": "PD6", "psu": "dpi_PRACSAL_L2"}',NULL,'Total scattering coefficient of pure seawater [m-1]',NULL,NULL);
-INSERT INTO "parameter" VALUES(3716,'fdchp_a_tmpatur',8,1,NULL,225,7,'Turbulent Air Temperature',NULL,4,190,'{"timestamp": "PD7", "sonicT": "PD1053"}','TMPATUR_L1','Turbulent Air Temperature refers to air temperature associated with eddies that flow over the ocean surface and is used to determine vertical fluxes of heat associated with the eddies.',3,1);
+INSERT INTO "parameter" VALUES(3716,'fdchp_a_tmpatur',8,1,NULL,225,7,'Sonic Air Temperature',NULL,4,190,'{"timestamp": "PD7", "sonicT": "PD3474"}','TMPATUR_L1','Sonic Air Temperature refers to air temperature associated with eddies that flow over the ocean surface and is used to determine vertical fluxes of heat associated with the eddies.',3,1);
 INSERT INTO "parameter" VALUES(3717,'fdchp_a_windtur_north',8,1,NULL,123,7,'Wind Velocity - Northerly',NULL,4,191,'{"rateZ": "PD3323", "timestamp": "PD7", "heading": "PD3480", "accY": "PD3476", "accX": "PD3475", "accZ": "PD3477", "lat": "CC_latitude", "sonicU": "PD3471", "sonicV": "PD3472", "sonicW": "PD3473", "rateY": "PD3322", "rateX": "PD3321"}','WINDTUR-VLN_L1','The L1 windspeed data product WINDTUR-VLN_L1 from the FDCHP instrument, which collects 20 minutes of data every hour. The L1 data consists of these values less 30 seconds from both the beginning and end of each 12000 point dataset.',NULL,1);
 INSERT INTO "parameter" VALUES(3718,'fdchp_a_windtur_up',8,1,NULL,123,7,'Wind Velocity - Vertical',NULL,4,192,'{"rateZ": "PD3323", "timestamp": "PD7", "heading": "PD3480", "accY": "PD3476", "accX": "PD3475", "accZ": "PD3477", "lat": "CC_latitude", "sonicU": "PD3471", "sonicV": "PD3472", "sonicW": "PD3473", "rateY": "PD3322", "rateX": "PD3321"}','WINDTUR-VLU_L1','The L1 windspeed data product WINDTUR-VLU_L1 from the FDCHP instrument, which collects 20 minutes of data every hour. The L1 data consists of these values less 30 seconds from both the beginning and end of each 12000 point dataset.',NULL,1);
 INSERT INTO "parameter" VALUES(3719,'fdchp_a_windtur_west',8,1,NULL,123,7,'Wind Velocity - Westerly',NULL,4,193,'{"rateZ": "PD3323", "timestamp": "PD7", "heading": "PD3480", "accY": "PD3476", "accX": "PD3475", "accZ": "PD3477", "lat": "CC_latitude", "sonicU": "PD3471", "sonicV": "PD3472", "sonicW": "PD3473", "rateY": "PD3322", "rateX": "PD3321"}','WINDTUR-VLW_L1','The L1 windspeed data product WINDTUR-VLW_L1 from the FDCHP instrument, which collects 20 minutes of data every hour. The L1 data consists of these values less 30 seconds from both the beginning and end of each 12000 point dataset.',NULL,1);
@@ -4769,6 +4771,24 @@ INSERT INTO "parameter_dimension" VALUES(902,5);
 INSERT INTO "parameter_dimension" VALUES(904,5);
 INSERT INTO "parameter_dimension" VALUES(905,5);
 INSERT INTO "parameter_dimension" VALUES(2791,19);
+INSERT INTO "parameter_dimension" VALUES(3716,24);
+INSERT INTO "parameter_dimension" VALUES(3716,1);
+INSERT INTO "parameter_dimension" VALUES(3722,1);
+INSERT INTO "parameter_dimension" VALUES(3722,25);
+INSERT INTO "parameter_dimension" VALUES(3724,1);
+INSERT INTO "parameter_dimension" VALUES(3724,25);
+INSERT INTO "parameter_dimension" VALUES(3723,24);
+INSERT INTO "parameter_dimension" VALUES(3723,1);
+INSERT INTO "parameter_dimension" VALUES(3719,24);
+INSERT INTO "parameter_dimension" VALUES(3719,1);
+INSERT INTO "parameter_dimension" VALUES(3720,1);
+INSERT INTO "parameter_dimension" VALUES(3720,25);
+INSERT INTO "parameter_dimension" VALUES(3721,1);
+INSERT INTO "parameter_dimension" VALUES(3721,25);
+INSERT INTO "parameter_dimension" VALUES(3717,24);
+INSERT INTO "parameter_dimension" VALUES(3717,1);
+INSERT INTO "parameter_dimension" VALUES(3718,24);
+INSERT INTO "parameter_dimension" VALUES(3718,1);
 CREATE TABLE parameter_function (
 	id INTEGER NOT NULL, 
 	name VARCHAR(250), 

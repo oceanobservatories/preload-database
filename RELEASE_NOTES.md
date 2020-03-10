@@ -1,3 +1,10 @@
+# Version 1.4.6 (2020-03-31)
+
+- Issue #13402 - FDCHP derived product algorithm corrections
+    * Updated FDCHP parameter dimensions to use L1/L2 aux parameters
+    * Renamed fdchp_a_tmpatur display/long names
+    * Corrected fdchp_a_tmpatur sonicT source parameter from 1053 to 3474 
+
 # Version 1.4.5 (2020-03-03)
 
 - Issue #14643 - Pass pressure to botpt 15s stream timestamp function in preload
