@@ -1,3 +1,7 @@
+# Version 1.4.7 (2020-06-02)
+
+- Issue #14278 - Add netcdf_name column to parameter column and default to name
+
 # Version 1.4.6 (2020-03-31)
 
 - Issue #13402 - FDCHP derived product algorithm corrections
