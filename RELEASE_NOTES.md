@@ -1,3 +1,7 @@
+# Version 1.4.7 (2020-04-09)
+
+- Issue #14278 - Use visible column, copy pressure_depth data to pressure, and make pressure_depth invisible
+
 # Version 1.4.6 (2020-03-31)
 
 - Issue #13402 - FDCHP derived product algorithm corrections

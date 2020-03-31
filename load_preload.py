@@ -13,6 +13,7 @@ import json
 import logging
 import os
 from collections import Counter
+from distutils.util import strtobool
 from numbers import Number
 
 import docopt
@@ -148,6 +149,12 @@ def create_or_update_parameter(session, parameter_id, row, value_table_map, para
             parameter.parameter_function_map = json.loads(param_map)
         except SyntaxError as e:
             log.error('Error parsing parameter_function_map for row: %r %r', row, e)
+
+    if row.visible is not None:
+        # handles y, yes, t, true, on, 1, n, no, f, false, off, and 0
+        parameter.visible = strtobool(row.visible)
+    else:
+        parameter.visible = True
 
 
 def process_parameters(session):
