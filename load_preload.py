@@ -13,6 +13,7 @@ import json
 import logging
 import os
 from collections import Counter
+from distutils.util import strtobool
 from numbers import Number
 
 import docopt
@@ -148,6 +149,16 @@ def create_or_update_parameter(session, parameter_id, row, value_table_map, para
             parameter.parameter_function_map = json.loads(param_map)
         except SyntaxError as e:
             log.error('Error parsing parameter_function_map for row: %r %r', row, e)
+
+    if row.visible is not None:
+        # handles y, yes, t, true, on, 1, n, no, f, false, off, and 0
+        parameter.visible = strtobool(row.visible)
+    else:
+        parameter.visible = True
+
+    # netcdf_name is used to override name for output files
+    # defaulting netcdf_name to name removes the need for null checks downstream
+    parameter.netcdf_name = row.netcdf_name if row.netcdf_name else row.name
 
 
 def process_parameters(session):
