@@ -1,4 +1,8 @@
-# Version 1.4.9
+# Version 1.4.9 (2020-09-10)
+
+- Issue #14654 - Create interp_lat,lon parameters
+    * Use them to derive other parameters
+    * Add them to the glider_gps_position stream
 
 - Issue #14675 - Compute depth from pressure parameters
 
@@ -6,7 +10,7 @@
 
 - Issue #13369 - Add supply_voltage to pco2a_a_dcl_instrument_air,water_recovered streams
 
-# Version 1.4.7 (2020-06-02)
+# Version 1.4.7 (2020-06-09)
 
 - Issue #14278 - Add netcdf_name column to parameter column and default to name
 
