@@ -1,6 +1,6 @@
 # Version 1.4.8 (2020-07-09)
 
-- Issue #13369 - Split PCO2A ingestions into recovered,telemetered streams
+- Issue #13369 - Add supply_voltage to pco2a_a_dcl_instrument_air,water_recovered streams
 
 # Version 1.4.7 (2020-06-02)
 
