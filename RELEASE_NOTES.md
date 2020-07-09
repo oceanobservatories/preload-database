@@ -1,3 +1,7 @@
+# Version 1.4.8 (2020-07-09)
+
+- Issue #13369 - Split PCO2A ingestions into recovered,telemetered streams
+
 # Version 1.4.7 (2020-06-02)
 
 - Issue #14278 - Add netcdf_name column to parameter column and default to name
