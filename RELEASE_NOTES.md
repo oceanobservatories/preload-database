@@ -1,3 +1,7 @@
+# Version 1.4.8 (2020-07-09)
+
+- Issue #13369 - Add supply_voltage to pco2a_a_dcl_instrument_air,water_recovered streams
+
 # Version 1.4.7 (2020-06-02)
 
 - Issue #14278 - Add netcdf_name column to parameter column and default to name
