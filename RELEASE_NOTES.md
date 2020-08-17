@@ -4,6 +4,8 @@
     * Use them to derive other parameters
     * Add them to the glider_gps_position stream
 
+- Issue #14787 - Use pressure_depth when applicable for dosta calculations
+
 - Issue #14675 - Compute depth from pressure parameters
 
 # Version 1.4.8 (2020-07-09)
