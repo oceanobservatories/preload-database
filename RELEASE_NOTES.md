@@ -1,3 +1,7 @@
+# Version 1.4.9
+
+- Issue #14675 - Compute depth from pressure parameters
+
 # Version 1.4.8 (2020-07-09)
 
 - Issue #13369 - Add supply_voltage to pco2a_a_dcl_instrument_air,water_recovered streams
