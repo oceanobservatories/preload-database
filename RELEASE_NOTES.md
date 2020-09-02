@@ -1,5 +1,7 @@
 # Version 1.4.9 (2020-09-10)
 
+- Issue #14261 - Add pressure depth to parad_k__stc_imodem_instrument and recovered streams
+
 - Issue #14654 - Create interp_lat,lon parameters
     * Use them to derive other parameters
     * Add them to the glider_gps_position stream
