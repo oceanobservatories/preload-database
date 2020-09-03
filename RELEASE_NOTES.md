@@ -6,6 +6,8 @@
 
 - Issue #14675 - Compute depth from pressure parameters
 
+- Issue #14852 - Dissolved oxygen calculation is missing the two-point calibration data
+
 # Version 1.4.8 (2020-07-09)
 
 - Issue #13369 - Add supply_voltage to pco2a_a_dcl_instrument_air,water_recovered streams
