@@ -1,3 +1,8 @@
+# Verison 1.4.10 (2021-02-02)
+
+- Issue #14986 - Adds corrected dissolved oxygen concentration (umol kg^-3) to the 
+  dosta_abcdjm_ctdbp_p_dcl_instrument and recovered streams
+
 # Version 1.4.10 (2021-08-15)
 
 - Issue #15118 - Incorrect calculation of depth parameter from pressure
