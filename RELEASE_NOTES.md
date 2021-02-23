@@ -1,3 +1,8 @@
+# Verison 1.4.10 (2021-02-02)
+
+- Issue #14986 - Adds corrected dissolved oxygen concentration (umol kg^-3) to the 
+  dosta_abcdjm_ctdbp_p_dcl_instrument and recovered streams
+
 # Version 1.4.9 (2020-09-10)
 
 - Issue #14261 - Add pressure depth to parad_k__stc_imodem_instrument and recovered streams
