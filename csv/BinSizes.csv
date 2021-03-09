@@ -1,7 +1,7 @@
 stream,binsize,estimatedrate,measuredrate,binsizeindays,particlesperbin,estimatedvsingested,dataratenotes
 adcp_ancillary_system_data,20160,,,14,0,,No good data from ingested sample
 adcp_compass_calibration,20160,2,,14,28,,No good data from ingested sample
-adcp_pd0_beam_parsed,1440,,107000,1,"107,000",,Sample data 21k-107k per day
+adcp_pd0_beam_parsed,60,,107000,0.0417,"107,000",,Sample data 21k-107k per day
 adcp_pd0_earth_parsed,1440,,,1,0,,No ingested data
 adcp_pd12_parsed,1440,,,1,0,,No ingested data
 adcp_system_configuration,20160,2,,14,28,,No ingested data
@@ -40,24 +40,24 @@ auv_eng_auv_emergency_board_recovered,1440,,,1,0,,No ingested data
 auv_eng_auv_fault_message,1440,,,1,0,,No ingested data
 auv_eng_auv_fault_message_recovered,1440,,,1,0,,No ingested data
 auv_eng_auv_imagenex_852,1440,,,1,0,,No ingested data
-auv_eng_auv_imagenex_852_recovered,1440,,,1,0,,No ingested data
+auv_eng_auv_imagenex_852_recovered,180,,,0.125,0,,No ingested data
 auv_eng_auv_oil_compensator,1440,,,1,0,,No ingested data
 auv_eng_auv_oil_compensator_recovered,1440,,,1,0,,No ingested data
 auv_eng_auv_smart_battery,1440,,,1,0,,No ingested data
 auv_eng_auv_smart_battery_recovered,1440,,,1,0,,No ingested data
 auv_eng_auv_state,1440,,,1,0,,No ingested data
-auv_eng_auv_state_recovered,1440,,,1,0,,No ingested data
+auv_eng_auv_state_recovered,180,,,0.125,0,,No ingested data
 auv_eng_auv_tri_fin_motor,1440,,,1,0,,No ingested data
-auv_eng_auv_tri_fin_motor_recovered,1440,,,1,0,,No ingested data
-botpt_heat_sample,4320,28800,27000,3,"86,400",,Sample data 24k-27k per day
-botpt_iris_sample,1440,86400,70000,1,"86,400",,Sample data 60k-70k per day
+auv_eng_auv_tri_fin_motor_recovered,360,,,0.25,0,,No ingested data
+botpt_heat_sample,2880,28800,27000,2,"86,400",,Sample data 24k-27k per day
+botpt_iris_sample,720,86400,70000,0.5,"86,400",,Sample data 60k-70k per day
 botpt_lily_leveling,20160,24,580000,14,"8,120,000",Conflict,Sample data 580k per day
-botpt_lily_sample,1440,86400,75000,1,"86,400",,Sample data 65k-75k per day
-botpt_nano_sample,180,864000,1500000,0.125,"187,500",Conflict,Sample data 1300k -1500k per day
+botpt_lily_sample,720,86400,75000,0.5,"86,400",,Sample data 65k-75k per day
+botpt_nano_sample,60,864000,1500000,0.0417,"187,500",Conflict,Sample data 1300k -1500k per day
 botpt_nano_sample_15sec,80640,,,,,,
 botpt_nano_sample_24hour,525600,,,,,,
 botpt_status,20160,2,,14,28,,No ingested data
-calibration_status,10080,,15000,7,"105,000",,Sample data 5k-15k per day
+calibration_status,4320,,15000,3,"105,000",,Sample data 5k-15k per day
 camds_disk_status,20160,2,,14,28,,No ingested data
 camds_health_status,20160,2,,14,28,,No ingested data
 camds_image_metadata,20160,60,1200,14,"16,800","Conflict, but both numbers are low",Sample data 1200 per day
@@ -111,7 +111,7 @@ cspp_eng_cspp_wc_wm_metadata_recovered,1440,,,1,0,,No ingested data
 ctd_external_dataset,1440,,,1,0,,No ingested data
 ctd_simulator,1440,,,1,0,,No ingested data
 ctdav_n_auv_instrument,1440,,,1,0,,No ingested data
-ctdav_n_auv_instrument_recovered,1440,,,1,0,,No ingested data
+ctdav_n_auv_instrument_recovered,720,,,0.5,0,,No ingested data
 ctdbp_cdef_calibration_coefficients,1440,,,1,0,,No ingested data
 ctdbp_cdef_ce_dosta_recovered,1440,,,1,0,,No ingested data
 ctdbp_cdef_ce_instrument_recovered,20160,,120,14,"1,680",,Sample data 120 per day
@@ -128,10 +128,10 @@ ctdbp_no_calibration_coefficients,20160,2,,14,28,,No good data from ingested sam
 ctdbp_no_configuration,20160,2,,14,28,,No good data from ingested sample
 ctdbp_no_hardware,20160,2,,14,28,,No good data from ingested sample
 ctdbp_no_optode_settings,20160,2,,14,28,,No ingested data
-ctdbp_no_sample,1440,8640,150000,1,"150,000",Conflict,Sample data 100k-150k per day
+ctdbp_no_sample,360,8640,150000,0.25,"150,000",Conflict,Sample data 100k-150k per day
 ctdbp_no_status,20160,2,,14,28,,No ingested data
 ctdgv_m_glider_instrument,20160,1440,2000,14,"28,000",,Sample data 60-2000 per day
-ctdgv_m_glider_instrument_recovered,4320,43200,40000,3,"129,600",,Sample data 3k-40k per day
+ctdgv_m_glider_instrument_recovered,1440,43200,40000,1,"129,600",,Sample data 3k-40k per day
 ctdmo_ghqr_imodem_instrument,20160,8640,180,14,"120,960",Conflict,Sample data 1-180 per day
 ctdmo_ghqr_imodem_instrument_recovered,20160,8640,,14,"120,960",,No ingested data
 ctdmo_ghqr_imodem_metadata,20160,,20,14,280,,Sample data 7-20 per day
@@ -142,25 +142,25 @@ ctdmo_ghqr_sio_mule_instrument,20160,,140,14,"1,960",,Sample data 1-140 per day
 ctdmo_ghqr_sio_offset,20160,,15,14,210,,Sample data 1-15 per day
 ctdpf_ckl_mmp_cds_instrument,1440,8640,,1,"8,640",,No ingested data
 ctdpf_ckl_wfp_instrument,10080,960,11000,7,"77,000",Conflict,Sample data 20-11000 per day
-ctdpf_ckl_wfp_instrument_recovered,10080,960,16000,7,"112,000",Conflict,Sample data 6k-16k per day
+ctdpf_ckl_wfp_instrument_recovered,4320,960,16000,3,"112,000",Conflict,Sample data 6k-16k per day
 ctdpf_ckl_wfp_metadata,20160,,15,14,210,,Sample data 5-15 per day
 ctdpf_ckl_wfp_metadata_recovered,20160,,35,14,490,,Sample data 1-35 per day
 ctdpf_ckl_wfp_sio_mule_metadata,20160,,1,14,14,,Sample data 1 per day
 ctdpf_j_cspp_instrument,20160,,10,14,140,,Sample data 10 per day
-ctdpf_j_cspp_instrument_recovered,20160,,4500,14,"63,000",,Sample data 4500 per day
+ctdpf_j_cspp_instrument_recovered,1440,,4500,1,"63,000",,Sample data 4500 per day
 ctdpf_j_cspp_metadata,20160,,1,14,14,,Sample data 1 per day
 ctdpf_j_cspp_metadata_recovered,20160,,3,14,42,,Sample data 3 per day
 ctdpf_optode_calibration_coefficients,20160,2,,14,28,,No good data from ingested sample
 ctdpf_optode_configuration,20160,2,,14,28,,No good data from ingested sample
 ctdpf_optode_hardware,20160,2,,14,28,,No good data from ingested sample
-ctdpf_optode_sample,1440,86400,85000,1,"86,400",,sample data 50k-85k per day
+ctdpf_optode_sample,720,86400,85000,0.5,"86,400",,sample data 50k-85k per day
 ctdpf_optode_settings,20160,2,,14,28,,No ingested data
 ctdpf_optode_status,20160,2,,14,28,,No ingested data
 ctdpf_parsed,1440,,,1,0,,No ingested data
 ctdpf_sbe43_calibration_coefficients,20160,2,,14,28,,No good data from ingested sample
 ctdpf_sbe43_configuration,20160,2,,14,28,,No good data from ingested sample
 ctdpf_sbe43_hardware,20160,2,,14,28,,No good data from ingested sample
-ctdpf_sbe43_sample,720,86400,265000,0.5,"132,500",Conflict,Sample data 15k-265k per day
+ctdpf_sbe43_sample,360,86400,265000,0.25,"132,500",Conflict,Sample data 15k-265k per day
 ctdpf_sbe43_status,20160,2,,14,28,,No ingested data
 d1000_sample,10080,5760,10000,7,"70,000",,Sample data 10k per day
 dofst_k_wfp_instrument,10080,960,11000,7,"77,000",Conflict,Sample data 4k-11k per day
@@ -171,10 +171,10 @@ dosta_abcdjm_cspp_instrument,20160,360,,14,"5,040",,No ingested data
 dosta_abcdjm_cspp_instrument_recovered,20160,360,500,14,"7,000",,Sample data 500 per day
 dosta_abcdjm_cspp_metadata,20160,,,14,0,,No ingested data
 dosta_abcdjm_cspp_metadata_recovered,20160,,3,14,42,,Sample data 3 per day
-dosta_abcdjm_dcl_instrument,10080,9600,18000,7,"126,000",,Sample data 200-18k per day
-dosta_abcdjm_dcl_instrument_recovered,10080,9600,2000,7,"67,200",Conflict,Sample data 1k-2k per day
+dosta_abcdjm_dcl_instrument,4320,9600,18000,3,"126,000",,Sample data 200-18k per day
+dosta_abcdjm_dcl_instrument_recovered,4320,9600,2000,3,"67,200",Conflict,Sample data 1k-2k per day
 dosta_abcdjm_glider_instrument,20160,1440,1400,14,"20,160",,Sample data 50-1400 per day
-dosta_abcdjm_glider_recovered,4320,43200,65000,3,"195,000",,Sample data 4.5k-65k per day
+dosta_abcdjm_glider_recovered,1440,43200,65000,1,"195,000",,Sample data 4.5k-65k per day
 dosta_abcdjm_mmp_cds_instrument,20160,1440,,14,"20,160",,No ingested data
 dosta_abcdjm_sio_instrument,20160,1440,11,14,"20,160","Conflict, but both are low",Sample data 1-11 per day
 dosta_abcdjm_sio_instrument_recovered,20160,1440,96,14,"20,160","Conflict, but both are low",Sample data 96 per day
@@ -183,12 +183,12 @@ dosta_abcdjm_sio_metadata_recovered,20160,,1,14,14,,Sample data 1 per day
 dosta_d_engineering,1440,,,1,0,,No ingested data
 dosta_d_sample,1440,,,1,0,,No ingested data
 dosta_ln_auv_instrument,1440,,,1,0,,No ingested data
-dosta_ln_auv_instrument_recovered,1440,,,1,0,,No ingested data
+dosta_ln_auv_instrument_recovered,720,,,0.5,0,,No ingested data
 dosta_ln_wfp_instrument,20160,1440,23,14,"20,160","Conflict, but both are low",Sample data 23 per day
 dosta_ln_wfp_instrument_recovered,20160,,1000,14,"14,000",,Sample data 1k per day
 dosta_ln_wfp_sio_instrument,1440,,,1,0,,No ingested data
 dpc_acm_instrument,1440,,,1,0,,No ingested data
-dpc_acm_instrument_recovered,1440,,,1,0,,No ingested data
+dpc_acm_instrument_recovered,720,,,0.5,0,,No ingested data
 dpc_acs_instrument_recovered,1440,,,1,0,,No ingested data
 dpc_ctd_instrument,1440,,,1,0,,No ingested data
 dpc_ctd_instrument_recovered,1440,,,1,0,,No ingested data
@@ -203,7 +203,7 @@ dpc_optode_instrument_recovered,1440,,,1,0,,No ingested data
 echo_sounding,20160,,144,14,"2,016",,Sample data 144 per day
 fdchp_a_dcl_instrument,20160,,12,14,168,,Sample data 2-12 per day
 fdchp_a_dcl_instrument_recovered,20160,,,14,0,,No ingested data
-fdchp_a_instrument_recovered,1440,,,1,0,,No ingested data
+fdchp_a_instrument_recovered,60,,,0.0417,0,,No ingested data
 flcdr_x_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 flntu_x_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 flobn_c_lower_coil_recovered,1440,,,1,0,,No ingested data
@@ -226,14 +226,14 @@ flord_l_wfp_instrument_recovered,20160,270,870,14,"12,180","Conflict, but both a
 flord_l_wfp_sio_instrument,1440,,,1,0,,No ingested data
 flord_m_glider_instrument,20160,8640,775,14,"120,960",Conflict,Sample data 50-775 per day
 flord_m_glider_instrument_recovered,720,345600,14000,0.5,"172,800",Conflict,Sample data 7-14k per day
-flort_d_data_record,1440,86400,71000,1,"86,400",,Sample data 13k-71k per day
+flort_d_data_record,720,86400,71000,0.5,"86,400",,Sample data 13k-71k per day
 flort_d_status,10080,2,12000,7,"84,000",Conflict,Sample data 3-12k per day
 flort_dj_cspp_instrument,20160,,,14,0,,No ingested data
 flort_dj_cspp_instrument_recovered,20160,,300,14,"4,200",,Sample data 300 per day
 flort_dj_cspp_metadata,20160,,,14,0,,No ingested data
 flort_dj_cspp_metadata_recovered,20160,,,14,0,,Sample data 3 per day
-flort_dj_dcl_instrument,10080,100,13000,7,"91,000",Conflict,Sample data 60-13k per day
-flort_dj_dcl_instrument_recovered,10080,100,23000,7,"161,000",Conflict,Sample data 800-23k per day
+flort_dj_dcl_instrument,1440,100,13000,1,"91,000",Conflict,Sample data 60-13k per day
+flort_dj_dcl_instrument_recovered,1440,100,23000,1,"161,000",Conflict,Sample data 800-23k per day
 flort_dj_sio_instrument,1440,86400,11,1,"86,400",Conflict,Sample data 5-11 per day
 flort_dj_sio_instrument_recovered,1440,86400,100,1,"86,400",Conflict,Sample data 100 per day
 flort_kn_auv_instrument,1440,,,1,0,,No ingested data
@@ -243,7 +243,7 @@ flort_kn_auv_metadata_recovered,1440,,,1,0,,No ingested data
 flort_kn_stc_imodem_instrument,1440,86400,1400,1,"86,400",Conflict,Sample data 300-1400 per day
 flort_kn_stc_imodem_instrument_recovered,1440,86400,2200,1,"86,400",Conflict,Sample data 1k-2.2k per day
 flort_m_glider_instrument,1440,1440,57000,1,"57,000",Conflict,Sample data 230-57k per day
-flort_m_glider_recovered,1440,86400,,1,"86,400",,No ingested data
+flort_m_glider_recovered,720,86400,,0.5,"86,400",,No ingested data
 fuelcell_eng_dcl_recovered,1440,,,1,0,,No ingested data
 fuelcell_eng_dcl_telemetered,1440,,,1,0,,No ingested data
 ggldr_ctdgv_delayed,1440,,,1,0,,No ingested data
@@ -252,11 +252,11 @@ ggldr_eng_delayed,1440,,,1,0,,No ingested data
 ggldr_flord_delayed,1440,,,1,0,,No ingested data
 glider_eng_metadata,20160,,51,14,714,,Sample data 1-51 per day
 glider_eng_metadata_recovered,20160,,19,14,266,,Sample data 2-19 per day
-glider_eng_recovered,1440,,19000,1,"19,000",glider eng big particles,Sample data 3k-19k per day
+glider_eng_recovered,720,,19000,0.5,"19,000",glider eng big particles,Sample data 3k-19k per day
 glider_eng_sci_recovered,20160,,40,14,560,,Sample data 5-40 per day
 glider_eng_sci_telemetered,20160,,90,14,"1,260",,Sample data 6-80 per day
 glider_eng_telemetered,1440,,10000,1,"10,000",glider eng big particles,Sample data 70-10k per day
-horizontal_electric_field,1440,,68000,1,"68,000",,Sample data 68k per day
+horizontal_electric_field,720,,68000,0.5,"68,000",,Sample data 68k per day
 hpies_data_header,20160,,1400,14,"19,600",,Sample data 1400 per day
 hpies_status,20160,,1400,14,"19,600",,Sample data 1400 per day
 hyd_o_dcl_instrument,1440,,,1,0,,No ingested data
@@ -271,12 +271,12 @@ metbk_a_dcl_instrument_recovered,20160,1440,,14,"20,160",,No ingested data
 metbk_ct_dcl_instrument,20160,1440,,14,"20,160",,No ingested data
 metbk_sample,1440,,,1,0,,No ingested data
 metbk_status,20160,,,14,0,,No ingested data
-mopak_o_dcl_accel,180,,1000000,0.125,"125,000",,Sample data 1k-1000k per day
+mopak_o_dcl_accel,120,,1000000,0.0833,"125,000",,Sample data 1k-1000k per day
 mopak_o_dcl_accel_recovered,180,,207000,0.125,"25,875",recovered rate should be >= telemetered,Sample data 8k-207k per day
 mopak_o_dcl_rate,1440,,,1,0,,No ingested data
 mopak_o_dcl_rate_recovered,1440,,,1,0,,No ingested data
-motor_current,10080,,15000,7,"105,000",,Sample data 15k per day
-nutnr_a_dark_sample,20160,,24,,0,,Sample data 18-24 per day
+motor_current,4320,,15000,3,"105,000",,Sample data 15k per day
+nutnr_a_dark_sample,4320,,24,,0,,Sample data 18-24 per day
 nutnr_a_sample,1440,86400,72,1,"86,400",Conflict,Sample data 53-72 per day
 nutnr_a_status,20160,2,,14,28,,No ingested data
 nutnr_a_test,20160,0.002739726027,,14,0,,No ingested data
@@ -300,14 +300,14 @@ nutnr_n_auv_instrument,1440,,,1,0,,No ingested data
 nutnr_n_instrument_recovered,1440,,,1,0,,No ingested data
 optaa_ac_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 optaa_dj_cspp_instrument,20160,40,,14,560,,No ingested data
-optaa_dj_cspp_instrument_recovered,20160,40,1800,14,"25,200","Conflict, but both small",Sample data 1800 per day
+optaa_dj_cspp_instrument_recovered,10080,40,1800,7,"25,200","Conflict, but both small",Sample data 1800 per day
 optaa_dj_cspp_metadata,20160,,,14,0,,No ingested data
 optaa_dj_cspp_metadata_recovered,20160,,3,14,42,,Sample data 3 per day
-optaa_dj_dcl_instrument,10080,24,10000,7,"70,000",Conflict,Sample data 30-10k per day
-optaa_dj_dcl_instrument_recovered,10080,24,4000,7,"28,000",Conflict,Sample data 3k-4k per day
+optaa_dj_dcl_instrument,1440,24,10000,1,"70,000",Conflict,Sample data 30-10k per day
+optaa_dj_dcl_instrument_recovered,1440,24,4000,1,"28,000",Conflict,Sample data 3k-4k per day
 optaa_dj_dcl_metadata,20160,,24,14,336,,Sample data 1-24 per day
 optaa_dj_dcl_metadata_recovered,20160,,22,14,308,,Sample data 8-22 per day
-optaa_sample,720,86400,250000,0.5,"125,000",Conflict,Sample data 240-250k per day
+optaa_sample,120,86400,250000,0.0833,"125,000",Conflict,Sample data 240-250k per day
 optaa_status,20160,2,300,14,"4,200","Conflict, but both small",Sample data 300 per day
 osmoi_a_subcon_instrument_recovered,1440,,,1,0,,No ingested data
 parad_j_cspp_instrument,20160,3600,,14,"50,400",,No ingested data
@@ -319,9 +319,9 @@ parad_k__stc_imodem_instrument_recovered,20160,120,2000,14,"28,000","Conflict, b
 parad_m_glider_instrument,20160,,810,14,"11,340",,Sample data 74-810 per day
 parad_m_glider_recovered,360,691200,60000,0.25,"172,800",Conflict,Sample data 6k-60k per day
 parad_n_auv_instrument,1440,,,1,0,,No ingested data
-parad_n_auv_instrument_recovered,1440,,,1,0,,No ingested data
+parad_n_auv_instrument_recovered,180,,,0.125,0,,No ingested data
 parad_sa_config,20160,2,50,14,700,"Conflict, but both small",Sample data 50 per day
-parad_sa_sample,720,288000,310000,0.5,"155,000",,Sample data 250k-310k per day
+parad_sa_sample,180,288000,310000,0.125,"155,000",,Sample data 250k-310k per day
 pco2a_a_dcl_instrument_air,20160,432,128,14,"6,048","Conflict, but both small",Sample data 27-128 per day
 pco2a_a_dcl_instrument_air_recovered,20160,432,,14,"6,048",,No ingested data
 pco2a_a_dcl_instrument_water,20160,,128,14,"1,792",,Sample data 27-128 per day
@@ -403,7 +403,7 @@ prest_configuration_data,20160,2,,14,28,,No good data from ingested sample
 prest_device_status,20160,2,,14,28,,No ingested data
 prest_event_counter,20160,2,,14,28,,No ingested data
 prest_hardware_data,20160,0.002739726027,,14,0,,No ingested data
-prest_real_time,20160,2,5500,14,"77,000","Conflict, but both low",Sample data 3k-5.5k per day
+prest_real_time,1440,2,5500,1,"77,000","Conflict, but both low",Sample data 3k-5.5k per day
 prest_reference_oscillator,10080,5760,,7,"40,320",,No ingested data
 rasfl_a_subcon_instrument_recovered,1440,,,1,0,,No ingested data
 rasfl_sample_result,20160,0.1315068493,,14,2,,No ingested data
@@ -414,29 +414,29 @@ sio_eng_control_status,20160,,3,14,42,,Sample data 1-3 per day
 sio_eng_control_status_recovered,20160,,48,14,672,,Sample data 24-48 per day
 spkir_a_configuration_record,20160,2,,14,28,,No ingested data
 spkir_abj_cspp_instrument,20160,40,,14,560,,No ingested data
-spkir_abj_cspp_instrument_recovered,20160,40,2500,14,"35,000","Conflict, but both low",Sample data 2.5k per day
+spkir_abj_cspp_instrument_recovered,1440,40,2500,1,"35,000","Conflict, but both low",Sample data 2.5k per day
 spkir_abj_cspp_metadata,20160,,,14,0,,No ingested data
 spkir_abj_cspp_metadata_recovered,20160,,3,14,42,,Sample data 3 per day
-spkir_abj_dcl_instrument,10080,450,18000,7,"126,000",Conflict,Sample data 78-18k per day
-spkir_abj_dcl_instrument_recovered,4320,450,3000,3,"9,000",Conflict,Sample data 3k per day
+spkir_abj_dcl_instrument,1440,450,18000,1,"126,000",Conflict,Sample data 78-18k per day
+spkir_abj_dcl_instrument_recovered,1440,450,3000,1,"9,000",Conflict,Sample data 3k per day
 spkir_data_record,180,864000,343000,0.125,"108,000",Conflict,Sample data 265k-343k per day
 stm_timestamp,1440,,,1,0,,No ingested data
 thsph_sample,1440,17280,,1,"17,280",,No ingested data
 tmpsf_engineering,20160,2,,14,28,,No ingested data
 tmpsf_L1,1440,,,1,0,,No ingested data
-tmpsf_sample,10080,7200,6000,7,"50,400",,Sample data 5k-6k per day
+tmpsf_sample,4320,7200,6000,3,"50,400",,Sample data 5k-6k per day
 trhph_sample,10080,4320,4300,7,"30,240",,Sample data 4300 per day
 trhph_status,20160,2,,14,28,,No ingested data
 vadcp_4beam_system_configuration,20160,,,14,0,,No good data from ingested sample
 vadcp_5thbeam_compass_calibration,20160,2,,14,28,,No good data from ingested sample
-vadcp_5thbeam_pd0_beam_parsed,1440,86400,18000,1,"86,400",Conflict,Sample data 5k-18k per day
+vadcp_5thbeam_pd0_beam_parsed,180,86400,18000,0.125,"86,400",Conflict,Sample data 5k-18k per day
 vadcp_5thbeam_system_configuration,20160,2,,14,28,,No good data from ingested sample
 vadcp_ancillary_system_data,20160,,,14,0,,No good data from ingested sample
-vadcp_pd0_beam_parsed,10080,,18000,7,"126,000",,Sample data 5k-18k per day
+vadcp_pd0_beam_parsed,2880,,18000,2,"126,000",,Sample data 5k-18k per day
 vadcp_transmit_path,20160,,,14,0,Best guess,No good data from ingested sample
 vel3d_a_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 vel3d_b_engineering,20160,2,,14,28,,No ingested data
-vel3d_b_sample,1440,86400,84000,1,"86,400",,Sample data 42k-84k per day
+vel3d_b_sample,720,86400,84000,0.5,"86,400",,Sample data 42k-84k per day
 vel3d_cd_battery_voltage,20160,2,,14,28,,No ingested data
 vel3d_cd_data_header,20160,2,,14,28,,No ingested data
 vel3d_cd_dcl_data_header,20160,,1,14,14,,Sample data 1 per day
@@ -451,7 +451,7 @@ vel3d_cd_dcl_system_data,1440,,,1,0,,No ingested data
 vel3d_cd_dcl_system_data_recovered,1440,,,1,0,,No ingested data
 vel3d_cd_dcl_user_configuration,1440,,,1,0,,No ingested data
 vel3d_cd_dcl_user_configuration_recovered,1440,,,1,0,,No ingested data
-vel3d_cd_dcl_velocity_data,1440,,,1,0,,No ingested data
+vel3d_cd_dcl_velocity_data,720,,,0.5,0,,No ingested data
 vel3d_cd_dcl_velocity_data_recovered,1440,,,1,0,,No ingested data
 vel3d_cd_hardware_configuration,20160,2,,14,28,,No ingested data
 vel3d_cd_head_configuration,20160,2,,14,28,,No ingested data
@@ -460,16 +460,16 @@ vel3d_cd_system_data,1440,86400,72000,1,"86,400",,Sample data 49k-72k per day
 vel3d_cd_user_configuration,20160,2,,14,28,,No ingested data
 vel3d_cd_velocity_data,360,691200,691146,0.25,"172,800",,Beta cluster sample data 691146
 vel3d_clock_data,20160,2,,14,28,,No ingested data
-vel3d_k_wfp_instrument,4320,4092,33000,3,"99,000",Conflict,Sample data 13k-33k per day
+vel3d_k_wfp_instrument,720,4092,33000,0.5,"99,000",Conflict,Sample data 13k-33k per day
 vel3d_k_wfp_metadata,20160,,35,14,490,,Sample data 3-35 per day
-vel3d_k_wfp_stc_instrument,10080,4092,17000,7,"119,000",Conflict,Sample data 8k-17k per day
+vel3d_k_wfp_stc_instrument,1440,4092,17000,1,"119,000",Conflict,Sample data 8k-17k per day
 vel3d_k_wfp_stc_metadata,20160,,13,14,182,,Sample data 4-13 per day
 vel3d_k_wfp_string,1440,,,1,0,,No ingested data
 vel3d_l_wfp_instrument,1440,86400,20,1,"86,400",Conflict,Sample data 3-20 per day
 vel3d_l_wfp_instrument_recovered,1440,86400,17000,1,"86,400",Conflict,Sample data 16k-17k per day
 vel3d_l_wfp_metadata_recovered,20160,,1,14,14,,Sample data 1 per day
 vel3d_l_wfp_sio_mule_metadata,20160,,1,14,14,,Sample data 1 per day
-velpt_ab_dcl_diagnostics,20160,,390,14,"5,460",,Sample data 1-390 per day
+velpt_ab_dcl_diagnostics,10080,,390,7,"5,460",,Sample data 1-390 per day
 velpt_ab_dcl_diagnostics_metadata,20160,,20,14,280,,Sample data 1-20 per day
 velpt_ab_dcl_diagnostics_metadata_recovered,20160,,,14,0,,No ingested data
 velpt_ab_dcl_diagnostics_recovered,1440,,,1,0,Should this be higher?,No ingested data
@@ -491,7 +491,7 @@ velpt_j_cspp_metadata,20160,,,14,0,,No ingested data
 velpt_j_cspp_metadata_recovered,20160,,3,14,42,,Sample data 3 per day
 velpt_system_data,1440,,,1,0,,No ingested data
 velpt_user_configuration,20160,2,,14,28,,No ingested data
-velpt_velocity_data,720,1440,344000,0.5,"172,000",Conflict,Sample data 193k-344k per day
+velpt_velocity_data,180,1440,344000,0.125,"172,000",Conflict,Sample data 193k-344k per day
 wavss_a_dcl_fourier,20160,,5,14,70,,Sample data 3-5 per day
 wavss_a_dcl_fourier_recovered,20160,,,14,0,Best guess,No ingested data
 wavss_a_dcl_mean_directional,20160,,13,14,182,,Sample data 4-13 per day
@@ -516,20 +516,27 @@ winch_cspp_eng,1440,,,1,0,,No ingested data
 zplsc_metadata,20160,,,14,0,,No ingested data
 zplsc_c_instrument,20160,,24,14,336,,Sample data 9-24 per day
 zplsc_status,20160,2,,14,28,,No ingested data
-adcp_velocity_beam,720,,,,,,
+adcp_velocity_beam,180,,,,,,
 adcp_velocity_earth,720,,,,,,
 adcp_velocity_inst,720,,,,,,
 adcp_velocity_glider,720,,,,,,
-adcp_engineering,1440,,,,,,
+adcp_engineering,720,,,,,,
 adcp_config,20160,,,,,,
 adcp_bottom_track_earth,1440,,,,,,
 adcp_bottom_track_inst,1440,,,,,,
 adcp_bottom_track_config,20160,,,,,,
 vadcp_velocity_beam,720,,,,,,
 vadcp_velocity_beam_5,720,,,,,,
-adcp_engineering_5,20160,,,,,,
+adcp_engineering_5,10080,,,,,,
 adcp_config_5,20160,,,,,,
 adcp_compass_calibration_5,20160,,,,,,
 adcp_system_configuration_5,20160,,,,,,
 adcp_ancillary_system_data_5,20160,,,,,,
 adcp_transmit_path_5,20160,,,,,,
+ctdav_auv_data,1440,,,,,,
+flort_kn_sample,720,,,,,,
+flort_m_sample,720,,,,,,
+nutnr_n_dark_instrument_recovered,360,,,,,,
+secondary_node_eng_data,720,,,,,,
+secondary_node_port_eng_data,720,,,,,,
+zplsc_echogram_data,120,,,,,,
