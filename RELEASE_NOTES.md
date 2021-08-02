@@ -1,3 +1,7 @@
+# Version 1.4.10 (2021-07-29)
+
+- Issue #14945 - Adjust bin sizes for new Cassandra cluster
+
 # Version 1.4.9 (2020-09-10)
 
 - Issue #14261 - Add pressure depth to parad_k__stc_imodem_instrument and recovered streams
