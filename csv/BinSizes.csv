@@ -203,7 +203,7 @@ dpc_optode_instrument_recovered,1440,,,1,0,,No ingested data
 echo_sounding,20160,,144,14,"2,016",,Sample data 144 per day
 fdchp_a_dcl_instrument,20160,,12,14,168,,Sample data 2-12 per day
 fdchp_a_dcl_instrument_recovered,20160,,,14,0,,No ingested data
-fdchp_a_instrument_recovered,60,,,0.0417,0,,No ingested data
+fdchp_a_instrument_recovered,180,,,0.125,0,,No ingested data
 flcdr_x_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 flntu_x_mmp_cds_instrument,1440,86400,,1,"86,400",,No ingested data
 flobn_c_lower_coil_recovered,1440,,,1,0,,No ingested data
@@ -271,7 +271,7 @@ metbk_a_dcl_instrument_recovered,20160,1440,,14,"20,160",,No ingested data
 metbk_ct_dcl_instrument,20160,1440,,14,"20,160",,No ingested data
 metbk_sample,1440,,,1,0,,No ingested data
 metbk_status,20160,,,14,0,,No ingested data
-mopak_o_dcl_accel,120,,1000000,0.0833,"125,000",,Sample data 1k-1000k per day
+mopak_o_dcl_accel,180,,1000000,0.125,"125,000",,Sample data 1k-1000k per day
 mopak_o_dcl_accel_recovered,180,,207000,0.125,"25,875",recovered rate should be >= telemetered,Sample data 8k-207k per day
 mopak_o_dcl_rate,1440,,,1,0,,No ingested data
 mopak_o_dcl_rate_recovered,1440,,,1,0,,No ingested data
