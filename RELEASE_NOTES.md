@@ -1,4 +1,6 @@
-# Version 1.4.10 (2021-07-29)
+# Version 1.4.10 (2021-08-15)
+
+- Issue #15118 - Incorrect calculation of depth parameter from pressure
 
 - Issue #14945 - Adjust bin sizes for new Cassandra cluster
 
