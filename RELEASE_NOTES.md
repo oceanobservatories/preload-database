@@ -1,3 +1,7 @@
+# Version 1.4.11 (2022-01-19)
+
+- Issue #14993 - Use calphase to calculate cabled DOSTA data
+
 # Version 1.4.10 (2021-08-15)
 
 - Issue #15118 - Incorrect calculation of depth parameter from pressure
