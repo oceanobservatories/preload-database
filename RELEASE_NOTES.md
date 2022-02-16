@@ -1,3 +1,7 @@
+# Version 1.4.12 (2022-02-23)
+
+- Issue #15167 - adds sref input argument to PD2750 (#104)
+
 # Version 1.4.11 (2022-01-19)
 
 - Issue #14993 - Use calphase to calculate cabled DOSTA data
