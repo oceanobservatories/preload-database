@@ -1,7 +1,10 @@
-# Verison 1.4.11 (2021-09-29)
+# Version 1.4.12 (2022-02-23)
 
-- Issue #14986 - Adds corrected dissolved oxygen concentration (umol kg^-3) to the 
-  dosta_abcdjm_ctdbp_p_dcl_instrument and recovered streams
+- Issue #15167 - adds sref input argument to PD2750 (#104)
+
+# Version 1.4.11 (2022-01-19)
+
+- Issue #14993 - Use calphase to calculate cabled DOSTA data
 
 # Version 1.4.10 (2021-08-15)
 
