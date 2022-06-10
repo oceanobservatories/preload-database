@@ -1690,7 +1690,7 @@ VEL3D_K_WFP_RECOVERED,VEL3D_K,vel3d_k_corr2,,PD2015,quantity,,int8,,counts,-99,"
 VEL3D_K_WFP_RECOVERED,VEL3D_K,vel3d_k_str_id,,PD2016,quantity,,uint8,,counts,0,"String ID, 0-15",0,,,,,,,"String ID, 0-15",,,
 VEL3D_K_WFP_RECOVERED,VEL3D_K,vel3d_k_string,,PD2017,quantity,,string,,1,empty,String,,,,,,,,String,,,
 "ADCPS_JLN_RECOVERED,ADCPA_M,ADCPT_ACFGM_PD0_DCL",ADCPS-JLN,sensor_available_speed,,PD2021,boolean,,int8,,1,-99,Sensor Available Speed,0,,,,,,,"False = sensor not available, True = sensor installed/available",,,
-DEPRECATED,DOSTA_LN,dosta_ln_optode_oxygen,,PD2022,quantity,,float32,,uM,-9999999,Dissolved Oxygen Concentration,0,,,,,,DOCONCS_L1,Oxygen Reading,Deprecated - to be replace by PD950,Science Data,L1
+DEPRECATED,DOSTA_LN,dosta_ln_optode_oxygen,,PD2022,quantity,,float32,,umol L-1,-9999999,Dissolved Oxygen Concentration,0,,,,,,DOCONCS_L1,Oxygen Reading,Deprecated - to be replace by PD950,Science Data,L1
 DOSTA_LN_WFP,DOSTA_LN,dosta_ln_optode_temperature,,PD2023,quantity,,float32,,ºC,-9999999,Temperature,4,,,,,,,Temperature Reading,,,
 FLORT_I_WFP,FLORD_I_WFP,flord_wfp_chlorophyll,,PD2024,quantity,,uint16,,counts,0,Raw Chlorophyll Measurement,,,,,,,,Raw Chlorophyll Measurement,,,
 FLORT_I_WFP,FLORD_I_WFP,flord_wfp_turbidity,,PD2025,quantity,,uint16,,counts,0,Raw Turbidity Measurement,,,,,,,,Raw Turbidity,,,
