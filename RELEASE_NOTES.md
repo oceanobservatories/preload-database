@@ -1,6 +1,11 @@
-# Version 1.4.13 (2022-02-23)
+# Version 1.4.14 (2022-06-14)
 
 - Issue #TBD - Converts unit string from uM to umol L-1 for downstream systems
+
+# Version 1.4.13 (2022-02-23)
+
+- Issue #14986 - Adds corrected dissolved oxygen concentration (umol kg^-3) to the 
+  dosta_abcdjm_ctdbp_p_dcl_instrument and recovered streams
 
 # Version 1.4.12 (2022-02-23)
 
