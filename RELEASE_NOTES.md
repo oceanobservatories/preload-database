@@ -1,3 +1,11 @@
+# Version 1.4.15 (2022-07-14)
+
+- Issue #15354 - Add dissolved oxygen param from do_fast_sample to ctdpf_sbe43_sample stream
+
+- Issue #15072 - Adjust parameters for adcps_jln_stc_instrument_recovered stream
+
+- Issue #15387 - Fix FLORDG recovered_inst ingestion issues
+
 # Version 1.4.14 (2022-06-14)
 
 - Issue #TBD - Converts unit string from uM to umol L-1 for downstream systems
