@@ -1,3 +1,7 @@
+# Version 1.4.15 (2022-08-25)
+
+- Issue #15445 - Review and correction of preload values by preload working group - pass #1
+
 # Version 1.4.15 (2022-07-14)
 
 - Issue #15354 - Add dissolved oxygen param from do_fast_sample to ctdpf_sbe43_sample stream
