@@ -1,4 +1,9 @@
-# Version 1.4.16 (2022-08-25)
+# Version 1.4.17 (2022-08-25)
+
+- Issue #15445 - Review and correction of preload values by preload working group - pass #1
+    * Correct overwrite of pressure by pressure_depth
+
+# Version 1.4.16 (2022-08-23)
 
 - Issue #15445 - Review and correction of preload values by preload working group - pass #1
 
