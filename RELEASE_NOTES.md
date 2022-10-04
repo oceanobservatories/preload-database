@@ -1,3 +1,7 @@
+# Version 1.4.19
+
+- Issue #15463 - Reinstate function map for DO in cabled deep profiler optode streams (#122)
+
 # Version 1.4.17 (2022-08-25)
 
 - Issue #15445 - Review and correction of preload values by preload working group - pass #1
