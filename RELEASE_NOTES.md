@@ -1,7 +1,3 @@
-# Version 1.4.20
-
-- Issue #15463 - Reinstate function map for DO in cabled deep profiler optode streams
-
 # Version 1.4.19
 
 - Issue #15463 - Reinstate function map for DO in cabled deep profiler optode streams (#122)
