@@ -1,3 +1,9 @@
+# Version 1.4.22
+
+* Issue #15558 - Add PCO2W/PHSEN voltage calculations 
+* Issue #15559 - Fix PCO2W ratio values exceeding the max for a signed 16 bit integer
+* Issue #15072 - Address ADCP in the Sky
+
 # Version 1.4.19
 
 - Issue #15463 - Reinstate function map for DO in cabled deep profiler optode streams (#122)
