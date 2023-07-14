@@ -1,3 +1,7 @@
+# Version 1.4.23
+
+- Issue #15268 - Remove presf dcl wave burst streams
+
 # Version 1.4.22
 
 * Issue #15558 - Add PCO2W/PHSEN voltage calculations 
