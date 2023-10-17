@@ -1,3 +1,7 @@
+# Version 1.5.0
+
+- Issue #15438 - Scale VEL3D velocity based on bit 1 of status_code
+
 # Version 1.4.23
 
 - Issue #15268 - Remove presf dcl wave burst streams
