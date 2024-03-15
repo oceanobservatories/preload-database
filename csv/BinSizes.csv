@@ -280,7 +280,7 @@ motor_current,4320,,15000,3,"105,000",,Sample data 15k per day
 nutnr_a_dark_sample,4320,,24,,0,,Sample data 18-24 per day
 nutnr_a_sample,1440,86400,72,1,"86,400",Conflict,Sample data 53-72 per day
 nutnr_a_status,20160,2,,14,28,,No ingested data
-nutnr_a_test,20160,0.002739726027,,14,0,,No ingested data
+nutnr_a_test,20160,0.002739726,,14,0,,No ingested data
 nutnr_b_dcl_conc_instrument,20160,960,110,14,"13,440",,Sample data 20-110 per day
 nutnr_b_dcl_conc_instrument_recovered,10080,,,7,0,,No ingested data
 nutnr_b_dcl_conc_metadata,20160,,2,14,28,,Sample data 1-2 per day
@@ -388,7 +388,7 @@ phsen_parsed,1440,,,1,0,,No ingested data
 phsen_regular_status,20160,2,2,14,28,,Sample data 2 per day
 phsen_thermistor_voltage,20160,1,,14,14,,No ingested data
 ppsdn_a_subcon_instrument_recovered,1440,,,1,0,,No ingested data
-ppsdn_sample_result,20160,0.06575342466,,14,1,,No ingested data
+ppsdn_sample_result,20160,0.065753425,,14,1,,No ingested data
 presf_abc_dcl_tide_measurement,20160,24,25,14,350,,Sample data 1-25 per day
 presf_abc_dcl_tide_measurement_recovered,20160,24,8,14,336,,Sample data 8 per day
 presf_abc_tide_measurement_recovered,,,,,,,
@@ -401,11 +401,11 @@ presf_wave_statistics,1440,,,1,0,Should this be 20160?,No ingested data
 prest_configuration_data,20160,2,,14,28,,No good data from ingested sample
 prest_device_status,20160,2,,14,28,,No ingested data
 prest_event_counter,20160,2,,14,28,,No ingested data
-prest_hardware_data,20160,0.002739726027,,14,0,,No ingested data
+prest_hardware_data,20160,0.002739726,,14,0,,No ingested data
 prest_real_time,1440,2,5500,1,"77,000","Conflict, but both low",Sample data 3k-5.5k per day
 prest_reference_oscillator,10080,5760,,7,"40,320",,No ingested data
 rasfl_a_subcon_instrument_recovered,1440,,,1,0,,No ingested data
-rasfl_sample_result,20160,0.1315068493,,14,2,,No ingested data
+rasfl_sample_result,20160,0.131506849,,14,2,,No ingested data
 rte_o_dcl_instrument,20160,,,14,0,,No ingested data
 rte_o_dcl_instrument_recovered,20160,,25,14,350,,Sample data 3-25 per day
 sami_regular_status,1440,,,1,0,,No ingested data
@@ -539,3 +539,4 @@ nutnr_n_dark_instrument_recovered,360,,,,,,
 secondary_node_eng_data,720,,,,,,
 secondary_node_port_eng_data,720,,,,,,
 zplsc_echogram_data,120,,,,,,
+prtsz_a_instrument,10080,,,,,,
