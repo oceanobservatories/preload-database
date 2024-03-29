@@ -1,3 +1,7 @@
+# Version 1.5.1
+
+- Issue #15717 - Adds prtsz_a_instrument, turbd_a_instrument, and plims_a_hdr_instrument streams, along with appropriate new parameters.
+
 # Version 1.5.0
 
 - Issue #15438 - Scale VEL3D velocity based on bit 1 of status_code
