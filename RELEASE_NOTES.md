@@ -1,8 +1,26 @@
-# Version 1.5.1
+# Version 1.4.28
+
+- Issue #15165 - Use new botpt predicted tide tables
+
+# Version 1.4.27
+
+- Issue #15854 - Update preload_database.sql for use by stream_engine utility scripts
+
+# Version 1.4.26
+
+- Issue #15739 - Fix new MAB instruments in preload.
+
+# Version 1.4.25
 
 - Issue #15717 - Adds prtsz_a_instrument, turbd_a_instrument, and plims_a_hdr_instrument streams, along with appropriate new parameters.
 
-# Version 1.5.0
+# Version 1.4.24
+
+- Issue #14376 - typo in trhph_sample data stream
+
+- Issue #15493 - Implementation of Asset Management updates to enable METBK-CT recovered-instr ingestion and data products
+
+- Issue #15341 - Incorrect Units for Heading, Pitch and Roll
 
 - Issue #15438 - Scale VEL3D velocity based on bit 1 of status_code
 
@@ -12,9 +30,11 @@
 
 # Version 1.4.22
 
-* Issue #15558 - Add PCO2W/PHSEN voltage calculations 
-* Issue #15559 - Fix PCO2W ratio values exceeding the max for a signed 16 bit integer
-* Issue #15072 - Address ADCP in the Sky
+- Issue #15558 - Add PCO2W/PHSEN voltage calculations
+
+- Issue #15559 - Fix PCO2W ratio values exceeding the max for a signed 16 bit integer
+
+- Issue #15072 - Address ADCP in the Sky
 
 # Version 1.4.19
 

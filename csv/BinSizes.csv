@@ -262,6 +262,7 @@ hpies_status,20160,,1400,14,"19,600",,Sample data 1400 per day
 hyd_o_dcl_instrument,1440,,,1,0,,No ingested data
 hyd_o_dcl_instrument_recovered,1440,,,1,0,,No ingested data
 ies_status,1440,,,1,0,,No ingested data
+instrument_predicted_tide,20160,5760,,14,80640,,Sample data 5760 per day
 massp_mcu_status,20160,2,1400,14,"19,600","Conflict, but both small",Sample data 1400 per day
 massp_rga_sample,1440,17280,,1,"17,280",,No ingested data
 massp_rga_status,20160,2,,14,28,,No ingested data
