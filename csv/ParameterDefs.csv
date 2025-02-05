@@ -3739,7 +3739,7 @@ TO-DO,BOTPT,predicted_tide,predicted_tide,PD8191,quantity,,float32,,m,-9999999,P
 ,PLIMS_A,counter_cleaning,cleaning_counter,PD8218,quantity,,int32,,samples,-9999999,Cleaning Counter,,,,,,,,Seawater samples run since the last cleaning routine,Cleaning Counter,Science Data,L0
 ,PLIMS_A,counter_beads,beads_counter,PD8219,quantity,,int32,,samples,-9999999,Beads Counter,,,,,,,,Seawater samples run since the last beads routine,Beads Counter,Science Data,L0
 ,PLIMS_A,run_fast_factor,run_fast_factor,PD8220,quantity,,int32,,,-9999999,Run Fast Factor,,,,,,,,Factor multiplied by syringe sampling speed to obtain the fast sample sampling speed,Run Fast Syringe Speed Multiplier,Science Data,L0
-,PLIMS_A,sample_time,sample_time,PD8221,quantity,,float32,,s,-9999999,Sample Start Time,7,,,,,sample_time,SAMTIM_L1,Instrument datetime when sample time is started,Instrument Sample Run Start Time,Science Data,L1
+,PLIMS_A,sample_timestamp,sample_timestamp,PD8221,quantity,,float32,,s,-9999999,Sample Start Time,7,,,,,sample_timestamp,SAMTIM_L1,Instrument datetime at the start of the sample run,Instrument Sample Run Start Time,Science Data,L1
 ,PLIMS_A,auto_start,auto_start,PD8222,quantity,,bool,,,empty,Auto Start State,,,,,,,,True when auto start is enabled,Auto Start State,Engineering Data,L0
 ,PLIMS_A,auto_shutdown,auto_shutdown,PD8223,quantity,,bool,,,empty,Auto Shutdown State,,,,,,,,True when instrument will auto shutdown after completing all samples,Auto Shutdown State,Engineering Data,L0
 ,PLIMS_A,humidity_alarm_threshold,humidity_threshold,PD8224,quantity,,float32,,percent,-9999999,Humidity Threshold,,,,,,,,Percent internal humidity when instrument stops current sample and initiates shutdown,Internal Percent Humidity Shut Off Threshold,Engineering Data,L0
