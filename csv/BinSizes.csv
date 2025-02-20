@@ -541,8 +541,8 @@ secondary_node_eng_data,720,,,,,,
 secondary_node_port_eng_data,720,,,,,,
 zplsc_echogram_data,120,,,,,,
 prtsz_a_instrument,10080,,,,,,
-plims_a_hdr_instrument,40320,,,2,,,
-plims_a_hdr_engineering,40320,,,2,,,
+plims_a_hdr_instrument,525600,,,365,,,Estimates based on May-Nov 2024 rates
+plims_a_hdr_engineering,262080,,,182,,,Estimates based on May-Nov 2024 rates
 plims_a_adc_instrument,2880,,,2,,,Estimates based on Apr-Nov 2024 rates
 vadcp_b_velocity_beam,360,,,,,,
 vadcp_b_velocity_beam_5,720,,,,,,
