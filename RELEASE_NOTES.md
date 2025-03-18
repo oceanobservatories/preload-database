@@ -1,3 +1,9 @@
+# Version 1.4.29
+
+- Issue #15787 - Creates VADCP-B functions and adds them into according VADCP-B streams
+- Issue #15948 - Adds PHSEN-GH stream and appropriate parameter definitions
+- Issue #15920 - Updates PRTSZ-A stream and definitions
+
 # Version 1.4.28
 
 - Issue #15165 - Use new botpt predicted tide tables
