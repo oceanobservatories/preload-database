@@ -3672,7 +3672,7 @@ TO-DO,METBK,sea_surface_conductivity,sea_surface_conductivity,PD8122,function,,f
 ,PLIMS_A,pump_drive_voltage,pump_voltage,PD8150,quantity,,float32,,V,-9999999,Sheath Pump Voltage,,,,,,,,Supply voltage to sheath flow pumps,Sheath Pump Voltage,Engineering Data,L0
 ,PLIMS_A,alt_pmta_high_voltage,alt_pmta_gain,PD8151,quantity,,float32,,V,-9999999,PMTA Gain Alternate Setting,,,,,,,,Gain setting for PMTA when alternate settings are enabled,PMTA Gain Alternate Setting,Engineering Data,L0
 ,PLIMS_A,alt_pmtb_high_voltage,alt_pmtb_gain,PD8152,quantity,,float32,,V,-9999999,PMTB Gain Alternate Setting,,,,,,,,Gain setting for PMTB when alternate settings are enabled,PMTB Gain Alternate Setting,Engineering Data,L0
-,PLIMS_A,syringe_sampling_speed,sample_speed,PD8153,quantity,,float32,,minutes,-9999999,Sampling Speed,,,,,,,,Length of total sample run time,Sampling Speed,Science Data,L0
+,PLIMS_A,syringe_sampling_speed,sample_speed,PD8153,quantity,,float32,,mins,-9999999,Sampling Speed,,,,,,,,Length of total sample run time,Sampling Speed,Science Data,L0
 ,PLIMS_A,adc_file_format,adc_headers,PD8154,quantity,,string,,,empty,ADC File Column Headers,,,,,,,,Names of variables contained in each column of the ADC file associated with the sample,ADC File Column Headers,Engineering Data,L0
 ,PLIMS_A,number_syringes_to_autorun,syringes_autorun,PD8155,quantity,,int32,,counts,-9999999,Number of Syringes to Auto Run,,,,,,,,"When Auto Start enabled, the number of syringes to run before idling or Auto Shutdown",Number of Syringes to Auto Run,Engineering Data,L0
 ,PLIMS_A,syringe_sample_volume,sample_volume,PD8156,quantity,,float32,,mL,-9999999,Sample Volume,,,,,,,,Volume of syringe filled per sample,Seawater Sample Syringe Volume,Science Data,L0
