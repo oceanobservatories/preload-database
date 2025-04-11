@@ -3660,10 +3660,10 @@ TO-DO,METBK,sea_surface_conductivity,sea_surface_conductivity,PD8122,function,,f
 ,PLIMS_A,sample_type,sample_type,PD8138,quantity,,string,,1,empty,Sample Run Type,,,,,,sample_type,,"String describing the sample run type, i.e. Normal or Beads",Sample Run Type,Engineering Data,L1
 ,PLIMS_A,trigger_count,trigger_count,PD8139,quantity,,int32,,counts,-9999999,Trigger Counts,,,,,,,,Total number of triggers recorded during the sample,Total Trigger Counts,Science Data,L0
 ,PLIMS_A,roi_count,roi_count,PD8140,quantity,,int32,,counts,-9999999,ROI Counts,,,,,,,,Total number of regions of interest (ROIs) captured during the sample,Total ROIs,Science Data,L0
-,PLIMS_A,humidity,internal_humidity,PD8141,quantity,,float32,,percent,-9999999,Internal Humidity,4,,,,,internal_humidity,HUMIDI_L1,Percent humidity measured within instrument pressure housing,Internal Instrument Percent Humidity,Science Data,L1
-,PLIMS_A,temperature,internal_temperature,PD8142,quantity,,float32,,degrees C,-9999999,Internal Instrument Temperature,4,,,,,internal_temperature,,Temperature measured within instrument pressure housing,Internal Instrument Temperature,Engineering Data,L0
-,PLIMS_A,run_time,run_time,PD8143,quantity,,float32,,seconds,-9999999,Total Run Time,,,,,,,,Accumulated time for which sample has been analyzed,Sample Cumulative Run Time,Science Data,L0
-,PLIMS_A,inhibit_time,inhibit_time,PD8144,quantity,,float32,,seconds,-9999999,Total Inhibit Time,,,,,,,,Accumulated time for which sample has not been analyzed,Sample Cumulative Inhibit Time,Science Data,L0
+,PLIMS_A,humidity,internal_humidity,PD8141,quantity,,float64,,percent,-9999999,Internal Humidity,4,,,,,internal_humidity,HUMIDI_L1,Percent humidity measured within instrument pressure housing,Internal Instrument Percent Humidity,Science Data,L1
+,PLIMS_A,temperature,internal_temperature,PD8142,quantity,,float64,,degrees C,-9999999,Internal Instrument Temperature,4,,,,,internal_temperature,,Temperature measured within instrument pressure housing,Internal Instrument Temperature,Engineering Data,L0
+,PLIMS_A,run_time,run_time,PD8143,quantity,,float64,,seconds,-9999999,Total Run Time,,,,,,,,Accumulated time for which sample has been analyzed,Sample Cumulative Run Time,Science Data,L0
+,PLIMS_A,inhibit_time,inhibit_time,PD8144,quantity,,float64,,seconds,-9999999,Total Inhibit Time,,,,,,,,Accumulated time for which sample has not been analyzed,Sample Cumulative Inhibit Time,Science Data,L0
 ,PLIMS_A,pump1_state,pump1_state,PD8145,boolean,,int8,,1,-99,Pump 1 State,,,,,,,,True if sheath pump 1 is powered on.,Sheath Pump 1 State,Engineering Data,L0
 ,PLIMS_A,pump2_state,pump2_state,PD8146,boolean,,int8,,1,-99,Pump 2 State,,,,,,,,True if sheath pump 2 is powered on.,Sheath Pump 2 State,Engineering Data,L0
 ,PLIMS_A,pmta_high_voltage,pmta_gain,PD8147,quantity,,float32,,V,-9999999,PMTA Gain,,,,,,,,Gain setting for excitation voltage for the scatter detection channel,Scattering Channel Gain,Science Data,L0
