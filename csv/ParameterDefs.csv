@@ -3727,8 +3727,8 @@ TO-DO,BOTPT,predicted_tide,predicted_tide,PD8191,quantity,,float32,,m,-9999999,P
 ,PLIMS_A,trigger_number,trigger,PD8205,quantity,,int32,,counts,-9999999,Trigger Number,0,,,,,,,Trigger number of the acquired data in sequence,Trigger Number,Science Data,L0
 ,PLIMS_A,pmta,int_pmta,PD8206,quantity,,float32,,V,-9999999,Trigger Integrated PMTA,7,,,,,,,Integrated output of PMTA for the current trigger pulse,Trigger Integrated PMTA,Science Data,L0
 ,PLIMS_A,pmtb,int_pmtb,PD8207,quantity,,float32,,V,-9999999,Trigger Integrated PMTB,7,,,,,,,Integrated output of PMTB for the current trigger pulse,Trigger Integrated PMTB,Science Data,L0
-,PLIMS_A,peaka,peak_a,PD8208,quantity,,float32,,V,-9999999,Peak PMTA Output,7,,,,,,,Peak output of PMTA for the current trigger pulse,Peak PMTA Output,Science Data,L0
-,PLIMS_A,peakb,peak_b,PD8209,quantity,,float32,,V,-9999999,Peak PMTB Output,7,,,,,,,Peak output of PMTB for the current trigger pulse,Peak PMTB Output,Science Data,L0
+,PLIMS_A,peak_a,peak_a,PD8208,quantity,,float32,,V,-9999999,Peak PMTA Output,7,,,,,,,Peak output of PMTA for the current trigger pulse,Peak PMTA Output,Science Data,L0
+,PLIMS_A,peak_b,peak_b,PD8209,quantity,,float32,,V,-9999999,Peak PMTB Output,7,,,,,,,Peak output of PMTB for the current trigger pulse,Peak PMTB Output,Science Data,L0
 ,PLIMS_A,time_of_flight,time_of_flight,PD8210,quantity,,float32,,us,-9999999,Time of Flight,5,,,,,,,Duration of the entire pulse for which a trigger signal is generated,Time of Flight,Science Data,L0
 ,PLIMS_A,grab_time_start,grab_time_start,PD8211,quantity,,float32,,s,-9999999,Start Grab Time,5,,,,,,,Elapsed time from the start of the sample run to the current trigger,Start Grab Time,Science Data,L0
 ,PLIMS_A,grab_time_end,grab_time_end,PD8212,quantity,,float32,,s,-9999999,End Grab Time,5,,,,,,,Elapsed time from the start of the sample run to the completion of image acquisition for the current trigger,End Grab Time,Science Data,L0
