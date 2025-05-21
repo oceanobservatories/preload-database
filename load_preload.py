@@ -183,11 +183,9 @@ def process_parameters(session):
         create_or_update_parameter(session, parameter_id, csv_params[parameter_id],
                                    value_table_map, parameter=all_params.get(parameter_id))
 
-    # Remove rows from the database for deleted Parameters.
-    for parameter_id in delete_params:
-        session.delete(all_params[parameter_id])
-
     session.commit()
+
+    return delete_params
 
 
 def create_or_update_parameter_func(session, func_id, row, value_table_map, func=None):
@@ -223,10 +221,31 @@ def process_parameter_funcs(session):
         create_or_update_parameter_func(session, func_id, csv_functions[func_id],
                                         value_table_map, func=existing_functions.get(func_id))
 
-    for func_id in delete_functions:
-        session.delete(existing_functions[func_id])
-
     session.commit()
+
+    return delete_functions
+
+def delete_parameters_and_parameter_funcs(session, parameter_ids, parameter_func_ids):
+    """
+    Delete parameters and parameter functions from the database.
+    :param session: SQLAlchemy session
+    :param parameter_ids: List of parameter IDs to delete
+    :param parameter_func_ids: List of parameter function IDs to delete
+    """
+    log.info('Delete {} parameters and {} parameter functions'.format(len(parameter_ids), len(parameter_func_ids)))
+
+    # get parameters from list of ids
+    if parameter_ids:
+        params = Parameter.query.filter(Parameter.id.in_(parameter_ids)).all()
+        for param in params:
+            session.delete(param)
+    if parameter_func_ids:
+        param_funcs = ParameterFunction.query.filter(ParameterFunction.id.in_(parameter_func_ids)).all()
+        for func in param_funcs:
+            session.delete(func)
+
+    if parameter_ids or parameter_func_ids:
+        session.commit()
 
 
 def create_or_update_stream(session, stream_id, row, value_table_map, bin_sizes, stream=None):
@@ -444,8 +463,9 @@ def read_csv_data():
 
 def update_db(session):
     process_nominal_depths(session)
-    process_parameter_funcs(session)
-    process_parameters(session)
+    param_funcs_to_delete = process_parameter_funcs(session)
+    params_to_delete = process_parameters(session)
+    delete_parameters_and_parameter_funcs(session, params_to_delete, param_funcs_to_delete)
     process_streams(session)
     process_stream_dependencies(session)
 
