@@ -237,9 +237,10 @@ def delete_parameters_and_parameter_funcs(session, parameter_ids, parameter_func
     # get parameters from list of ids
     if parameter_ids:
         params = session.query(Parameter).filter(Parameter.id.in_(parameter_ids)).all()
-        session.query(Parameter).filter(Parameter.id.in_(parameter_ids)).delete(synchronize_session=False)
         for param in params:
             session.delete(param)
+
+    # delete the associated parameter function entries
     if parameter_func_ids:
         param_funcs = session.query(ParameterFunction).filter(ParameterFunction.id.in_(parameter_func_ids)).all()
         for func in param_funcs:
