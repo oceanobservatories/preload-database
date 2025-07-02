@@ -960,7 +960,7 @@ TO-DO,Gliders,c_ballast_pumped,c_ballast_pumped,PD1215,quantity,,float32,,mL,,Co
 TO-DO,Gliders,c_battpos,c_battpos,PD1216,quantity,,float32,,in,,Commanded Battery Position,4,,,,,,,Commanded battery position in inches. >0 vehicle dives (nose down) the battery is moved forward.,,,
 TO-DO,Gliders,c_battroll,c_battroll,PD1217,quantity,,float32,,rad,,Battroll,4,,,,,,,,,,
 TO-DO,Gliders,c_bsipar_on,c_bsipar_on,PD1218,quantity,,float32,,s,,Bsipar On,4,,,,,,,,,,
-TO-DO,Gliders,c_de_oil_vol,c_de_oil_vol,PD1219,quantity,,float32,,mL,,Deep Engine Oil Volumn,4,,,,,,,">0, goes up",,,
+TO-DO,Gliders,c_de_oil_vol,c_de_oil_vol,PD1219,quantity,,float32,,mL,,Commanded Deep Engine Oil Volume,4,,,,,,,">0, goes up",,,
 TO-DO,Gliders,c_dvl_on,c_dvl_on,PD1220,quantity,,float32,,s,,Commanded Doppler Velocity Logger Ensemble Start Interval,4,,,,,,,"The commanded doppler velocity logger ensemble start interval. How often start ensembles in seconds <0 stops, 0 fast as possible, 0> that many secs",,,
 TO-DO,Gliders,c_flbbcd_on,c_flbbcd_on,PD1221,quantity,,float32,,s,,Flbbcd On,4,,,,,,,,,,
 TO-DO,Gliders,c_heading,c_heading,PD1222,quantity,,float32,,rad,,Heading,4,,,,,,,Commanded heading,,,
