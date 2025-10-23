@@ -1,3 +1,7 @@
+# Version 1.4.30
+
+- Issue #16105 - Handle purge of BOTPT virtual streams
+
 # Version 1.4.29
 
 - Issue #15787 - Creates VADCP-B functions and adds them into according VADCP-B streams
