@@ -273,6 +273,7 @@ metbk_a_dcl_instrument,20160,1440,1300,14,"20,160",,Sample data 150-1300 per day
 metbk_a_dcl_instrument_recovered,20160,1440,,14,"20,160",,No ingested data
 metbk_ct_instrument,20160,1440,,14,"20,160",,No ingested data
 metbk_ct_dcl_instrument,20160,1440,,14,"20,160",,No ingested data
+metbk_hourly,20160,,,,,,
 metbk_sample,1440,,,1,0,,No ingested data
 metbk_status,20160,,,14,0,,No ingested data
 mopak_o_dcl_accel,180,,1000000,0.125,"125,000",,Sample data 1k-1000k per day
