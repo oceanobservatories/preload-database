@@ -1,3 +1,19 @@
+# Version 1.4.35
+
+- Issue #16201 - Enable purge of metbk_hourly virtual stream
+
+- Issue #16079 - New ion_function for Cabled PHSEN-H
+
+- Issue #16168 - METBK Wind Speed Under-Reporting
+
+# Version 1.4.34
+
+# Version 1.4.33
+
+# Version 1.4.32
+
+# Version 1.4.31
+
 # Version 1.4.30
 
 - Issue #16105 - Handle purge of BOTPT virtual streams
